@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LocalTV</string>
+    <string name="ende">Ende</string>
+    <string name="teleBaern">Tele Bärn</string>
+    <string name="teleBasel">Tele Basel</string>
+    <string name="teleM1">Tele M1</string>
+        
+</resources>
