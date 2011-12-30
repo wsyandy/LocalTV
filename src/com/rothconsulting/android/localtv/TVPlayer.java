@@ -1,20 +1,22 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.Toast;
 
-public class LocalTV extends Activity {
+public class TVPlayer extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
 
+	private final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	private final String TELE_BASEL = "telebasel.html";
 	private final String TELE_BAERN = "telebaern.html";
 	private final String TELE_M1 = "telem1.html";
@@ -22,13 +24,19 @@ public class LocalTV extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.main);
 
+		Bundle bundle = this.getIntent().getExtras();
+		String sender = "" + bundle.getCharSequence(Constants.SENDER);
+		Log.d(TAG, "Snder=" + sender);
+
+		play(sender);
 		// AdMob ads = new AdMob();
 		// ads.showRemoveAds(this);
 	}
 
-	private void play(Context context, String sender) {
+	private void play(String sender) {
 
 		boolean flashInstalled = false;
 		try {
@@ -42,9 +50,17 @@ public class LocalTV extends Activity {
 		}
 
 		if (flashInstalled) {
-			Intent intent = new Intent(context, TVPlayer.class);
-			intent.putExtra(Constants.SENDER, sender);
-			startActivity(intent);
+			WebView myWebView = (WebView) findViewById(R.id.webview);
+			myWebView.clearCache(Boolean.TRUE);
+			myWebView.setInitialScale(90);
+			myWebView.getSettings().setBuiltInZoomControls(true);
+			myWebView.getSettings().setJavaScriptEnabled(true);
+			myWebView.getSettings().setPluginsEnabled(true);
+			myWebView.getSettings().setAllowFileAccess(true);
+			myWebView.setBackgroundColor(0);
+
+			myWebView.loadUrl(BASE_URL + sender);
+
 		} else {
 			Toast.makeText(
 					this,
@@ -71,13 +87,13 @@ public class LocalTV extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case -1:
-			this.play(this, TELE_BAERN);
+			this.play(TELE_BAERN);
 			break;
 		case -2:
-			this.play(this, TELE_BASEL);
+			this.play(TELE_BASEL);
 			break;
 		case -3:
-			this.play(this, TELE_M1);
+			this.play(TELE_M1);
 			break;
 		case -4:
 			finish();

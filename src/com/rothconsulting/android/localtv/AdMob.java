@@ -22,8 +22,7 @@ public class AdMob {
 			AdView adView = new AdView(context, AdSize.BANNER,
 					Constants.ADMOB_PUBLISHER_ID);
 			Log.d(TAG, "adView=" + adView);
-			// Lookup your LinearLayout assuming it’s been given
-			// the attribute android:id="@+id/mainLayout"
+
 			LinearLayout layout = (LinearLayout) context
 					.findViewById(R.id.adsLayout);
 			// Add the adView to it
