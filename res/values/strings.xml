@@ -3,8 +3,9 @@
 
     <string name="app_name">LocalTV</string>
     <string name="ende">Ende</string>
-    <string name="teleBaern">Tele Bärn</string>
-    <string name="teleBasel">Tele Basel</string>
-    <string name="teleM1">Tele M1</string>
-        
+    <string name="back">Zurück</string>
+    <string name="cannotStartTV">Kann TV nicht starten.</string>
+    <string name="flashNotInstalled">Adobe Flash ist nicht installiert!!</string>
+    <string name="internetNotConnected">Sie sind nicht mit dem Internet verbunden!!</string>
+    
 </resources>

@@ -1,85 +1,96 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
+import android.graphics.PixelFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.webkit.WebView;
-import android.widget.Toast;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 public class TVPlayer extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
 
 	private final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
-	private final String TELE_BASEL = "telebasel.html";
-	private final String TELE_BAERN = "telebaern.html";
-	private final String TELE_M1 = "telem1.html";
+
+	private WebView myWebView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		setContentView(R.layout.main);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		setContentView(R.layout.player);
 
 		Bundle bundle = this.getIntent().getExtras();
-		String sender = "" + bundle.getCharSequence(Constants.SENDER);
-		Log.d(TAG, "Snder=" + sender);
+		String url = bundle.getString(Constants.URL);
+		Log.d(TAG, "URL=" + url);
 
-		play(sender);
-		// AdMob ads = new AdMob();
-		// ads.showRemoveAds(this);
+		playInWebView(url);
 	}
 
-	private void play(String sender) {
+	private void playInWebView(String url) {
 
-		boolean flashInstalled = false;
-		try {
-			PackageManager pm = getPackageManager();
-			ApplicationInfo ai = pm.getApplicationInfo("com.adobe.flashplayer",
-					0);
-			if (ai != null)
-				flashInstalled = true;
-		} catch (NameNotFoundException e) {
-			flashInstalled = false;
+		myWebView = (WebView) findViewById(R.id.webview);
+		myWebView.clearCache(Boolean.TRUE);
+		myWebView.setInitialScale(90);
+		myWebView.getSettings().setBuiltInZoomControls(true);
+		myWebView.getSettings().setJavaScriptEnabled(true);
+		myWebView.getSettings().setPluginsEnabled(true);
+		myWebView.getSettings().setAllowFileAccess(true);
+		myWebView.setBackgroundColor(0);
+
+		String theURLtoPlay = BASE_URL + url;
+		if (url.startsWith("http:")) {
+			theURLtoPlay = url;
 		}
+		myWebView.loadUrl(theURLtoPlay);
+	}
 
-		if (flashInstalled) {
-			WebView myWebView = (WebView) findViewById(R.id.webview);
-			myWebView.clearCache(Boolean.TRUE);
-			myWebView.setInitialScale(90);
-			myWebView.getSettings().setBuiltInZoomControls(true);
-			myWebView.getSettings().setJavaScriptEnabled(true);
-			myWebView.getSettings().setPluginsEnabled(true);
-			myWebView.getSettings().setAllowFileAccess(true);
-			myWebView.setBackgroundColor(0);
-
-			myWebView.loadUrl(BASE_URL + sender);
-
-		} else {
-			Toast.makeText(
-					this,
-					"Kann TV nicht starten.\nAdobe Flash ist nicht installiert!!",
-					Toast.LENGTH_LONG).show();
+	public void playInVideoView(String url, boolean autoplay) {
+		// get current window information, and set format, set it up
+		// differently, if you need some special effects
+		getWindow().setFormat(PixelFormat.TRANSLUCENT);
+		// the VideoView will hold the video
+		VideoView videoHolder = new VideoView(this);
+		// MediaController is the ui control howering above the video (just like
+		// in the default youtube player).
+		videoHolder.setMediaController(new MediaController(this));
+		// assing a video file to the video holder
+		videoHolder
+				.setVideoURI(Uri
+						.parse("http://rtmp.infomaniak.ch/livecast/barntele/playlist.m3u8"));
+		// get focus, before playing the video.
+		videoHolder.requestFocus();
+		if (autoplay) {
+			videoHolder.start();
 		}
+	}
 
+	@Override
+	protected void onDestroy() {
+		if (myWebView != null) {
+			myWebView.destroy();
+		}
+		super.onDestroy();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration _newConfig) {
+		super.onConfigurationChanged(_newConfig);
+		// do nothing on rotation
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, this.getResources().getString(R.string.teleBaern))
-				.setIcon(android.R.drawable.ic_menu_camera);
-		menu.add(0, -2, 1, this.getResources().getString(R.string.teleBasel))
-				.setIcon(android.R.drawable.ic_menu_camera);
-		menu.add(0, -3, 2, this.getResources().getString(R.string.teleM1))
-				.setIcon(android.R.drawable.ic_menu_camera);
-		menu.add(0, -4, 3, this.getResources().getString(R.string.ende))
-				.setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -1, 1, this.getResources().getString(R.string.back))
+				.setIcon(android.R.drawable.ic_media_rew);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -87,15 +98,6 @@ public class TVPlayer extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case -1:
-			this.play(TELE_BAERN);
-			break;
-		case -2:
-			this.play(TELE_BASEL);
-			break;
-		case -3:
-			this.play(TELE_M1);
-			break;
-		case -4:
 			finish();
 			break;
 		}
