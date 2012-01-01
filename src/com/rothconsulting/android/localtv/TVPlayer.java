@@ -1,11 +1,14 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -18,24 +21,39 @@ public class TVPlayer extends Activity {
 	private final String TAG = this.getClass().getSimpleName();
 
 	private final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
-
 	private WebView myWebView;
+	private PowerManager.WakeLock wakeLock;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.player);
 
-		Bundle bundle = this.getIntent().getExtras();
-		String url = bundle.getString(Constants.URL);
-		Log.d(TAG, "URL=" + url);
+		// prevent dim screen
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wakeLock = pm
+				.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
 
-		playInWebView(url);
+		Bundle bundle = this.getIntent().getExtras();
+		if (bundle != null) {
+			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
+				String name = bundle.getString(Constants.NAME);
+				String url = bundle.getString(Constants.URL);
+				Log.d(TAG, "URL=" + url);
+				playInWebView(name, url);
+			} else {
+				String stationName = bundle.getString(Constants.NAME);
+				finish();
+				Util.showStatusBarNotification(this, stationName);
+
+			}
+		} else {
+			Log.d(TAG, "bundle is null");
+		}
 	}
 
-	private void playInWebView(String url) {
+	private void playInWebView(String name, String url) {
 
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
@@ -51,6 +69,7 @@ public class TVPlayer extends Activity {
 			theURLtoPlay = url;
 		}
 		myWebView.loadUrl(theURLtoPlay);
+		Util.showStatusBarNotification(this, name);
 	}
 
 	public void playInVideoView(String url, boolean autoplay) {
@@ -75,9 +94,7 @@ public class TVPlayer extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		if (myWebView != null) {
-			myWebView.destroy();
-		}
+		closeTVPlayer(false);
 		super.onDestroy();
 	}
 
@@ -87,6 +104,43 @@ public class TVPlayer extends Activity {
 		// do nothing on rotation
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			closeTVPlayer(true);
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void closeTVPlayer(boolean removeStatusBar) {
+		if (myWebView != null) {
+			myWebView.destroy();
+		}
+		if (removeStatusBar) {
+			Util.hideStatusBarNotification(this);
+		}
+		finish();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (wakeLock != null) {
+			wakeLock.release();
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (wakeLock != null) {
+			wakeLock.acquire();
+		}
+	}
+
+	// ------------------------------------------------------------
+	// Menu Stuff
+	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, -1, 1, this.getResources().getString(R.string.back))
@@ -98,7 +152,7 @@ public class TVPlayer extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case -1:
-			finish();
+			closeTVPlayer(true);
 			break;
 		}
 		return super.onOptionsItemSelected(item);

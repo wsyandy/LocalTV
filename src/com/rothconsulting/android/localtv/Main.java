@@ -38,11 +38,15 @@ public class Main extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// When clicked, show a toast with the TextView text
-				TextView textView = (TextView) ((LinearLayout) view)
-						.getChildAt(2); // 2 = Die dritte View
+				TextView textViewName = (TextView) ((LinearLayout) view)
+						.getChildAt(1); // 1 = Die zweite View (name)
+				TextView textViewUrl = (TextView) ((LinearLayout) view)
+						.getChildAt(2); // 2 = Die dritte View (url)
 
-				Log.d(TAG, " url= " + textView.getText());
-				play(getApplicationContext(), "" + textView.getText());
+				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
+						+ textViewUrl.getText());
+				play(getApplicationContext(), "" + textViewName.getText(), ""
+						+ textViewUrl.getText());
 
 			}
 		});
@@ -51,12 +55,13 @@ public class Main extends ListActivity {
 		ads.showRemoveAds(this);
 	}
 
-	private void play(Context context, String url) {
+	private void play(Context context, String name, String url) {
 
 		if (Util.isNetworkAvailable(this)) {
 
 			if (Util.isFlashInstalled(this)) {
 				Intent intent = new Intent(context, TVPlayer.class);
+				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
 				startActivity(intent);
 			} else {
@@ -76,9 +81,14 @@ public class Main extends ListActivity {
 
 	}
 
+	// ------------------------------------------------------------
+	// Menu Stuff
+	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, this.getResources().getString(R.string.ende))
+		menu.add(0, -1, 0, this.getResources().getString(R.string.info))
+				.setIcon(android.R.drawable.ic_menu_info_details);
+		menu.add(0, -2, 0, this.getResources().getString(R.string.ende))
 				.setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -86,7 +96,10 @@ public class Main extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case -1:
+		case -1: // info
+			startActivity(new Intent(this, Info.class));
+			break;
+		case -2: // ende
 			finish();
 			break;
 		}
