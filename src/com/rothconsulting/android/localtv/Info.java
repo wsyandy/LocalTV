@@ -30,12 +30,13 @@ public class Info extends Activity {
 			}
 		});
 
-		final TextView featureText = (TextView) findViewById(R.id.textViewFeatureEmail);
-		featureText.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				startEmailActivity();
-			}
-		});
+		// final TextView featureText = (TextView)
+		// findViewById(R.id.textViewFeatureEmail);
+		// featureText.setOnClickListener(new View.OnClickListener() {
+		// public void onClick(View v) {
+		// startEmailActivity();
+		// }
+		// });
 	}
 
 	private void startEmailActivity() {

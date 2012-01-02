@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.WebView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class TVPlayer extends Activity {
@@ -57,11 +58,13 @@ public class TVPlayer extends Activity {
 
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
-		myWebView.setInitialScale(90);
+		myWebView.setInitialScale(95);
+		myWebView.getSettings().setSupportZoom(true);
 		myWebView.getSettings().setBuiltInZoomControls(true);
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginsEnabled(true);
 		myWebView.getSettings().setAllowFileAccess(true);
+
 		myWebView
 				.getSettings()
 				.setUserAgentString(
@@ -72,8 +75,15 @@ public class TVPlayer extends Activity {
 		if (url.startsWith("http:")) {
 			theURLtoPlay = url;
 		}
+
 		myWebView.loadUrl(theURLtoPlay);
 		Util.showStatusBarNotification(this, name);
+		if (!name.contains("Bärn")) {
+			Toast.makeText(
+					this,
+					"Für Vollbildmodus verwende den kleinen viereckigen Knopf auf dem Bildschirm",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	public void playInVideoView(String url, boolean autoplay) {

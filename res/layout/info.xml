@@ -8,17 +8,16 @@
 			android:orientation="vertical" android:layout_height="wrap_content"
 			android:scrollbars="vertical">
 			<TextView android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:layout_gravity="center"
-				android:text="@string/app_name" android:textColor="#BA002B"
-				android:textSize="20dip" android:layout_margin="10dip"
+				android:layout_width="wrap_content" android:text="@string/app_name"
+				android:textColor="#BA002B" android:textSize="20dip"
+				android:layout_marginTop="10dip" android:layout_marginBottom="10dip"
 				android:id="@+id/textViewAppName" />
 			<TextView android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:layout_gravity="center"
-				android:id="@+id/textViewAppVersion" />
+				android:layout_width="wrap_content" android:id="@+id/textViewAppVersion" />
 			<TextView android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:layout_gravity="center"
-				android:text="@string/infoCopyright" android:id="@+id/textViewCopyright"
-				android:layout_margin="5dip" />
+				android:layout_width="wrap_content" android:text="@string/infoCopyright"
+				android:id="@+id/textViewCopyright" android:layout_marginTop="5dip"
+				android:layout_marginBottom="5dip" />
 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 				xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 				android:orientation="vertical" android:gravity="center"
@@ -30,9 +29,16 @@
 					ads:loadAdOnCreate="false" />
 			</LinearLayout>
 			<TextView android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:gravity="center"
-				android:layout_gravity="center" android:id="@+id/textViewFeatureEmail"
-				android:layout_marginTop="5dip" android:text="@string/infoFeatureEmail" />
+				android:layout_width="wrap_content" android:id="@+id/textViewInfoDatenmenge"
+				android:layout_marginTop="5dip" android:text="@string/infoDatenmenge" />
+			<!-- <TextView android:layout_height="wrap_content" -->
+			<!-- android:layout_width="wrap_content" android:gravity="center" -->
+			<!-- android:id="@+id/textViewFeatureEmail" -->
+			<!-- android:layout_marginTop="5dip" android:text="@string/infoFeatureEmail" 
+				/> -->
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewZweck"
+				android:layout_marginTop="5dip" android:text="@string/infoZweck" />
 			<Button android:layout_margin="30dip" android:id="@+id/buttonZurueck"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="@string/back" android:layout_gravity="left" />

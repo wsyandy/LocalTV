@@ -6,9 +6,11 @@
     <string name="back">Zurück</string>
     <string name="cannotStartTV">Kann TV nicht starten.</string>
     <string name="flashNotInstalled">Adobe Flash ist nicht installiert!!</string>
-    <string name="internetNotConnected">Sie sind nicht mit dem Internet verbunden!!</string>
+    <string name="internetNotConnected">Du bist nicht mit dem Internet verbunden!</string>
     <string name="info">Info</string>
-    <string name="infoFeatureEmail">Fehlt dir ein Sender? Falls es möglich ist intgriere ich ihn gerne. Klick auf folgende E-Mail-Adresse und teile mir dein Anligen mit. \n\n  androider@wolke7.net</string>
-    <string name="infoCopyright"> &#169; 2012 by Koni</string>
+    <string name="infoDatenmenge">Fernseh schauen via Internet verbraucht relativ grosse Datenmengen. Ich empfehle dir die Verwendung eines WLAN.</string>
+    <string name="infoFeatureEmail">Fehlt dir ein Sender? Falls es möglich ist intgriere ich ihn gerne. Klick auf folgende E-Mail-Adresse und teile mir dein Anliegen mit. \n\n  androider@wolke7.net</string>
+    <string name="infoCopyright">&#169; 2012 by Koni\n\nInhalte gehören den jeweiligen Copyright Inhabern. LocalTV hat keinerlei Verbindung zu den Anbieter der Internet Streams.</string>
+    <string name="infoZweck">LocalTV ist entstanden weil mir ein paar Fernsehsender auf meinem Android Gerät gefehlt haben. Das Ziel von LocalTV ist es ein paar kleinere Lokal- und Sparten-Fernsehsender auf deinem Android Gerät zur Verfügung zu stellen. Die kommerzielleren Sender findest du hier nicht. Diese findest du auf Zattoo.com, Wilmaa.com oder Teleboy.ch.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
 </resources>
