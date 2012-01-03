@@ -57,9 +57,9 @@ public class Main extends ListActivity {
 
 	private void play(Context context, String name, String url) {
 
-		if (Util.isNetworkAvailable(this)) {
+		if (Util.isFlashInstalled(this)) {
 
-			if (Util.isFlashInstalled(this)) {
+			if (Util.isNetworkAvailable(this)) {
 				Intent intent = new Intent(context, TVPlayer.class);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
@@ -67,15 +67,12 @@ public class Main extends ListActivity {
 			} else {
 				Toast.makeText(
 						this,
-						this.getResources().getString(
-								R.string.flashNotInstalled), Toast.LENGTH_LONG)
-						.show();
+						getResources().getString(R.string.internetNotConnected),
+						Toast.LENGTH_LONG).show();
 			}
 		} else {
-			Toast.makeText(
-					this,
-					this.getResources()
-							.getString(R.string.internetNotConnected),
+			Toast.makeText(this,
+					getResources().getString(R.string.flashNotInstalled),
 					Toast.LENGTH_LONG).show();
 		}
 
@@ -86,10 +83,10 @@ public class Main extends ListActivity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, this.getResources().getString(R.string.info))
-				.setIcon(android.R.drawable.ic_menu_info_details);
-		menu.add(0, -2, 0, this.getResources().getString(R.string.ende))
-				.setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(
+				android.R.drawable.ic_menu_info_details);
+		menu.add(0, -2, 0, getResources().getString(R.string.ende)).setIcon(
+				android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 

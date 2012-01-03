@@ -57,8 +57,8 @@ public class Info extends Activity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 1, this.getResources().getString(R.string.back))
-				.setIcon(android.R.drawable.ic_media_rew);
+		menu.add(0, -1, 1, getResources().getString(R.string.back)).setIcon(
+				android.R.drawable.ic_media_rew);
 		return super.onCreateOptionsMenu(menu);
 	}
 

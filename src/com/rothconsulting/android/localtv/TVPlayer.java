@@ -65,11 +65,10 @@ public class TVPlayer extends Activity {
 		myWebView.getSettings().setPluginsEnabled(true);
 		myWebView.getSettings().setAllowFileAccess(true);
 
-		myWebView
-				.getSettings()
-				.setUserAgentString(
-						"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1");
-		myWebView.setBackgroundColor(0);
+		myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
+		if (!Stations.noTransparentBackground().contains(name)) {
+			myWebView.setBackgroundColor(0);
+		}
 
 		String theURLtoPlay = BASE_URL + url;
 		if (url.startsWith("http:")) {
@@ -78,11 +77,19 @@ public class TVPlayer extends Activity {
 
 		myWebView.loadUrl(theURLtoPlay);
 		Util.showStatusBarNotification(this, name);
-		if (!name.contains("Bärn")) {
-			Toast.makeText(
-					this,
-					"Für Vollbildmodus verwende den kleinen viereckigen Knopf auf dem Bildschirm",
-					Toast.LENGTH_LONG).show();
+		if (!Stations.noFullscreenMessage().contains(name)) {
+			for (int i = 0; i < 2; i++) { // langer Toast (2x)
+				Toast.makeText(this,
+						getResources().getString(R.string.vollbild),
+						Toast.LENGTH_LONG).show();
+			}
+		}
+		if (Stations.notLive().contains(name)) {
+			for (int i = 0; i < 2; i++) { // langer Toast (2x)
+				Toast.makeText(this,
+						getResources().getString(R.string.notLive),
+						Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 
@@ -157,8 +164,8 @@ public class TVPlayer extends Activity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 1, this.getResources().getString(R.string.back))
-				.setIcon(android.R.drawable.ic_media_rew);
+		menu.add(0, -1, 1, getResources().getString(R.string.back)).setIcon(
+				android.R.drawable.ic_media_rew);
 		return super.onCreateOptionsMenu(menu);
 	}
 
