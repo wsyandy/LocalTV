@@ -19,6 +19,7 @@ public class Stations {
 	public static final String ALF_TV = "Alf-TV (Aarau-Olten-Zofingen)";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
 	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
+	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
@@ -35,7 +36,7 @@ public class Stations {
 		stations.addAll(notLive());
 		stations.add(TELE_BASEL);
 		stations.add(TELE_BAERN);
-
+		stations.add(SSF);
 		return stations;
 	}
 
@@ -86,6 +87,12 @@ public class Stations {
 		m.put("name", SCHWEIZ_5);
 		m.put("url", "schweiz5.html");
 		m.put("icon", R.drawable.schweiz_5);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SSF);
+		m.put("url", "http://internettv.ch/sport/ssf-live/ssf-live");
+		m.put("icon", R.drawable.ssf);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
