@@ -6,6 +6,12 @@ import java.util.List;
 
 public class Stations {
 
+	public static final String LAND_LEER = "";
+	public static final String LAND_SCHWEIZ = " --- Schweiz ---";
+	public static final String LAND_DEUTSCHLAND = " --- Deutschland --- ";
+	public static final String LAND_OESTERREICH = " --- Österreich --- ";
+	public static final String LAND_USA = "--- USA ---";
+
 	public static final String TELE_BASEL = "Tele Basel";
 	public static final String TELE_BAERN = "Tele Bärn";
 	public static final String TELE_ZUERI = "Tele Züri";
@@ -14,12 +20,13 @@ public class Stations {
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String LA_TELE = "La Tele";
 	public static final String ROUGE_TV = "Rouge TV";
-	public static final String JUMP_TV = "Jump-TV (Solothurn)";
+	public static final String JUMP_TV = "Jump-TV";
 	public static final String TELE_BIELINGUE = "TeleBielingue";
-	public static final String ALF_TV = "Alf-TV (Aarau-Olten-Zofingen)";
+	public static final String ALF_TV = "Alf-TV";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
 	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
 	public static final String SSF = "Schweizer Sport Fernsehen";
+	public static final String TCH = "Trailer Cinema Highlights";
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
@@ -47,13 +54,21 @@ public class Stations {
 		stations.add(TELE_BIELINGUE);
 		stations.add(TELE_OSTSCHWEIZ);
 		stations.add(TELE_SUEDOSTSCHWEIZ);
+		stations.add(TCH);
 		return stations;
 	}
 
 	public static ArrayList<HashMap<String, Object>> getStations() {
 		ArrayList<HashMap<String, Object>> stationList = new ArrayList<HashMap<String, Object>>();
 
+		// ******* Schweiz *******
 		HashMap<String, Object> m = new HashMap<String, Object>();
+		m.put("name", LAND_SCHWEIZ);
+		m.put("url", "");
+		m.put("icon", R.drawable.flagge_schweiz);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TELE_BASEL);
 		m.put("url", "telebasel.html");
 		m.put("icon", R.drawable.tele_basel);
@@ -91,20 +106,19 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", SSF);
-		m.put("url", "http://internettv.ch/sport/ssf-live/ssf-live");
+		m.put("url", "ssf.html");
 		m.put("icon", R.drawable.ssf);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", LA_TELE);
-		m.put("url",
-				"http://www.latele.ch/webtv/MAPlayer.swf?src=rtmp%3A%2F%2Frtmp.infomaniak.ch%2Flivecast%2Flatele&mode=overlay&themeColor=0395d3&frameColor=333333&fontColor=cccccc&autostart=true");
+		m.put("url", "latele.html");
 		m.put("icon", R.drawable.la_tele);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ROUGE_TV);
-		m.put("url", "http://www.rougetv.ch/live.php");
+		m.put("url", "rougetv.html");
 		m.put("icon", R.drawable.rouge_tv);
 		stationList.add(m);
 
@@ -139,14 +153,29 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TCH);
+		m.put("url", "tch.html");
+		m.put("icon", R.drawable.trailer_cinema_highlights);
+		stationList.add(m);
+
+		// ******* Deutschland *******
+		stationList.add(getLeerZeile());
+
+		m = new HashMap<String, Object>();
+		m.put("name", LAND_DEUTSCHLAND);
+		m.put("url", "");
+		m.put("icon", R.drawable.flagge_deutschland);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", BW_FAMILY);
-		m.put("url", "http://www.bwfamily.tv/interfaces/live.php");
+		m.put("url", "bwfamily.html");
 		m.put("icon", R.drawable.bw_family);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", FAMILY_TV);
-		m.put("url", "http://familytv.tv/livestream.php");
+		m.put("url", "familytv.html");
 		m.put("icon", R.drawable.family_tv);
 		stationList.add(m);
 
@@ -156,12 +185,14 @@ public class Stations {
 		m.put("icon", R.drawable.alex_berlin);
 		stationList.add(m);
 
-		// m = new HashMap<String, Object>();
-		// m.put("name", "BR Mediathek");
-		// m.put("url",
-		// "http://mediathek-video.br.de/B7Mediathek.html?bccode=both");
-		// m.put("icon", R.drawable.br_mediathek);
-		// stationList.add(m);
+		// ******* USA *******
+		stationList.add(getLeerZeile());
+
+		m = new HashMap<String, Object>();
+		m.put("name", LAND_USA);
+		m.put("url", "");
+		m.put("icon", R.drawable.flagge_usa);
+		stationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CLASSIC_CARTOONS_ACME);
@@ -170,5 +201,13 @@ public class Stations {
 		stationList.add(m);
 
 		return stationList;
+	}
+
+	private static HashMap<String, Object> getLeerZeile() {
+		HashMap<String, Object> m = new HashMap<String, Object>();
+		m.put("name", LAND_LEER);
+		m.put("url", "");
+		m.put("icon", R.drawable.leer1x1);
+		return m;
 	}
 }

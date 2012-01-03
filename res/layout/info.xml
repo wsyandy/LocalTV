@@ -31,15 +31,13 @@
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/textViewInfoDatenmenge"
 				android:layout_marginTop="5dip" android:text="@string/infoDatenmenge" />
-			<!-- <TextView android:layout_height="wrap_content" -->
-			<!-- android:layout_width="wrap_content" android:gravity="center" -->
-			<!-- android:id="@+id/textViewFeatureEmail" -->
-			<!-- android:layout_marginTop="5dip" android:text="@string/infoFeatureEmail" 
-				/> -->
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/textViewZweck"
 				android:layout_marginTop="5dip" android:text="@string/infoZweck" />
-			<Button android:layout_margin="30dip" android:id="@+id/buttonZurueck"
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewFeatureEmail"
+				android:layout_marginTop="10dip" android:text="@string/infoFeatureEmail" />
+			<Button android:layout_margin="35dip" android:id="@+id/buttonZurueck"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="@string/back" android:layout_gravity="left" />
 		</LinearLayout>

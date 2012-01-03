@@ -58,7 +58,7 @@ public class TVPlayer extends Activity {
 
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
-		myWebView.setInitialScale(95);
+		myWebView.setInitialScale(80);
 		myWebView.getSettings().setSupportZoom(true);
 		myWebView.getSettings().setBuiltInZoomControls(true);
 		myWebView.getSettings().setJavaScriptEnabled(true);

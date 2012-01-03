@@ -45,9 +45,14 @@ public class Main extends ListActivity {
 
 				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
 						+ textViewUrl.getText());
-				play(getApplicationContext(), "" + textViewName.getText(), ""
-						+ textViewUrl.getText());
 
+				// Länder Titel haben keine URL und man kann sie nicht klicken.
+				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
+					Log.d(TAG, "Playing: " + textViewName.getText() + ", "
+							+ textViewUrl.getText());
+					play(getApplicationContext(), "" + textViewName.getText(),
+							"" + textViewUrl.getText());
+				}
 			}
 		});
 
