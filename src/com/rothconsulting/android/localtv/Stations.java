@@ -27,6 +27,12 @@ public class Stations {
 	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
 	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String TCH = "Trailer Cinema Highlights";
+	public static final String TELE_TOP = "Tele Top";
+	public static final String TELE_DIESSENHOFEN = "Tele Diessenhofen";
+	public static final String TELE_NAPF = "Tele Napf";
+	public static final String ZUERI_PLUS = "Züri Plus";
+	public static final String GEMEINDE_TV = "Gemeinde TV";
+
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
@@ -54,6 +60,11 @@ public class Stations {
 		stations.add(TELE_OSTSCHWEIZ);
 		stations.add(TELE_SUEDOSTSCHWEIZ);
 		stations.add(TCH);
+		stations.add(TELE_TOP);
+		stations.add(TELE_DIESSENHOFEN);
+		stations.add(TELE_NAPF);
+		stations.add(ZUERI_PLUS);
+		stations.add(GEMEINDE_TV);
 		return stations;
 	}
 
@@ -155,6 +166,36 @@ public class Stations {
 		m.put("name", TCH);
 		m.put("url", "tch.html");
 		m.put("icon", R.drawable.trailer_cinema_highlights);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZUERI_PLUS);
+		m.put("url", "zueriplustv.html");
+		m.put("icon", R.drawable.zueri_plus);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_NAPF);
+		m.put("url", "telenapf.html");
+		m.put("icon", R.drawable.telenapf);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", GEMEINDE_TV);
+		m.put("url", "gemeindetv.html");
+		m.put("icon", R.drawable.gemeindetv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_TOP);
+		m.put("url", "teletop.html");
+		m.put("icon", R.drawable.tele_top);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_DIESSENHOFEN);
+		m.put("url", "telediessenhofen.html");
+		m.put("icon", R.drawable.tele_diessenhofen);
 		stationList.add(m);
 
 		// ******* Deutschland *******
