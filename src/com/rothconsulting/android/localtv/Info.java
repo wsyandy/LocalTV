@@ -2,6 +2,7 @@ package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,39 @@ public class Info extends Activity {
 				startEmailActivity();
 			}
 		});
+
+		final TextView zattoo = (TextView) findViewById(R.id.textViewZattoo);
+		zattoo.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				startBrowserActivity("http://www.zattoo.com");
+			}
+		});
+
+		final TextView wilmaa = (TextView) findViewById(R.id.textViewWilmaa);
+		wilmaa.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				startBrowserActivity("http://www.wilmaa.com");
+			}
+		});
+
+		final TextView teleboy = (TextView) findViewById(R.id.textViewTeleboy);
+		teleboy.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				startBrowserActivity("http://www.teleboy.ch");
+			}
+		});
+
+		final TextView blick = (TextView) findViewById(R.id.textViewBlick);
+		blick.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				startBrowserActivity("http://tv.blick.ch");
+			}
+		});
+
 	}
 
 	private void startEmailActivity() {
@@ -49,6 +83,12 @@ public class Info extends Activity {
 				"Hallo Koni\n\nMir fehlt folgender Sender: \n\n\n\n");
 		emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+	}
+
+	private void startBrowserActivity(String url) {
+		Intent viewIntent = new Intent("android.intent.action.VIEW",
+				Uri.parse(url));
+		startActivity(viewIntent);
 	}
 
 	// ------------------------------------------------------------

@@ -35,6 +35,21 @@
 				android:layout_width="wrap_content" android:id="@+id/textViewZweck"
 				android:layout_marginTop="5dip" android:text="@string/infoZweck" />
 			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewZattoo"
+				android:layout_marginTop="5dip" android:text="@string/infoZattoo" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewWilmaa"
+				android:layout_marginTop="5dip" android:text="@string/infoWilmaa" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewTeleboy"
+				android:layout_marginTop="5dip" android:text="@string/infoTeleboy" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewBlick"
+				android:layout_marginTop="5dip" android:text="@string/infoBlick" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewNichtLive"
+				android:layout_marginTop="5dip" android:text="@string/infoSenderNichtLive" />
+			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/textViewFeatureEmail"
 				android:layout_marginTop="10dip" android:text="@string/infoFeatureEmail" />
 			<Button android:layout_margin="35dip" android:id="@+id/buttonZurueck"

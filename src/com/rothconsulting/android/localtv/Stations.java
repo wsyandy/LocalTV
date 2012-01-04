@@ -7,10 +7,10 @@ import java.util.List;
 public class Stations {
 
 	public static final String LAND_LEER = "";
-	public static final String LAND_SCHWEIZ = " --- Schweiz ---";
-	public static final String LAND_DEUTSCHLAND = " --- Deutschland --- ";
-	public static final String LAND_OESTERREICH = " --- Österreich --- ";
-	public static final String LAND_USA = "--- USA ---";
+	public static final String LAND_SCHWEIZ = "--- Land: Schweiz ---";
+	public static final String LAND_DEUTSCHLAND = "--- Land: Deutschland --- ";
+	public static final String LAND_OESTERREICH = "--- Land: Österreich --- ";
+	public static final String LAND_USA = "--- Land: USA ---";
 
 	public static final String TELE_BASEL = "Tele Basel";
 	public static final String TELE_BAERN = "Tele Bärn";

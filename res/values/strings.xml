@@ -11,7 +11,12 @@
     <string name="infoDatenmenge">Fernseh schauen via Internet verbraucht relativ grosse Datenmengen. Ich empfehle dir die Verwendung eines WLAN.</string>
     <string name="infoFeatureEmail">Fehlt dir ein Sender? Falls es möglich ist integriere ich ihn gerne. Klick auf folgende E-Mail-Adresse und teile mir dein Anliegen mit. \n\n  <u>androider@wolke7.net</u></string>
     <string name="infoCopyright">&#169; 2012 by Koni\n\nInhalte gehören den jeweiligen Copyright Inhabern. LocalTV hat keinerlei Verbindung zu den Anbieter der Internet Streams.</string>
-    <string name="infoZweck">LocalTV ist entstanden weil mir ein paar Fernsehsender auf meinem Android Gerät gefehlt haben. Das Ziel von LocalTV ist es ein paar kleinere Lokal- und Sparten-Fernsehsender auf deinem Android Gerät zur Verfügung zu stellen. Die kommerzielleren Sender findest du hier nicht. Diese findest du auf Zattoo.com, Wilmaa.com oder Teleboy.ch.\n\nEinige Stationen senden nicht live ins Internet. Bei diesen habe ich einen Link auf das Sendungsarchiv eingebaut damit du schnell zu den letzten Sendungen kommst.</string>
+    <string name="infoZweck">LocalTV ist entstanden weil mir ein paar Fernsehsender auf meinem Android Gerät gefehlt haben. Das Ziel von LocalTV ist es ein paar kleinere Lokal- und Sparten-Fernsehsender auf deinem Android Gerät zur Verfügung zu stellen. Die kommerzielleren Sender findest du hier nicht. Diese findest du auf:</string>
+    <string name="infoZattoo"><u>www.zattoo.com</u></string>
+    <string name="infoWilmaa"><u>www.wilmaa.com</u></string>
+    <string name="infoTeleboy"><u>www.teleboy.ch</u></string>
+    <string name="infoBlick"><u>tv.blick.ch</u></string>
+    <string name="infoSenderNichtLive">Einige Lokal-Stationen senden nicht live ins Internet. Diese haben aber ein grosses Archiv an Sendungen. Damit du schnell zu den letzten Sendungen kommst habe ich einen Link auf deren Sendungsarchiv eingebaut.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
     <string name="vollbild">Für Vollbild&#8230;\n&#8230;drücke lange auf das Bild, danach den Vollbild-Knopf.\noder\n&#8230;verwende den kleinen viereckigen Knopf auf dem unteren Balken.</string>
 	<string name="notLive">Dieser Sender ist nicht Live verfügbar.\nSchau dich hier im Archiv um!</string>
