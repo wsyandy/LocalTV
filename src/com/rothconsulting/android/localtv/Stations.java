@@ -32,6 +32,7 @@ public class Stations {
 	public static final String TELE_NAPF = "Tele Napf";
 	public static final String ZUERI_PLUS = "Züri Plus";
 	public static final String GEMEINDE_TV = "Gemeinde TV";
+	public static final String SARA_MACHTS_TV = "Sara machts TV";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -65,6 +66,7 @@ public class Stations {
 		stations.add(TELE_NAPF);
 		stations.add(ZUERI_PLUS);
 		stations.add(GEMEINDE_TV);
+		stations.add(SARA_MACHTS_TV);
 		return stations;
 	}
 
@@ -184,6 +186,12 @@ public class Stations {
 		m.put("name", GEMEINDE_TV);
 		m.put("url", "gemeindetv.html");
 		m.put("icon", R.drawable.gemeindetv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SARA_MACHTS_TV);
+		m.put("url", "saramachtstv.html");
+		m.put("icon", R.drawable.sara_machts_tv);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
