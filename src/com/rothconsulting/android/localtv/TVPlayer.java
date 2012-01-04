@@ -1,17 +1,17 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -23,7 +23,8 @@ public class TVPlayer extends Activity {
 
 	private final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	private WebView myWebView;
-	private PowerManager.WakeLock wakeLock;
+
+	// private PowerManager.WakeLock wakeLock;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,13 @@ public class TVPlayer extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.player);
 
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
 		// prevent dim screen
-		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		wakeLock = pm
-				.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
+		// PowerManager pm = (PowerManager)
+		// getSystemService(Context.POWER_SERVICE);
+		// wakeLock = pm
+		// .newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
 
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
@@ -47,7 +51,6 @@ public class TVPlayer extends Activity {
 				String stationName = bundle.getString(Constants.NAME);
 				finish();
 				Util.showStatusBarNotification(this, stationName);
-
 			}
 		} else {
 			Log.d(TAG, "bundle is null");
@@ -56,6 +59,9 @@ public class TVPlayer extends Activity {
 
 	private void playInWebView(String name, String url) {
 
+		if (name.equals(Stations.TELE_BAERN)) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
 		myWebView.setInitialScale(80);
@@ -71,7 +77,7 @@ public class TVPlayer extends Activity {
 		}
 
 		String theURLtoPlay = BASE_URL + url;
-		if (url.startsWith("http:")) {
+		if (url.startsWith("http")) { // http or https
 			theURLtoPlay = url;
 		}
 
@@ -146,17 +152,18 @@ public class TVPlayer extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (wakeLock != null) {
-			wakeLock.release();
-		}
+		// if (wakeLock != null) {
+		// wakeLock.release();
+		// }
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (wakeLock != null) {
-			wakeLock.acquire();
-		}
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		// if (wakeLock != null) {
+		// wakeLock.acquire();
+		// }
 	}
 
 	// ------------------------------------------------------------

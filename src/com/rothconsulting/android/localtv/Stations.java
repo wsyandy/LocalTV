@@ -41,7 +41,6 @@ public class Stations {
 	public static List<String> noFullscreenMessage() {
 		List<String> stations = new ArrayList<String>();
 		stations.addAll(notLive());
-		stations.add(TELE_BASEL);
 		stations.add(TELE_BAERN);
 		stations.add(SSF);
 		return stations;

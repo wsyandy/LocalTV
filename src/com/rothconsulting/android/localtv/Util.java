@@ -55,11 +55,13 @@ public class Util {
 	public static void showStatusBarNotification(Context context,
 			String stationName) {
 
+		String appName = context.getResources().getString(R.string.app_name);
+
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		Notification notification = new Notification(R.drawable.tv_icon,
-				"Local TV startet...", System.currentTimeMillis());
+				appName + " start...", System.currentTimeMillis());
 
 		Intent intent = new Intent(context, TVPlayer.class);
 		intent.putExtra(Constants.FROM_NOTIFICATION,
@@ -68,7 +70,7 @@ public class Util {
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 				intent, 0);
 
-		notification.setLatestEventInfo(context, "Local TV", stationName,
+		notification.setLatestEventInfo(context, appName, stationName,
 				contentIntent);
 
 		mNotificationManager.notify(NOTIFICATION_ID, notification);
