@@ -33,15 +33,21 @@ public class Stations {
 	public static final String ZUERI_PLUS = "Züri Plus";
 	public static final String GEMEINDE_TV = "Gemeinde TV";
 	public static final String SARA_MACHTS_TV = "Sara machts TV";
+	public static final String KANAL_9 = "Kanal 9";
+	public static final String LEMAN_BLEU = "Léman bleu";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
+	public static final String COMEDY_CENTRAL = "Comedy Central";
+
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
+	public static final String NASA_TV = "Nasa TV";
 
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_BIELINGUE);
+		stations.add(LEMAN_BLEU);
 		return stations;
 	}
 
@@ -67,6 +73,9 @@ public class Stations {
 		stations.add(ZUERI_PLUS);
 		stations.add(GEMEINDE_TV);
 		stations.add(SARA_MACHTS_TV);
+		stations.add(KANAL_9);
+		stations.add(LEMAN_BLEU);
+		stations.add(COMEDY_CENTRAL);
 		return stations;
 	}
 
@@ -153,6 +162,18 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", KANAL_9);
+		m.put("url", "kanal9.html");
+		m.put("icon", R.drawable.kanal9);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", LEMAN_BLEU);
+		m.put("url", "lemanbleu.html");
+		m.put("icon", R.drawable.leman_bleu);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TELE_OSTSCHWEIZ);
 		m.put("url", "teleostschweiz.html");
 		m.put("icon", R.drawable.tele_ostschweiz);
@@ -233,6 +254,12 @@ public class Stations {
 		m.put("icon", R.drawable.alex_berlin);
 		stationList.add(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", COMEDY_CENTRAL);
+		m.put("url", "comedycentral.html");
+		m.put("icon", R.drawable.comedy_central);
+		stationList.add(m);
+
 		// ******* USA *******
 		stationList.add(getLeerZeile());
 
@@ -240,6 +267,12 @@ public class Stations {
 		m.put("name", LAND_USA);
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_usa);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NASA_TV);
+		m.put("url", "nasatv.html");
+		m.put("icon", R.drawable.nasa_tv);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();

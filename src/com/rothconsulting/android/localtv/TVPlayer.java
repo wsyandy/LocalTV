@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -59,19 +60,25 @@ public class TVPlayer extends Activity {
 
 	private void playInWebView(String name, String url) {
 
-		if (name.equals(Stations.TELE_BAERN)) {
+		if (name.equals(Stations.TELE_BAERN) || name.equals(Stations.NASA_TV)) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		}
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
 		myWebView.setInitialScale(80);
 		myWebView.getSettings().setSupportZoom(true);
-		myWebView.getSettings().setBuiltInZoomControls(true);
+		// avoid crash on Android 3.0, 3.1 & 3.2
+		// Receiver not registered: android.widget.ZoomButtonsController crash
+		if (!(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
+			myWebView.getSettings().setBuiltInZoomControls(true);
+		}
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginsEnabled(true);
 		myWebView.getSettings().setAllowFileAccess(true);
 
-		myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
+		if (!name.equals(Stations.NASA_TV)) {
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
+		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
 		}
