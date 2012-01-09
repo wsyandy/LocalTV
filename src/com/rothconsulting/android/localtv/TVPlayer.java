@@ -60,7 +60,7 @@ public class TVPlayer extends Activity {
 
 	private void playInWebView(String name, String url) {
 
-		if (name.equals(Stations.TELE_BAERN) || name.equals(Stations.NASA_TV)) {
+		if (Stations.orientationLandscape().contains(name)) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		}
 		myWebView = (WebView) findViewById(R.id.webview);

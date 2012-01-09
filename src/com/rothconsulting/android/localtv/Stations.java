@@ -19,6 +19,7 @@ public class Stations {
 	public static final String TELE_1 = "Tele 1";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String LA_TELE = "La Tele";
+	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
 	public static final String JUMP_TV = "Jump-TV";
 	public static final String TELE_BIELINGUE = "TeleBielingue";
@@ -35,6 +36,7 @@ public class Stations {
 	public static final String SARA_MACHTS_TV = "Sara machts TV";
 	public static final String KANAL_9 = "Kanal 9";
 	public static final String LEMAN_BLEU = "Léman bleu";
+	public static final String ZUG_TV = "Zug TV";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -59,6 +61,14 @@ public class Stations {
 		return stations;
 	}
 
+	public static List<String> orientationLandscape() {
+		List<String> stations = new ArrayList<String>();
+		stations.add(TELE_BAERN);
+		stations.add(NASA_TV);
+		stations.add(CANAL_ALPHA);
+		return stations;
+	}
+
 	public static List<String> notLive() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(ALF_TV);
@@ -76,6 +86,7 @@ public class Stations {
 		stations.add(KANAL_9);
 		stations.add(LEMAN_BLEU);
 		stations.add(COMEDY_CENTRAL);
+		stations.add(ZUG_TV);
 		return stations;
 	}
 
@@ -135,6 +146,12 @@ public class Stations {
 		m.put("name", LA_TELE);
 		m.put("url", "latele.html");
 		m.put("icon", R.drawable.la_tele);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", CANAL_ALPHA);
+		m.put("url", "canalalpha.html");
+		m.put("icon", R.drawable.canal_alpha);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -225,6 +242,12 @@ public class Stations {
 		m.put("name", TELE_DIESSENHOFEN);
 		m.put("url", "telediessenhofen.html");
 		m.put("icon", R.drawable.tele_diessenhofen);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZUG_TV);
+		m.put("url", "zugtv.html");
+		m.put("icon", R.drawable.zug_tv);
 		stationList.add(m);
 
 		// ******* Deutschland *******
