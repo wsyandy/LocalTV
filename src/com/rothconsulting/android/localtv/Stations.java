@@ -37,11 +37,14 @@ public class Stations {
 	public static final String KANAL_9 = "Kanal 9";
 	public static final String LEMAN_BLEU = "Léman bleu";
 	public static final String ZUG_TV = "Zug TV";
+	public static final String RRO_TV = "RRO TV";
+	public static final String REGIO_PLUS_TV = "Regio TV Plus";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
 	public static final String COMEDY_CENTRAL = "Comedy Central";
+	public static final String SPONGEBOB = "Spongebob";
 
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String NASA_TV = "Nasa TV";
@@ -87,13 +90,18 @@ public class Stations {
 		stations.add(LEMAN_BLEU);
 		stations.add(COMEDY_CENTRAL);
 		stations.add(ZUG_TV);
+		stations.add(RRO_TV);
+		stations.add(REGIO_PLUS_TV);
+		stations.add(SPONGEBOB);
 		return stations;
 	}
 
 	public static ArrayList<HashMap<String, Object>> getStations() {
 		ArrayList<HashMap<String, Object>> stationList = new ArrayList<HashMap<String, Object>>();
 
-		// ******* Schweiz *******
+		// *********************************************************************************
+		// * Schweiz
+		// *********************************************************************************
 		HashMap<String, Object> m = new HashMap<String, Object>();
 		m.put("name", LAND_SCHWEIZ);
 		m.put("url", "");
@@ -191,6 +199,12 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", RRO_TV);
+		m.put("url", "rroTV.html");
+		m.put("icon", R.drawable.rro_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TELE_OSTSCHWEIZ);
 		m.put("url", "teleostschweiz.html");
 		m.put("icon", R.drawable.tele_ostschweiz);
@@ -206,6 +220,12 @@ public class Stations {
 		m.put("name", TCH);
 		m.put("url", "tch.html");
 		m.put("icon", R.drawable.trailer_cinema_highlights);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", REGIO_PLUS_TV);
+		m.put("url", "regioPlusTV.html");
+		m.put("icon", R.drawable.regio_plus_tv);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -250,7 +270,9 @@ public class Stations {
 		m.put("icon", R.drawable.zug_tv);
 		stationList.add(m);
 
-		// ******* Deutschland *******
+		// *********************************************************************************
+		// * Deutschland
+		// *********************************************************************************
 		stationList.add(getLeerZeile());
 
 		m = new HashMap<String, Object>();
@@ -283,7 +305,17 @@ public class Stations {
 		m.put("icon", R.drawable.comedy_central);
 		stationList.add(m);
 
-		// ******* USA *******
+		m = new HashMap<String, Object>();
+		m.put("name", SPONGEBOB);
+		m.put("url", "spongebob.html");
+		m.put("icon", R.drawable.spongebob);
+		stationList.add(m);
+
+		http: // www.spongebob.de/videos
+
+		// *********************************************************************************
+		// * USA
+		// *********************************************************************************
 		stationList.add(getLeerZeile());
 
 		m = new HashMap<String, Object>();
