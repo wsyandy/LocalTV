@@ -39,6 +39,9 @@ public class Stations {
 	public static final String ZUG_TV = "Zug TV";
 	public static final String RRO_TV = "RRO TV";
 	public static final String REGIO_PLUS_TV = "Regio TV Plus";
+	public static final String TV_105 = "105 TV";
+	public static final String MURMI_TV = "Murmi TV";
+	public static final String CANAL_29 = "Canal 29";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -69,6 +72,14 @@ public class Stations {
 		stations.add(TELE_BAERN);
 		stations.add(NASA_TV);
 		stations.add(CANAL_ALPHA);
+		stations.add(TV_105);
+		return stations;
+	}
+
+	public static List<String> userAgentAndroid() {
+		List<String> stations = new ArrayList<String>();
+		stations.add(TELE_NAPF);
+		stations.add(NASA_TV);
 		return stations;
 	}
 
@@ -93,6 +104,8 @@ public class Stations {
 		stations.add(RRO_TV);
 		stations.add(REGIO_PLUS_TV);
 		stations.add(SPONGEBOB);
+		stations.add(MURMI_TV);
+		stations.add(CANAL_29);
 		return stations;
 	}
 
@@ -166,6 +179,12 @@ public class Stations {
 		m.put("name", ROUGE_TV);
 		m.put("url", "rougetv.html");
 		m.put("icon", R.drawable.rouge_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_105);
+		m.put("url", "105tv.html");
+		m.put("icon", R.drawable.tv_105);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -268,6 +287,18 @@ public class Stations {
 		m.put("name", ZUG_TV);
 		m.put("url", "zugtv.html");
 		m.put("icon", R.drawable.zug_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", MURMI_TV);
+		m.put("url", "murmitv.html");
+		m.put("icon", R.drawable.murmi_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", CANAL_29);
+		m.put("url", "canal29.html");
+		m.put("icon", R.drawable.canal_29);
 		stationList.add(m);
 
 		// *********************************************************************************

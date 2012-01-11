@@ -22,7 +22,6 @@ public class TVPlayer extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
 
-	private final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	private WebView myWebView;
 
 	// private PowerManager.WakeLock wakeLock;
@@ -66,24 +65,24 @@ public class TVPlayer extends Activity {
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
 		myWebView.setInitialScale(80);
-		myWebView.getSettings().setSupportZoom(true);
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
 		if (!(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
+		myWebView.getSettings().setSupportZoom(true);
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginsEnabled(true);
-		myWebView.getSettings().setAllowFileAccess(true);
 
-		if (!name.equals(Stations.NASA_TV)) {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
+		if (!Stations.userAgentAndroid().contains(name)) {
+			myWebView.getSettings().setUserAgentString(
+					Constants.USER_AGENT_FIREFOX);
 		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
 		}
 
-		String theURLtoPlay = BASE_URL + url;
+		String theURLtoPlay = Constants.BASE_URL + url;
 		if (url.startsWith("http")) { // http or https
 			theURLtoPlay = url;
 		}
