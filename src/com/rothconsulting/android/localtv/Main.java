@@ -76,9 +76,10 @@ public class Main extends ListActivity {
 						Toast.LENGTH_LONG).show();
 			}
 		} else {
-			Toast.makeText(this,
-					getResources().getString(R.string.flashNotInstalled),
-					Toast.LENGTH_LONG).show();
+			Util.showFlashAlert(this);
+			// Toast.makeText(this,
+			// getResources().getString(R.string.flashNotInstalled),
+			// Toast.LENGTH_LONG).show();
 		}
 
 	}

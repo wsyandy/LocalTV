@@ -42,6 +42,8 @@ public class Stations {
 	public static final String TV_105 = "105 TV";
 	public static final String MURMI_TV = "Murmi TV";
 	public static final String CANAL_29 = "Canal 29";
+	public static final String MAX_TV = "max tv";
+	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -301,6 +303,18 @@ public class Stations {
 		m.put("icon", R.drawable.canal_29);
 		stationList.add(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", MAX_TV);
+		m.put("url", "maxTV.html");
+		m.put("icon", R.drawable.max_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SCHAFFHAUSER_FERNSEHEN);
+		m.put("url", "schaffhausenFernsehen.html");
+		m.put("icon", R.drawable.schaffhauser_fernsehen);
+		stationList.add(m);
+
 		// *********************************************************************************
 		// * Deutschland
 		// *********************************************************************************
@@ -331,18 +345,10 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", COMEDY_CENTRAL);
-		m.put("url", "comedycentral.html");
-		m.put("icon", R.drawable.comedy_central);
-		stationList.add(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", SPONGEBOB);
 		m.put("url", "spongebob.html");
 		m.put("icon", R.drawable.spongebob);
 		stationList.add(m);
-
-		http: // www.spongebob.de/videos
 
 		// *********************************************************************************
 		// * USA

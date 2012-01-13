@@ -1,10 +1,12 @@
 package com.rothconsulting.android.localtv;
 
+import android.app.AlertDialog.Builder;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -12,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.util.Log;
 
 public class Util {
@@ -32,6 +35,32 @@ public class Util {
 			flashInstalled = false;
 		}
 		return flashInstalled;
+	}
+
+	public static void showFlashAlert(final Context context) {
+
+		final Intent i = new Intent(Intent.ACTION_VIEW,
+				Uri.parse(Constants.FLASH_MARKET_URL));
+
+		final Builder b = new Builder(context);
+		b.setCancelable(true);
+		b.setTitle(R.string.flashNotInstalled);
+		String text = context.getString(R.string.flashDownloadText);
+		b.setMessage(text);
+		b.setNegativeButton(R.string.neinDanke, null);
+		b.setPositiveButton(R.string.download,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
+						context.startActivity(i);
+					}
+				});
+		b.show();
+	}
+
+	public static void startBrowserActivity(Context context, String url) {
+		Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		context.startActivity(viewIntent);
 	}
 
 	public static boolean isNetworkAvailable(Context context) {
