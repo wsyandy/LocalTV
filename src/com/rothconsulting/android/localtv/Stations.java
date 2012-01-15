@@ -18,28 +18,29 @@ public class Stations {
 	public static final String TELE_M1 = "Tele M1";
 	public static final String TELE_1 = "Tele 1";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
+	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String LA_TELE = "La Tele";
 	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
-	public static final String JUMP_TV = "Jump-TV";
-	public static final String TELE_BIELINGUE = "TeleBielingue";
+	public static final String TV_105 = "105 TV";
 	public static final String ALF_TV = "Alf-TV";
+	public static final String JUMP_TV = "Jump-TV";
+	public static final String CASH_TV = "Cash TV";
+	public static final String TELE_BIELINGUE = "TeleBielingue";
+	public static final String KANAL_9 = "Kanal 9";
+	public static final String RRO_TV = "RRO TV";
+	public static final String LEMAN_BLEU = "Léman bleu";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
 	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
-	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String TCH = "Trailer Cinema Highlights";
-	public static final String TELE_TOP = "Tele Top";
-	public static final String TELE_DIESSENHOFEN = "Tele Diessenhofen";
-	public static final String TELE_NAPF = "Tele Napf";
+	public static final String REGIO_PLUS_TV = "Regio TV Plus";
 	public static final String ZUERI_PLUS = "Züri Plus";
+	public static final String TELE_NAPF = "Tele Napf";
 	public static final String GEMEINDE_TV = "Gemeinde TV";
 	public static final String SARA_MACHTS_TV = "Sara machts TV";
-	public static final String KANAL_9 = "Kanal 9";
-	public static final String LEMAN_BLEU = "Léman bleu";
+	public static final String TELE_TOP = "Tele Top";
+	public static final String TELE_DIESSENHOFEN = "Tele Diessenhofen";
 	public static final String ZUG_TV = "Zug TV";
-	public static final String RRO_TV = "RRO TV";
-	public static final String REGIO_PLUS_TV = "Regio TV Plus";
-	public static final String TV_105 = "105 TV";
 	public static final String MURMI_TV = "Murmi TV";
 	public static final String CANAL_29 = "Canal 29";
 	public static final String MAX_TV = "max tv";
@@ -48,11 +49,11 @@ public class Stations {
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
-	public static final String COMEDY_CENTRAL = "Comedy Central";
+	public static final String SPIEGEL_ONLINE = "Spiegel Online";
 	public static final String SPONGEBOB = "Spongebob";
 
-	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String NASA_TV = "Nasa TV";
+	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
@@ -69,18 +70,18 @@ public class Stations {
 		return stations;
 	}
 
-	public static List<String> orientationLandscape() {
+	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(TELE_BAERN);
-		stations.add(NASA_TV);
-		stations.add(CANAL_ALPHA);
-		stations.add(TV_105);
+		stations.add(CASH_TV);
+		stations.add(TELE_BIELINGUE);
+		stations.add(ALF_TV);
+		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		return stations;
 	}
 
 	public static List<String> userAgentAndroid() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(TELE_NAPF);
+		// stations.add(TELE_NAPF);
 		stations.add(NASA_TV);
 		return stations;
 	}
@@ -101,13 +102,17 @@ public class Stations {
 		stations.add(SARA_MACHTS_TV);
 		stations.add(KANAL_9);
 		stations.add(LEMAN_BLEU);
-		stations.add(COMEDY_CENTRAL);
 		stations.add(ZUG_TV);
 		stations.add(RRO_TV);
 		stations.add(REGIO_PLUS_TV);
 		stations.add(SPONGEBOB);
 		stations.add(MURMI_TV);
 		stations.add(CANAL_29);
+		stations.add(MAX_TV);
+		stations.add(SCHAFFHAUSER_FERNSEHEN);
+		stations.add(CASH_TV);
+		stations.add(SPIEGEL_ONLINE);
+
 		return stations;
 	}
 
@@ -202,6 +207,12 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", CASH_TV);
+		m.put("url", "cashTV.html");
+		m.put("icon", R.drawable.cash_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TELE_BIELINGUE);
 		m.put("url", "telebielingue.html");
 		m.put("icon", R.drawable.telebielingue);
@@ -214,15 +225,15 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", LEMAN_BLEU);
-		m.put("url", "lemanbleu.html");
-		m.put("icon", R.drawable.leman_bleu);
-		stationList.add(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", RRO_TV);
 		m.put("url", "rroTV.html");
 		m.put("icon", R.drawable.rro_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", LEMAN_BLEU);
+		m.put("url", "lemanbleu.html");
+		m.put("icon", R.drawable.leman_bleu);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -342,6 +353,12 @@ public class Stations {
 		m.put("name", ALEX_BERLIN);
 		m.put("url", "alexberlin.html");
 		m.put("icon", R.drawable.alex_berlin);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SPIEGEL_ONLINE);
+		m.put("url", "spiegel_online.html");
+		m.put("icon", R.drawable.spiegel_online);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();

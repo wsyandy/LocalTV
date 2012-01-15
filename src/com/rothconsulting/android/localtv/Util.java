@@ -16,6 +16,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Util {
 
@@ -52,7 +53,16 @@ public class Util {
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog,
 							final int which) {
-						context.startActivity(i);
+
+						if (isNetworkAvailable(context)) {
+							context.startActivity(i);
+						} else {
+							Toast.makeText(
+									context,
+									context.getResources().getString(
+											R.string.internetNotConnected),
+									Toast.LENGTH_LONG).show();
+						}
 					}
 				});
 		b.show();

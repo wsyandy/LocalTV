@@ -13,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -29,6 +31,9 @@ public class TVPlayer extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		getWindow().requestFeature(Window.FEATURE_PROGRESS);
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.player);
 
@@ -46,6 +51,7 @@ public class TVPlayer extends Activity {
 				String name = bundle.getString(Constants.NAME);
 				String url = bundle.getString(Constants.URL);
 				Log.d(TAG, "URL=" + url);
+
 				playInWebView(name, url);
 			} else {
 				String stationName = bundle.getString(Constants.NAME);
@@ -57,16 +63,18 @@ public class TVPlayer extends Activity {
 		}
 	}
 
-	private void playInWebView(String name, String url) {
+	private void playInWebView(final String name, final String url) {
 
-		if (Stations.orientationLandscape().contains(name)) {
+		if (!Stations.orientationPortrait().contains(name)) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		}
+
 		myWebView = (WebView) findViewById(R.id.webview);
 		myWebView.clearCache(Boolean.TRUE);
 		myWebView.setInitialScale(80);
 		// avoid crash on Android 3.0, 3.1 & 3.2
-		// Receiver not registered: android.widget.ZoomButtonsController crash
+		// Receiver not registered: android.widget.ZoomButtonsController
+		// crash
 		if (!(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
@@ -87,8 +95,30 @@ public class TVPlayer extends Activity {
 			theURLtoPlay = url;
 		}
 
+		final Activity activity = this;
+		myWebView.setWebChromeClient(new WebChromeClient() {
+			@Override
+			public void onProgressChanged(WebView view, int progress) {
+				// Activities and WebViews measure progress with different
+				// scales.
+				// The progress meter will automatically disappear when we reach
+				// 100%
+				activity.setProgress(progress * 1000);
+			}
+		});
+		myWebView.setWebViewClient(new WebViewClient() {
+			@Override
+			public void onReceivedError(WebView view, int errorCode,
+					String description, String failingUrl) {
+				Toast.makeText(activity, "Oh no! " + description,
+						Toast.LENGTH_LONG).show();
+			}
+		});
+
 		myWebView.loadUrl(theURLtoPlay);
+
 		Util.showStatusBarNotification(this, name);
+
 		if (!Stations.noFullscreenMessage().contains(name)) {
 			for (int i = 0; i < 2; i++) { // langer Toast (2x)
 				Toast.makeText(this,
@@ -100,7 +130,7 @@ public class TVPlayer extends Activity {
 			for (int i = 0; i < 2; i++) { // langer Toast (2x)
 				Toast.makeText(this,
 						getResources().getString(R.string.notLive),
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
