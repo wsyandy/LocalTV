@@ -45,10 +45,13 @@ public class Stations {
 	public static final String CANAL_29 = "Canal 29";
 	public static final String MAX_TV = "max tv";
 	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
+	public static final String SF_VIDEO_PORTAL = "SF Video Portal (Comedy, etc..)";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
+	public static final String NDR = "NDR";
+	public static final String WDR = "WDR";
 	public static final String SPIEGEL_ONLINE = "Spiegel Online";
 	public static final String SPONGEBOB = "Spongebob";
 
@@ -112,6 +115,7 @@ public class Stations {
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(CASH_TV);
 		stations.add(SPIEGEL_ONLINE);
+		stations.add(SF_VIDEO_PORTAL);
 
 		return stations;
 	}
@@ -326,6 +330,12 @@ public class Stations {
 		m.put("icon", R.drawable.schaffhauser_fernsehen);
 		stationList.add(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", SF_VIDEO_PORTAL);
+		m.put("url", "sf-video-portal.html");
+		m.put("icon", R.drawable.schweizer_fernsehen);
+		stationList.add(m);
+
 		// *********************************************************************************
 		// * Deutschland
 		// *********************************************************************************
@@ -353,6 +363,18 @@ public class Stations {
 		m.put("name", ALEX_BERLIN);
 		m.put("url", "alexberlin.html");
 		m.put("icon", R.drawable.alex_berlin);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NDR);
+		m.put("url", "ndr.html");
+		m.put("icon", R.drawable.ndr_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", WDR);
+		m.put("url", "wdr.html");
+		m.put("icon", R.drawable.wdr_fernsehen);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
