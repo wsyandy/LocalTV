@@ -12,11 +12,14 @@ public class Stations {
 	public static final String LAND_OESTERREICH = "--- Land: Österreich --- ";
 	public static final String LAND_USA = "--- Land: USA ---";
 
-	public static final String TELE_BASEL = "Tele Basel";
 	public static final String TELE_BAERN = "Tele Bärn";
 	public static final String TELE_ZUERI = "Tele Züri";
-	public static final String TELE_M1 = "Tele M1";
-	public static final String TELE_1 = "Tele 1";
+	public static final String TELE_BASEL_LIVE = "Tele Basel (Live)";
+	public static final String TELE_BASEL_ARCHIV = "Tele Basel (Archiv)";
+	public static final String TELE_M1_LIVE = "Tele M1 (Live)";
+	public static final String TELE_M1_ARCHIV = "Tele M1 (Archiv)";
+	public static final String TELE_1_LIVE = "Tele 1 (Live)";
+	public static final String TELE_1_ARCHIV = "Tele 1 (Archiv)";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String LA_TELE = "La Tele";
@@ -68,6 +71,7 @@ public class Stations {
 	public static List<String> noFullscreenMessage() {
 		List<String> stations = new ArrayList<String>();
 		stations.addAll(notLive());
+		stations.addAll(sieheArchiv());
 		stations.add(TELE_BAERN);
 		stations.add(SSF);
 		return stations;
@@ -86,6 +90,14 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		// stations.add(TELE_NAPF);
 		stations.add(NASA_TV);
+		return stations;
+	}
+
+	public static List<String> sieheArchiv() {
+		List<String> stations = new ArrayList<String>();
+		stations.add(TELE_BASEL_ARCHIV);
+		stations.add(TELE_M1_ARCHIV);
+		stations.add(TELE_1_ARCHIV);
 		return stations;
 	}
 
@@ -133,8 +145,14 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", TELE_BASEL);
+		m.put("name", TELE_BASEL_LIVE);
 		m.put("url", "telebasel.html");
+		m.put("icon", R.drawable.tele_basel);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_BASEL_ARCHIV);
+		m.put("url", "telebaselArchiv.html");
 		m.put("icon", R.drawable.tele_basel);
 		stationList.add(m);
 
@@ -151,14 +169,26 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", TELE_M1);
+		m.put("name", TELE_M1_LIVE);
 		m.put("url", "telem1.html");
 		m.put("icon", R.drawable.tele_m1);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", TELE_1);
+		m.put("name", TELE_M1_ARCHIV);
+		m.put("url", "telem1Archiv.html");
+		m.put("icon", R.drawable.tele_m1);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_1_LIVE);
 		m.put("url", "tele1.html");
+		m.put("icon", R.drawable.tele1);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_1_ARCHIV);
+		m.put("url", "tele1Archiv.html");
 		m.put("icon", R.drawable.tele1);
 		stationList.add(m);
 

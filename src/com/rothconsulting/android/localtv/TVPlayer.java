@@ -133,6 +133,14 @@ public class TVPlayer extends Activity {
 						Toast.LENGTH_SHORT).show();
 			}
 		}
+		if (Stations.sieheArchiv().contains(name)) {
+			for (int i = 0; i < 2; i++) { // langer Toast (2x)
+				Toast.makeText(this,
+						getResources().getString(R.string.seeArchive),
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+
 	}
 
 	public void playInVideoView(String url, boolean autoplay) {
@@ -169,6 +177,12 @@ public class TVPlayer extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// Check if the key event was the BACK key and if there's history
+		if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
+			myWebView.goBack();
+			return true;
+		}
+
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			closeTVPlayer(true);
 		}
