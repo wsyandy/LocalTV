@@ -26,6 +26,7 @@ public class Stations {
 	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
 	public static final String TV_105 = "105 TV";
+	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
 	public static final String ALF_TV = "Alf-TV";
 	public static final String JUMP_TV = "Jump-TV";
 	public static final String CASH_TV = "Cash TV";
@@ -49,6 +50,7 @@ public class Stations {
 	public static final String MAX_TV = "max tv";
 	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
 	public static final String SF_VIDEO_PORTAL = "SF Video Portal (Comedy, etc..)";
+	public static final String ART_TV = "art tv";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -65,6 +67,7 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_BIELINGUE);
 		stations.add(LEMAN_BLEU);
+		stations.add(TV_ADMIN_CH);
 		return stations;
 	}
 
@@ -74,6 +77,7 @@ public class Stations {
 		stations.addAll(sieheArchiv());
 		stations.add(TELE_BAERN);
 		stations.add(SSF);
+		stations.add(TV_ADMIN_CH);
 		return stations;
 	}
 
@@ -98,6 +102,7 @@ public class Stations {
 		stations.add(TELE_BASEL_ARCHIV);
 		stations.add(TELE_M1_ARCHIV);
 		stations.add(TELE_1_ARCHIV);
+		stations.add(TV_ADMIN_CH);
 		return stations;
 	}
 
@@ -128,6 +133,7 @@ public class Stations {
 		stations.add(CASH_TV);
 		stations.add(SPIEGEL_ONLINE);
 		stations.add(SF_VIDEO_PORTAL);
+		stations.add(ART_TV);
 
 		return stations;
 	}
@@ -226,6 +232,12 @@ public class Stations {
 		m.put("name", TV_105);
 		m.put("url", "105tv.html");
 		m.put("icon", R.drawable.tv_105);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_ADMIN_CH);
+		m.put("url", "tv.admin.ch.html");
+		m.put("icon", R.drawable.admin_ch);
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -364,6 +376,12 @@ public class Stations {
 		m.put("name", SF_VIDEO_PORTAL);
 		m.put("url", "sf-video-portal.html");
 		m.put("icon", R.drawable.schweizer_fernsehen);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ART_TV);
+		m.put("url", "artTV.html");
+		m.put("icon", R.drawable.art_tv);
 		stationList.add(m);
 
 		// *********************************************************************************
