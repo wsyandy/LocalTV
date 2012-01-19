@@ -51,14 +51,24 @@ public class Stations {
 	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
 	public static final String SF_VIDEO_PORTAL = "SF Video Portal (Comedy, etc..)";
 	public static final String ART_TV = "art tv";
+	public static final String BNJ_TV = "bnj.tv";
+	public static final String TSR_VIDEO = "TSR video";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
+	public static final String MUENCHEN_TV = "München TV";
+	public static final String FRANKEN_TV = "Franken Fernsehen";
+	public static final String TRU_YOUNG_TV = "[tru:] young television";
+	public static final String TRP1_FERNSEHEN = "TRP1 Fernsehen";
+	public static final String TV_SUEDBADEN = "TV Südbaden";
 	public static final String NDR = "NDR";
 	public static final String WDR = "WDR";
 	public static final String SPIEGEL_ONLINE = "Spiegel Online";
 	public static final String SPONGEBOB = "Spongebob";
+	public static final String NETZKINO = "Netzkino";
+	public static final String KINDERKINO = "Kinderkino";
+	public static final String MYSPASS = "myspass.de";
 
 	public static final String NASA_TV = "Nasa TV";
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
@@ -93,6 +103,9 @@ public class Stations {
 	public static List<String> userAgentAndroid() {
 		List<String> stations = new ArrayList<String>();
 		// stations.add(TELE_NAPF);
+		// stations.add(NETZKINO);
+		// stations.add(KINDERKINO);
+
 		stations.add(NASA_TV);
 		return stations;
 	}
@@ -103,6 +116,8 @@ public class Stations {
 		stations.add(TELE_M1_ARCHIV);
 		stations.add(TELE_1_ARCHIV);
 		stations.add(TV_ADMIN_CH);
+		stations.add(KINDERKINO);
+		stations.add(NETZKINO);
 		return stations;
 	}
 
@@ -134,6 +149,9 @@ public class Stations {
 		stations.add(SPIEGEL_ONLINE);
 		stations.add(SF_VIDEO_PORTAL);
 		stations.add(ART_TV);
+		stations.add(BNJ_TV);
+		stations.add(TSR_VIDEO);
+		stations.add(MYSPASS);
 
 		return stations;
 	}
@@ -379,9 +397,21 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TSR_VIDEO);
+		m.put("url", "tsr.html");
+		m.put("icon", R.drawable.tsr);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", ART_TV);
 		m.put("url", "artTV.html");
 		m.put("icon", R.drawable.art_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BNJ_TV);
+		m.put("url", "bnjTV.html");
+		m.put("icon", R.drawable.bnj_tv);
 		stationList.add(m);
 
 		// *********************************************************************************
@@ -414,6 +444,36 @@ public class Stations {
 		stationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", MUENCHEN_TV);
+		m.put("url", "muenchenTV.html");
+		m.put("icon", R.drawable.muenchen_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", FRANKEN_TV);
+		m.put("url", "frankenTV.html");
+		m.put("icon", R.drawable.franken_fernsehen);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TRU_YOUNG_TV);
+		m.put("url", "truYoungTV.html");
+		m.put("icon", R.drawable.tru_young_tv);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TRP1_FERNSEHEN);
+		m.put("url", "trp1_fernsehen.html");
+		m.put("icon", R.drawable.trp1_fernsehen);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_SUEDBADEN);
+		m.put("url", "tvSuedbaden.html");
+		m.put("icon", R.drawable.tv_suedbaden);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", NDR);
 		m.put("url", "ndr.html");
 		m.put("icon", R.drawable.ndr_tv);
@@ -435,6 +495,26 @@ public class Stations {
 		m.put("name", SPONGEBOB);
 		m.put("url", "spongebob.html");
 		m.put("icon", R.drawable.spongebob);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", KINDERKINO);
+		m.put("url", "https://www.youtube.com/profile?user=kinderkino");
+		// m.put("url", "kinderkino.html");
+		m.put("icon", R.drawable.kinderkino);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NETZKINO);
+		// m.put("url", "netzkino.html");
+		m.put("url", "https://www.youtube.com/profile?user=netzkino");
+		m.put("icon", R.drawable.netzkino);
+		stationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", MYSPASS);
+		m.put("url", "myspass.html");
+		m.put("icon", R.drawable.myspass);
 		stationList.add(m);
 
 		// *********************************************************************************
