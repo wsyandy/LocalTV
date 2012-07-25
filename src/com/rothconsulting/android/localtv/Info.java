@@ -73,6 +73,15 @@ public class Info extends Activity {
 			}
 		});
 
+		final TextView schoenerFernsehen = (TextView) findViewById(R.id.textViewSchoenerFernsehen);
+		schoenerFernsehen.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				Util.startBrowserActivity(getApplicationContext(),
+						"http://www.schoener-fernsehen.com");
+			}
+		});
+
 	}
 
 	private void startEmailActivity() {

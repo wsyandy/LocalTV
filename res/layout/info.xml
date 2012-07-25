@@ -47,6 +47,9 @@
 				android:layout_width="wrap_content" android:id="@+id/textViewBlick"
 				android:layout_marginTop="5dip" android:text="@string/infoBlick" />
 			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/textViewSchoenerFernsehen"
+				android:layout_marginTop="5dip" android:text="@string/infoSchoenerFernsehen" />
+			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/textViewNichtLive"
 				android:layout_marginTop="5dip" android:text="@string/infoSenderNichtLive" />
 			<TextView android:layout_height="wrap_content"
