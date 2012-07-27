@@ -2,5 +2,6 @@
 <resources>
 	<color name="transparent">#00000000</color>
 	<color name="orange">#FFB53F</color>
-	<color name="blau">#3F75FF</color>
+	<color name="blue">#3F75FF</color>
+	<color name="blue_darker">#1B3CE2</color>
 </resources>

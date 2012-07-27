@@ -1,5 +1,8 @@
 package com.rothconsulting.android.localtv;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +28,26 @@ public class Main extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		SimpleAdapter adapter = new SimpleAdapter(this, Stations.getStations(),
+		Stations stations = new Stations();
+		stations.init();
+
+		String action = getIntent().getAction();
+		String appName = getString(R.string.app_name);
+
+		ArrayList<HashMap<String, Object>> stationList = null;
+		if (action.equals(Constants.TAB_ALLE)) {
+			stationList = stations.getAllStations();
+			setTitle(appName + " - Alle verfügbaren Sender");
+		} else if (action.equals(Constants.TAB_ARCHIV)) {
+			setTitle(appName + " - Sender Archiv");
+			stationList = stations.getArchivStations();
+		} else {
+			setTitle(appName + " - Live Sender");
+			stationList = stations.getLiveStations();
+		}
+		Log.d(TAG, "Action=" + action + " / Stations=" + stationList.size());
+
+		SimpleAdapter adapter = new SimpleAdapter(this, stationList,
 				R.layout.list_item, new String[] { "icon", "name", "url" },
 				new int[] { R.id.list_icon, R.id.list_name, R.id.list_url });
 

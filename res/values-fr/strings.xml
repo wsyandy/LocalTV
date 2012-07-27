@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">LocalTV</string>
+    <string name="ende">Fin</string>
+    <string name="back">Retour à l\'aperçu</string>
+    <string name="cannotStartTV">Impossible de démarrer la télé.</string>
+    <string name="flashNotInstalled">Adobe Flash Player n\'est pas installé!</string>
+    <string name="flashDownloadText">Pour faire fonctionner LocalTV il te faut d\'abord installer Adobe Flash Player! On peut trouver ceci gratuitement dans Google Play Store (Android Market).\n\appuie sur \'Download\' pour le lien direct dans Play Store.</string>
+    <string name="internetNotConnected">Tu n\'es pas connecté à internet</string>   
+    <string name="info">Infos</string>
+    <string name="infoDatenmenge">Regarder la télé sur internet va demander un volume relativement important de données. Je te conseille l\'utilisation d\'un Wifi</string>
+    <string name="infoFeatureEmail">Est-ce qu\'il te manque une chaine locale? Si c\'est possible je peux très bien l\'ajouter (seulement des chaines locales ou thématiques!). Clique sur l\'adresse email suivante et envoi-moi ton souhait. \n\n  <u>androider@wolke7.net</u></string>
+    <string name="infoCopyright">&#169; 2012 by Koni\n\nTout contenu appartient aux propriétaires du Copyright. LocalTV n\'a aucune relation avec les fournisseurs des streams sur internet.</string>
+    <string name="infoZweck">LocalTV est née parce que sur mon appareil androide il me manquait des chaines télé. Le but de LocalTV est de mettre à disposition quelques chaines télé locales et thématiques sur ton appareil androide. Tu ne vas pas trouver ici les grandes chaines commerciales. Tu pourras les trouver celles la sur:</string>
+    <string name="infoZattoo"><u>www.zattoo.com</u></string>
+    <string name="infoWilmaa"><u>www.wilmaa.com</u></string>
+    <string name="infoTeleboy"><u>www.teleboy.ch</u></string>
+    <string name="infoBlick"><u>tv.blick.ch</u></string>
+    <string name="infoSenderNichtLive">Certaines chaines locales ne transmettent pas live sur internet. Elles ont cependant des grandes archives d\'émissions. Pour accéder rapidement aux derniers emissions j\'ai inclus un lien sur leurs archives.</string>   
+    <string name="emailAndroider">androider@wolke7.net</string>
+    <string name="vollbild">Pour le mode plein écran&#8230;\n&#8230;appuyer longtemps sur l\'image, ensuite sur le bouton plein écran.\nou\n&#8230;utilise le petit bouton carré en bas du cadre.</string>
+    <string name="notLive">Cette chaine ne transmet pas live sur internet.\nCherche dans les archives!</string>
+    <string name="seeArchive">Cherche dans les archives!</string>
+    <string name="download">Download</string>
+    <string name="neinDanke">no merci</string>
+    <string name="verbinde">connecte...</string>
+	<string name="live">en direct</string>
+	<string name="archiv">archives</string>
+	<string name="alle">tous</string>
+</resources>
