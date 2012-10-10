@@ -37,7 +37,7 @@ public class Main extends ListActivity {
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
 			stationList = stations.getAllStations();
-			setTitle(appName + " - Alle verfügbaren Sender");
+			setTitle(appName + " - Alle verfï¿½gbaren Sender");
 		} else if (action.equals(Constants.TAB_ARCHIV)) {
 			setTitle(appName + " - Sender Archiv");
 			stationList = stations.getArchivStations();
@@ -68,7 +68,7 @@ public class Main extends ListActivity {
 				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
 						+ textViewUrl.getText());
 
-				// Länder Titel haben keine URL und man kann sie nicht klicken.
+				// Lï¿½nder Titel haben keine URL und man kann sie nicht klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
 					Log.d(TAG, "Playing: " + textViewName.getText() + ", "
 							+ textViewUrl.getText());
@@ -125,6 +125,7 @@ public class Main extends ListActivity {
 			startActivity(new Intent(this, Info.class));
 			break;
 		case -2: // ende
+			Util.clearApplicationData(this);
 			finish();
 			break;
 		}

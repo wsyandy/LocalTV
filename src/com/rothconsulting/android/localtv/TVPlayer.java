@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -62,7 +63,7 @@ public class TVPlayer extends Activity {
 	private void playInWebView(final String name, final String url) {
 
 		if (!Stations.orientationPortrait().contains(name)) {
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		}
 		myWebView = null;
 		myWebView = (WebView) findViewById(R.id.webview);
@@ -71,6 +72,13 @@ public class TVPlayer extends Activity {
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
+
+		// avoid crash on Android 3.0, 3.1 & 3.2
+		// Receiver not registered: android.widget.ZoomButtonsController crash
+		if (Stations.noFullscreenByDefault().contains(name)
+				&& !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
+			myWebView.getSettings().setBuiltInZoomControls(true);
+		}
 
 		if (!Stations.userAgentAndroid().contains(name)) {
 			myWebView.getSettings().setUserAgentString(
@@ -117,23 +125,10 @@ public class TVPlayer extends Activity {
 
 		Util.showStatusBarNotification(this, name);
 
-		if (!Stations.noFullscreenMessage().contains(name)) {
-			for (int i = 0; i < 1; i++) { // langer Toast (2x)
-				Toast.makeText(this,
-						getResources().getString(R.string.vollbild),
-						Toast.LENGTH_LONG).show();
-
-			}
-		} else if (Stations.notLive().contains(name)) {
+		if (Stations.notLive().contains(name)) {
 			for (int i = 0; i < 1; i++) { // langer Toast (2x)
 				Toast.makeText(this,
 						getResources().getString(R.string.notLive),
-						Toast.LENGTH_LONG).show();
-			}
-		} else if (Stations.sieheArchiv().contains(name)) {
-			for (int i = 0; i < 1; i++) { // langer Toast (2x)
-				Toast.makeText(this,
-						getResources().getString(R.string.seeArchive),
 						Toast.LENGTH_LONG).show();
 			}
 		}
@@ -194,6 +189,7 @@ public class TVPlayer extends Activity {
 		if (removeStatusBar) {
 			Util.hideStatusBarNotification(this);
 		}
+		Util.clearApplicationData(this);
 		finish();
 	}
 

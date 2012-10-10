@@ -19,11 +19,11 @@ public class Stations {
 	public static final String LAND_LEER = "";
 	public static final String LAND_SCHWEIZ = "-- Land: Schweiz --";
 	public static final String LAND_DEUTSCHLAND = "-- Land: Deutschland --";
-	public static final String LAND_OESTERREICH = "-- Land: Österreich --";
-	public static final String LAND_DIVERSE_LAENDER = "-- Diverse Länder --";
+	public static final String LAND_OESTERREICH = "-- Land: Ã–sterreich --";
+	public static final String LAND_DIVERSE_LAENDER = "-- Diverse LÃ¤nder --";
 
-	public static final String TELE_BAERN = "Tele Bärn";
-	public static final String TELE_ZUERI = "Tele Züri";
+	public static final String TELE_BAERN = "Tele BÃ¤rn";
+	public static final String TELE_ZUERI = "Tele ZÃ¼ri";
 	public static final String TELE_BASEL_LIVE = "Tele Basel";
 	public static final String TELE_BASEL_ARCHIV = "Tele Basel (Archiv)";
 	public static final String TELE_M1_LIVE = "Tele M1";
@@ -43,13 +43,13 @@ public class Stations {
 	public static final String TELE_BIELINGUE = "TeleBielingue";
 	public static final String KANAL_9 = "Kanal 9";
 	public static final String RRO_TV = "RRO TV";
-	public static final String LEMAN_BLEU = "Léman bleu";
+	public static final String LEMAN_BLEU = "LÃ©man bleu";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
-	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
-	public static final String TELE_SUEDOSTSCHWEIZ_ARCHIV = "Tele Südostschweiz (Archiv)";
+	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Sdostschweiz";
+	public static final String TELE_SUEDOSTSCHWEIZ_ARCHIV = "Tele SÃ¼dostschweiz (Archiv)";
 	public static final String TCH = "Trailer Cinema Highlights";
 	public static final String REGIO_PLUS_TV = "Regio TV Plus";
-	public static final String ZUERI_PLUS = "Züri Plus";
+	public static final String ZUERI_PLUS = "ZÃ¼ri Plus";
 	public static final String TELE_NAPF = "Tele Napf";
 	public static final String GEMEINDE_TV = "Gemeinde TV";
 	public static final String SARA_MACHTS_TV = "Sara machts TV";
@@ -71,11 +71,11 @@ public class Stations {
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
 	public static final String ALEX_BERLIN = "Alex Berlin";
-	public static final String MUENCHEN_TV = "München TV";
+	public static final String MUENCHEN_TV = "MÃ¼nchen TV";
 	public static final String FRANKEN_TV = "Franken Fernsehen";
 	public static final String TRU_YOUNG_TV = "[tru:] young television";
 	public static final String TRP1_FERNSEHEN = "TRP1 Fernsehen";
-	public static final String TV_SUEDBADEN = "TV Südbaden";
+	public static final String TV_SUEDBADEN = "TV SÃ¼dbaden";
 	public static final String NDR = "NDR";
 	public static final String WDR = "WDR";
 	public static final String HR = "HR";
@@ -107,15 +107,15 @@ public class Stations {
 		return stations;
 	}
 
-	public static List<String> noFullscreenMessage() {
-		List<String> stations = new ArrayList<String>();
-		stations.addAll(notLive());
-		stations.addAll(sieheArchiv());
-		stations.add(TELE_BAERN);
-		stations.add(SSF);
-		stations.add(TV_ADMIN_CH);
-		return stations;
-	}
+	// public static List<String> noFullscreenMessage() {
+	// List<String> stations = new ArrayList<String>();
+	// stations.addAll(notLive());
+	// stations.addAll(sieheArchiv());
+	// stations.add(TELE_BAERN);
+	// stations.add(SSF);
+	// stations.add(TV_ADMIN_CH);
+	// return stations;
+	// }
 
 	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
@@ -131,21 +131,27 @@ public class Stations {
 		// stations.add(TELE_NAPF);
 		// stations.add(NETZKINO);
 		// stations.add(KINDERKINO);
-
 		stations.add(NASA_TV);
 		return stations;
 	}
 
-	public static List<String> sieheArchiv() {
+	public static List<String> noFullscreenByDefault() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(TELE_BASEL_ARCHIV);
-		stations.add(TELE_M1_ARCHIV);
-		stations.add(TELE_1_ARCHIV);
-		stations.add(TV_ADMIN_CH);
-		stations.add(KINDERKINO);
-		stations.add(NETZKINO);
+		stations.add(TELE_M1_LIVE);
+		stations.add(TELE_ZUERI);
 		return stations;
 	}
+
+	// public static List<String> sieheArchiv() {
+	// List<String> stations = new ArrayList<String>();
+	// stations.add(TELE_BASEL_ARCHIV);
+	// stations.add(TELE_M1_ARCHIV);
+	// stations.add(TELE_1_ARCHIV);
+	// stations.add(TV_ADMIN_CH);
+	// stations.add(KINDERKINO);
+	// stations.add(NETZKINO);
+	// return stations;
+	// }
 
 	public static List<String> notLive() {
 		List<String> stations = new ArrayList<String>();
@@ -231,7 +237,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BASEL_LIVE);
-		m.put("url", "telebasel.html");
+		m.put("url", "telebasel.php");
 		m.put("icon", R.drawable.tele_basel);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -245,7 +251,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_M1_LIVE);
-		m.put("url", "telem1.html");
+		m.put("url", "telem1.php");
 		m.put("icon", R.drawable.tele_m1);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -301,7 +307,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", LA_TELE);
-		m.put("url", "latele.html");
+		m.put("url", "latele.php");
 		m.put("icon", R.drawable.la_tele);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -315,7 +321,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", ROUGE_TV);
-		m.put("url", "rougetv.html");
+		m.put("url", "rougetv.php");
 		m.put("icon", R.drawable.rouge_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -568,14 +574,14 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", MUENCHEN_TV);
-		m.put("url", "muenchenTV.html");
+		m.put("url", "muenchenTV.php");
 		m.put("icon", R.drawable.muenchen_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", FRANKEN_TV);
-		m.put("url", "frankenTV.html");
+		m.put("url", "frankenTV.php");
 		m.put("icon", R.drawable.franken_fernsehen);
 		allStationList.add(m);
 		liveStationList.add(m);
