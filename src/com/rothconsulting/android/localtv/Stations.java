@@ -36,6 +36,9 @@ public class Stations {
 	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
 	public static final String TV_105 = "105 TV";
+	public static final String RTS_UN = "RTS Un";
+	public static final String RTS_DEUX = "RTS Deux";
+
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
 	public static final String ALF_TV = "Alf-TV";
 	public static final String JUMP_TV = "Jump-TV";
@@ -89,12 +92,28 @@ public class Stations {
 	public static final String FOUR_SESAONS_TV = "4 seasons TV";
 	public static final String L_TV = "L TV";
 	public static final String _3_SAT = "3 sat";
+	public static final String ARD_MEDIATHEK = "ARD Mediathek";
 	public static final String OBERPFALZ_TV = "Oberpfalz TV";
 	public static final String AUGSBURG_TV = "Augsburg TV";
 	public static final String BERG_TV = "Bergisch Gladbach TV";
 	public static final String ANDROID_NEW_TV = "Android News TV";
 	public static final String DW = "DW - Deutsche Welle";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
+	public static final String BAYERN_TV = "Bayerisches Fernsehen";
+	public static final String OK_DESSAU = "OK Dessau";
+	public static final String OK_MAGDEBURG = "OK Magdeburg";
+	public static final String OK_MERSEBURG = "OK Merseburg";
+	public static final String OK_SALZWEDEL = "OK Salzwedel";
+	public static final String OK_STENDAL = "OK Stendal";
+	public static final String OK_WERNIGERODE = "OK Wernigerode";
+	public static final String OK_WETTIN = "OK Wettin";
+	public static final String TV_HALLE = "TV Halle";
+	public static final String RAN_1 = "RAN 1 (Anhalt)";
+	public static final String ELBEKANAL = "Elebkanal";
+	public static final String PUNKT_UM = "PUNKTum";
+	public static final String RBW = "RBW";
+	public static final String RFH = "RFH";
+	public static final String BLK_ONLINE_TV = "BLKonlineTV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
@@ -193,6 +212,7 @@ public class Stations {
 		stations.add(MYSPASS);
 		stations.add(RBB_TV);
 		stations.add(_3_SAT);
+		stations.add(ARD_MEDIATHEK);
 		stations.add(TELEVISTA);
 		stations.add(GESUNDHEIT_SPRECHSTUNDE);
 		stations.add(MOTOTRSHOW_TCS);
@@ -337,6 +357,20 @@ public class Stations {
 		m.put("name", TV_105);
 		m.put("url", "105tv.html");
 		m.put("icon", R.drawable.tv_105);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RTS_UN);
+		m.put("url", "rtsUn.php");
+		m.put("icon", R.drawable.rts_un);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RTS_DEUX);
+		m.put("url", "rtsDeux.php");
+		m.put("icon", R.drawable.rts_deux);
 		allStationList.add(m);
 		liveStationList.add(m);
 
@@ -685,9 +719,122 @@ public class Stations {
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", BAYERN_TV);
+		m.put("url", "bayerischesFernsehen.php");
+		m.put("icon", R.drawable.bayrisches_fernsehen);
+		allStationList.add(m);
+		liveStationList.add(m);
+		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_DESSAU);
+		m.put("url", "okDessau.php");
+		m.put("icon", R.drawable.ok_dessau);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_MAGDEBURG);
+		m.put("url", "okMagdeburg.php");
+		m.put("icon", R.drawable.ok_magdeburg);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_MERSEBURG);
+		m.put("url", "okMerseburg.php");
+		m.put("icon", R.drawable.ok_merseburg);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_SALZWEDEL);
+		m.put("url", "okSalzwedel.php");
+		m.put("icon", R.drawable.ok_salzwedel);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_STENDAL);
+		m.put("url", "okStendal.php");
+		m.put("icon", R.drawable.ok_stendal);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_WERNIGERODE);
+		m.put("url", "okWernigerode.php");
+		m.put("icon", R.drawable.ok_wernigerode);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_WETTIN);
+		m.put("url", "okWettin.php");
+		m.put("icon", R.drawable.ok_wettin);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_HALLE);
+		m.put("url", "tvHalle.php");
+		m.put("icon", R.drawable.tv_halle);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RAN_1);
+		m.put("url", "ran1.php");
+		m.put("icon", R.drawable.ran1);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ELBEKANAL);
+		m.put("url", "elbekanal.php");
+		m.put("icon", R.drawable.elbekanal);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PUNKT_UM);
+		m.put("url", "punktUm.php");
+		m.put("icon", R.drawable.punkt_um);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RBW);
+		m.put("url", "rbw.php");
+		m.put("icon", R.drawable.rbw);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RFH);
+		m.put("url", "rfh.php");
+		m.put("icon", R.drawable.rfh);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BLK_ONLINE_TV);
+		m.put("url", "blkOnlineTv.php");
+		m.put("icon", R.drawable.blk_online_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", _3_SAT);
 		m.put("url", "3sat.html");
 		m.put("icon", R.drawable.drei_sat);
+		allStationList.add(m);
+		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ARD_MEDIATHEK);
+		m.put("url", "ardMediathek.php");
+		m.put("icon", R.drawable.ard_mediathek);
 		allStationList.add(m);
 		archivStationList.add(m);
 
