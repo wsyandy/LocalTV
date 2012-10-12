@@ -20,13 +20,14 @@
     <string name="infoSchoenerFernsehen"><u>www.schoener-fernsehen.com</u></string>    
     <string name="infoSenderNichtLive">Einige Lokal-Stationen senden nicht live ins Internet. Diese haben aber ein grosses Archiv an Sendungen. Damit du schnell zu den letzten Sendungen kommst habe ich einen Link auf deren Sendungsarchiv eingebaut.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
-    <string name="vollbild">Für Vollbild&#8230;\n&#8230;drücke lange auf das Bild, danach den Vollbild-Knopf.\noder\n&#8230;verwende den kleinen viereckigen Knopf auf dem unteren Balken.</string>
+<!--     <string name="vollbild">Für Vollbild&#8230;\n&#8230;drücke lange auf das Bild, danach den Vollbild-Knopf.\noder\n&#8230;verwende den kleinen viereckigen Knopf auf dem unteren Balken.</string> -->
 	<string name="notLive">Diese TV Station sendet nicht Live ins Internet.\nSchau dich hier im Archiv um!</string>
 	<string name="seeArchive">Schau dich hier im Archiv um!</string>
 	<string name="download">Download</string>
 	<string name="neinDanke">Nein Danke</string>
-	<string name="verbinde">verbinde...</string>
+	<string name="verbinde">Verbinde... Bitte warten...</string>
 	<string name="live">Live</string>
 	<string name="archiv">Archiv</string>
 	<string name="alle">Alle</string>
+	<string name="website">\nWebseite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
 </resources>

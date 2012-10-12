@@ -19,13 +19,14 @@
     <string name="infoBlick"><u>tv.blick.ch</u></string>
     <string name="infoSenderNichtLive">Certaines chaines locales ne transmettent pas live sur internet. Elles ont cependant des grandes archives d\'émissions. Pour accéder rapidement aux derniers emissions j\'ai inclus un lien sur leurs archives.</string>   
     <string name="emailAndroider">androider@wolke7.net</string>
-    <string name="vollbild">Pour le mode plein écran&#8230;\n&#8230;appuyer longtemps sur l\'image, ensuite sur le bouton plein écran.\nou\n&#8230;utilise le petit bouton carré en bas du cadre.</string>
+<!--     <string name="vollbild">Pour le mode plein écran&#8230;\n&#8230;appuyer longtemps sur l\'image, ensuite sur le bouton plein écran.\nou\n&#8230;utilise le petit bouton carré en bas du cadre.</string> -->
     <string name="notLive">Cette chaine ne transmet pas live sur internet.\nCherche dans les archives!</string>
     <string name="seeArchive">Cherche dans les archives!</string>
     <string name="download">Download</string>
     <string name="neinDanke">no merci</string>
-    <string name="verbinde">connecte...</string>
+    <string name="verbinde">Connecte... S\'il vous plaît attendre...</string>
 	<string name="live">en direct</string>
 	<string name="archiv">archives</string>
 	<string name="alle">tous</string>
+	<string name="website">\nWebsite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
 </resources>

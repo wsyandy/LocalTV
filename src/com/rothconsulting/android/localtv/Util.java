@@ -72,6 +72,7 @@ public class Util {
 
 	public static void startBrowserActivity(Context context, String url) {
 		Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		viewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(viewIntent);
 	}
 

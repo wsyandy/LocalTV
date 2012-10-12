@@ -1,5 +1,8 @@
 package com.rothconsulting.android.localtv;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -12,6 +15,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
@@ -25,7 +29,7 @@ import android.widget.VideoView;
 public class TVPlayer extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
-
+	private String stationName = "";
 	private WebView myWebView = null;
 
 	@Override
@@ -46,6 +50,7 @@ public class TVPlayer extends Activity {
 		if (bundle != null) {
 			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
 				String name = bundle.getString(Constants.NAME);
+				stationName = name;
 				String url = bundle.getString(Constants.URL);
 				Log.d(TAG, "URL=" + url);
 
@@ -184,7 +189,20 @@ public class TVPlayer extends Activity {
 
 	private void closeTVPlayer(boolean removeStatusBar) {
 		if (myWebView != null) {
-			myWebView.destroy();
+
+			if (!Stations.noFullscreenByDefault().contains(stationName)) {
+				myWebView.destroy();
+			} else {
+				// to avoid a crash
+				// http://stackoverflow.com/questions/5267639/how-to-safely-turn-webview-zooming-on-and-off-as-needed
+				long timeout = ViewConfiguration.getZoomControlsTimeout();
+				new Timer().schedule(new TimerTask() {
+					@Override
+					public void run() {
+						myWebView.destroy();
+					}
+				}, timeout);
+			}
 		}
 		if (removeStatusBar) {
 			Util.hideStatusBarNotification(this);

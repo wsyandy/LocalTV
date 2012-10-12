@@ -45,7 +45,7 @@ public class Stations {
 	public static final String RRO_TV = "RRO TV";
 	public static final String LEMAN_BLEU = "Léman bleu";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
-	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Sdostschweiz";
+	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
 	public static final String TELE_SUEDOSTSCHWEIZ_ARCHIV = "Tele Südostschweiz (Archiv)";
 	public static final String TCH = "Trailer Cinema Highlights";
 	public static final String REGIO_PLUS_TV = "Regio TV Plus";
@@ -75,6 +75,7 @@ public class Stations {
 	public static final String FRANKEN_TV = "Franken Fernsehen";
 	public static final String TRU_YOUNG_TV = "[tru:] young television";
 	public static final String TRP1_FERNSEHEN = "TRP1 Fernsehen";
+	public static final String BIBEL_TV = "Bibel TV";
 	public static final String TV_SUEDBADEN = "TV Südbaden";
 	public static final String NDR = "NDR";
 	public static final String WDR = "WDR";
@@ -93,9 +94,12 @@ public class Stations {
 	public static final String BERG_TV = "Bergisch Gladbach TV";
 	public static final String ANDROID_NEW_TV = "Android News TV";
 	public static final String DW = "DW - Deutsche Welle";
+	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
-	public static final String NASA_TV = "Nasa TV";
+	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
+	public static final String NASA_TV_MEDIA = "Nasa TV - Media";
+	public static final String NASA_TV_EDUCATION = "Nasa TV - Education";
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 
@@ -131,7 +135,9 @@ public class Stations {
 		// stations.add(TELE_NAPF);
 		// stations.add(NETZKINO);
 		// stations.add(KINDERKINO);
-		stations.add(NASA_TV);
+		stations.add(NASA_TV_PUBLIC);
+		stations.add(NASA_TV_MEDIA);
+		stations.add(NASA_TV_EDUCATION);
 		return stations;
 	}
 
@@ -139,6 +145,7 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_M1_LIVE);
 		stations.add(TELE_ZUERI);
+		stations.add(HR);
 		return stations;
 	}
 
@@ -223,7 +230,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BAERN);
-		m.put("url", "telebaern.html");
+		m.put("url", "telebaern.php");
 		m.put("icon", R.drawable.tele_baern);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -553,14 +560,14 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", BW_FAMILY);
-		m.put("url", "bwfamily.html");
+		m.put("url", "bwfamily.php");
 		m.put("icon", R.drawable.bw_family);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", FAMILY_TV);
-		m.put("url", "familytv.html");
+		m.put("url", "familytv.php");
 		m.put("icon", R.drawable.family_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -588,35 +595,42 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TRU_YOUNG_TV);
-		m.put("url", "truYoungTV.html");
+		m.put("url", "truYoungTV.php");
 		m.put("icon", R.drawable.tru_young_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", BIBEL_TV);
+		m.put("url", "bibelTV.php");
+		m.put("icon", R.drawable.bibel_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TRP1_FERNSEHEN);
-		m.put("url", "trp1_fernsehen.html");
+		m.put("url", "trp1_fernsehen.php");
 		m.put("icon", R.drawable.trp1_fernsehen);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TV_SUEDBADEN);
-		m.put("url", "tvSuedbaden.html");
+		m.put("url", "tvSuedbaden.php");
 		m.put("icon", R.drawable.tv_suedbaden);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NDR);
-		m.put("url", "ndr.html");
+		m.put("url", "ndr.php");
 		m.put("icon", R.drawable.ndr_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", WDR);
-		m.put("url", "wdr.html");
+		m.put("url", "wdr.php");
 		m.put("icon", R.drawable.wdr_fernsehen);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -637,21 +651,21 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", L_TV);
-		m.put("url", "l-tv.html");
+		m.put("url", "l-tv.php");
 		m.put("icon", R.drawable.ltv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", OBERPFALZ_TV);
-		m.put("url", "oberpfalzTV.html");
+		m.put("url", "oberpfalzTV.php");
 		m.put("icon", R.drawable.oberpfalz_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", AUGSBURG_TV);
-		m.put("url", "augsburgTV.html");
+		m.put("url", "augsburgTV.php");
 		m.put("icon", R.drawable.augsburg_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -660,6 +674,13 @@ public class Stations {
 		m.put("name", DW);
 		m.put("url", "dw.php");
 		m.put("icon", R.drawable.dw_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", LEIPZIG_TV);
+		m.put("url", "leipzigTV.php");
+		m.put("icon", R.drawable.leipzig_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
@@ -743,21 +764,35 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", RED_BULL_TV);
-		m.put("url", "redbullTV.html");
+		m.put("url", "redbullTV.php");
 		m.put("icon", R.drawable.red_bull_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", NASA_TV);
-		m.put("url", "nasatv.html");
+		m.put("name", NASA_TV_PUBLIC);
+		m.put("url", "nasaTvPublic.php");
+		m.put("icon", R.drawable.nasa_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NASA_TV_MEDIA);
+		m.put("url", "nasaTvMedia.php");
+		m.put("icon", R.drawable.nasa_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NASA_TV_EDUCATION);
+		m.put("url", "nasaTvEducation.php");
 		m.put("icon", R.drawable.nasa_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CLASSIC_CARTOONS_ACME);
-		m.put("url", "acme-streaming.html");
+		m.put("url", "acme-streaming.php");
 		m.put("icon", R.drawable.acme_streaming);
 		allStationList.add(m);
 		liveStationList.add(m);

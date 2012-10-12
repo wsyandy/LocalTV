@@ -23,6 +23,15 @@ public class Info extends Activity {
 		textViewAppVersion.setText("Version "
 				+ Util.getAppVersionName(this, Info.class));
 
+		final TextView website = (TextView) findViewById(R.id.textViewWebsite);
+		website.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				Util.startBrowserActivity(getApplicationContext(),
+						"http://sites.google.com/site/androiderwolke");
+			}
+		});
+
 		final Button zurueckButton = (Button) findViewById(R.id.buttonZurueck);
 		zurueckButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
