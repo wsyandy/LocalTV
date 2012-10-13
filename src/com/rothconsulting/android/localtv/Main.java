@@ -6,6 +6,9 @@ import java.util.HashMap;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +40,7 @@ public class Main extends ListActivity {
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
 			stationList = stations.getAllStations();
-			setTitle(appName + " - Alle verf�gbaren Sender");
+			setTitle(appName + " - Alle verfügbaren Sender");
 		} else if (action.equals(Constants.TAB_ARCHIV)) {
 			setTitle(appName + " - Sender Archiv");
 			stationList = stations.getArchivStations();
@@ -47,14 +50,17 @@ public class Main extends ListActivity {
 		}
 		Log.d(TAG, "Action=" + action + " / Stations=" + stationList.size());
 
-		SimpleAdapter adapter = new SimpleAdapter(this, stationList,
-				R.layout.list_item, new String[] { "icon", "name", "url" },
-				new int[] { R.id.list_icon, R.id.list_name, R.id.list_url });
-
-		setListAdapter(adapter);
-
 		ListView lv = (ListView) findViewById(android.R.id.list); // getListView();
+		int[] colors = { 0, Color.RED, 0 }; // red for the example
+		lv.setDivider(new GradientDrawable(Orientation.RIGHT_LEFT, colors));
+		lv.setDividerHeight(1);
 		lv.setTextFilterEnabled(true);
+
+		// LayoutInflater inflater = getLayoutInflater();
+		// TextView header = (TextView) inflater.inflate(R.layout.list_header,
+		// lv,
+		// false);
+		// lv.addHeaderView(header, null, false);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -77,6 +83,12 @@ public class Main extends ListActivity {
 				}
 			}
 		});
+
+		SimpleAdapter adapter = new SimpleAdapter(this, stationList,
+				R.layout.list_item, new String[] { "icon", "name", "url" },
+				new int[] { R.id.list_icon, R.id.list_name, R.id.list_url });
+
+		setListAdapter(adapter);
 
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
