@@ -38,6 +38,12 @@ public class Stations {
 	public static final String TV_105 = "105 TV";
 	public static final String RTS_UN = "RTS Un";
 	public static final String RTS_DEUX = "RTS Deux";
+	public static final String RSI_LA2 = "RSI La 2";
+	public static final String ZERMATT_KLEIN_MATTERHORN = "Zermatt Klein Matterhorn";
+	public static final String ZERMATT_SCHWARZSEE = "Zermatt Schwarzsee";
+	public static final String ZERMATT_ROTHORN = "Zermatt Rothorn";
+	public static final String ZERMATT_SUNNEGGA = "Zermatt Sunnegga";
+	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
 
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
 	public static final String ALF_TV = "Alf-TV";
@@ -109,7 +115,7 @@ public class Stations {
 	public static final String OK_WETTIN = "OK Wettin";
 	public static final String TV_HALLE = "TV Halle";
 	public static final String RAN_1 = "RAN 1 (Anhalt)";
-	public static final String ELBEKANAL = "Elebkanal";
+	public static final String ELBEKANAL = "Elbekanal";
 	public static final String PUNKT_UM = "PUNKTum";
 	public static final String RBW = "RBW";
 	public static final String RFH = "RFH";
@@ -371,6 +377,48 @@ public class Stations {
 		m.put("name", RTS_DEUX);
 		m.put("url", "rtsDeux.php");
 		m.put("icon", R.drawable.rts_deux);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RSI_LA2);
+		m.put("url", "rsiLa2.php");
+		m.put("icon", R.drawable.rsi_la2);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZERMATT_KLEIN_MATTERHORN);
+		m.put("url", "zermattKleinMatterhorn.php");
+		m.put("icon", R.drawable.zermatt);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZERMATT_SCHWARZSEE);
+		m.put("url", "zermattSchwarzsee.php");
+		m.put("icon", R.drawable.zermatt);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZERMATT_ROTHORN);
+		m.put("url", "zermattRothorn.php");
+		m.put("icon", R.drawable.zermatt);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZERMATT_SUNNEGGA);
+		m.put("url", "zermattSunnegga.php");
+		m.put("icon", R.drawable.zermatt);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZERMATT_TROCKENER_STEG);
+		m.put("url", "zermattTrockenerSteg.php");
+		m.put("icon", R.drawable.zermatt);
 		allStationList.add(m);
 		liveStationList.add(m);
 
