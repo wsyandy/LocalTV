@@ -32,7 +32,7 @@ public class Stations {
 	public static final String TELE_1_ARCHIV = "Tele 1 (Archiv)";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String SSF = "Schweizer Sport Fernsehen";
-	public static final String LA_TELE = "La Tele";
+	public static final String LA_TELE = "La Télé";
 	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
 	public static final String TV_105 = "105 TV";
@@ -45,6 +45,7 @@ public class Stations {
 	public static final String ZERMATT_SUNNEGGA = "Zermatt Sunnegga";
 	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
 
+	public static final String NEUDINGS_TV = "neu dings TV";
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
 	public static final String ALF_TV = "Alf-TV";
 	public static final String JUMP_TV = "Jump-TV";
@@ -120,6 +121,7 @@ public class Stations {
 	public static final String RBW = "RBW";
 	public static final String RFH = "RFH";
 	public static final String BLK_ONLINE_TV = "BLKonlineTV";
+	public static final String DAS_VIERTE = "Das Vierte";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
@@ -326,14 +328,14 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", SCHWEIZ_5);
-		m.put("url", "schweiz5.html");
+		m.put("url", "schweiz5.php");
 		m.put("icon", R.drawable.schweiz_5);
 		allStationList.add(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SSF);
-		m.put("url", "ssf.html");
+		m.put("url", "ssf.php");
 		m.put("icon", R.drawable.ssf);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -347,7 +349,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_ALPHA);
-		m.put("url", "canalalpha.html");
+		m.put("url", "canalalpha.php");
 		m.put("icon", R.drawable.canal_alpha);
 		allStationList.add(m);
 		liveStationList.add(m);
@@ -433,6 +435,13 @@ public class Stations {
 		m.put("name", TV_ADMIN_CH);
 		m.put("url", "tv.admin.ch.html");
 		m.put("icon", R.drawable.admin_ch);
+		allStationList.add(m);
+		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", NEUDINGS_TV);
+		m.put("url", "neudingsTv.php");
+		m.put("icon", R.drawable.neudings_tv);
 		allStationList.add(m);
 		archivStationList.add(m);
 
@@ -869,6 +878,13 @@ public class Stations {
 		m.put("name", BLK_ONLINE_TV);
 		m.put("url", "blkOnlineTv.php");
 		m.put("icon", R.drawable.blk_online_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", DAS_VIERTE);
+		m.put("url", "dasVierte.php");
+		m.put("icon", R.drawable.das_vierte);
 		allStationList.add(m);
 		liveStationList.add(m);
 
