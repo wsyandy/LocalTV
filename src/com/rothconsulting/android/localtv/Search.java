@@ -27,6 +27,8 @@ public class Search extends Activity {
 		TextView searchField = (TextView) findViewById(R.id.autocomplete);
 		searchField.setText("");
 		prepareSearch();
+		AdMob admob = new AdMob();
+		admob.showRemoveAds(this);
 	}
 
 	private void prepareSearch() {

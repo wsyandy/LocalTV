@@ -91,6 +91,15 @@ public class Info extends Activity {
 			}
 		});
 
+		final TextView nelloTv = (TextView) findViewById(R.id.textViewNelloTv);
+		nelloTv.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				v.setBackgroundColor(R.color.orange);
+				Util.startBrowserActivity(getApplicationContext(),
+						"http://www.nello.tv");
+			}
+		});
+
 	}
 
 	private void startEmailActivity() {

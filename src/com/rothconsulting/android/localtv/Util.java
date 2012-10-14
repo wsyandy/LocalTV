@@ -142,8 +142,6 @@ public class Util {
 	}
 
 	public static void clearApplicationData(Context context) {
-		context.deleteDatabase("webview.db");
-		context.deleteDatabase("webviewCache.db");
 
 		File cache = context.getCacheDir();
 		File appDir = new File(cache.getParent());
@@ -152,9 +150,8 @@ public class Util {
 			for (String s : children) {
 				if (!s.equals("lib")) {
 					deleteDir(new File(appDir, s));
-					Log.d("TAG",
-							"**************** File /data/data/APP_PACKAGE/" + s
-									+ " DELETED ***");
+					Log.d("TAG", "*************** File /data/data/APP_PACKAGE/"
+							+ s + " DELETED ***");
 				}
 			}
 		}

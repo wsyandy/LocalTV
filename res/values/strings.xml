@@ -18,6 +18,7 @@
     <string name="infoTeleboy"><u>www.teleboy.ch</u></string>
     <string name="infoBlick"><u>tv.blick.ch</u></string>
     <string name="infoSchoenerFernsehen"><u>www.schoener-fernsehen.com</u></string>    
+    <string name="infoNelloTv"><u>www.nello.tv</u></string>    
     <string name="infoSenderNichtLive">Some local stations do not have a live internet stream. However, they have a large archive of shows. To get quickly to the recent broadcasts I\'ve added a link to their broadcast archives.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
 <!--     <string name="vollbild">For full screen&#8230;\n&#8230;long press on the image, then the full-screen button.\n&#8230;\nor use the small square button on the bottom bar.</string> -->
