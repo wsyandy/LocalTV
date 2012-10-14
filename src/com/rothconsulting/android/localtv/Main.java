@@ -32,6 +32,9 @@ public class Main extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		this.deleteDatabase("webview.db");
+		this.deleteDatabase("webviewCache.db");
+
 		Stations stations = new Stations();
 		stations.init();
 

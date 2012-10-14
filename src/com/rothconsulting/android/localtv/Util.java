@@ -142,6 +142,9 @@ public class Util {
 	}
 
 	public static void clearApplicationData(Context context) {
+		context.deleteDatabase("webview.db");
+		context.deleteDatabase("webviewCache.db");
+
 		File cache = context.getCacheDir();
 		File appDir = new File(cache.getParent());
 		if (appDir.exists()) {
