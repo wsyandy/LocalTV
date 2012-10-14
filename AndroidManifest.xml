@@ -23,6 +23,7 @@
 			android:launchMode="standard" />
 		<activity android:name=".Info" />
 		<activity android:name=".Main" />
+		<activity android:name=".Search" />
 	</application>
 
 </manifest>

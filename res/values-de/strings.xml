@@ -30,4 +30,6 @@
 	<string name="archiv">Archiv</string>
 	<string name="alle">Alle</string>
 	<string name="website">\nWebseite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
+	<string name="searchHint">...TV Station suchen...</string>
+	<string name="search">Suchen</string>
 </resources>

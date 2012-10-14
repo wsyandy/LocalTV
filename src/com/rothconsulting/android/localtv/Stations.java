@@ -14,7 +14,7 @@ public class Stations {
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
-	private ArrayList<HashMap<String, Object>> allStationList;
+	private static ArrayList<HashMap<String, Object>> allStationList;
 
 	public static final String LAND_LEER = "";
 	public static final String LAND_SCHWEIZ = "-- Land: Schweiz --";
@@ -236,7 +236,7 @@ public class Stations {
 		return archivStationList;
 	}
 
-	public ArrayList<HashMap<String, Object>> getAllStations() {
+	public static ArrayList<HashMap<String, Object>> getAllStations() {
 		return allStationList;
 	}
 

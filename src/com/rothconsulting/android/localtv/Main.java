@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
@@ -36,6 +37,9 @@ public class Main extends ListActivity {
 
 		String action = getIntent().getAction();
 		String appName = getString(R.string.app_name);
+
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
@@ -94,23 +98,25 @@ public class Main extends ListActivity {
 		ads.showRemoveAds(this);
 	}
 
-	private void play(Context context, String name, String url) {
+	public static void play(Context context, String name, String url) {
 
-		if (Util.isFlashInstalled(this)) {
+		if (Util.isFlashInstalled(context)) {
 
-			if (Util.isNetworkAvailable(this)) {
+			if (Util.isNetworkAvailable(context)) {
 				Intent intent = new Intent(context, TVPlayer.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
-				startActivity(intent);
+				context.startActivity(intent);
 			} else {
 				Toast.makeText(
-						this,
-						getResources().getString(R.string.internetNotConnected),
+						context,
+						context.getResources().getString(
+								R.string.internetNotConnected),
 						Toast.LENGTH_LONG).show();
 			}
 		} else {
-			Util.showFlashAlert(this);
+			Util.showFlashAlert(context);
 			// Toast.makeText(this,
 			// getResources().getString(R.string.flashNotInstalled),
 			// Toast.LENGTH_LONG).show();
@@ -143,5 +149,4 @@ public class Main extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }

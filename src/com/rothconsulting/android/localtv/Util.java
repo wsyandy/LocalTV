@@ -1,6 +1,9 @@
 package com.rothconsulting.android.localtv;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import android.app.AlertDialog.Builder;
 import android.app.Notification;
@@ -18,6 +21,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 public class Util {
@@ -163,5 +168,40 @@ public class Util {
 			}
 		}
 		return dir.delete();
+	}
+
+	public static List<String> getStationNameList() {
+		ArrayList<HashMap<String, Object>> stationList = Stations
+				.getAllStations();
+		List<String> result = new ArrayList<String>();
+
+		for (HashMap<String, Object> station : stationList) {
+			result.add("" + station.get("name"));
+		}
+		return result;
+	}
+
+	public static String getUrl(String stationName) {
+		ArrayList<HashMap<String, Object>> stationList = Stations
+				.getAllStations();
+
+		for (HashMap<String, Object> station : stationList) {
+			if (("" + station.get("name")).equalsIgnoreCase(stationName)) {
+				return "" + station.get("url");
+			}
+		}
+		return "";
+	}
+
+	public static void hideKeyboard(Context context, View view) {
+		InputMethodManager imm = (InputMethodManager) context
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromInputMethod(view.getWindowToken(), 0);
+	}
+
+	public static void showKeyboard(Context context, View view) {
+		InputMethodManager imm = (InputMethodManager) context
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.showSoftInputFromInputMethod(view.getWindowToken(), 0);
 	}
 }

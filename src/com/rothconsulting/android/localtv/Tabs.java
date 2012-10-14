@@ -48,7 +48,18 @@ public class Tabs extends TabActivity {
 						res.getDrawable(R.drawable.tab_buttons))
 				.setContent(intent);
 		tabHost.addTab(spec);
-		// tabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 50;
+
+		intent = new Intent().setClass(this, Search.class);
+		intent.setAction(Constants.TAB_SEARCH);
+		spec = tabHost
+				.newTabSpec(Constants.TAB_SEARCH)
+				.setIndicator(getString(R.string.search),
+						res.getDrawable(android.R.drawable.ic_menu_search))
+				.setContent(intent);
+		tabHost.addTab(spec);
+
+		// tabHost.getTabWidget().getChildAt(0)
+		// .setBackgroundResource(R.color.blue_facebook);
 		// tabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 60;
 		// tabHost.getTabWidget().getChildAt(2).getLayoutParams().height =
 		// LayoutParams.MATCH_PARENT;
