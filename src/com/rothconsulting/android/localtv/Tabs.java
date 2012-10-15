@@ -1,13 +1,18 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 
 public class Tabs extends TabActivity {
+
+	Context context;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -16,8 +21,9 @@ public class Tabs extends TabActivity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tabs);
 
+		context = this;
 		Resources res = getResources(); // Resource object to get Drawables
-		TabHost tabHost = getTabHost(); // The activity TabHost
+		final TabHost tabHost = getTabHost(); // The activity TabHost
 		TabHost.TabSpec spec; // Resusable TabSpec for each tab
 		Intent intent; // Reusable Intent for each tab
 
@@ -65,6 +71,17 @@ public class Tabs extends TabActivity {
 		// LayoutParams.MATCH_PARENT;
 
 		tabHost.setCurrentTab(0);
-	}
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 
+			public void onTabChanged(String tabId) {
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				if (Constants.TAB_SEARCH.equalsIgnoreCase(tabId)) {
+					imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+				} else {
+					imm.hideSoftInputFromWindow(
+							tabHost.getApplicationWindowToken(), 0);
+				}
+			}
+		});
+	}
 }

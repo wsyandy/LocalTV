@@ -33,15 +33,14 @@ public class Search extends Activity {
 
 	private void prepareSearch() {
 		final SearchAutoCompleteTextView myAutoComplete = (SearchAutoCompleteTextView) findViewById(R.id.autocomplete);
-		myAutoComplete.setText("");
-		Util.showKeyboard(context, myAutoComplete);
+		// myAutoComplete.setText("");
 
 		myAutoComplete.setOnItemClickListener(new OnItemClickListener() {
 
-			public void onItemClick(AdapterView<?> parent, View textView,
-					int arg2, long arg3) {
+			public void onItemClick(
+					AdapterView<?> listPopupWindow_DropDownListView,
+					View textView, int arg2, long arg3) {
 
-				Util.hideKeyboard(context, textView);
 				String station = "" + ((TextView) textView).getText();
 
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
@@ -51,6 +50,7 @@ public class Search extends Activity {
 						|| station.equalsIgnoreCase(Stations.LAND_SCHWEIZ)) {
 					// do nothing
 				} else {
+					Util.hideKeyboard(context, textView);
 					Main.play(getApplicationContext(), station,
 							Util.getUrl(station));
 				}
