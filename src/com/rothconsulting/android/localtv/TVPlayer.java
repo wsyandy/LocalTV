@@ -139,6 +139,10 @@ public class TVPlayer extends Activity {
 		}
 		Toast.makeText(this, getResources().getString(R.string.verbinde),
 				Toast.LENGTH_LONG).show();
+		if (!Connectivity.isConnectedFast(this)) {
+			Toast.makeText(this, getResources().getString(R.string.verbinde),
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	public void playInVideoView(String url, boolean autoplay) {

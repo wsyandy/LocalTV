@@ -50,7 +50,7 @@ public class Stations {
 	public static final String ALF_TV = "Alf-TV";
 	public static final String JUMP_TV = "Jump-TV";
 	public static final String CASH_TV = "Cash TV";
-	public static final String TELE_BIELINGUE = "TeleBielingue";
+	public static final String TELE_BIELINGUE = "Tele Bielingue";
 	public static final String KANAL_9 = "Kanal 9";
 	public static final String RRO_TV = "RRO TV";
 	public static final String LEMAN_BLEU = "Léman bleu";
