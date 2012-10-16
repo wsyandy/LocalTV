@@ -33,8 +33,14 @@ public class Main extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		this.deleteDatabase("webview.db");
-		this.deleteDatabase("webviewCache.db");
+		try {
+			this.deleteDatabase("webview.db");
+			this.deleteDatabase("webviewCache.db");
+		} catch (Exception e) {
+			// http://code.google.com/p/android/issues/detail?id=7260
+			// ...delete webview.db and webviewCache.db and then swallow the
+			// exception...
+		}
 
 		context = this;
 		Stations stations = new Stations();
