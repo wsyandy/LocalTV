@@ -26,6 +26,7 @@ import android.widget.Toast;
 public class Main extends ListActivity {
 
 	private final String TAG = this.getClass().getSimpleName();
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Main extends ListActivity {
 		this.deleteDatabase("webview.db");
 		this.deleteDatabase("webviewCache.db");
 
+		context = this;
 		Stations stations = new Stations();
 		stations.init();
 
@@ -81,11 +83,12 @@ public class Main extends ListActivity {
 				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
 						+ textViewUrl.getText());
 
-				// L�nder Titel haben keine URL und man kann sie nicht klicken.
+				// L�nder Titel haben keine URL und man kann sie nicht
+				// klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
 					Log.d(TAG, "Playing: " + textViewName.getText() + ", "
 							+ textViewUrl.getText());
-					play(getApplicationContext(), "" + textViewName.getText(),
+					play(context, "" + textViewName.getText(),
 							"" + textViewUrl.getText());
 				}
 			}

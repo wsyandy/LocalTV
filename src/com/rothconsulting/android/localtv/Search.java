@@ -51,8 +51,7 @@ public class Search extends Activity {
 					// do nothing
 				} else {
 					Util.hideKeyboard(context, textView);
-					Main.play(getApplicationContext(), station,
-							Util.getUrl(station));
+					Main.play(context, station, Util.getUrl(station));
 				}
 			}
 		});
