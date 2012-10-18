@@ -11,6 +11,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,15 +33,6 @@ public class Main extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		try {
-			this.deleteDatabase("webview.db");
-			this.deleteDatabase("webviewCache.db");
-		} catch (Exception e) {
-			// http://code.google.com/p/android/issues/detail?id=7260
-			// ...delete webview.db and webviewCache.db and then swallow the
-			// exception...
-		}
 
 		context = this;
 		Stations stations = new Stations();
@@ -136,6 +128,25 @@ public class Main extends ListActivity {
 
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			deleteWebViewDatabase();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void deleteWebViewDatabase() {
+		try {
+			context.deleteDatabase("webview.db");
+			context.deleteDatabase("webviewCache.db");
+		} catch (Exception e) {
+			// http://code.google.com/p/android/issues/detail?id=7260
+			// ...delete webview.db and webviewCache.db and then swallow the
+			// exception...
+		}
+	}
+
 	// ------------------------------------------------------------
 	// Menu Stuff
 	// ------------------------------------------------------------
@@ -156,6 +167,7 @@ public class Main extends ListActivity {
 			break;
 		case -2: // ende
 			Util.clearApplicationData(this);
+			deleteWebViewDatabase();
 			finish();
 			break;
 		}
