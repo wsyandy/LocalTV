@@ -129,6 +129,9 @@ public class Stations {
 	public static final String RFH = "RFH";
 	public static final String BLK_ONLINE_TV = "BLKonlineTV";
 	public static final String DAS_VIERTE = "Das Vierte";
+	public static final String RTF_1 = "RTF 1";
+	public static final String BW_EINS = "BW Eins";
+	public static final String PROMETHEUS = "Prometheus";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -944,6 +947,27 @@ public class Stations {
 		m.put("icon", R.drawable.das_vierte);
 		allStationList.add(m);
 		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RTF_1);
+		m.put("url", "rtf1.php");
+		m.put("icon", R.drawable.rtf1);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BW_EINS);
+		m.put("url", "bwEins.php");
+		m.put("icon", R.drawable.bw_eins);
+		allStationList.add(m);
+		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PROMETHEUS);
+		m.put("url", "prometheus.php");
+		m.put("icon", R.drawable.prometheus);
+		allStationList.add(m);
+		archivStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", _3_SAT);
