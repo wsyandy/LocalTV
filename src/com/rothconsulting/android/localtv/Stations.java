@@ -235,6 +235,8 @@ public class Stations {
 		stations.add(TELEVISTA);
 		stations.add(GESUNDHEIT_SPRECHSTUNDE);
 		stations.add(MOTOTRSHOW_TCS);
+		stations.add(BW_EINS);
+		stations.add(PROMETHEUS);
 
 		return stations;
 	}
