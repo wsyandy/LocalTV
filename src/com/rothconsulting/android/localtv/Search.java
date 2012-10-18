@@ -87,6 +87,7 @@ public class Search extends Activity {
 			break;
 		case -2: // ende
 			Util.clearApplicationData(this);
+			Util.deleteWebViewDatabase(this);
 			finish();
 			break;
 		}

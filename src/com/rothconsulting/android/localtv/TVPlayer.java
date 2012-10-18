@@ -6,8 +6,6 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,9 +20,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.MediaController;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 public class TVPlayer extends Activity {
 
@@ -72,7 +68,7 @@ public class TVPlayer extends Activity {
 		}
 		myWebView = null;
 		myWebView = (WebView) findViewById(R.id.webview);
-		myWebView.clearCache(Boolean.FALSE);
+		// myWebView.clearCache(Boolean.FALSE);
 		myWebView.setInitialScale(99);
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
@@ -145,25 +141,25 @@ public class TVPlayer extends Activity {
 		}
 	}
 
-	public void playInVideoView(String url, boolean autoplay) {
-		// get current window information, and set format, set it up
-		// differently, if you need some special effects
-		getWindow().setFormat(PixelFormat.TRANSLUCENT);
-		// the VideoView will hold the video
-		VideoView videoHolder = new VideoView(this);
-		// MediaController is the ui control howering above the video (just like
-		// in the default youtube player).
-		videoHolder.setMediaController(new MediaController(this));
-		// assing a video file to the video holder
-		videoHolder
-				.setVideoURI(Uri
-						.parse("http://rtmp.infomaniak.ch/livecast/barntele/playlist.m3u8"));
-		// get focus, before playing the video.
-		videoHolder.requestFocus();
-		if (autoplay) {
-			videoHolder.start();
-		}
-	}
+	// public void playInVideoView(String url, boolean autoplay) {
+	// // get current window information, and set format, set it up
+	// // differently, if you need some special effects
+	// getWindow().setFormat(PixelFormat.TRANSLUCENT);
+	// // the VideoView will hold the video
+	// VideoView videoHolder = new VideoView(this);
+	// // MediaController is the ui control howering above the video (just like
+	// // in the default youtube player).
+	// videoHolder.setMediaController(new MediaController(this));
+	// // assing a video file to the video holder
+	// videoHolder
+	// .setVideoURI(Uri
+	// .parse("http://rtmp.infomaniak.ch/livecast/barntele/playlist.m3u8"));
+	// // get focus, before playing the video.
+	// videoHolder.requestFocus();
+	// if (autoplay) {
+	// videoHolder.start();
+	// }
+	// }
 
 	@Override
 	protected void onDestroy() {
@@ -211,7 +207,7 @@ public class TVPlayer extends Activity {
 		if (removeStatusBar) {
 			Util.hideStatusBarNotification(this);
 		}
-		Util.clearApplicationData(this);
+		// Util.clearApplicationData(this);
 		finish();
 	}
 

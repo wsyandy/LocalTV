@@ -131,20 +131,10 @@ public class Main extends ListActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			deleteWebViewDatabase();
+			Util.clearApplicationData(this);
+			Util.deleteWebViewDatabase(this);
 		}
 		return super.onKeyDown(keyCode, event);
-	}
-
-	private void deleteWebViewDatabase() {
-		try {
-			context.deleteDatabase("webview.db");
-			context.deleteDatabase("webviewCache.db");
-		} catch (Exception e) {
-			// http://code.google.com/p/android/issues/detail?id=7260
-			// ...delete webview.db and webviewCache.db and then swallow the
-			// exception...
-		}
 	}
 
 	// ------------------------------------------------------------
@@ -167,7 +157,7 @@ public class Main extends ListActivity {
 			break;
 		case -2: // ende
 			Util.clearApplicationData(this);
-			deleteWebViewDatabase();
+			Util.deleteWebViewDatabase(this);
 			finish();
 			break;
 		}

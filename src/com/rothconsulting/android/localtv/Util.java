@@ -170,6 +170,17 @@ public class Util {
 		return dir.delete();
 	}
 
+	public static void deleteWebViewDatabase(Context context) {
+		try {
+			context.deleteDatabase("webview.db");
+			context.deleteDatabase("webviewCache.db");
+		} catch (Exception e) {
+			// http://code.google.com/p/android/issues/detail?id=7260
+			// ...delete webview.db and webviewCache.db and then swallow the
+			// exception...
+		}
+	}
+
 	public static List<String> getStationNameList() {
 		ArrayList<HashMap<String, Object>> stationList = Stations
 				.getAllStations();
