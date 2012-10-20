@@ -7,7 +7,7 @@ public class Constants {
 	public static final String URL = "URL";
 	public static final String NAME = "NAME";
 	public static final String FROM_NOTIFICATION = "fromNotification";
-	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0";
+	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0) Gecko/20100101 Firefox/16.0";
 	public static final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	public static final String FLASH_MARKET_URL = "https://play.google.com/store/apps/details?id=com.adobe.flashplayer";
 	public static final String TAB_ALLE = "Alle";

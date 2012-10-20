@@ -76,7 +76,7 @@ public class TVPlayer extends Activity {
 
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
-		if (Stations.noFullscreenByDefault().contains(name)
+		if (Stations.allowZoom().contains(name)
 				&& !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
@@ -126,12 +126,9 @@ public class TVPlayer extends Activity {
 
 		Util.showStatusBarNotification(this, name);
 
-		if (Stations.notLive().contains(name)) {
-			for (int i = 0; i < 1; i++) { // langer Toast (2x)
-				Toast.makeText(this,
-						getResources().getString(R.string.notLive),
-						Toast.LENGTH_LONG).show();
-			}
+		if (Stations.getNotLiveStations().contains(name)) {
+			Toast.makeText(this, getResources().getString(R.string.notLive),
+					Toast.LENGTH_LONG).show();
 		}
 		Toast.makeText(this, getResources().getString(R.string.verbinde),
 				Toast.LENGTH_LONG).show();
@@ -178,10 +175,8 @@ public class TVPlayer extends Activity {
 		// Check if the key event was the BACK key and if there's history
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
 			myWebView.goBack();
-			return true;
-		}
-
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return false;
+		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
 			closeTVPlayer(true);
 		}
 		return super.onKeyDown(keyCode, event);
@@ -190,7 +185,7 @@ public class TVPlayer extends Activity {
 	private void closeTVPlayer(boolean removeStatusBar) {
 		if (myWebView != null) {
 
-			if (!Stations.noFullscreenByDefault().contains(stationName)) {
+			if (!Stations.allowZoom().contains(stationName)) {
 				myWebView.destroy();
 			} else {
 				// to avoid a crash

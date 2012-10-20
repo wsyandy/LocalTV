@@ -43,10 +43,11 @@ public class Main extends ListActivity {
 
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		Util.hideStatusBarNotification(this);
 
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
-			stationList = Stations.getAllStations();
+			stationList = stations.getAllStations();
 			setTitle(appName + " - Alle verfügbaren Sender");
 		} else if (action.equals(Constants.TAB_ARCHIV)) {
 			setTitle(appName + " - Sender Archiv");

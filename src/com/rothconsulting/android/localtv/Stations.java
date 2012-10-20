@@ -6,16 +6,6 @@ import java.util.List;
 
 public class Stations {
 
-	public Stations() {
-		liveStationList = new ArrayList<HashMap<String, Object>>();
-		archivStationList = new ArrayList<HashMap<String, Object>>();
-		allStationList = new ArrayList<HashMap<String, Object>>();
-	}
-
-	private ArrayList<HashMap<String, Object>> liveStationList;
-	private ArrayList<HashMap<String, Object>> archivStationList;
-	private static ArrayList<HashMap<String, Object>> allStationList;
-
 	public static final String LAND_LEER = "";
 	public static final String LAND_SCHWEIZ = "-- Land: Schweiz --";
 	public static final String LAND_DEUTSCHLAND = "-- Land: Deutschland --";
@@ -96,7 +86,8 @@ public class Stations {
 	public static final String NETZKINO = "Netzkino";
 	public static final String KINDERKINO = "Kinderkino";
 	public static final String MYSPASS = "myspass.de";
-	public static final String RBB_TV = "RBB TV";
+	public static final String RBB_MEDIATHEK = "RBB Mediathek";
+	public static final String RBB_DOKU_REPORTAGEN = "RBB Doku Reportagen";
 	public static final String FOUR_SESAONS_TV = "4 seasons TV";
 	public static final String MASSIVE_SPORT_MAG = "Massive SportsTV - Mag";
 	public static final String MASSIVE_SPORT_BIKE = "Massive SportsTV - Bike";
@@ -132,6 +123,8 @@ public class Stations {
 	public static final String RTF_1 = "RTF 1";
 	public static final String BW_EINS = "BW Eins";
 	public static final String PROMETHEUS = "Prometheus";
+	public static final String SWR_MEDIATHEK = "SWR Mediathek";
+	public static final String MDR_MEDIATHEK = "MDR Mediathek";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -141,6 +134,18 @@ public class Stations {
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 
+	private ArrayList<HashMap<String, Object>> liveStationList;
+	private ArrayList<HashMap<String, Object>> archivStationList;
+	private static ArrayList<HashMap<String, Object>> allStationList;
+	private static ArrayList<String> notLiveList;
+
+	public Stations() {
+		liveStationList = new ArrayList<HashMap<String, Object>>();
+		archivStationList = new ArrayList<HashMap<String, Object>>();
+		allStationList = new ArrayList<HashMap<String, Object>>();
+		notLiveList = new ArrayList<String>();
+	}
+
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_BIELINGUE);
@@ -148,16 +153,6 @@ public class Stations {
 		stations.add(TV_ADMIN_CH);
 		return stations;
 	}
-
-	// public static List<String> noFullscreenMessage() {
-	// List<String> stations = new ArrayList<String>();
-	// stations.addAll(notLive());
-	// stations.addAll(sieheArchiv());
-	// stations.add(TELE_BAERN);
-	// stations.add(SSF);
-	// stations.add(TV_ADMIN_CH);
-	// return stations;
-	// }
 
 	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
@@ -179,65 +174,12 @@ public class Stations {
 		return stations;
 	}
 
-	public static List<String> noFullscreenByDefault() {
+	public static List<String> allowZoom() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_M1_LIVE);
 		stations.add(TELE_ZUERI);
 		stations.add(HR);
-		return stations;
-	}
-
-	// public static List<String> sieheArchiv() {
-	// List<String> stations = new ArrayList<String>();
-	// stations.add(TELE_BASEL_ARCHIV);
-	// stations.add(TELE_M1_ARCHIV);
-	// stations.add(TELE_1_ARCHIV);
-	// stations.add(TV_ADMIN_CH);
-	// stations.add(KINDERKINO);
-	// stations.add(NETZKINO);
-	// return stations;
-	// }
-
-	public static List<String> notLive() {
-		List<String> stations = new ArrayList<String>();
-		stations.add(ALF_TV);
-		stations.add(JUMP_TV);
-		stations.add(TELE_BIELINGUE);
-		stations.add(TELE_OSTSCHWEIZ);
-		stations.add(TELE_SUEDOSTSCHWEIZ_ARCHIV);
-		stations.add(TCH);
-		stations.add(TELE_TOP);
-		stations.add(TELE_DIESSENHOFEN);
-		stations.add(TELE_NAPF);
-		stations.add(ZUERI_PLUS);
-		stations.add(GEMEINDE_TV);
-		stations.add(SARA_MACHTS_TV);
-		stations.add(KANAL_9);
-		stations.add(LEMAN_BLEU);
-		stations.add(ZUG_TV);
-		stations.add(RRO_TV);
-		stations.add(REGIO_PLUS_TV);
-		stations.add(SPONGEBOB);
-		stations.add(MURMI_TV);
-		stations.add(CANAL_29);
-		stations.add(MAX_TV);
-		stations.add(SCHAFFHAUSER_FERNSEHEN);
-		stations.add(CASH_TV);
-		stations.add(SPIEGEL_ONLINE);
-		stations.add(SF_VIDEO_PORTAL);
-		stations.add(ART_TV);
-		stations.add(BNJ_TV);
-		stations.add(TSR_VIDEO);
-		stations.add(MYSPASS);
-		stations.add(RBB_TV);
-		stations.add(_3_SAT);
-		stations.add(ARD_MEDIATHEK);
-		stations.add(TELEVISTA);
-		stations.add(GESUNDHEIT_SPRECHSTUNDE);
-		stations.add(MOTOTRSHOW_TCS);
-		stations.add(BW_EINS);
-		stations.add(PROMETHEUS);
-
+		// stations.add(SWR_MEDIATHEK);
 		return stations;
 	}
 
@@ -253,10 +195,21 @@ public class Stations {
 		return allStationList;
 	}
 
+	public static ArrayList<String> getNotLiveStations() {
+		return notLiveList;
+	}
+
+	private void addToArchiveAndNotLiveStations(HashMap<String, Object> map) {
+		archivStationList.add(map);
+		notLiveList.add((String) (map.get("name")));
+
+	}
+
 	public void init() {
 		allStationList = new ArrayList<HashMap<String, Object>>();
 		liveStationList = new ArrayList<HashMap<String, Object>>();
 		archivStationList = new ArrayList<HashMap<String, Object>>();
+		notLiveList = new ArrayList<String>();
 
 		// *********************************************************************************
 		// * Schweiz
@@ -267,7 +220,7 @@ public class Stations {
 		m.put("icon", R.drawable.flagge_schweiz);
 		allStationList.add(m);
 		liveStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BAERN);
@@ -295,7 +248,7 @@ public class Stations {
 		m.put("url", "telebaselArchiv.html");
 		m.put("icon", R.drawable.tele_basel);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_M1_LIVE);
@@ -309,7 +262,7 @@ public class Stations {
 		m.put("url", "telem1Archiv.html");
 		m.put("icon", R.drawable.tele_m1);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_1_LIVE);
@@ -323,7 +276,7 @@ public class Stations {
 		m.put("url", "tele1Archiv.html");
 		m.put("icon", R.drawable.tele1);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_SUEDOSTSCHWEIZ);
@@ -337,7 +290,7 @@ public class Stations {
 		m.put("url", "telesuedostschweizArchiv.html");
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SCHWEIZ_5);
@@ -442,210 +395,210 @@ public class Stations {
 		m.put("url", "teleostschweiz.html");
 		m.put("icon", R.drawable.tele_ostschweiz);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TV_ADMIN_CH);
 		m.put("url", "tv.admin.ch.html");
 		m.put("icon", R.drawable.admin_ch);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NEUDINGS_TV);
 		m.put("url", "neudingsTv.php");
 		m.put("icon", R.drawable.neudings_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ALF_TV);
 		m.put("url", "alf.html");
 		m.put("icon", R.drawable.alf);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", JUMP_TV);
 		m.put("url", "jumptv.html");
 		m.put("icon", R.drawable.jump_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CASH_TV);
 		m.put("url", "cashTV.html");
 		m.put("icon", R.drawable.cash_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BIELINGUE);
 		m.put("url", "telebielingue.html");
 		m.put("icon", R.drawable.telebielingue);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", KANAL_9);
 		m.put("url", "kanal9.html");
 		m.put("icon", R.drawable.kanal9);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RRO_TV);
 		m.put("url", "rroTV.html");
 		m.put("icon", R.drawable.rro_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", LEMAN_BLEU);
 		m.put("url", "lemanbleu.html");
 		m.put("icon", R.drawable.leman_bleu);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TCH);
 		m.put("url", "tch.html");
 		m.put("icon", R.drawable.trailer_cinema_highlights);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", REGIO_PLUS_TV);
 		m.put("url", "regioPlusTV.html");
 		m.put("icon", R.drawable.regio_plus_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZUERI_PLUS);
 		m.put("url", "zueriplustv.html");
 		m.put("icon", R.drawable.zueri_plus);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_NAPF);
 		m.put("url", "telenapf.html");
 		m.put("icon", R.drawable.telenapf);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", GEMEINDE_TV);
 		m.put("url", "gemeindetv.html");
 		m.put("icon", R.drawable.gemeindetv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SARA_MACHTS_TV);
 		m.put("url", "saramachtstv.html");
 		m.put("icon", R.drawable.sara_machts_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_TOP);
 		m.put("url", "teletop.html");
 		m.put("icon", R.drawable.tele_top);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_DIESSENHOFEN);
 		m.put("url", "telediessenhofen.html");
 		m.put("icon", R.drawable.tele_diessenhofen);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZUG_TV);
 		m.put("url", "zugtv.html");
 		m.put("icon", R.drawable.zug_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", MURMI_TV);
 		m.put("url", "murmitv.html");
 		m.put("icon", R.drawable.murmi_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_29);
 		m.put("url", "canal29.html");
 		m.put("icon", R.drawable.canal_29);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", MAX_TV);
 		m.put("url", "maxTV.html");
 		m.put("icon", R.drawable.max_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SCHAFFHAUSER_FERNSEHEN);
 		m.put("url", "schaffhausenFernsehen.html");
 		m.put("icon", R.drawable.schaffhauser_fernsehen);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SF_VIDEO_PORTAL);
 		m.put("url", "sf-video-portal.html");
 		m.put("icon", R.drawable.schweizer_fernsehen);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TSR_VIDEO);
 		m.put("url", "tsr.html");
 		m.put("icon", R.drawable.tsr);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ART_TV);
 		m.put("url", "artTV.html");
 		m.put("icon", R.drawable.art_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", BNJ_TV);
 		m.put("url", "bnjTV.html");
 		m.put("icon", R.drawable.bnj_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELEVISTA);
 		m.put("url", "televista.html");
 		m.put("icon", R.drawable.televista);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", GESUNDHEIT_SPRECHSTUNDE);
 		m.put("url", "gesundheit-sprechstunde.html");
 		m.put("icon", R.drawable.gesundheitsprechstunde);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", MOTOTRSHOW_TCS);
 		m.put("url", "motorshow-tcs.html");
 		m.put("icon", R.drawable.motorshow_tcs);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
 		// * Deutschland
@@ -659,7 +612,7 @@ public class Stations {
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_deutschland);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
@@ -843,7 +796,7 @@ public class Stations {
 		m.put("icon", R.drawable.bayrisches_fernsehen);
 		allStationList.add(m);
 		liveStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", OK_DESSAU);
@@ -958,46 +911,74 @@ public class Stations {
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", BW_EINS);
-		m.put("url", "bwEins.php");
-		m.put("icon", R.drawable.bw_eins);
-		allStationList.add(m);
-		archivStationList.add(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", PROMETHEUS);
-		m.put("url", "prometheus.php");
-		m.put("icon", R.drawable.prometheus);
-		allStationList.add(m);
-		archivStationList.add(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", _3_SAT);
 		m.put("url", "3sat.html");
 		m.put("icon", R.drawable.drei_sat);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ARD_MEDIATHEK);
 		m.put("url", "ardMediathek.php");
 		m.put("icon", R.drawable.ard_mediathek);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SWR_MEDIATHEK);
+		m.put("url", "swr.php");
+		m.put("icon", R.drawable.swr);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", MDR_MEDIATHEK);
+		m.put("url", "mdr.php");
+		m.put("icon", R.drawable.mdr);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RBB_MEDIATHEK);
+		m.put("url", "rbb-fernsehen.php");
+		m.put("icon", R.drawable.rbb_tv);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RBB_DOKU_REPORTAGEN);
+		m.put("url", "rbb-dokuReportagen.php");
+		m.put("icon", R.drawable.rbb_tv);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BW_EINS);
+		m.put("url", "bwEins.php");
+		m.put("icon", R.drawable.bw_eins);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PROMETHEUS);
+		m.put("url", "prometheus.php");
+		m.put("icon", R.drawable.prometheus);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SPIEGEL_ONLINE);
 		m.put("url", "spiegel_online.html");
 		m.put("icon", R.drawable.spiegel_online);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SPONGEBOB);
 		m.put("url", "spongebob.html");
 		m.put("icon", R.drawable.spongebob);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", KINDERKINO);
@@ -1005,7 +986,7 @@ public class Stations {
 		// m.put("url", "kinderkino.html");
 		m.put("icon", R.drawable.kinderkino);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NETZKINO);
@@ -1013,35 +994,28 @@ public class Stations {
 		m.put("url", "https://www.youtube.com/profile?user=netzkino");
 		m.put("icon", R.drawable.netzkino);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", MYSPASS);
 		m.put("url", "myspass.html");
 		m.put("icon", R.drawable.myspass);
 		allStationList.add(m);
-		archivStationList.add(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", RBB_TV);
-		m.put("url", "rbb-berlin.html");
-		m.put("icon", R.drawable.rbb_tv);
-		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", BERG_TV);
 		m.put("url", "bergischGladbach.html");
 		m.put("icon", R.drawable.berg_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ANDROID_NEW_TV);
 		m.put("url", "androidNewsTV.html");
 		m.put("icon", R.drawable.android_news_tv);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
 		// * Diverse
@@ -1103,7 +1077,7 @@ public class Stations {
 		m.put("url", "rts-salzburg.html");
 		m.put("icon", R.drawable.rts_salzburg);
 		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 	}
 
