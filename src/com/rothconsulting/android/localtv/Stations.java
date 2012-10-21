@@ -136,6 +136,7 @@ public class Stations {
 	public static final String NASA_TV_EDUCATION = "Nasa TV - Education";
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String RTS_SALZBURG = "RTS Salzburg";
+	public static final String ORF_TV_THEK = "ORF TVthek";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
@@ -174,6 +175,7 @@ public class Stations {
 		stations.add(NASA_TV_PUBLIC);
 		stations.add(NASA_TV_MEDIA);
 		stations.add(NASA_TV_EDUCATION);
+		stations.add(ORF_TV_THEK);
 		return stations;
 	}
 
@@ -181,7 +183,9 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_M1_LIVE);
 		stations.add(TELE_ZUERI);
+		stations.add(DAS_VIERTE);
 		stations.add(HR);
+		stations.add(ORF_TV_THEK);
 		// stations.add(SWR_MEDIATHEK);
 		return stations;
 	}
@@ -1053,6 +1057,7 @@ public class Stations {
 		m.put("icon", R.drawable.flagge_globus);
 		allStationList.add(m);
 		liveStationList.add(m);
+		archivStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RED_BULL_TV);
@@ -1067,6 +1072,14 @@ public class Stations {
 		m.put("icon", R.drawable.servus_tv);
 		allStationList.add(m);
 		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ORF_TV_THEK);
+		m.put("url", "orf-tvthek.php");
+		m.put("icon", R.drawable.orf_tvthek);
+		allStationList.add(m);
+		liveStationList.add(m);
+		archivStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NASA_TV_PUBLIC);
