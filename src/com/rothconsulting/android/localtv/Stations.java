@@ -76,6 +76,7 @@ public class Stations {
 	public static final String TRU_YOUNG_TV = "[tru:] young television";
 	public static final String TRP1_FERNSEHEN = "TRP1 Fernsehen";
 	public static final String BIBEL_TV = "Bibel TV";
+	public static final String K_TV = "K-TV (Kephas Kirche Kultur)";
 	public static final String ERF = "ERF";
 	public static final String TV_SUEDBADEN = "TV Südbaden";
 	public static final String NDR = "NDR";
@@ -125,6 +126,8 @@ public class Stations {
 	public static final String PROMETHEUS = "Prometheus";
 	public static final String SWR_MEDIATHEK = "SWR Mediathek";
 	public static final String MDR_MEDIATHEK = "MDR Mediathek";
+	public static final String HAMBURG_1_MEDIATHEK = "Hamburg1 Mediathek";
+	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -686,6 +689,13 @@ public class Stations {
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", K_TV);
+		m.put("url", "k-tv.php");
+		m.put("icon", R.drawable.k_tv);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", ERF);
 		m.put("url", "erf.php");
 		m.put("icon", R.drawable.erf);
@@ -911,6 +921,13 @@ public class Stations {
 		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", SACHSEN_FERNSEHEN);
+		m.put("url", "sachsenFernsehen.php");
+		m.put("icon", R.drawable.sachsen_fernsehen);
+		allStationList.add(m);
+		liveStationList.add(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", _3_SAT);
 		m.put("url", "3sat.html");
 		m.put("icon", R.drawable.drei_sat);
@@ -935,6 +952,13 @@ public class Stations {
 		m.put("name", MDR_MEDIATHEK);
 		m.put("url", "mdr.php");
 		m.put("icon", R.drawable.mdr);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", HAMBURG_1_MEDIATHEK);
+		m.put("url", "hamburg1.php");
+		m.put("icon", R.drawable.hamburg1);
 		allStationList.add(m);
 		addToArchiveAndNotLiveStations(m);
 
