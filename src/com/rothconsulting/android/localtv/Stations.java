@@ -137,6 +137,7 @@ public class Stations {
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 	public static final String ORF_TV_THEK = "ORF TVthek";
+	public static final String PULS_4 = "Puls 4";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
@@ -186,6 +187,7 @@ public class Stations {
 		stations.add(DAS_VIERTE);
 		stations.add(HR);
 		stations.add(ORF_TV_THEK);
+		stations.add(PULS_4);
 		// stations.add(SWR_MEDIATHEK);
 		return stations;
 	}
@@ -1080,6 +1082,13 @@ public class Stations {
 		allStationList.add(m);
 		liveStationList.add(m);
 		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PULS_4);
+		m.put("url", "puls4.php");
+		m.put("icon", R.drawable.puls_4);
+		allStationList.add(m);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NASA_TV_PUBLIC);

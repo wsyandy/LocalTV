@@ -117,6 +117,7 @@ public class TVPlayer extends Activity {
 			@Override
 			public void onReceivedError(WebView view, int errorCode,
 					String description, String failingUrl) {
+				Log.d(TAG, "WebViewClient ErrorCode=" + errorCode);
 				Toast.makeText(activity, "Oh no! " + description,
 						Toast.LENGTH_LONG).show();
 			}
