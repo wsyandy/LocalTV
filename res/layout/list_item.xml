@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:background="@drawable/focus_colors">
+	android:background="@drawable/tab_focus_colors">
 	<ImageView android:id="@+id/list_icon" android:src="@drawable/tv_icon"
 		android:contentDescription="@string/app_name" android:scaleType="fitCenter"
 		android:layout_width="72dp" android:layout_height="36dp"

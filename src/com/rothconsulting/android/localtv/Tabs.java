@@ -33,7 +33,7 @@ public class Tabs extends TabActivity {
 		spec = tabHost
 				.newTabSpec(Constants.TAB_LIVE)
 				.setIndicator(getString(R.string.live),
-						res.getDrawable(R.drawable.tab_buttons))
+						res.getDrawable(R.drawable.tab_tv_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
@@ -42,7 +42,7 @@ public class Tabs extends TabActivity {
 		spec = tabHost
 				.newTabSpec(Constants.TAB_ARCHIV)
 				.setIndicator(getString(R.string.archiv),
-						res.getDrawable(R.drawable.tab_buttons))
+						res.getDrawable(R.drawable.tab_tv_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
@@ -51,7 +51,7 @@ public class Tabs extends TabActivity {
 		spec = tabHost
 				.newTabSpec(Constants.TAB_ALLE)
 				.setIndicator(getString(R.string.alle),
-						res.getDrawable(R.drawable.tab_buttons))
+						res.getDrawable(R.drawable.tab_tv_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
@@ -60,7 +60,7 @@ public class Tabs extends TabActivity {
 		spec = tabHost
 				.newTabSpec(Constants.TAB_SEARCH)
 				.setIndicator(getString(R.string.search),
-						res.getDrawable(android.R.drawable.ic_menu_search))
+						res.getDrawable(R.drawable.tab_search_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
