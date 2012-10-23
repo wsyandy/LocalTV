@@ -4,8 +4,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +19,6 @@ import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,6 +29,7 @@ public class TVPlayer extends Activity {
 	private final String TAG = this.getClass().getSimpleName();
 	private String stationName = "";
 	private WebView myWebView = null;
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class TVPlayer extends Activity {
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 
 		setContentView(R.layout.player);
+
+		context = this;
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -73,6 +78,7 @@ public class TVPlayer extends Activity {
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
+		myWebView.getSettings().setAllowFileAccess(true);
 
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
@@ -102,25 +108,39 @@ public class TVPlayer extends Activity {
 			Log.d(TAG, "theURLtoPlay=" + theURLtoPlay);
 		}
 
-		final Activity activity = this;
-		myWebView.setWebChromeClient(new WebChromeClient() {
-			@Override
-			public void onProgressChanged(WebView view, int progress) {
-				// Activities and WebViews measure progress with different
-				// scales.
-				// The progress meter will automatically disappear when we reach
-				// 100%
-				activity.setProgress(progress * 1000);
-			}
-		});
+		// final Activity activity = this;
+		// myWebView.setWebChromeClient(new WebChromeClient() {
+		// @Override
+		// public void onProgressChanged(WebView view, int progress) {
+		// // Activities and WebViews measure progress with different
+		// // scales.
+		// // The progress meter will automatically disappear when we reach
+		// // 100%
+		// activity.setProgress(progress * 1000);
+		// }
+		// });
 		myWebView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onReceivedError(WebView view, int errorCode,
 					String description, String failingUrl) {
 				Log.d(TAG, "WebViewClient ErrorCode=" + errorCode);
-				Toast.makeText(activity, "Oh no! " + description,
+				Toast.makeText(context, "Oh no! " + description,
 						Toast.LENGTH_LONG).show();
 			}
+
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				Log.d(TAG, "****** URL=" + url);
+				if (url.endsWith(".mp4") || url.endsWith(".3gp")) {
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setDataAndType(Uri.parse(url), "video/*");
+					view.getContext().startActivity(intent);
+					return true;
+				} else {
+					return super.shouldOverrideUrlLoading(view, url);
+				}
+			}
+
 		});
 
 		myWebView.loadUrl(theURLtoPlay);
@@ -237,5 +257,4 @@ public class TVPlayer extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }

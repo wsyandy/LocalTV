@@ -168,6 +168,7 @@ public class Stations {
 		stations.add(TELE_BIELINGUE);
 		stations.add(ALF_TV);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
+		stations.add(DONAU_TV_ARCHIV);
 		return stations;
 	}
 
