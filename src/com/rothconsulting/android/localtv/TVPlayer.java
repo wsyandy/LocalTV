@@ -19,9 +19,11 @@ import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class TVPlayer extends Activity {
@@ -108,17 +110,18 @@ public class TVPlayer extends Activity {
 			Log.d(TAG, "theURLtoPlay=" + theURLtoPlay);
 		}
 
-		// final Activity activity = this;
-		// myWebView.setWebChromeClient(new WebChromeClient() {
-		// @Override
-		// public void onProgressChanged(WebView view, int progress) {
-		// // Activities and WebViews measure progress with different
-		// // scales.
-		// // The progress meter will automatically disappear when we reach
-		// // 100%
-		// activity.setProgress(progress * 1000);
-		// }
-		// });
+		final Activity activity = this;
+		myWebView.setWebChromeClient(new WebChromeClient() {
+			@Override
+			public void onProgressChanged(WebView view, int progress) {
+				// Activities and WebViews measure progress with different
+				// scales.
+				// The progress meter will automatically disappear when we reach
+				// 100%
+				activity.setProgress(progress * 1000);
+			}
+		});
+
 		myWebView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onReceivedError(WebView view, int errorCode,
@@ -181,8 +184,8 @@ public class TVPlayer extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		closeTVPlayer(false);
 		super.onDestroy();
+		closeTVPlayer(false);
 	}
 
 	@Override
@@ -198,6 +201,9 @@ public class TVPlayer extends Activity {
 			myWebView.goBack();
 			return false;
 		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
+			LinearLayout layout = (LinearLayout) findViewById(R.id.playerLayout);
+			layout.removeView(myWebView);
+			myWebView.removeAllViews();
 			closeTVPlayer(true);
 		}
 		return super.onKeyDown(keyCode, event);
