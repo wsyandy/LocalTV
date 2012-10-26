@@ -6,7 +6,7 @@
     <string name="back">Retour à l\'aperçu</string>
     <string name="cannotStartTV">Impossible de démarrer la télé.</string>
     <string name="flashNotInstalled">Adobe Flash Player n\'est pas installé!</string>
-    <string name="flashDownloadText">Pour faire fonctionner LocalTV il te faut d\'abord installer Adobe Flash Player! On peut trouver ceci gratuitement dans Google Play Store (Android Market).\n\appuie sur \'Download\' pour le lien direct dans Play Store.</string>
+    <string name="flashDownloadText">Pour faire fonctionner LocalTV il te faut d\'abord installer Adobe Flash Player! On peut trouver ceci gratuitement dans \'Google Play\' Store - ou vous pouvez utiliser \'Téléchargement direct\' pour télécharger et installer.</string>
     <string name="internetNotConnected">Tu n\'es pas connecté à internet</string>   
     <string name="info">Infos</string>
     <string name="infoDatenmenge">Regarder la télé sur internet va demander un volume relativement important de données. Je te conseille l\'utilisation d\'un Wifi</string>
@@ -22,7 +22,8 @@
 <!--     <string name="vollbild">Pour le mode plein écran&#8230;\n&#8230;appuyer longtemps sur l\'image, ensuite sur le bouton plein écran.\nou\n&#8230;utilise le petit bouton carré en bas du cadre.</string> -->
     <string name="notLive">Cette chaine ne transmet pas live sur internet.\nCherche dans les archives!</string>
     <string name="seeArchive">Cherche dans les archives!</string>
-    <string name="download">Download</string>
+    <string name="googlePlay">Google Play</string>
+	<string name="directDownload">Téléchargement direct</string>
     <string name="neinDanke">no merci</string>
     <string name="verbinde">Connecte... S\'il vous plaît attendre...</string>
 	<string name="live">en direct</string>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -20,6 +21,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -47,21 +49,43 @@ public class Util {
 
 	public static void showFlashAlert(final Context context) {
 
-		final Intent i = new Intent(Intent.ACTION_VIEW,
-				Uri.parse(Constants.FLASH_MARKET_URL));
-
-		final Builder b = new Builder(context);
+		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
 		b.setTitle(R.string.flashNotInstalled);
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
-		b.setPositiveButton(R.string.download,
+
+		// Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
+		if (Build.VERSION.SDK_INT < 16 && !Build.CPU_ABI.contains("-v6")) {
+			b.setPositiveButton(R.string.googlePlay,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int which) {
+
+							if (isNetworkAvailable(context)) {
+								final Intent i = new Intent(
+										Intent.ACTION_VIEW,
+										Uri.parse(Constants.FLASH_PLAY_STORE_URL));
+								context.startActivity(i);
+							} else {
+								Toast.makeText(
+										context,
+										context.getResources().getString(
+												R.string.internetNotConnected),
+										Toast.LENGTH_LONG).show();
+							}
+						}
+					});
+		}
+		b.setNeutralButton(R.string.directDownload,
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog,
 							final int which) {
 
 						if (isNetworkAvailable(context)) {
+							final Intent i = new Intent(Intent.ACTION_VIEW, Uri
+									.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL));
 							context.startActivity(i);
 						} else {
 							Toast.makeText(

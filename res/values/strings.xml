@@ -6,7 +6,7 @@
     <string name="back">Back to the overview</string>
     <string name="cannotStartTV">Cannot start TV.</string>
     <string name="flashNotInstalled">Adobe Flash Player is not installed!</string>
-    <string name="flashDownloadText">In order to run LocalTV properly you have to install Adobe Flash Player! You can dowload it for free from Google Play Store or from my Website (check menu Info).</string>
+    <string name="flashDownloadText">Thus LocalTV work you need the free Adobe Flash Player!\n\nIf you have had already installed it once you can relate it back from the \'Google Play\' Store.\nIf you have never had it you can use \'Direct Download\' to download and install it.</string>
     <string name="internetNotConnected">You are not conected to the internet!</string>
     <string name="info">Info</string>
     <string name="infoDatenmenge">Watching TV consumes a lot of data. I recommend the use of a wireless network.</string>
@@ -24,7 +24,8 @@
 <!--     <string name="vollbild">For full screen&#8230;\n&#8230;long press on the image, then the full-screen button.\n&#8230;\nor use the small square button on the bottom bar.</string> -->
 	<string name="notLive">This station does not have a live stream to the internet.\nBut have fun browsing the archive!</string>
 	<string name="seeArchive">Browse the archive!</string>
-	<string name="download">Google Play</string>
+    <string name="googlePlay">Google Play</string>
+	<string name="directDownload">Direct Download</string>
 	<string name="neinDanke">No thanks</string>
 	<string name="verbinde">Connecting... Please wait...</string>
 	<string name="live">Live</string>
