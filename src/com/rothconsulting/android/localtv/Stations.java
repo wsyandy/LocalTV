@@ -197,18 +197,30 @@ public class Stations {
 	}
 
 	public ArrayList<HashMap<String, Object>> getLiveStations() {
+		if (liveStationList == null) {
+			liveStationList = new ArrayList<HashMap<String, Object>>();
+		}
 		return liveStationList;
 	}
 
 	public ArrayList<HashMap<String, Object>> getArchivStations() {
+		if (archivStationList == null) {
+			archivStationList = new ArrayList<HashMap<String, Object>>();
+		}
 		return archivStationList;
 	}
 
 	public static ArrayList<HashMap<String, Object>> getAllStations() {
+		if (allStationList == null) {
+			allStationList = new ArrayList<HashMap<String, Object>>();
+		}
 		return allStationList;
 	}
 
 	public static ArrayList<String> getNotLiveStations() {
+		if (notLiveList == null) {
+			notLiveList = new ArrayList<String>();
+		}
 		return notLiveList;
 	}
 
