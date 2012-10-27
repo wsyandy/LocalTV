@@ -220,12 +220,20 @@ public class Util {
 	}
 
 	public static List<String> getStationNameList() {
+		return getStationListByAttribut("name");
+	}
+
+	public static List<String> getStationUrlList() {
+		return getStationListByAttribut("url");
+	}
+
+	public static List<String> getStationListByAttribut(String stationAttribute) {
 		ArrayList<HashMap<String, Object>> stationList = Stations
 				.getAllStations();
 		List<String> result = new ArrayList<String>();
 
 		for (HashMap<String, Object> station : stationList) {
-			result.add("" + station.get("name"));
+			result.add("" + station.get(stationAttribute));
 		}
 		return result;
 	}
