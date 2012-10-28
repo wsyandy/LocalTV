@@ -131,6 +131,7 @@ public class Stations {
 	public static final String DONAU_TV_LIVE = "Donau TV";
 	public static final String DONAU_TV_ARCHIV = "Donau TV (Archiv)";
 	public static final String OBERFRANKEN_TV = "Oberfranken TV";
+	public static final String ZDF_MEDIATHEK = "ZDF Mediathek";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -884,6 +885,12 @@ public class Stations {
 		m.put("name", ARD_MEDIATHEK);
 		m.put("url", "ardMediathek.php");
 		m.put("icon", R.drawable.ard_mediathek);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_MEDIATHEK);
+		m.put("url", "zdfMediathek.php");
+		m.put("icon", R.drawable.zdf_mediathek);
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
