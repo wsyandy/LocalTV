@@ -34,6 +34,7 @@ public class Stations {
 	public static final String ZERMATT_ROTHORN = "Zermatt Rothorn";
 	public static final String ZERMATT_SUNNEGGA = "Zermatt Sunnegga";
 	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
+	public static final String TVM3 = "TVM3";
 
 	public static final String NEUDINGS_TV = "neu dings TV";
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
@@ -67,6 +68,7 @@ public class Stations {
 	public static final String TELEVISTA = "Televista";
 	public static final String GESUNDHEIT_SPRECHSTUNDE = "Gesundheit Sprechstunde";
 	public static final String MOTOTRSHOW_TCS = "Motor Show TCS";
+	public static final String STUDENTS_TV = "Students TV";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -339,6 +341,12 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TVM3);
+		m.put("url", "tvm3.php");
+		m.put("icon", R.drawable.tvm3);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", ROUGE_TV);
 		m.put("url", "rougetv.php");
 		m.put("icon", R.drawable.rouge_tv);
@@ -397,6 +405,12 @@ public class Stations {
 		m.put("url", "zermattTrockenerSteg.php");
 		m.put("icon", R.drawable.zermatt);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", STUDENTS_TV);
+		m.put("url", "studentsTV.php");
+		m.put("icon", R.drawable.students_ch);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_OSTSCHWEIZ);

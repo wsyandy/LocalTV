@@ -75,7 +75,7 @@ public class TVPlayer extends Activity {
 		}
 		myWebView = null;
 		myWebView = (WebView) findViewById(R.id.webview);
-		// myWebView.clearCache(Boolean.FALSE);
+		myWebView.clearCache(Boolean.FALSE);
 		myWebView.setInitialScale(99);
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
@@ -213,6 +213,7 @@ public class TVPlayer extends Activity {
 		if (myWebView != null) {
 
 			if (!Stations.allowZoom().contains(stationName)) {
+				myWebView.removeAllViews();
 				myWebView.destroy();
 			} else {
 				// to avoid a crash
@@ -221,6 +222,7 @@ public class TVPlayer extends Activity {
 				new Timer().schedule(new TimerTask() {
 					@Override
 					public void run() {
+						myWebView.removeAllViews();
 						myWebView.destroy();
 					}
 				}, timeout);
