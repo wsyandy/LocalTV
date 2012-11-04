@@ -4,8 +4,12 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public class Connectivity {
+
+	private static final String TAG = "Connectivity";
+
 	/*
 	 * HACKISH: These constants aren't yet available in my API level (7), but I
 	 * need to handle these cases if they come up, on newer versions
@@ -52,7 +56,7 @@ public class Connectivity {
 	 */
 	public static boolean isConnectionFast(int type, int subType) {
 		if (type == ConnectivityManager.TYPE_WIFI) {
-			System.out.println("CONNECTED VIA WIFI");
+			Log.d(TAG, "CONNECTED VIA WIFI");
 			return true;
 		} else if (type == ConnectivityManager.TYPE_MOBILE) {
 			switch (subType) {
@@ -97,5 +101,4 @@ public class Connectivity {
 			return false;
 		}
 	}
-
 }

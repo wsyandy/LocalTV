@@ -47,7 +47,7 @@ public class Main extends ListActivity {
 
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
-			stationList = stations.getAllStations();
+			stationList = Stations.getAllStations();
 			setTitle(appName + " - Alle verfügbaren Sender");
 		} else if (action.equals(Constants.TAB_ARCHIV)) {
 			setTitle(appName + " - Sender Archiv");
