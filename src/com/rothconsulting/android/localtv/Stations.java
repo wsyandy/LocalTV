@@ -173,6 +173,7 @@ public class Stations {
 		stations.add(ALF_TV);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
+		stations.add(KIKA_PLUS);
 		return stations;
 	}
 
