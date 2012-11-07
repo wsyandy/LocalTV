@@ -9,7 +9,7 @@ public class Stations {
 	public static final String LAND_LEER = "";
 	public static final String LAND_SCHWEIZ = "-- Land: Schweiz --";
 	public static final String LAND_DEUTSCHLAND = "-- Land: Deutschland --";
-	// public static final String LAND_OESTERREICH = "-- Land: Österreich --";
+	public static final String LAND_OESTERREICH = "-- Land: Österreich --";
 	public static final String LAND_DIVERSE_LAENDER = "-- Diverse Länder --";
 
 	public static final String TELE_BAERN = "Tele Bärn";
@@ -147,6 +147,9 @@ public class Stations {
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 	public static final String ORF_TV_THEK = "ORF TVthek";
 	public static final String PULS_4 = "Puls 4";
+	public static final String OKTO_TV = "OKTO TV";
+	public static final String W24_WIEN = "W24 Wien";
+	public static final String MUEHLVIERTEL_TV = "Mühlviertel TV";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
@@ -176,6 +179,13 @@ public class Stations {
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(KIKA_PLUS);
+		stations.add(MUEHLVIERTEL_TV);
+		return stations;
+	}
+
+	public static List<String> openInMediaPlayer() {
+		List<String> stations = new ArrayList<String>();
+		stations.add(MUEHLVIERTEL_TV);
 		return stations;
 	}
 
@@ -190,6 +200,7 @@ public class Stations {
 		stations.add(ORF_TV_THEK);
 		stations.add(DONAU_TV_LIVE);
 		stations.add(DONAU_TV_ARCHIV);
+		stations.add(MUEHLVIERTEL_TV);
 		return stations;
 	}
 
@@ -1016,16 +1027,16 @@ public class Stations {
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
-		// * Diverse
+		// * Österreich
 		// *********************************************************************************
 		allStationList.add(getLeerZeile());
 		archivStationList.add(getLeerZeile());
 		liveStationList.add(getLeerZeile());
 
 		m = new HashMap<String, Object>();
-		m.put("name", LAND_DIVERSE_LAENDER);
+		m.put("name", LAND_OESTERREICH);
 		m.put("url", "");
-		m.put("icon", R.drawable.flagge_globus);
+		m.put("icon", R.drawable.flagge_oesterreich);
 		allStationList.add(m);
 		archivStationList.add(m);
 		liveStationList.add(m);
@@ -1043,6 +1054,24 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", OKTO_TV);
+		m.put("url", "oktoTV.php");
+		m.put("icon", R.drawable.okto_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", W24_WIEN);
+		m.put("url", "w24wien.php");
+		m.put("icon", R.drawable.w24_wien);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", MUEHLVIERTEL_TV);
+		m.put("url", "muehlviertelTV.php");
+		m.put("icon", R.drawable.muehlviertel_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", ORF_TV_THEK);
 		m.put("url", "orf-tvthek.php");
 		m.put("icon", R.drawable.orf_tvthek);
@@ -1054,6 +1083,27 @@ public class Stations {
 		m.put("url", "puls4.php");
 		m.put("icon", R.drawable.puls_4);
 		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RTS_SALZBURG);
+		m.put("url", "rts-salzburg.html");
+		m.put("icon", R.drawable.rts_salzburg);
+		addToArchiveAndNotLiveStations(m);
+
+		// *********************************************************************************
+		// * Diverse
+		// *********************************************************************************
+		allStationList.add(getLeerZeile());
+		archivStationList.add(getLeerZeile());
+		liveStationList.add(getLeerZeile());
+
+		m = new HashMap<String, Object>();
+		m.put("name", LAND_DIVERSE_LAENDER);
+		m.put("url", "");
+		m.put("icon", R.drawable.flagge_globus);
+		allStationList.add(m);
+		archivStationList.add(m);
+		liveStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NASA_TV_PUBLIC);
@@ -1078,12 +1128,6 @@ public class Stations {
 		m.put("url", "acme-streaming.php");
 		m.put("icon", R.drawable.acme_streaming);
 		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", RTS_SALZBURG);
-		m.put("url", "rts-salzburg.html");
-		m.put("icon", R.drawable.rts_salzburg);
-		addToArchiveAndNotLiveStations(m);
 
 	}
 

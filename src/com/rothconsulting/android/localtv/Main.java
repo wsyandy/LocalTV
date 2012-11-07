@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 public class Main extends ListActivity {
 
-	private final String TAG = this.getClass().getSimpleName();
+	private final static String TAG = "Main";
 	private Context context;
 
 	@Override
@@ -82,7 +82,7 @@ public class Main extends ListActivity {
 				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
 						+ textViewUrl.getText());
 
-				// L�nder Titel haben keine URL und man kann sie nicht
+				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
 					Log.d(TAG, "Playing: " + textViewName.getText() + ", "
@@ -109,9 +109,9 @@ public class Main extends ListActivity {
 
 			if (Util.isNetworkAvailable(context)) {
 				Intent intent = new Intent(context, TVPlayer.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(intent);
 			} else {
 				Toast.makeText(

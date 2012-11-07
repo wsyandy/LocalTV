@@ -67,6 +67,7 @@ public class Util {
 								final Intent i = new Intent(
 										Intent.ACTION_VIEW,
 										Uri.parse(Constants.FLASH_PLAY_STORE_URL));
+								i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 								context.startActivity(i);
 							} else {
 								Toast.makeText(
@@ -86,6 +87,7 @@ public class Util {
 						if (isNetworkAvailable(context)) {
 							final Intent i = new Intent(Intent.ACTION_VIEW, Uri
 									.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL));
+							i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 							context.startActivity(i);
 						} else {
 							Toast.makeText(
@@ -190,17 +192,18 @@ public class Util {
 		boolean result = false;
 
 		try {
-			if (dir != null && dir.isDirectory()) {
-				String[] children = dir.list();
-				for (int i = 0; i < children.length; i++) {
-					boolean success = deleteDir(new File(dir, children[i]));
-					if (!success) {
-						return false;
+			if (dir != null) {
+				if (dir.isDirectory()) {
+					String[] children = dir.list();
+					for (int i = 0; i < children.length; i++) {
+						boolean success = deleteDir(new File(dir, children[i]));
+						if (!success) {
+							return false;
+						}
 					}
 				}
+				result = dir.delete();
 			}
-			result = dir.delete();
-
 		} catch (Exception e) {
 			// do nothing
 		}

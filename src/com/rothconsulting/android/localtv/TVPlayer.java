@@ -134,9 +134,18 @@ public class TVPlayer extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.d(TAG, "****** URL=" + url);
-				if (url.endsWith(".mp4") || url.endsWith(".3gp")) {
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setDataAndType(Uri.parse(url), "video/*");
+				if (url.endsWith(".mp4")
+						|| url.endsWith(".3gp")
+						|| url.contains("rtsp:")
+						|| url.contains("id=com.rothconsulting.android.localtv")) {
+
+					if (url.contains("id=com.rothconsulting.android.localtv")) {
+						url = "market://details?id=com.rothconsulting.android.localtv";
+					}
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri
+							.parse(url));
+					// intent.setDataAndType(Uri.parse(url), "video/*");
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
 					return true;
 				} else {
