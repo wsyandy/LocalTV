@@ -788,7 +788,8 @@ public class Stations {
 		m.put("url", "bayerischesFernsehen.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
 		liveStationList.add(m);
-		addToArchiveAndNotLiveStations(m);
+		allStationList.add(m);
+		archivStationList.add(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", OK_DESSAU);
