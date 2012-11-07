@@ -137,6 +137,7 @@ public class Stations {
 	public static final String KIKA_PLUS = "KIKA Plus";
 	public static final String OK_KIEL_TV = "OK Kiel TV";
 	public static final String DIE_MAUS = "Die Maus";
+	public static final String OS1_TV = "OS1 TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -180,6 +181,7 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(KIKA_PLUS);
 		stations.add(MUEHLVIERTEL_TV);
+		stations.add(OS1_TV);
 		return stations;
 	}
 
@@ -201,6 +203,7 @@ public class Stations {
 		stations.add(DONAU_TV_LIVE);
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(MUEHLVIERTEL_TV);
+		stations.add(OS1_TV);
 		return stations;
 	}
 
@@ -1025,6 +1028,12 @@ public class Stations {
 		m.put("name", ANDROID_NEW_TV);
 		m.put("url", "androidNewsTV.html");
 		m.put("icon", R.drawable.android_news_tv);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OS1_TV);
+		m.put("url", "os1TV.php");
+		m.put("icon", R.drawable.os1_tv);
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
