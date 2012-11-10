@@ -138,6 +138,7 @@ public class Stations {
 	public static final String OK_KIEL_TV = "OK Kiel TV";
 	public static final String DIE_MAUS = "Die Maus";
 	public static final String OS1_TV = "OS1 TV";
+	public static final String OSTFRIESEN_TV = "Ostfriesen TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -1034,6 +1035,12 @@ public class Stations {
 		m.put("name", OS1_TV);
 		m.put("url", "os1TV.php");
 		m.put("icon", R.drawable.os1_tv);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OSTFRIESEN_TV);
+		m.put("url", "ostfriesenTV.php");
+		m.put("icon", R.drawable.ostfriesen_tv);
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
