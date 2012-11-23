@@ -37,22 +37,20 @@ public class Search extends Activity {
 
 		myAutoComplete.setOnItemClickListener(new OnItemClickListener() {
 
+			String station = "";
+
 			public void onItemClick(
 					AdapterView<?> listPopupWindow_DropDownListView,
 					View textView, int arg2, long arg3) {
 
-				String station = "" + ((TextView) textView).getText();
-
+				if (textView != null) {
+					station += ((TextView) textView).getText();
+				}
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
-				if (station.equalsIgnoreCase(Stations.LAND_DEUTSCHLAND)
-						|| station
-								.equalsIgnoreCase(Stations.LAND_DIVERSE_LAENDER)
-						|| station.equalsIgnoreCase(Stations.LAND_SCHWEIZ)) {
-					// do nothing
-				} else {
+				if (!Stations.titles().contains(station)) {
 					Util.hideKeyboard(context, textView);
 					Main.play(context, station, Util.getUrl(station));
-				}
+				} // else do nothing
 			}
 		});
 

@@ -81,12 +81,19 @@ public class Util {
 		}
 		b.setNeutralButton(R.string.directDownload,
 				new DialogInterface.OnClickListener() {
-					public void onClick(final DialogInterface dialog,
-							final int which) {
+					public void onClick(final DialogInterface dialog, int which) {
 
 						if (isNetworkAvailable(context)) {
-							final Intent i = new Intent(Intent.ACTION_VIEW, Uri
-									.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL));
+							Intent i = null;
+							if (Build.VERSION.SDK_INT < 14) { // 2.x and 3.x
+								i = new Intent(
+										Intent.ACTION_VIEW,
+										Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_2X_3X));
+							} else { // 4.x and higher
+								i = new Intent(
+										Intent.ACTION_VIEW,
+										Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_4X));
+							}
 							i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 							context.startActivity(i);
 						} else {
@@ -256,8 +263,10 @@ public class Util {
 	public static void hideKeyboard(Context context, View view) {
 		InputMethodManager imm = (InputMethodManager) context
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromInputMethod(view.getWindowToken(),
-				InputMethodManager.HIDE_NOT_ALWAYS);
+		if (view != null) {
+			imm.hideSoftInputFromInputMethod(view.getWindowToken(),
+					InputMethodManager.HIDE_NOT_ALWAYS);
+		}
 	}
 
 	public static void showKeyboard(Context context, View view) {

@@ -165,6 +165,16 @@ public class Stations {
 		notLiveList = new ArrayList<String>();
 	}
 
+	public static List<String> titles() {
+		List<String> titles = new ArrayList<String>();
+		titles.add(LAND_LEER);
+		titles.add(LAND_SCHWEIZ);
+		titles.add(LAND_DEUTSCHLAND);
+		titles.add(LAND_OESTERREICH);
+		titles.add(LAND_DIVERSE_LAENDER);
+		return titles;
+	}
+
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_BIELINGUE);

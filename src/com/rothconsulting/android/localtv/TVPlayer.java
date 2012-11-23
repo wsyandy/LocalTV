@@ -44,6 +44,7 @@ public class TVPlayer extends Activity {
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 
 		setContentView(R.layout.player);
+		myWebView = (WebView) findViewById(R.id.webview);
 
 		context = this;
 
