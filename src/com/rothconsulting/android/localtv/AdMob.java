@@ -19,7 +19,7 @@ public class AdMob {
 			layout.removeAllViews();
 		} else {
 			// Create the adView
-			AdView adView = new AdView(context, AdSize.BANNER,
+			AdView adView = new AdView(context, AdSize.SMART_BANNER,
 					Constants.ADMOB_PUBLISHER_ID);
 			Log.d(TAG, "adView=" + adView);
 
