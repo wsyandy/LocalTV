@@ -26,7 +26,7 @@
 				<com.google.ads.AdView android:id="@+id/adView"
 					android:layout_width="fill_parent" android:layout_height="fill_parent"
 					android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="SMART_BANNER"
-					ads:loadAdOnCreate="false" />
+					ads:loadAdOnCreate="true" />
 			</LinearLayout>
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/textViewInfoDatenmenge"

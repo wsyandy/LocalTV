@@ -75,7 +75,6 @@ public class Stations {
 	public static final String ALEX_BERLIN = "Alex Berlin";
 	public static final String MUENCHEN_TV = "München TV";
 	public static final String FRANKEN_TV = "Franken Fernsehen";
-	public static final String TRU_YOUNG_TV = "[tru:] young television";
 	public static final String TRP1_FERNSEHEN = "TRP1 Fernsehen";
 	public static final String BIBEL_TV = "Bibel TV";
 	public static final String K_TV = "K-TV (Kephas Kirche Kultur)";
@@ -691,12 +690,6 @@ public class Stations {
 		m.put("name", OBERFRANKEN_TV);
 		m.put("url", "oberfrankenTV.php");
 		m.put("icon", R.drawable.oberfranken_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TRU_YOUNG_TV);
-		m.put("url", "truYoungTV.php");
-		m.put("icon", R.drawable.tru_young_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();

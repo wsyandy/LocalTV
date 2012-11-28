@@ -99,8 +99,6 @@ public class Main extends ListActivity {
 
 		setListAdapter(adapter);
 
-		AdMob ads = new AdMob();
-		ads.showRemoveAds(this);
 	}
 
 	public static void play(Context context, String name, String url) {

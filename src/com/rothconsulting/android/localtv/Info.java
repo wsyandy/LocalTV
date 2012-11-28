@@ -16,9 +16,6 @@ public class Info extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.info);
 
-		AdMob admob = new AdMob();
-		admob.showRemoveAds(this);
-
 		final TextView textViewAppVersion = (TextView) findViewById(R.id.textViewAppVersion);
 		textViewAppVersion.setText("Version "
 				+ Util.getAppVersionName(this, Info.class));
