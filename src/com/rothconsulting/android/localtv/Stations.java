@@ -139,6 +139,8 @@ public class Stations {
 	public static final String DIE_MAUS = "Die Maus";
 	public static final String OS1_TV = "OS1 TV";
 	public static final String OSTFRIESEN_TV = "Ostfriesen TV";
+	public static final String FAN_TV = "Fan TV";
+	public static final String RIC_TV_KINDER = "RiC TV - Kinder";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -913,6 +915,18 @@ public class Stations {
 		m.put("name", SACHSEN_FERNSEHEN);
 		m.put("url", "sachsenFernsehen.php");
 		m.put("icon", R.drawable.sachsen_fernsehen);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", FAN_TV);
+		m.put("url", "fanTV.php");
+		m.put("icon", R.drawable.fan_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RIC_TV_KINDER);
+		m.put("url", "ricTV.php");
+		m.put("icon", R.drawable.ric_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
