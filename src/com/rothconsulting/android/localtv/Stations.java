@@ -28,6 +28,7 @@ public class Stations {
 	public static final String TV_105 = "105 TV";
 	public static final String RTS_UN = "RTS Un";
 	public static final String RTS_DEUX = "RTS Deux";
+	public static final String RTS_INFO = "RTS Info";
 	public static final String RSI_LA2 = "RSI La 2";
 	public static final String ZERMATT_KLEIN_MATTERHORN = "Zermatt Klein Matterhorn";
 	public static final String ZERMATT_SCHWARZSEE = "Zermatt Schwarzsee";
@@ -140,6 +141,7 @@ public class Stations {
 	public static final String OSTFRIESEN_TV = "Ostfriesen TV";
 	public static final String FAN_TV = "Fan TV";
 	public static final String RIC_TV_KINDER = "RiC TV - Kinder";
+	public static final String N_TV = "N-TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -194,14 +196,7 @@ public class Stations {
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(KIKA_PLUS);
-		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
-		return stations;
-	}
-
-	public static List<String> openInMediaPlayer() {
-		List<String> stations = new ArrayList<String>();
-		stations.add(MUEHLVIERTEL_TV);
 		return stations;
 	}
 
@@ -399,6 +394,12 @@ public class Stations {
 		m.put("name", RTS_DEUX);
 		m.put("url", "rtsDeux.php");
 		m.put("icon", R.drawable.rts_deux);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", RTS_INFO);
+		m.put("url", "rtsInfo.php");
+		m.put("icon", R.drawable.rts_info);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -920,6 +921,12 @@ public class Stations {
 		m.put("name", RIC_TV_KINDER);
 		m.put("url", "ricTV.php");
 		m.put("icon", R.drawable.ric_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", N_TV);
+		m.put("url", "n-tv.php");
+		m.put("icon", R.drawable.n_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
