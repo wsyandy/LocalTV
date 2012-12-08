@@ -145,10 +145,6 @@ public class Stations {
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
-	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
-	public static final String NASA_TV_MEDIA = "Nasa TV - Media";
-	public static final String NASA_TV_EDUCATION = "Nasa TV - Education";
-	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 	public static final String ORF_TV_THEK = "ORF TVthek";
 	public static final String PULS_4 = "Puls 4";
@@ -157,6 +153,13 @@ public class Stations {
 	public static final String MUEHLVIERTEL_TV = "Mühlviertel TV";
 	public static final String TIROL_TV = "Tirol TV";
 	public static final String REUTTE_EINS = "Reutte Eins";
+
+	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
+	public static final String NASA_TV_MEDIA = "Nasa TV - Media";
+	public static final String NASA_TV_EDUCATION = "Nasa TV - Education";
+	public static final String SPACE_TV = "SpaceTV.eu";
+	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
+	public static final String DISNEY_CHANNEL = "Disney Channel";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
@@ -1179,9 +1182,21 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", SPACE_TV);
+		m.put("url", "space-itv.php");
+		m.put("icon", R.drawable.space_itv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", CLASSIC_CARTOONS_ACME);
 		m.put("url", "acme-streaming.php");
 		m.put("icon", R.drawable.acme_streaming);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", DISNEY_CHANNEL);
+		m.put("url", "disney.php");
+		m.put("icon", R.drawable.disney_channel);
 		addToLiveStations(m);
 
 	}
