@@ -27,6 +27,8 @@ public class Search extends Activity {
 		TextView searchField = (TextView) findViewById(R.id.autocomplete);
 		searchField.setText("");
 		prepareSearch();
+		AdMob ads = new AdMob();
+		ads.showRemoveAds(this);
 	}
 
 	private void prepareSearch() {
@@ -35,11 +37,11 @@ public class Search extends Activity {
 
 		myAutoComplete.setOnItemClickListener(new OnItemClickListener() {
 
-			String station = "";
-
 			public void onItemClick(
 					AdapterView<?> listPopupWindow_DropDownListView,
 					View textView, int arg2, long arg3) {
+
+				String station = "";
 
 				if (textView != null) {
 					station += ((TextView) textView).getText();

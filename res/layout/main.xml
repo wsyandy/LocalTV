@@ -14,8 +14,8 @@
 		android:id="@+id/adsLayout">
 		<com.google.ads.AdView android:id="@+id/adView"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="SMART_BANNER"
-			ads:loadAdOnCreate="true" />
+			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
+			ads:loadAdOnCreate="false" />
 	</LinearLayout>
 
 </LinearLayout>

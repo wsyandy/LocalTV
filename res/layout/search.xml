@@ -28,8 +28,8 @@
 				android:id="@+id/adsLayout" android:background="@android:color/white">
 		<com.google.ads.AdView android:id="@+id/adView"
 			android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_gravity="center"
-			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="SMART_BANNER"
-			ads:loadAdOnCreate="true" android:background="@android:color/white" />
+			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
+			ads:loadAdOnCreate="false" android:background="@android:color/white" />
 	</LinearLayout>
 
 </LinearLayout>

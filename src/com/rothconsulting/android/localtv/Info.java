@@ -97,6 +97,8 @@ public class Info extends Activity {
 			}
 		});
 
+		AdMob ads = new AdMob();
+		ads.showRemoveAds(this);
 	}
 
 	private void startEmailActivity() {

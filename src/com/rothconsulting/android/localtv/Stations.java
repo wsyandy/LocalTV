@@ -151,7 +151,7 @@ public class Stations {
 	public static final String OKTO_TV = "OKTO TV";
 	public static final String W24_WIEN = "W24 Wien";
 	public static final String MUEHLVIERTEL_TV = "Mühlviertel TV";
-	public static final String TIROL_TV = "Tirol TV";
+	// public static final String TIROL_TV = "Tirol TV";
 	public static final String REUTTE_EINS = "Reutte Eins";
 
 	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
@@ -1117,11 +1117,11 @@ public class Stations {
 		m.put("icon", R.drawable.muehlviertel_tv);
 		addToLiveStations(m);
 
-		m = new HashMap<String, Object>();
-		m.put("name", TIROL_TV);
-		m.put("url", "tirolTV.php");
-		m.put("icon", R.drawable.tirol_tv);
-		addToLiveStations(m);
+		// m = new HashMap<String, Object>();
+		// m.put("name", TIROL_TV);
+		// m.put("url", "tirolTV.php");
+		// m.put("icon", R.drawable.tirol_tv);
+		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", REUTTE_EINS);
