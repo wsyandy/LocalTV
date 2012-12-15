@@ -36,7 +36,7 @@ public class Main extends ListActivity {
 
 		context = this;
 		Stations stations = new Stations();
-		stations.init();
+		stations.init(context);
 
 		String action = getIntent().getAction();
 		String appName = getString(R.string.app_name);
