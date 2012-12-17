@@ -16,6 +16,9 @@ public class Stations {
 	public static final String TELE_M1_ARCHIV = "Tele M1 (Archiv)";
 	public static final String TELE_1_LIVE = "Tele 1";
 	public static final String TELE_1_ARCHIV = "Tele 1 (Archiv)";
+	public static final String SRF_1 = "SRF 1";
+	public static final String SRF_2 = "SRF 2";
+	public static final String SRF_Info = "SRF Info";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String SSF = "Schweizer Sport Fernsehen";
 	public static final String LA_TELE = "La Télé";
@@ -340,6 +343,24 @@ public class Stations {
 		m.put("url", "telesuedostschweizArchiv.html");
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SRF_1);
+		m.put("url", "srf1.php");
+		m.put("icon", R.drawable.srf_1);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SRF_2);
+		m.put("url", "srf2.php");
+		m.put("icon", R.drawable.srf_2);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SRF_Info);
+		m.put("url", "srfInfo.php");
+		m.put("icon", R.drawable.srf_info);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SCHWEIZ_5);
