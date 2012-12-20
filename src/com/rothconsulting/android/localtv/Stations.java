@@ -46,6 +46,7 @@ public class Stations {
 	public static final String JUMP_TV = "Jump-TV";
 	public static final String CASH_TV = "Cash TV";
 	public static final String TELE_BIELINGUE = "Tele Bielingue";
+	public static final String TELE_BIELINGUE_ARCHIV = "Tele Bielingue (Archiv)";
 	public static final String KANAL_9 = "Kanal 9";
 	public static final String RRO_TV = "RRO TV";
 	public static final String LEMAN_BLEU = "Léman bleu";
@@ -59,6 +60,7 @@ public class Stations {
 	public static final String GEMEINDE_TV = "Gemeinde TV";
 	public static final String SARA_MACHTS_TV = "Sara machts TV";
 	public static final String TELE_TOP = "Tele Top";
+	public static final String TELE_TOP_ARCHIV = "Tele Top (Archiv)";
 	public static final String TELE_DIESSENHOFEN = "Tele Diessenhofen";
 	public static final String ZUG_TV = "Zug TV";
 	public static final String MURMI_TV = "Murmi TV";
@@ -197,7 +199,6 @@ public class Stations {
 	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(CASH_TV);
-		stations.add(TELE_BIELINGUE);
 		stations.add(ALF_TV);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
@@ -511,6 +512,12 @@ public class Stations {
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TELE_BIELINGUE_ARCHIV);
+		m.put("url", "telebielingue.php");
+		m.put("icon", R.drawable.telebielingue);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", KANAL_9);
 		m.put("url", "kanal9.html");
 		m.put("icon", R.drawable.kanal9);
@@ -566,6 +573,12 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_TOP);
+		m.put("url", "teletop.php");
+		m.put("icon", R.drawable.tele_top);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_TOP_ARCHIV);
 		m.put("url", "teletop.html");
 		m.put("icon", R.drawable.tele_top);
 		addToArchiveAndNotLiveStations(m);
