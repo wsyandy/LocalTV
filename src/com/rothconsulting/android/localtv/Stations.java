@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Stations {
+import android.content.Context;
 
-	public static final String LAND_LEER = "";
-	public static final String LAND_SCHWEIZ = "-- Land: Schweiz --";
-	public static final String LAND_DEUTSCHLAND = "-- Land: Deutschland --";
-	public static final String LAND_OESTERREICH = "-- Land: Österreich --";
-	public static final String LAND_DIVERSE_LAENDER = "-- Diverse Länder --";
+public class Stations {
 
 	public static final String TELE_BAERN = "Tele Bärn";
 	public static final String TELE_ZUERI = "Tele Züri";
@@ -178,19 +174,18 @@ public class Stations {
 		notLiveList = new ArrayList<String>();
 	}
 
-	public static List<String> titles() {
+	public static List<String> titles(Context context) {
 		List<String> titles = new ArrayList<String>();
-		titles.add(LAND_LEER);
-		titles.add(LAND_SCHWEIZ);
-		titles.add(LAND_DEUTSCHLAND);
-		titles.add(LAND_OESTERREICH);
-		titles.add(LAND_DIVERSE_LAENDER);
+		titles.add(context.getResources().getString(R.string.emptyString));
+		titles.add(context.getResources().getString(R.string.switzerland));
+		titles.add(context.getResources().getString(R.string.germany));
+		titles.add(context.getResources().getString(R.string.austria));
+		titles.add(context.getResources().getString(R.string.otherCountries));
 		return titles;
 	}
 
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(TELE_BIELINGUE);
 		stations.add(LEMAN_BLEU);
 		stations.add(TV_ADMIN_CH);
 		return stations;
@@ -272,7 +267,7 @@ public class Stations {
 		liveStationList.add(map);
 	}
 
-	public void init() {
+	public void init(Context context) {
 		allStationList = new ArrayList<HashMap<String, Object>>();
 		liveStationList = new ArrayList<HashMap<String, Object>>();
 		archivStationList = new ArrayList<HashMap<String, Object>>();
@@ -282,7 +277,7 @@ public class Stations {
 		// * Schweiz
 		// *********************************************************************************
 		HashMap<String, Object> m = new HashMap<String, Object>();
-		m.put("name", LAND_SCHWEIZ);
+		m.put("name", context.getResources().getString(R.string.switzerland));
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_schweiz);
 		allStationList.add(m);
@@ -507,6 +502,12 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BIELINGUE);
+		m.put("url", "telebielingue.php");
+		m.put("icon", R.drawable.telebielingue);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_BIELINGUE_ARCHIV);
 		m.put("url", "telebielingue.html");
 		m.put("icon", R.drawable.telebielingue);
 		addToArchiveAndNotLiveStations(m);
@@ -582,6 +583,12 @@ public class Stations {
 		m.put("url", "teletop.html");
 		m.put("icon", R.drawable.tele_top);
 		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_TOP_ARCHIV);
+		m.put("url", "teletop.php");
+		m.put("icon", R.drawable.tele_top);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_DIESSENHOFEN);
@@ -664,12 +671,12 @@ public class Stations {
 		// *********************************************************************************
 		// * Deutschland
 		// *********************************************************************************
-		allStationList.add(getLeerZeile());
-		liveStationList.add(getLeerZeile());
-		archivStationList.add(getLeerZeile());
+		allStationList.add(getLeerZeile(context));
+		liveStationList.add(getLeerZeile(context));
+		archivStationList.add(getLeerZeile(context));
 
 		m = new HashMap<String, Object>();
-		m.put("name", LAND_DEUTSCHLAND);
+		m.put("name", context.getResources().getString(R.string.germany));
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_deutschland);
 		allStationList.add(m);
@@ -1109,12 +1116,12 @@ public class Stations {
 		// *********************************************************************************
 		// * Österreich
 		// *********************************************************************************
-		allStationList.add(getLeerZeile());
-		archivStationList.add(getLeerZeile());
-		liveStationList.add(getLeerZeile());
+		allStationList.add(getLeerZeile(context));
+		archivStationList.add(getLeerZeile(context));
+		liveStationList.add(getLeerZeile(context));
 
 		m = new HashMap<String, Object>();
-		m.put("name", LAND_OESTERREICH);
+		m.put("name", context.getResources().getString(R.string.austria));
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_oesterreich);
 		allStationList.add(m);
@@ -1185,12 +1192,12 @@ public class Stations {
 		// *********************************************************************************
 		// * Diverse
 		// *********************************************************************************
-		allStationList.add(getLeerZeile());
-		archivStationList.add(getLeerZeile());
-		liveStationList.add(getLeerZeile());
+		allStationList.add(getLeerZeile(context));
+		archivStationList.add(getLeerZeile(context));
+		liveStationList.add(getLeerZeile(context));
 
 		m = new HashMap<String, Object>();
-		m.put("name", LAND_DIVERSE_LAENDER);
+		m.put("name", context.getResources().getString(R.string.otherCountries));
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_globus);
 		allStationList.add(m);
@@ -1235,9 +1242,9 @@ public class Stations {
 
 	}
 
-	private static HashMap<String, Object> getLeerZeile() {
+	private static HashMap<String, Object> getLeerZeile(Context context) {
 		HashMap<String, Object> m = new HashMap<String, Object>();
-		m.put("name", LAND_LEER);
+		m.put("name", context.getResources().getString(R.string.emptyString));
 		m.put("url", "");
 		m.put("icon", R.drawable.leer1x1);
 		return m;

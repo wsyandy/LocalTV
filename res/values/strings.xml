@@ -34,4 +34,9 @@
 	<string name="website">\nWebsite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
 	<string name="searchHint">...channel search...</string>
 	<string name="search">Search</string>
+	<string name="emptyString"></string>
+	<string name="switzerland">-- Land: Switzerland --</string>
+	<string name="germany">-- Land: Germany --</string>
+	<string name="austria">-- Land: Austria --</string>
+	<string name="otherCountries">-- Other countries --</string>	
 </resources>

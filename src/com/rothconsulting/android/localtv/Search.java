@@ -47,7 +47,7 @@ public class Search extends Activity {
 					station += ((TextView) textView).getText();
 				}
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
-				if (!Stations.titles().contains(station)) {
+				if (!Stations.titles(context).contains(station)) {
 					Util.hideKeyboard(context, textView);
 					Main.play(context, station, Util.getUrl(station));
 				} // else do nothing

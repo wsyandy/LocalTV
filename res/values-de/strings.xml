@@ -33,4 +33,9 @@
 	<string name="website">\nWebseite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
 	<string name="searchHint">...TV Station suchen...</string>
 	<string name="search">Suchen</string>
+	<string name="emptyString"></string>
+	<string name="switzerland">-- Land: Schweiz --</string>
+	<string name="germany">-- Land: Deutschland --</string>
+	<string name="austria">-- Land: Österreich --</string>
+	<string name="otherCountries">-- Diverse Länder --</string>	
 </resources>
