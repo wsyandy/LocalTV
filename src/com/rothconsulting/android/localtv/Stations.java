@@ -143,6 +143,7 @@ public class Stations {
 	public static final String FAN_TV = "Fan TV";
 	public static final String RIC_TV_KINDER = "RiC TV - Kinder";
 	public static final String N_TV = "N-TV";
+	public static final String SALVE_TV = "Salve TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -197,7 +198,6 @@ public class Stations {
 		stations.add(ALF_TV);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
-		stations.add(KIKA_PLUS);
 		stations.add(OS1_TV);
 		return stations;
 	}
@@ -223,8 +223,10 @@ public class Stations {
 		stations.add(TELE_M1_LIVE);
 		stations.add(TELE_ZUERI);
 		stations.add(DAS_VIERTE);
+		stations.add(TELE_TOP);
 		stations.add(HR);
 		stations.add(PULS_4);
+		stations.add(CASH_TV);
 		return stations;
 	}
 
@@ -971,6 +973,12 @@ public class Stations {
 		m.put("name", N_TV);
 		m.put("url", "n-tv.php");
 		m.put("icon", R.drawable.n_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SALVE_TV);
+		m.put("url", "salveTV.php");
+		m.put("icon", R.drawable.salve_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
