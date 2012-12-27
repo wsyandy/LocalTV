@@ -515,12 +515,6 @@ public class Stations {
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", TELE_BIELINGUE_ARCHIV);
-		m.put("url", "telebielingue.php");
-		m.put("icon", R.drawable.telebielingue);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", KANAL_9);
 		m.put("url", "kanal9.html");
 		m.put("icon", R.drawable.kanal9);
@@ -585,12 +579,6 @@ public class Stations {
 		m.put("url", "teletop.html");
 		m.put("icon", R.drawable.tele_top);
 		addToArchiveAndNotLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TELE_TOP_ARCHIV);
-		m.put("url", "teletop.php");
-		m.put("icon", R.drawable.tele_top);
-		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_DIESSENHOFEN);
@@ -1246,7 +1234,7 @@ public class Stations {
 		m.put("name", DISNEY_CHANNEL);
 		m.put("url", "disney.php");
 		m.put("icon", R.drawable.disney_channel);
-		addToLiveStations(m);
+		addToArchiveAndNotLiveStations(m);
 
 	}
 
