@@ -71,6 +71,7 @@ public class Stations {
 	public static final String GESUNDHEIT_SPRECHSTUNDE = "Gesundheit Sprechstunde";
 	public static final String MOTOTRSHOW_TCS = "Motor Show TCS";
 	public static final String STUDENTS_TV = "Students TV";
+	public static final String TELE_BLOCHER = "Tele Blocher";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -464,6 +465,12 @@ public class Stations {
 		m.put("name", STUDENTS_TV);
 		m.put("url", "studentsTV.php");
 		m.put("icon", R.drawable.students_ch);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_BLOCHER);
+		m.put("url", "teleBlocher.php");
+		m.put("icon", R.drawable.tele_blocher);
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
