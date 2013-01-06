@@ -35,6 +35,7 @@ public class Stations {
 	public static final String ZERMATT_SUNNEGGA = "Zermatt Sunnegga";
 	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
 	public static final String TVM3 = "TVM3";
+	public static final String JOIZ = "joiz";
 
 	public static final String NEUDINGS_TV = "neu dings TV";
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
@@ -165,6 +166,8 @@ public class Stations {
 	public static final String SPACE_TV = "SpaceTV.eu";
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String DISNEY_CHANNEL = "Disney Channel";
+	public static final String AL_JAZEERA_EN = "Al Jazeera English";
+	public static final String VISIT_X = "Visit-X TV";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
 	private ArrayList<HashMap<String, Object>> archivStationList;
@@ -377,6 +380,12 @@ public class Stations {
 		m.put("name", SSF);
 		m.put("url", "ssf.php");
 		m.put("icon", R.drawable.ssf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", JOIZ);
+		m.put("url", "joiz.php");
+		m.put("icon", R.drawable.joiz);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -1249,6 +1258,18 @@ public class Stations {
 		m.put("name", CLASSIC_CARTOONS_ACME);
 		m.put("url", "acme-streaming.php");
 		m.put("icon", R.drawable.acme_streaming);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", AL_JAZEERA_EN);
+		m.put("url", "alJazeeraEnglish.php");
+		m.put("icon", R.drawable.al_jazeera);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", VISIT_X);
+		m.put("url", "visit-x-TV.php");
+		m.put("icon", R.drawable.visit_x_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
