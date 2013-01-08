@@ -221,6 +221,7 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
+		stations.add(ARD_DAS_ERSTE);
 		return stations;
 	}
 
