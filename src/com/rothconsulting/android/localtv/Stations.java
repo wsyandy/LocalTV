@@ -167,6 +167,7 @@ public class Stations {
 	public static final String CLASSIC_CARTOONS_ACME = "Classic Cartoons Acme Streaming";
 	public static final String DISNEY_CHANNEL = "Disney Channel";
 	public static final String AL_JAZEERA_EN = "Al Jazeera English";
+	public static final String BLOOMBERG_TV_USA = "Bloomberg TV USA";
 	public static final String VISIT_X = "Visit-X TV";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
@@ -1264,6 +1265,12 @@ public class Stations {
 		m.put("name", AL_JAZEERA_EN);
 		m.put("url", "alJazeeraEnglish.php");
 		m.put("icon", R.drawable.al_jazeera);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BLOOMBERG_TV_USA);
+		m.put("url", "bloombergTV.php");
+		m.put("icon", R.drawable.bloomberg_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
