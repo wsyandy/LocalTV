@@ -91,8 +91,7 @@ public class TVPlayer extends Activity {
 		}
 
 		if (!Stations.userAgentAndroid().contains(name)) {
-			myWebView.getSettings().setUserAgentString(
-					Constants.USER_AGENT_FIREFOX);
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
 		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
