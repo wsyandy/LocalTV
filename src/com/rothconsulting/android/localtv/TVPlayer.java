@@ -72,7 +72,11 @@ public class TVPlayer extends Activity {
 	private void playInWebView(final String name, final String url) {
 
 		if (!Stations.orientationPortrait().contains(name)) {
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			if (Build.VERSION.SDK_INT < 9) {
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			} else {
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+			}
 		}
 		myWebView = null;
 		myWebView = (WebView) findViewById(R.id.webview);
