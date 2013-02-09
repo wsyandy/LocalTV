@@ -147,7 +147,7 @@ public class Stations {
 	public static final String N_TV = "N-TV";
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
-	public static final String ARD_DAS_ERSTE = "ARD - Das Erste";
+	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
