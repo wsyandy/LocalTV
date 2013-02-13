@@ -149,6 +149,7 @@ public class Stations {
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
+	public static final String IT_NEWS_TV = "IT News TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -169,6 +170,8 @@ public class Stations {
 	public static final String DISNEY_CHANNEL = "Disney Channel";
 	public static final String AL_JAZEERA_EN = "Al Jazeera English";
 	public static final String BLOOMBERG_TV_USA = "Bloomberg TV USA";
+	public static final String PENTAGON_CHANNEL = "Pentagon Channel";
+	public static final String CCTV_CHINA = "CCTV China";
 	public static final String VISIT_X = "Visit-X TV";
 
 	private ArrayList<HashMap<String, Object>> liveStationList;
@@ -1147,6 +1150,12 @@ public class Stations {
 		m.put("icon", R.drawable.ostfriesen_tv);
 		addToArchiveAndNotLiveStations(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", IT_NEWS_TV);
+		m.put("url", "itNewsTV.php");
+		m.put("icon", R.drawable.it_news_tv);
+		addToLiveStations(m);
+
 		// *********************************************************************************
 		// * Österreich
 		// *********************************************************************************
@@ -1278,6 +1287,18 @@ public class Stations {
 		m.put("name", BLOOMBERG_TV_USA);
 		m.put("url", "bloombergTV.php");
 		m.put("icon", R.drawable.bloomberg_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PENTAGON_CHANNEL);
+		m.put("url", "pentagonChannel.php");
+		m.put("icon", R.drawable.pentagon_channel);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", CCTV_CHINA);
+		m.put("url", "cctv_china.php");
+		m.put("icon", R.drawable.cctv_china);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
