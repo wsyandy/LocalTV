@@ -150,6 +150,7 @@ public class Stations {
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
+	public static final String MDF1 = "MDF.1";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -1155,6 +1156,12 @@ public class Stations {
 		m.put("url", "itNewsTV.php");
 		m.put("icon", R.drawable.it_news_tv);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", MDF1);
+		m.put("url", "mdf1.php");
+		m.put("icon", R.drawable.mdf1);
+		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
 		// * Österreich
