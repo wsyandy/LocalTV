@@ -847,12 +847,6 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", LEIPZIG_TV);
-		m.put("url", "leipzigTV.php");
-		m.put("icon", R.drawable.leipzig_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", BAYERN_TV);
 		m.put("url", "bayerischesFernsehen.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
@@ -963,9 +957,21 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", DRESDEN_TV);
+		m.put("url", "dresdenTV.php");
+		m.put("icon", R.drawable.dresden_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", SACHSEN_FERNSEHEN);
 		m.put("url", "sachsenFernsehen.php");
 		m.put("icon", R.drawable.sachsen_fernsehen);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", LEIPZIG_TV);
+		m.put("url", "leipzigTV.php");
+		m.put("icon", R.drawable.leipzig_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -1021,12 +1027,6 @@ public class Stations {
 		m.put("url", "dieMaus.php");
 		m.put("icon", R.drawable.die_maus);
 		addToArchiveAndNotLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", DRESDEN_TV);
-		m.put("url", "dresdenTV.php");
-		m.put("icon", R.drawable.dresden_tv);
-		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ARD_DAS_ERSTE);
