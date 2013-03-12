@@ -13,6 +13,10 @@ public class AdMob {
 	private final static String TAG = "AdMob";
 
 	public void showRemoveAds(Activity context) {
+		showRemoveAdsImpl(context);
+	}
+
+	private void showRemoveAdsImpl(Activity context) {
 		if (hasValidKey()) {
 			LinearLayout layout = (LinearLayout) context
 					.findViewById(R.id.adsLayout);
