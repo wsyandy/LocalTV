@@ -39,4 +39,5 @@
 	<string name="germany">-- Land: Germany --</string>
 	<string name="austria">-- Land: Austria --</string>
 	<string name="otherCountries">-- Other countries --</string>	
+	<string name="incomingCall">Closing. Incoming call.</string>	
 </resources>

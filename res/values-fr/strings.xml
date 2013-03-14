@@ -37,4 +37,5 @@
 	<string name="germany">-- Pays: Allemagne --</string>
 	<string name="austria">-- Pays: Autriche --</string>
 	<string name="otherCountries">-- Pays différents --</string>	
+	<string name="incomingCall">Fermer. Appel entrant.</string>	
 </resources>

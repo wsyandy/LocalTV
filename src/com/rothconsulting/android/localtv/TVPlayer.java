@@ -11,6 +11,8 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -32,6 +34,8 @@ public class TVPlayer extends Activity {
 	private String stationName = "";
 	private WebView myWebView = null;
 	private Context context;
+	private TelephonyManager tm = null;
+	private PhoneStateListener callStateListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,12 @@ public class TVPlayer extends Activity {
 		} else {
 			Log.d(TAG, "bundle is null");
 		}
+
+		// Detect incoming phone call and register PhoneStateListener
+		callStateListener = new CallStateListener();
+		tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+		tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 	private void playInWebView(final String name, final String url) {
@@ -244,6 +254,10 @@ public class TVPlayer extends Activity {
 		if (removeStatusBar) {
 			Util.hideStatusBarNotification(this);
 		}
+		// Unregister PhoneStateListener
+		if (tm != null) {
+			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
+		}
 		// Util.clearApplicationData(this);
 		finish();
 	}
@@ -277,5 +291,25 @@ public class TVPlayer extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Listener to detect incoming calls.
+	 */
+	private class CallStateListener extends PhoneStateListener {
+		@Override
+		public void onCallStateChanged(int state, String incomingNumber) {
+			switch (state) {
+			case TelephonyManager.CALL_STATE_RINGING:
+				// called when someone is ringing to this phone
+				Toast.makeText(
+						context,
+						getString(R.string.incomingCall) + " \n"
+								+ incomingNumber, Toast.LENGTH_LONG).show();
+				// stop playing
+				closeTVPlayer(true);
+				break;
+			}
+		}
 	}
 }

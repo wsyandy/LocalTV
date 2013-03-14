@@ -38,4 +38,6 @@
 	<string name="germany">-- Land: Deutschland --</string>
 	<string name="austria">-- Land: Österreich --</string>
 	<string name="otherCountries">-- Diverse Länder --</string>	
+	<string name="incomingCall">Schliesse wegen Anruf.</string>	
+	
 </resources>
