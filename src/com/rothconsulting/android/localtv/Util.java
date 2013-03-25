@@ -38,14 +38,25 @@ public class Util {
 		boolean flashInstalled = false;
 		try {
 			PackageManager pm = context.getPackageManager();
-			ApplicationInfo ai = pm.getApplicationInfo("com.adobe.flashplayer",
-					0);
+			ApplicationInfo ai = pm.getApplicationInfo("com.adobe.flashplayer", 0);
 			if (ai != null)
 				flashInstalled = true;
 		} catch (NameNotFoundException e) {
 			flashInstalled = false;
 		}
 		return flashInstalled;
+	}
+
+	public static String getFlashVersion(Context context) {
+		String version = "";
+		try {
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pInfo = pm.getPackageInfo("com.adobe.flashplayer", 0);
+			version = pInfo.versionName;
+		} catch (NameNotFoundException e) {
+			// do nothing
+		}
+		return version;
 	}
 
 	public static void showFlashAlert(final Context context) {
@@ -62,53 +73,36 @@ public class Util {
 
 		// // Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
 		if (Build.VERSION.SDK_INT < 16 && !Build.CPU_ABI.contains("-v6")) {
-			b.setPositiveButton(R.string.googlePlay,
-					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-								final int which) {
+			b.setPositiveButton(R.string.googlePlay, new DialogInterface.OnClickListener() {
+				public void onClick(final DialogInterface dialog, final int which) {
 
-							if (isNetworkAvailable(context)) {
-								final Intent i = new Intent(
-										Intent.ACTION_VIEW,
-										Uri.parse(Constants.FLASH_PLAY_STORE_URL));
-								i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								context.startActivity(i);
-							} else {
-								Toast.makeText(
-										context,
-										context.getResources().getString(
-												R.string.internetNotConnected),
-										Toast.LENGTH_LONG).show();
-							}
-						}
-					});
-		}
-		b.setNeutralButton(R.string.directDownload,
-				new DialogInterface.OnClickListener() {
-					public void onClick(final DialogInterface dialog, int which) {
-
-						if (isNetworkAvailable(context)) {
-							Intent i = null;
-							if (Build.VERSION.SDK_INT < 14) { // 2.x and 3.x
-								i = new Intent(
-										Intent.ACTION_VIEW,
-										Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_2X_3X));
-							} else { // 4.x and higher
-								i = new Intent(
-										Intent.ACTION_VIEW,
-										Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_4X));
-							}
-							i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-							context.startActivity(i);
-						} else {
-							Toast.makeText(
-									context,
-									context.getResources().getString(
-											R.string.internetNotConnected),
-									Toast.LENGTH_LONG).show();
-						}
+					if (isNetworkAvailable(context)) {
+						final Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_PLAY_STORE_URL));
+						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						context.startActivity(i);
+					} else {
+						Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
 					}
-				});
+				}
+			});
+		}
+		b.setNeutralButton(R.string.directDownload, new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, int which) {
+
+				if (isNetworkAvailable(context)) {
+					Intent i = null;
+					if (Build.VERSION.SDK_INT < 14) { // 2.x and 3.x
+						i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_2X_3X));
+					} else { // 4.x and higher
+						i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_4X));
+					}
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					context.startActivity(i);
+				} else {
+					Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
+				}
+			}
+		});
 		b.show();
 	}
 
@@ -119,8 +113,7 @@ public class Util {
 	}
 
 	public static boolean isNetworkAvailable(Context context) {
-		ConnectivityManager connectivity = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (connectivity != null) {
 			NetworkInfo[] infos = connectivity.getAllNetworkInfo();
 			if (infos != null) {
@@ -136,42 +129,34 @@ public class Util {
 		return false;
 	}
 
-	public static void showStatusBarNotification(Context context,
-			String stationName) {
+	public static void showStatusBarNotification(Context context, String stationName) {
 
 		String appName = context.getResources().getString(R.string.app_name);
 
-		NotificationManager mNotificationManager = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		Notification notification = new Notification(R.drawable.tv_icon,
-				appName + " start...", System.currentTimeMillis());
+		Notification notification = new Notification(R.drawable.tv_icon, appName + " start...", System.currentTimeMillis());
 
 		Intent intent = new Intent(context, TVPlayer.class);
-		intent.putExtra(Constants.FROM_NOTIFICATION,
-				Constants.FROM_NOTIFICATION);
+		intent.putExtra(Constants.FROM_NOTIFICATION, Constants.FROM_NOTIFICATION);
 		intent.putExtra(Constants.NAME, stationName);
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
-				intent, 0);
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-		notification.setLatestEventInfo(context, appName, stationName,
-				contentIntent);
+		notification.setLatestEventInfo(context, appName, stationName, contentIntent);
 
 		mNotificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
 	public static void hideStatusBarNotification(Context context) {
 		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) context
-				.getSystemService(ns);
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
 		mNotificationManager.cancel(NOTIFICATION_ID);
 	}
 
 	public static String getAppVersionName(Context context, Class<?> cls) {
 		try {
 			ComponentName comp = new ComponentName(context, cls);
-			PackageInfo pinfo = context.getPackageManager().getPackageInfo(
-					comp.getPackageName(), 0);
+			PackageInfo pinfo = context.getPackageManager().getPackageInfo(comp.getPackageName(), 0);
 			return pinfo.versionName;
 		} catch (android.content.pm.PackageManager.NameNotFoundException e) {
 			return "";
@@ -188,9 +173,7 @@ public class Util {
 				for (String s : children) {
 					if (!s.equals("lib")) {
 						deleteDir(new File(appDir, s));
-						Log.d("TAG",
-								"*************** File /data/data/APP_PACKAGE/"
-										+ s + " DELETED ***");
+						Log.d("TAG", "*************** File /data/data/APP_PACKAGE/" + s + " DELETED ***");
 					}
 				}
 			}
@@ -242,8 +225,7 @@ public class Util {
 	}
 
 	public static List<String> getStationListByAttribut(String stationAttribute) {
-		ArrayList<HashMap<String, Object>> stationList = Stations
-				.getAllStations();
+		ArrayList<HashMap<String, Object>> stationList = Stations.getAllStations();
 		List<String> result = new ArrayList<String>();
 
 		for (HashMap<String, Object> station : stationList) {
@@ -253,8 +235,7 @@ public class Util {
 	}
 
 	public static String getUrl(String stationName) {
-		ArrayList<HashMap<String, Object>> stationList = Stations
-				.getAllStations();
+		ArrayList<HashMap<String, Object>> stationList = Stations.getAllStations();
 
 		for (HashMap<String, Object> station : stationList) {
 			if (("" + station.get("name")).equalsIgnoreCase(stationName)) {
@@ -265,17 +246,14 @@ public class Util {
 	}
 
 	public static void hideKeyboard(Context context, View view) {
-		InputMethodManager imm = (InputMethodManager) context
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (view != null) {
-			imm.hideSoftInputFromInputMethod(view.getWindowToken(),
-					InputMethodManager.HIDE_NOT_ALWAYS);
+			imm.hideSoftInputFromInputMethod(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	}
 
 	public static void showKeyboard(Context context, View view) {
-		InputMethodManager imm = (InputMethodManager) context
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 	}
 
@@ -295,11 +273,9 @@ public class Util {
 			Uri uri = Uri.fromParts(SCHEME, localTVpackageName, null);
 			intent.setData(uri);
 		} else { // below 2.3
-			final String appPkgName = (apiLevel == 8 ? APP_PKG_NAME_22
-					: APP_PKG_NAME_21);
+			final String appPkgName = (apiLevel == 8 ? APP_PKG_NAME_22 : APP_PKG_NAME_21);
 			intent.setAction(Intent.ACTION_VIEW);
-			intent.setClassName(APP_DETAILS_PACKAGE_NAME,
-					APP_DETAILS_CLASS_NAME);
+			intent.setClassName(APP_DETAILS_PACKAGE_NAME, APP_DETAILS_CLASS_NAME);
 			intent.putExtra(appPkgName, localTVpackageName);
 		}
 		context.startActivity(intent);
