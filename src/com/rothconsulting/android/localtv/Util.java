@@ -22,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -52,11 +53,14 @@ public class Util {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
 		b.setTitle(R.string.flashNotInstalled);
+		// String textAmazon =
+		// context.getString(R.string.flashDownloadTextAmazon);
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
+		// b.setNegativeButton(android.R.string.ok, null);
 
-		// Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
+		// // Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
 		if (Build.VERSION.SDK_INT < 16 && !Build.CPU_ABI.contains("-v6")) {
 			b.setPositiveButton(R.string.googlePlay,
 					new DialogInterface.OnClickListener() {
@@ -273,5 +277,31 @@ public class Util {
 		InputMethodManager imm = (InputMethodManager) context
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+	}
+
+	public static void showLocalTVappDetails(Context context) {
+
+		final String localTVpackageName = "com.rothconsulting.android.localtv";
+		final String SCHEME = "package";
+		final String APP_PKG_NAME_21 = "com.android.settings.ApplicationPkgName";
+		final String APP_PKG_NAME_22 = "pkg";
+		final String APP_DETAILS_PACKAGE_NAME = "com.android.settings";
+		final String APP_DETAILS_CLASS_NAME = "com.android.settings.InstalledAppDetails";
+
+		Intent intent = new Intent();
+		final int apiLevel = Build.VERSION.SDK_INT;
+		if (apiLevel >= 9) { // above 2.3
+			intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+			Uri uri = Uri.fromParts(SCHEME, localTVpackageName, null);
+			intent.setData(uri);
+		} else { // below 2.3
+			final String appPkgName = (apiLevel == 8 ? APP_PKG_NAME_22
+					: APP_PKG_NAME_21);
+			intent.setAction(Intent.ACTION_VIEW);
+			intent.setClassName(APP_DETAILS_PACKAGE_NAME,
+					APP_DETAILS_CLASS_NAME);
+			intent.putExtra(appPkgName, localTVpackageName);
+		}
+		context.startActivity(intent);
 	}
 }

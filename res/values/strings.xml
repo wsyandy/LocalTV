@@ -3,11 +3,13 @@
 
     <string name="app_name">LocalTV</string>
     <string name="ende">End</string>
+    <string name="help">Help</string>
     <string name="back">Back to the overview</string>
     <string name="cannotStartTV">Cannot start TV.</string>
     <string name="flashNotInstalled">Adobe Flash Player is not installed!</string>
     <string name="flashDownloadText">Thus LocalTV work you need the free Adobe Flash Player!\n\nIf you have had already installed it once you can relate it back from the \'Google Play\' Store.\nIf you have never had it you can use \'Direct Download\' to download and install it.</string>
-    <string name="internetNotConnected">You are not conected to the internet!</string>
+    <string name="flashDownloadTextAmazon">To get LocalTV to work you need the free Adobe Flash Player!\n\nPlease get it from Adobe (search for: Archived Flash Player versions) or from my Website (see Info Menu).</string>
+    <string name="internetNotConnected">You are not connected to the internet!</string>
     <string name="info">Info</string>
     <string name="infoDatenmenge">Watching TV consumes a lot of data. I recommend the use of a wireless network.</string>
     <string name="infoFeatureEmail">Is a local station missing? If it\'s possible I will add it (only local and special interest channels!). Click the email and tell me your wishes. \n\n <u>androider@wolke7.net</u></string>
@@ -40,4 +42,6 @@
 	<string name="austria">-- Land: Austria --</string>
 	<string name="otherCountries">-- Other countries --</string>	
 	<string name="incomingCall">Closing. Incoming call.</string>	
+	<string name="helpText">Do you have problems with LocalTV?\nDo you see just a black screen?\n\nGo to \"App-Info\" below and \"Clear Data\" or \"Force stop\".\nAfter this start LocalTV again.</string>	
+	<string name="appInfo">App-Info</string>
 </resources>

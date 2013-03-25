@@ -229,6 +229,14 @@ public class Stations {
 		return stations;
 	}
 
+	public static List<String> userAgentFirefox() {
+		List<String> stations = new ArrayList<String>();
+		stations.add(SRF_1);
+		stations.add(SRF_2);
+		stations.add(SRF_Info);
+		return stations;
+	}
+
 	public static List<String> allowZoom() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_M1_LIVE);

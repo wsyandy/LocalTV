@@ -3,6 +3,7 @@
     
     <string name="app_name">LocalTV</string>
     <string name="ende">Fin</string>
+    <string name="help">Aider</string>
     <string name="back">Retour à l\'aperçu</string>
     <string name="cannotStartTV">Impossible de démarrer la télé.</string>
     <string name="flashNotInstalled">Adobe Flash Player n\'est pas installé!</string>
@@ -38,4 +39,7 @@
 	<string name="austria">-- Pays: Autriche --</string>
 	<string name="otherCountries">-- Pays différents --</string>	
 	<string name="incomingCall">Fermer. Appel entrant.</string>	
+	<string name="helpText">Avez-vous des problèmes avec LocalTV?\nVous voir juste un écran noir?\nAllez à \"App-Info\" et \"Effacer les données\" ou \"Forcer l\'arrêt\".\nAprès cette LocalTV de démarrage.</string>	
+	<string name="appInfo">App-Info</string>
+		
 </resources>

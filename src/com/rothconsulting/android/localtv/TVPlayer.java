@@ -42,8 +42,7 @@ public class TVPlayer extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Remove notification bar
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 
@@ -74,8 +73,7 @@ public class TVPlayer extends Activity {
 
 		// Detect incoming phone call and register PhoneStateListener
 		callStateListener = new CallStateListener();
-		tm = (TelephonyManager) context
-				.getSystemService(Context.TELEPHONY_SERVICE);
+		tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
@@ -99,13 +97,16 @@ public class TVPlayer extends Activity {
 
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
-		if (Stations.allowZoom().contains(name)
-				&& !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
+		if (Stations.allowZoom().contains(name) && !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
 
 		if (!Stations.userAgentAndroid().contains(name)) {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT);
+			if (Stations.userAgentFirefox().contains(name)) {
+				myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_FIREFOX);
+			} else {
+				myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME);
+			}
 		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
@@ -138,26 +139,20 @@ public class TVPlayer extends Activity {
 
 		myWebView.setWebViewClient(new WebViewClient() {
 			@Override
-			public void onReceivedError(WebView view, int errorCode,
-					String description, String failingUrl) {
+			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				Log.d(TAG, "WebViewClient ErrorCode=" + errorCode);
-				Toast.makeText(context, "Oh no! " + description,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Oh no! " + description, Toast.LENGTH_LONG).show();
 			}
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.d(TAG, "****** URL=" + url);
-				if (url.endsWith(".mp4")
-						|| url.endsWith(".3gp")
-						|| url.contains("rtsp:")
-						|| url.contains("id=com.rothconsulting.android.localtv")) {
+				if (url.endsWith(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("id=com.rothconsulting.android.localtv")) {
 
 					if (url.contains("id=com.rothconsulting.android.localtv")) {
 						url = "market://details?id=com.rothconsulting.android.localtv";
 					}
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri
-							.parse(url));
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					// intent.setDataAndType(Uri.parse(url), "video/*");
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
@@ -174,14 +169,11 @@ public class TVPlayer extends Activity {
 		Util.showStatusBarNotification(this, name);
 
 		if (Stations.getNotLiveStations().contains(name)) {
-			Toast.makeText(this, getResources().getString(R.string.notLive),
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getResources().getString(R.string.notLive), Toast.LENGTH_LONG).show();
 		}
-		Toast.makeText(this, getResources().getString(R.string.verbinde),
-				Toast.LENGTH_LONG).show();
+		Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 		if (!Connectivity.isConnectedFast(this)) {
-			Toast.makeText(this, getResources().getString(R.string.verbinde),
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -278,8 +270,7 @@ public class TVPlayer extends Activity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 1, getResources().getString(R.string.back)).setIcon(
-				android.R.drawable.ic_media_rew);
+		menu.add(0, -1, 1, getResources().getString(R.string.back)).setIcon(android.R.drawable.ic_media_rew);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -302,10 +293,7 @@ public class TVPlayer extends Activity {
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				// called when someone is ringing to this phone
-				Toast.makeText(
-						context,
-						getString(R.string.incomingCall) + " \n"
-								+ incomingNumber, Toast.LENGTH_LONG).show();
+				Toast.makeText(context, getString(R.string.incomingCall) + " \n" + incomingNumber, Toast.LENGTH_LONG).show();
 				// stop playing
 				closeTVPlayer(true);
 				break;
