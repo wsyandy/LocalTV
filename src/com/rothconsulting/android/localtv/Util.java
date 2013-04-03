@@ -64,12 +64,9 @@ public class Util {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
 		b.setTitle(R.string.flashNotInstalled);
-		// String textAmazon =
-		// context.getString(R.string.flashDownloadTextAmazon);
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
-		// b.setNegativeButton(android.R.string.ok, null);
 
 		// // Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
 		if (Build.VERSION.SDK_INT < 16 && !Build.CPU_ABI.contains("-v6")) {

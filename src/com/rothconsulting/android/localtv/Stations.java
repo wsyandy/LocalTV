@@ -20,7 +20,7 @@ public class Stations {
 	public static final String SRF_2 = "SRF 2";
 	public static final String SRF_Info = "SRF Info";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
-	public static final String SSF = "Schweizer Sport Fernsehen";
+	public static final String SSF = "Sport Szene Fernsehen";
 	public static final String LA_TELE = "La Télé";
 	public static final String CANAL_ALPHA = "Canal Alpha";
 	public static final String ROUGE_TV = "Rouge TV";
@@ -226,14 +226,6 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
-		return stations;
-	}
-
-	public static List<String> userAgentFirefox() {
-		List<String> stations = new ArrayList<String>();
-		stations.add(SRF_1);
-		stations.add(SRF_2);
-		stations.add(SRF_Info);
 		return stations;
 	}
 

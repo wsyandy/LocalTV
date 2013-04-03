@@ -94,7 +94,6 @@ public class TVPlayer extends Activity {
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
 		myWebView.getSettings().setAllowFileAccess(true);
-
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
 		if (Stations.allowZoom().contains(name) && !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
@@ -102,11 +101,7 @@ public class TVPlayer extends Activity {
 		}
 
 		if (!Stations.userAgentAndroid().contains(name)) {
-			if (Stations.userAgentFirefox().contains(name)) {
-				myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_FIREFOX);
-			} else {
-				myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME);
-			}
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME);
 		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);

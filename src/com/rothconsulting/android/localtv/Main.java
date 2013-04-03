@@ -41,8 +41,7 @@ public class Main extends ListActivity {
 		String action = getIntent().getAction();
 		String appName = getString(R.string.app_name);
 
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		Util.hideStatusBarNotification(this);
 
 		ArrayList<HashMap<String, Object>> stationList = null;
@@ -71,31 +70,24 @@ public class Main extends ListActivity {
 		// lv.addHeaderView(header, null, false);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// When clicked, show a toast with the TextView text
-				TextView textViewName = (TextView) ((LinearLayout) view)
-						.getChildAt(1); // 1 = Die zweite View (name)
-				TextView textViewUrl = (TextView) ((LinearLayout) view)
-						.getChildAt(2); // 2 = Die dritte View (url)
+				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
+				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				Log.d(TAG, "name= " + textViewName.getText() + ", url= "
-						+ textViewUrl.getText());
+				Log.d(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
 
 				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
-					Log.d(TAG, "Playing: " + textViewName.getText() + ", "
-							+ textViewUrl.getText());
-					play(context, "" + textViewName.getText(),
-							"" + textViewUrl.getText());
+					Log.d(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
+					play(context, "" + textViewName.getText(), "" + textViewUrl.getText());
 				}
 			}
 		});
 
-		SimpleAdapter adapter = new SimpleAdapter(this, stationList,
-				R.layout.list_item, new String[] { "icon", "name", "url" },
-				new int[] { R.id.list_icon, R.id.list_name, R.id.list_url });
+		SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { "icon", "name", "url" }, new int[] { R.id.list_icon,
+				R.id.list_name, R.id.list_url });
 
 		setListAdapter(adapter);
 
@@ -114,11 +106,7 @@ public class Main extends ListActivity {
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(intent);
 			} else {
-				Toast.makeText(
-						context,
-						context.getResources().getString(
-								R.string.internetNotConnected),
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
 			}
 		} else {
 			Util.showFlashAlert(context);
@@ -143,12 +131,9 @@ public class Main extends ListActivity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(
-				android.R.drawable.ic_menu_info_details);
-		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(
-				android.R.drawable.ic_menu_help);
-		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(
-				android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(android.R.drawable.ic_menu_info_details);
+		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
+		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 
