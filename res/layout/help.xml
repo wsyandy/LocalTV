@@ -3,28 +3,34 @@
 	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-
-	<TextView android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:text="@string/help"
-		android:textColor="#BA002B" android:textSize="20sp"
-		android:layout_marginTop="10dip" android:layout_marginBottom="10dip"
-		android:id="@+id/textHelp" />
-	<TextView android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:text="@string/helpText"
-		android:id="@+id/textViewHelpText" android:layout_marginTop="5dip"
-		android:layout_marginBottom="5dip" />
-	<Button android:layout_margin="35dip" android:id="@+id/buttonAppInfo"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:text="@string/appInfo" android:layout_gravity="left" />
-	<LinearLayout android:orientation="vertical"
-		android:gravity="center" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:id="@+id/adsLayout">
-		<com.google.ads.AdView android:id="@+id/adView"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
-			ads:loadAdOnCreate="false" />
-	</LinearLayout>
-	<Button android:layout_margin="35dip" android:id="@+id/buttonZurueck"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:text="@string/back" android:layout_gravity="left" />
+	<ScrollView android:id="@+id/scroll" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout android:layout_width="fill_parent"
+			android:orientation="vertical" android:layout_height="wrap_content"
+			android:scrollbars="vertical">
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/help"
+				android:textColor="#BA002B" android:textSize="20sp"
+				android:layout_marginTop="10dip" android:layout_marginBottom="10dip"
+				android:id="@+id/textHelp" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/helpText"
+				android:id="@+id/textViewHelpText" android:layout_marginTop="5dip"
+				android:layout_marginBottom="5dip" />
+			<Button android:layout_margin="35dip" android:id="@+id/buttonAppInfo"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:text="@string/appInfo" android:layout_gravity="left" />
+			<LinearLayout android:orientation="vertical"
+				android:gravity="center" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:id="@+id/adsLayout">
+				<com.google.ads.AdView android:id="@+id/adView"
+					android:layout_width="fill_parent" android:layout_height="fill_parent"
+					android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
+					ads:loadAdOnCreate="false" />
+			</LinearLayout>
+			<Button android:layout_margin="35dip" android:id="@+id/buttonZurueck"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:text="@string/back" android:layout_gravity="left" />
+		</LinearLayout>
+	</ScrollView>
 </LinearLayout>
