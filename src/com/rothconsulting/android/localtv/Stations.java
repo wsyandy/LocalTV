@@ -242,6 +242,8 @@ public class Stations {
 		stations.add(PULS_4);
 		stations.add(CASH_TV);
 		stations.add(DAF);
+		stations.add(PHOENIX);
+		stations.add(RED_BULL_TV);
 		return stations;
 	}
 
