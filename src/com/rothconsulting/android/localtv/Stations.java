@@ -163,6 +163,7 @@ public class Stations {
 	public static final String MUEHLVIERTEL_TV = "Mühlviertel TV";
 	// public static final String TIROL_TV = "Tirol TV";
 	public static final String REUTTE_EINS = "Reutte Eins";
+	public static final String AUSTRIA_24_TV = "Austria 24 TV";
 
 	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
 	public static final String NASA_TV_MEDIA = "Nasa TV - Media";
@@ -244,6 +245,7 @@ public class Stations {
 		stations.add(DAF);
 		stations.add(PHOENIX);
 		stations.add(RED_BULL_TV);
+		stations.add(AUSTRIA_24_TV);
 		return stations;
 	}
 
@@ -1229,6 +1231,12 @@ public class Stations {
 		m.put("name", REUTTE_EINS);
 		m.put("url", "reutteEins.php");
 		m.put("icon", R.drawable.reutte_eins);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", AUSTRIA_24_TV);
+		m.put("url", "austria24TV.php");
+		m.put("icon", R.drawable.austria24tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
