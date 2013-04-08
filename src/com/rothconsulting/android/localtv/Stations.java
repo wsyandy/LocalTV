@@ -150,6 +150,8 @@ public class Stations {
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
+	public static final String DAF = "DAF";
+	public static final String PHOENIX = "Phoenix";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -170,7 +172,8 @@ public class Stations {
 	public static final String DISNEY_CHANNEL = "Disney Channel";
 	public static final String AL_JAZEERA_EN = "Al Jazeera English";
 	public static final String BLOOMBERG_TV_USA = "Bloomberg TV USA";
-	public static final String PENTAGON_CHANNEL = "Pentagon Channel";
+	public static final String PENTAGON_CHANNEL = "The Pentagon Channel";
+	public static final String UNITED_NATIONS_TV = "United Nations TV";
 	public static final String CCTV_CHINA = "CCTV China";
 	public static final String VISIT_X = "Visit-X TV";
 
@@ -238,6 +241,7 @@ public class Stations {
 		stations.add(HR);
 		stations.add(PULS_4);
 		stations.add(CASH_TV);
+		stations.add(DAF);
 		return stations;
 	}
 
@@ -1151,6 +1155,18 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", DAF);
+		m.put("url", "daf.php");
+		m.put("icon", R.drawable.daf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PHOENIX);
+		m.put("url", "phoenix.php");
+		m.put("icon", R.drawable.phoenix);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", MDF1);
 		m.put("url", "mdf1.php");
 		m.put("icon", R.drawable.mdf1);
@@ -1293,6 +1309,12 @@ public class Stations {
 		m.put("name", PENTAGON_CHANNEL);
 		m.put("url", "pentagonChannel.php");
 		m.put("icon", R.drawable.pentagon_channel);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", UNITED_NATIONS_TV);
+		m.put("url", "unTV.php");
+		m.put("icon", R.drawable.un_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
