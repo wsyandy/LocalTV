@@ -18,7 +18,7 @@ public class Stations {
 	public static final String TELE_1_ARCHIV = "Tele 1 (Archiv)";
 	public static final String SRF_1 = "SRF 1";
 	public static final String SRF_2 = "SRF 2";
-	public static final String SRF_Info = "SRF Info";
+	public static final String SRF_INFO = "SRF Info";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String SSF = "Sport Szene Fernsehen";
 	public static final String LA_TELE = "La Télé";
@@ -214,6 +214,7 @@ public class Stations {
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(OS1_TV);
+		stations.add(ORF_TV_THEK);
 		return stations;
 	}
 
@@ -230,6 +231,13 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
+		stations.add(ARD_DAS_ERSTE);
+		return stations;
+	}
+
+	public static List<String> noFlash() {
+		List<String> stations = new ArrayList<String>();
+		// stations.add(ARD_DAS_ERSTE);
 		return stations;
 	}
 
@@ -378,7 +386,7 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", SRF_Info);
+		m.put("name", SRF_INFO);
 		m.put("url", "srfInfo.php");
 		m.put("icon", R.drawable.srf_info);
 		addToLiveStations(m);

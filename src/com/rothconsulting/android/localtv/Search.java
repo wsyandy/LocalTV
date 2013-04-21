@@ -37,9 +37,7 @@ public class Search extends Activity {
 
 		myAutoComplete.setOnItemClickListener(new OnItemClickListener() {
 
-			public void onItemClick(
-					AdapterView<?> listPopupWindow_DropDownListView,
-					View textView, int arg2, long arg3) {
+			public void onItemClick(AdapterView<?> listPopupWindow_DropDownListView, View textView, int arg2, long arg3) {
 
 				String station = "";
 
@@ -54,8 +52,7 @@ public class Search extends Activity {
 			}
 		});
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_dropdown_item_1line);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line);
 
 		List<String> stationNameList = Util.getStationNameList();
 		for (String stationName : stationNameList) {
@@ -70,10 +67,9 @@ public class Search extends Activity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(
-				android.R.drawable.ic_menu_info_details);
-		menu.add(0, -2, 0, getResources().getString(R.string.ende)).setIcon(
-				android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(android.R.drawable.ic_menu_info_details);
+		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
+		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -83,7 +79,10 @@ public class Search extends Activity {
 		case -1: // info
 			startActivity(new Intent(this, Info.class));
 			break;
-		case -2: // ende
+		case -2: //
+			startActivity(new Intent(this, Help.class));
+			break;
+		case -3: // ende
 			Util.clearApplicationData(this);
 			Util.deleteWebViewDatabase(this);
 			finish();

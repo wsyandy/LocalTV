@@ -101,7 +101,7 @@ public class TVPlayer extends Activity {
 		}
 
 		if (!Stations.userAgentAndroid().contains(name)) {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME);
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME_MOBILE_SGS3);
 		}
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
@@ -151,7 +151,7 @@ public class TVPlayer extends Activity {
 					// intent.setDataAndType(Uri.parse(url), "video/*");
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
-					return true;
+					return false; // ???????? true ????????
 				} else {
 					return super.shouldOverrideUrlLoading(view, url);
 				}
@@ -265,7 +265,8 @@ public class TVPlayer extends Activity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 1, getResources().getString(R.string.back)).setIcon(android.R.drawable.ic_media_rew);
+		menu.add(0, -1, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
+		menu.add(0, -2, 0, getResources().getString(R.string.back)).setIcon(android.R.drawable.ic_media_rew);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -273,6 +274,9 @@ public class TVPlayer extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case -1:
+			startActivity(new Intent(this, Help.class));
+			break;
+		case -2: //
 			closeTVPlayer(true);
 			break;
 		}

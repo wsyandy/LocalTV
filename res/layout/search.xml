@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/searchScreen"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+	android:id="@+id/searchScreen" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@android:color/white"
+	android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutAutocomplete"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:orientation="vertical" >
+	<LinearLayout android:id="@+id/linearLayoutAutocomplete"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center" android:layout_gravity="center"
+		android:orientation="vertical">
 
-        <com.rothconsulting.android.localtv.SearchAutoCompleteTextView
-            android:id="@+id/autocomplete"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/searchHint" />
-    </LinearLayout>
+		<com.rothconsulting.android.localtv.SearchAutoCompleteTextView
+			android:id="@+id/autocomplete" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:hint="@string/searchHint" />
+	</LinearLayout>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-				android:orientation="vertical" android:gravity="center" android:layout_gravity="center"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:id="@+id/adsLayout" android:background="@android:color/white">
+	<LinearLayout android:orientation="vertical"
+		android:gravity="center" android:layout_gravity="center"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:id="@+id/adsLayout" android:background="@android:color/white">
 		<com.google.ads.AdView android:id="@+id/adView"
-			android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_gravity="center"
-			android:gravity="center" ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_gravity="center" android:gravity="center"
+			ads:adUnitId="a14dc9885936cd9" ads:adSize="BANNER"
 			ads:loadAdOnCreate="false" android:background="@android:color/white" />
 	</LinearLayout>
 

@@ -97,7 +97,7 @@ public class Main extends ListActivity {
 
 	public static void play(Context context, String name, String url) {
 
-		if (Util.isFlashInstalled(context)) {
+		if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name) ) {
 
 			if (Util.isNetworkAvailable(context)) {
 				Intent intent = new Intent(context, TVPlayer.class);

@@ -42,6 +42,6 @@
 	<string name="austria">-- Land: Austria --</string>
 	<string name="otherCountries">-- Other countries --</string>	
 	<string name="incomingCall">Closing. Incoming call.</string>	
-	<string name="helpText">Do you have problems with LocalTV?\nDo you see just a black screen?\n\nGo to \"App-Info\" below and \"Clear Data\" or \"Force stop\".\nAfter this start LocalTV again.</string>	
+	<string name="helpText">Do you have problems with LocalTV?\nDo you see just a black screen?\nDoesn\'t stop the sound?\n\nClick \"App-Info\" below and \"Clear Data\" and/or \"Force stop\".\nAfter this start LocalTV again.</string>	
 	<string name="appInfo">App-Info</string>
 </resources>
