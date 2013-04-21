@@ -13,7 +13,7 @@ public class Constants {
 	public static final String USER_AGENT_SAFARI_OSX = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.29.13 (KHTML, like Gecko) Version/6.0.4 Safari/536.29.13";
 	public static final String USER_AGENT_IPHONE_5 = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
 
-	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:19.0) Gecko/20100101 Firefox/19.0";
+	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:20.0) Gecko/20100101 Firefox/20.0";
 
 	public static final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	public static final String FLASH_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.adobe.flashplayer";

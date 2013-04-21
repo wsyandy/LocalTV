@@ -29,7 +29,7 @@
     <string name="googlePlay">Google Play</string>
 	<string name="directDownload">Direct Download</string>
 	<string name="neinDanke">No thanks</string>
-	<string name="verbinde">Connecting... Please wait...</string>
+	<string name="verbinde">Connecting... Please wait...\n(up to 30 seconds)</string>
 	<string name="live">Live</string>
 	<string name="archiv">Archive</string>
 	<string name="alle">All</string>

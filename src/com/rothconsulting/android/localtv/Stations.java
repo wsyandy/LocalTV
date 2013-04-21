@@ -22,7 +22,8 @@ public class Stations {
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String SSF = "Sport Szene Fernsehen";
 	public static final String LA_TELE = "La Télé";
-	public static final String CANAL_ALPHA = "Canal Alpha";
+	public static final String CANAL_ALPHA_JURA_BERNOISE = "Canal Alpha (Jura – Jura bernois)";
+	public static final String CANAL_ALPHA_NEUCHATEL_YVERDON = "Canal Alpha (Neuchâtel – District d’Yverdon)";
 	public static final String ROUGE_TV = "Rouge TV";
 	public static final String TV_105 = "105 TV";
 	public static final String RTS_UN = "RTS Un";
@@ -64,13 +65,11 @@ public class Stations {
 	public static final String CANAL_29 = "Canal 29";
 	public static final String MAX_TV = "max tv";
 	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
-	public static final String SF_VIDEO_PORTAL = "SF Video Portal (Comedy, etc..)";
+	public static final String SRF_PLAYER = "SRF Player (viele Sendungen)";
 	public static final String ART_TV = "art tv";
 	public static final String BNJ_TV = "bnj.tv";
-	public static final String TSR_VIDEO = "TSR video";
+	public static final String RTS_VIDEO = "RTS video";
 	public static final String TELEVISTA = "Televista";
-	public static final String GESUNDHEIT_SPRECHSTUNDE = "Gesundheit Sprechstunde";
-	public static final String MOTOTRSHOW_TCS = "Motor Show TCS";
 	public static final String STUDENTS_TV = "Students TV";
 	public static final String TELE_BLOCHER = "Tele Blocher";
 
@@ -111,6 +110,7 @@ public class Stations {
 	public static final String DW = "DW - Deutsche Welle";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
 	public static final String BAYERN_TV = "Bayerisches Fernsehen";
+	public static final String BAYERN_TV_MEDIATHEK = "Bayerisches Fernsehen - Mediathek";
 	public static final String OK_DESSAU = "OK Dessau";
 	public static final String OK_MAGDEBURG = "OK Magdeburg";
 	public static final String OK_MERSEBURG = "OK Merseburg";
@@ -215,6 +215,8 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(OS1_TV);
 		stations.add(ORF_TV_THEK);
+		stations.add(STUDENTS_TV);
+
 		return stations;
 	}
 
@@ -223,6 +225,8 @@ public class Stations {
 		// stations.add(TELE_NAPF);
 		// stations.add(NETZKINO);
 		// stations.add(KINDERKINO);
+		stations.add(CANAL_29);
+		stations.add(BNJ_TV);
 		stations.add(NASA_TV_PUBLIC);
 		stations.add(NASA_TV_MEDIA);
 		stations.add(NASA_TV_EDUCATION);
@@ -232,6 +236,10 @@ public class Stations {
 		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
 		stations.add(ARD_DAS_ERSTE);
+		stations.add(RRO_TV);
+		stations.add(KIKA_PLUS);
+		stations.add(PULS_4);
+
 		return stations;
 	}
 
@@ -254,6 +262,10 @@ public class Stations {
 		stations.add(PHOENIX);
 		stations.add(RED_BULL_TV);
 		stations.add(AUSTRIA_24_TV);
+		stations.add(RSI_LA2);
+		stations.add(RTS_UN);
+		stations.add(RTS_DEUX);
+		stations.add(BAYERN_TV);
 		return stations;
 	}
 
@@ -392,6 +404,12 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", SRF_PLAYER);
+		m.put("url", "srfPlayer.php");
+		m.put("icon", R.drawable.srf_player);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", SCHWEIZ_5);
 		m.put("url", "schweiz5.php");
 		m.put("icon", R.drawable.schweiz_5);
@@ -416,8 +434,14 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", CANAL_ALPHA);
+		m.put("name", CANAL_ALPHA_NEUCHATEL_YVERDON);
 		m.put("url", "canalalpha.php");
+		m.put("icon", R.drawable.canal_alpha);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", CANAL_ALPHA_JURA_BERNOISE);
+		m.put("url", "canalalpha_ju_be.php");
 		m.put("icon", R.drawable.canal_alpha);
 		addToLiveStations(m);
 
@@ -561,7 +585,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", RRO_TV);
-		m.put("url", "rroTV.html");
+		m.put("url", "rroTV.php");
 		m.put("icon", R.drawable.rro_tv);
 		addToArchiveAndNotLiveStations(m);
 
@@ -656,15 +680,9 @@ public class Stations {
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", SF_VIDEO_PORTAL);
-		m.put("url", "sf-video-portal.html");
-		m.put("icon", R.drawable.schweizer_fernsehen);
-		addToArchiveAndNotLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TSR_VIDEO);
-		m.put("url", "tsr.html");
-		m.put("icon", R.drawable.tsr);
+		m.put("name", RTS_VIDEO);
+		m.put("url", "rts.php");
+		m.put("icon", R.drawable.rts);
 		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -683,18 +701,6 @@ public class Stations {
 		m.put("name", TELEVISTA);
 		m.put("url", "televista.html");
 		m.put("icon", R.drawable.televista);
-		addToArchiveAndNotLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", GESUNDHEIT_SPRECHSTUNDE);
-		m.put("url", "gesundheit-sprechstunde.html");
-		m.put("icon", R.drawable.gesundheitsprechstunde);
-		addToArchiveAndNotLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MOTOTRSHOW_TCS);
-		m.put("url", "motorshow-tcs.html");
-		m.put("icon", R.drawable.motorshow_tcs);
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
@@ -867,6 +873,13 @@ public class Stations {
 		m.put("url", "bayerischesFernsehen.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
 		liveStationList.add(m);
+		allStationList.add(m);
+		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BAYERN_TV_MEDIATHEK);
+		m.put("url", "bayerischesFernsehen_Mediathek.php");
+		m.put("icon", R.drawable.bayrisches_fernsehen);
 		allStationList.add(m);
 		archivStationList.add(m);
 
@@ -1138,7 +1151,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", BERG_TV);
-		m.put("url", "bergischGladbach.html");
+		m.put("url", "bergischGladbach.php");
 		m.put("icon", R.drawable.berg_tv);
 		addToArchiveAndNotLiveStations(m);
 

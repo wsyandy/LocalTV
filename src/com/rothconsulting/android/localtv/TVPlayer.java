@@ -100,9 +100,12 @@ public class TVPlayer extends Activity {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
 
-		if (!Stations.userAgentAndroid().contains(name)) {
+		if (Stations.userAgentAndroid().contains(name)) {
 			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME_MOBILE_SGS3);
+		} else {
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_FIREFOX);
 		}
+
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
 		}
@@ -148,10 +151,12 @@ public class TVPlayer extends Activity {
 						url = "market://details?id=com.rothconsulting.android.localtv";
 					}
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					// intent.setDataAndType(Uri.parse(url), "video/*");
+					if (url.endsWith(".mp4")) {
+						intent.setDataAndType(Uri.parse(url), "video/mp4");
+					}
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
-					return false; // ???????? true ????????
+					return true;
 				} else {
 					return super.shouldOverrideUrlLoading(view, url);
 				}
@@ -167,7 +172,7 @@ public class TVPlayer extends Activity {
 			Toast.makeText(this, getResources().getString(R.string.notLive), Toast.LENGTH_LONG).show();
 		}
 		Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
-		if (!Connectivity.isConnectedFast(this)) {
+		if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 		}
 	}
