@@ -42,5 +42,5 @@
 	<string name="incomingCall">Fermer. Appel entrant.</string>	
 	<string name="helpText">Avez-vous des problèmes avec LocalTV?\nVous voir juste un écran noir?\nAllez à \"App-Info\" et \"Effacer les données\" ou \"Forcer l\'arrêt\".\nAprès cette LocalTV de démarrage.</string>	
 	<string name="appInfo">App-Info</string>
-		
+	<string name="openExternalPlayer">Ouverture lecteur externe...</string>
 </resources>

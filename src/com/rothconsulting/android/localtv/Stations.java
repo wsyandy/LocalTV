@@ -146,12 +146,14 @@ public class Stations {
 	public static final String RIC_TV_KINDER = "RiC TV - Kinder";
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
-	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
+	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
 	public static final String PHOENIX = "Phoenix";
+	public static final String BUNDESTAG_1 = "Bundestag TV 1";
+	public static final String BUNDESTAG_2 = "Bundestag TV 2";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -233,7 +235,6 @@ public class Stations {
 		stations.add(ORF_TV_THEK);
 		stations.add(DONAU_TV_LIVE);
 		stations.add(DONAU_TV_ARCHIV);
-		stations.add(MUEHLVIERTEL_TV);
 		stations.add(OS1_TV);
 		stations.add(ARD_DAS_ERSTE);
 		stations.add(RRO_TV);
@@ -245,7 +246,8 @@ public class Stations {
 
 	public static List<String> noFlash() {
 		List<String> stations = new ArrayList<String>();
-		// stations.add(ARD_DAS_ERSTE);
+		stations.add(BUNDESTAG_1);
+		stations.add(BUNDESTAG_2);
 		return stations;
 	}
 
@@ -266,6 +268,7 @@ public class Stations {
 		stations.add(RTS_UN);
 		stations.add(RTS_DEUX);
 		stations.add(BAYERN_TV);
+		stations.add(MUEHLVIERTEL_TV);
 		return stations;
 	}
 
@@ -1196,6 +1199,18 @@ public class Stations {
 		m.put("url", "mdf1.php");
 		m.put("icon", R.drawable.mdf1);
 		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BUNDESTAG_1);
+		m.put("url", "bundestag1.php");
+		m.put("icon", R.drawable.bundestag);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BUNDESTAG_2);
+		m.put("url", "bundestag2.php");
+		m.put("icon", R.drawable.bundestag);
+		addToLiveStations(m);
 
 		// *********************************************************************************
 		// * Österreich

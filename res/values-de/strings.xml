@@ -43,4 +43,5 @@
 	<string name="incomingCall">Schliesse wegen Anruf.</string>	
 	<string name="helpText">Hast du Probleme mit LocalTV?\nSiehts du nur einen schwarzen Bildschirm?\nStoppt der Ton nicht?\n\nDann klicke unten auf \"App-Info\" und drücke dort \"Daten löschen\" und/oder \"Stoppen erzwingen\".\nStarte danach LocalTV neu.</string>	
 	<string name="appInfo">App-Info</string>
+	<string name="openExternalPlayer">Öffne externen player...</string>
 </resources>

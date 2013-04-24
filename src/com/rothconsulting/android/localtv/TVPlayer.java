@@ -147,15 +147,18 @@ public class TVPlayer extends Activity {
 				Log.d(TAG, "****** URL=" + url);
 				if (url.endsWith(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("id=com.rothconsulting.android.localtv")) {
 
+					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 					if (url.contains("id=com.rothconsulting.android.localtv")) {
 						url = "market://details?id=com.rothconsulting.android.localtv";
 					}
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					if (url.endsWith(".mp4")) {
-						intent.setDataAndType(Uri.parse(url), "video/mp4");
+						intent.setType("video/mp4");
 					}
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
+					// back to the list
+					finish();
 					return true;
 				} else {
 					return super.shouldOverrideUrlLoading(view, url);
