@@ -145,18 +145,19 @@ public class TVPlayer extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.d(TAG, "****** URL=" + url);
-				if (url.endsWith(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("id=com.rothconsulting.android.localtv")) {
+				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("id=com.rothconsulting.android.localtv")) {
 
 					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 					if (url.contains("id=com.rothconsulting.android.localtv")) {
 						url = "market://details?id=com.rothconsulting.android.localtv";
 					}
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					if (url.endsWith(".mp4")) {
+					if (url.contains(".mp4")) {
 						intent.setType("video/mp4");
 					}
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					view.getContext().startActivity(intent);
+					Util.hideStatusBarNotification(context);
 					// back to the list
 					finish();
 					return true;

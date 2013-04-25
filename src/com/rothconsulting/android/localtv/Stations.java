@@ -147,6 +147,7 @@ public class Stations {
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
+	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live 2";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
@@ -240,6 +241,7 @@ public class Stations {
 		stations.add(RRO_TV);
 		stations.add(KIKA_PLUS);
 		stations.add(PULS_4);
+		stations.add(SRF_1);
 
 		return stations;
 	}
@@ -1063,6 +1065,12 @@ public class Stations {
 		m = new HashMap<String, Object>();
 		m.put("name", ARD_DAS_ERSTE);
 		m.put("url", "ardDasErste.php");
+		m.put("icon", R.drawable.ard_das_erste);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ARD_DAS_ERSTE_NO_FLASH);
+		m.put("url", "ardDasErste2.php");
 		m.put("icon", R.drawable.ard_das_erste);
 		addToLiveStations(m);
 
