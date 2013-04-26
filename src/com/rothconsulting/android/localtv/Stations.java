@@ -147,7 +147,7 @@ public class Stations {
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
-	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live 2";
+	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live (ext)";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
