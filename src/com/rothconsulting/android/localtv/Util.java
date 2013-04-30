@@ -34,6 +34,10 @@ public class Util {
 
 	private static final int NOTIFICATION_ID = 0;
 
+	public static void log(String tag, String message) {
+		Log.d(tag, message);
+	}
+
 	public static boolean isFlashInstalled(Context context) {
 		boolean flashInstalled = false;
 		try {
@@ -100,6 +104,16 @@ public class Util {
 				}
 			}
 		});
+		b.show();
+	}
+
+	public static void showEmptyFavAlertDialog(final Context context) {
+		final Builder b = new AlertDialog.Builder(context);
+		b.setCancelable(true);
+		b.setTitle(R.string.info);
+		String text = "noch keine Favoriten. Drücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.";
+		b.setMessage(text);
+		b.setPositiveButton(android.R.string.ok, null);
 		b.show();
 	}
 
