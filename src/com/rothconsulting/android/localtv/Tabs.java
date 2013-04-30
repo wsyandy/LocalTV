@@ -30,37 +30,28 @@ public class Tabs extends TabActivity {
 		// Create an Intent to launch an Activity for the tab (to be reused)
 		intent = new Intent().setClass(this, Main.class);
 		intent.setAction(Constants.TAB_LIVE);
-		spec = tabHost
-				.newTabSpec(Constants.TAB_LIVE)
-				.setIndicator(getString(R.string.live),
-						res.getDrawable(R.drawable.tab_tv_button))
-				.setContent(intent);
+		spec = tabHost.newTabSpec(Constants.TAB_LIVE).setIndicator(getString(R.string.live), res.getDrawable(R.drawable.tab_tv_button)).setContent(intent);
 		tabHost.addTab(spec);
 
 		intent = new Intent().setClass(this, Main.class);
 		intent.setAction(Constants.TAB_ARCHIV);
-		spec = tabHost
-				.newTabSpec(Constants.TAB_ARCHIV)
-				.setIndicator(getString(R.string.archiv),
-						res.getDrawable(R.drawable.tab_tv_button))
-				.setContent(intent);
+		spec = tabHost.newTabSpec(Constants.TAB_ARCHIV).setIndicator(getString(R.string.archiv), res.getDrawable(R.drawable.tab_tv_button)).setContent(intent);
 		tabHost.addTab(spec);
 
 		intent = new Intent().setClass(this, Main.class);
 		intent.setAction(Constants.TAB_ALLE);
-		spec = tabHost
-				.newTabSpec(Constants.TAB_ALLE)
-				.setIndicator(getString(R.string.alle),
-						res.getDrawable(R.drawable.tab_tv_button))
+		spec = tabHost.newTabSpec(Constants.TAB_ALLE).setIndicator(getString(R.string.alle), res.getDrawable(R.drawable.tab_tv_button)).setContent(intent);
+		tabHost.addTab(spec);
+
+		intent = new Intent().setClass(this, Favourites.class);
+		intent.setAction(Constants.TAB_FAVORIT);
+		spec = tabHost.newTabSpec(Constants.TAB_FAVORIT).setIndicator(getString(R.string.favourites), res.getDrawable(R.drawable.tab_favourites_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
 		intent = new Intent().setClass(this, Search.class);
 		intent.setAction(Constants.TAB_SEARCH);
-		spec = tabHost
-				.newTabSpec(Constants.TAB_SEARCH)
-				.setIndicator(getString(R.string.search),
-						res.getDrawable(R.drawable.tab_search_button))
+		spec = tabHost.newTabSpec(Constants.TAB_SEARCH).setIndicator(getString(R.string.search), res.getDrawable(R.drawable.tab_search_button))
 				.setContent(intent);
 		tabHost.addTab(spec);
 
@@ -78,8 +69,7 @@ public class Tabs extends TabActivity {
 				if (Constants.TAB_SEARCH.equalsIgnoreCase(tabId)) {
 					imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 				} else {
-					imm.hideSoftInputFromWindow(
-							tabHost.getApplicationWindowToken(), 0);
+					imm.hideSoftInputFromWindow(tabHost.getApplicationWindowToken(), 0);
 				}
 			}
 		});

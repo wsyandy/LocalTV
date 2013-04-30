@@ -25,4 +25,5 @@ public class Constants {
 	public static final String TAB_LIVE = "Live";
 	public static final String TAB_ARCHIV = "Archiv";
 	public static final String TAB_SEARCH = "Search";
+	public static final String TAB_FAVORIT = "Favorit";
 }

@@ -338,7 +338,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_ZUERI);
-		m.put("url", "telezueri.html");
+		m.put("url", "telezueri.php");
 		m.put("icon", R.drawable.tele_zueri);
 		addToLiveStations(m);
 

@@ -111,7 +111,7 @@ public class Util {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
 		b.setTitle(R.string.info);
-		String text = "noch keine Favoriten. Drücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.";
+		String text = "Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.";
 		b.setMessage(text);
 		b.setPositiveButton(android.R.string.ok, null);
 		b.show();
@@ -291,4 +291,38 @@ public class Util {
 		}
 		context.startActivity(intent);
 	}
+
+	public static void play(Context context, String name, String url) {
+
+		if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name)) {
+
+			if (Util.isNetworkAvailable(context)) {
+				Intent intent = new Intent(context, TVPlayer.class);
+				intent.putExtra(Constants.NAME, name);
+				intent.putExtra(Constants.URL, url);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				context.startActivity(intent);
+			} else {
+				Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
+			}
+		} else {
+			Util.showFlashAlert(context);
+			// Toast.makeText(this,
+			// getResources().getString(R.string.flashNotInstalled),
+			// Toast.LENGTH_LONG).show();
+		}
+
+	}
+
+	public static HashMap<String, Object> getFullStation(ArrayList<HashMap<String, Object>> stationList, String searchName) {
+
+		for (HashMap<String, Object> station : stationList) {
+			if (searchName == null || ((String) station.get("name")).toUpperCase().contains(searchName.toUpperCase())) {
+
+				return station;
+			}
+		}
+		return null;
+	}
+
 }

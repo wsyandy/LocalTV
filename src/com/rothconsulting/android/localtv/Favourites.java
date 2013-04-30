@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,15 +22,17 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class Main extends ListActivity {
+import com.rothconsulting.android.localtv.sqlitedb.DbUtils;
 
-	private final static String TAG = "Main";
+public class Favourites extends ListActivity {
+
+	private final static String TAG = "Favourites";
 	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.favourites);
 
 		context = this;
 		Stations stations = new Stations();
@@ -43,18 +44,11 @@ public class Main extends ListActivity {
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		Util.hideStatusBarNotification(this);
 
-		ArrayList<HashMap<String, Object>> stationList = null;
-		if (action.equals(Constants.TAB_ALLE)) {
-			stationList = Stations.getAllStations();
-			setTitle(appName + " - Alle verfügbaren Sender");
-		} else if (action.equals(Constants.TAB_ARCHIV)) {
-			setTitle(appName + " - Sender Archiv");
-			stationList = stations.getArchivStations();
-		} else {
-			setTitle(appName + " - Live Sender");
-			stationList = stations.getLiveStations();
-		}
-		Log.d(TAG, "Action=" + action + " / Stations=" + stationList.size());
+		ArrayList<HashMap<String, Object>> stationList = DbUtils.getFavList(context);
+		// stationList = Stations.getAllStations();
+
+		setTitle(appName + " - Favoriten Sender");
+		Util.log(TAG, "Action=" + action + " / Stations=" + stationList.size());
 
 		ListView lv = (ListView) findViewById(android.R.id.list); // getListView();
 		int[] colors = { 0, Color.RED, 0 }; // red for the example
@@ -74,12 +68,12 @@ public class Main extends ListActivity {
 				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
 				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				Log.d(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
+				Util.log(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
 
 				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
-					Log.d(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
+					Util.log(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
 					Util.play(context, "" + textViewName.getText(), "" + textViewUrl.getText());
 				}
 			}
@@ -89,6 +83,10 @@ public class Main extends ListActivity {
 				R.id.list_name, R.id.list_url });
 
 		setListAdapter(adapter);
+
+		if (stationList == null || stationList.size() == 0) {
+			Util.showEmptyFavAlertDialog(context);
+		}
 
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);

@@ -34,6 +34,7 @@
 	<string name="website">\nWebsite:\n<u>http://sites.google.com/site/androiderwolke</u></string>
 	<string name="searchHint">...recherche station de télévision...</string>
 	<string name="search">chercher</string>
+	<string name="favourites">Favourites</string>
 	<string name="emptyString"></string>
 	<string name="switzerland">-- Pays: Suisse --</string>
 	<string name="germany">-- Pays: Allemagne --</string>
