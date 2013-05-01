@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/addfavorit"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:showAsAction="ifRoom"
+        android:title="@string/addFavourite"/>
+    <item
+        android:id="@+id/removefavorit"
+        android:icon="@android:drawable/btn_star_big_off"
+        android:showAsAction="ifRoom"
+        android:title="@string/removeFavourite"/>
+</menu>

@@ -46,4 +46,6 @@
 	<string name="helpText">Do you have problems with LocalTV?\nDo you see just a black screen?\nDoesn\'t stop the sound?\n\nClick \"App-Info\" below and \"Clear Data\" and/or \"Force stop\".\nAfter this start LocalTV again.</string>	
 	<string name="appInfo">App-Info</string>
 	<string name="openExternalPlayer">Opening external player...</string>
+	<string name="addFavourite">add favourite</string>
+	<string name="removeFavourite">remove favourite</string>	
 </resources>
