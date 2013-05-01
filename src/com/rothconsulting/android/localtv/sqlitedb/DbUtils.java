@@ -13,8 +13,8 @@ public class DbUtils {
 
 	private static final String TAG = "DbUtil";
 
-	public static void storeRemoveFav(Context context, String stationName) {
-		Util.log(TAG, "storeRemoveFav START");
+	public static void addFavourite(Context context, String stationName) {
+		Util.log(TAG, "addFavourite START");
 
 		DbAdapter dbadapter = new DbAdapter(context);
 
@@ -26,16 +26,29 @@ public class DbUtils {
 			// insert new
 			Util.log(TAG, "instertStation: " + stationName);
 			dbadapter.open();
-			dbadapter.insertStation(0, stationName); // TODO
+			dbadapter.insertStation(stationName);
 			dbadapter.close();
-		} else {
+		}
+		Util.log(TAG, "addFavourite STOP");
+	}
+
+	public static void removeFavourite(Context context, String stationName) {
+		Util.log(TAG, "removeFavourite START");
+
+		DbAdapter dbadapter = new DbAdapter(context);
+
+		dbadapter.open();
+		Cursor cursor = dbadapter.fetchStation(stationName);
+		dbadapter.close();
+
+		if (cursor != null && cursor.getCount() > 0) {
 			// delete
 			Util.log(TAG, "deleteStation: " + stationName);
 			dbadapter.open();
 			dbadapter.deleteStation(stationName);
 			dbadapter.close();
 		}
-		Util.log(TAG, "storeRemoveFav STOP");
+		Util.log(TAG, "removeFavourite STOP");
 	}
 
 	public static ArrayList<HashMap<String, Object>> getFavList(Context context) {
@@ -50,10 +63,9 @@ public class DbUtils {
 		if (cursor != null && cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			do {
-				String name = cursor.getString(cursor
-						.getColumnIndex(DbAdapter.KEY_STATION_NAME));
-				HashMap<String, Object> map = Util.getFullStation(
-						Stations.getAllStations(), name);
+				String name = cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_STATION_NAME));
+				Util.log(TAG, "get Name: " + name);
+				HashMap<String, Object> map = Util.getFullStation(Stations.getAllStations(), name);
 				favList.add(map);
 			} while (cursor.moveToNext());
 

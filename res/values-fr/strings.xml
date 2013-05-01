@@ -41,10 +41,9 @@
 	<string name="austria">-- Pays: Autriche --</string>
 	<string name="otherCountries">-- Pays différents --</string>	
 	<string name="incomingCall">Fermer. Appel entrant.</string>	
-	<string name="helpText">Avez-vous des problèmes avec LocalTV?\nVous voir juste un écran noir?\nAllez à \"App-Info\" et \"Effacer les données\" ou \"Forcer l\'arrêt\".\nAprès cette LocalTV de démarrage.</string>	
+	<string name="helpText">Avez-vous des problèmes avec LocalTV?\nVous voir juste un écran noir?\nAllez à \"App-Info\" et \"Effacer les données\" ou \"Forcer l\'arrêt\".Caution: \"Effacer les données\" va également supprimer les favoris.\nAprès cette LocalTV de démarrage.</string>	
 	<string name="appInfo">App-Info</string>
 	<string name="openExternalPlayer">Ouverture lecteur externe...</string>
-	<string name="addFavourite">add favourite</string>
-	<string name="removeFavourite">remove favourite</string>	
-		
+	<string name="addedToFavourites">ajouter aux favoris</string>
+	<string name="removedFromFavourite">retirer des favoris</string>	
 </resources>

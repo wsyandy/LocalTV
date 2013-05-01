@@ -174,7 +174,7 @@ public class Util {
 		}
 	}
 
-	public static void clearApplicationData(Context context) {
+	public static void clearApplicationDataFiles(Context context) {
 
 		try {
 			File cache = context.getCacheDir();
@@ -193,7 +193,7 @@ public class Util {
 		}
 	}
 
-	public static boolean deleteDir(File dir) {
+	private static boolean deleteDir(File dir) {
 		boolean result = false;
 
 		try {

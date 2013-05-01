@@ -10,28 +10,27 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rothconsulting.android.localtv.sqlitedb.DbUtils;
 
 public class Favourites extends ListActivity {
 
 	private final static String TAG = "Favourites";
-	private Context context;
-	private String stationName;
+	private static Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +44,10 @@ public class Favourites extends ListActivity {
 		String action = getIntent().getAction();
 		String appName = getString(R.string.app_name);
 
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		Util.hideStatusBarNotification(this);
 
-		ArrayList<HashMap<String, Object>> stationList = DbUtils
-				.getFavList(context);
+		ArrayList<HashMap<String, Object>> stationList = DbUtils.getFavList(context);
 
 		if (stationList == null || stationList.size() == 0) {
 
@@ -59,8 +56,7 @@ public class Favourites extends ListActivity {
 		} else {
 
 			setTitle(appName + " - Favoriten Sender");
-			Util.log(TAG,
-					"Action=" + action + " / Stations=" + stationList.size());
+			Util.log(TAG, "Action=" + action + " / Stations=" + stationList.size());
 
 			ListView lv = (ListView) findViewById(android.R.id.list); // getListView();
 			int[] colors = { 0, Color.RED, 0 }; // red for the example
@@ -76,35 +72,46 @@ public class Favourites extends ListActivity {
 			// lv.addHeaderView(header, null, false);
 
 			lv.setOnItemClickListener(new OnItemClickListener() {
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					// When clicked, show a toast with the TextView text
-					TextView textViewName = (TextView) ((LinearLayout) view)
-							.getChildAt(1); // 1 = Die zweite View (name)
-					TextView textViewUrl = (TextView) ((LinearLayout) view)
-							.getChildAt(2); // 2 = Die dritte View (url)
+					TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
+					TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-					Util.log(TAG, "name= " + textViewName.getText() + ", url= "
-							+ textViewUrl.getText());
+					Util.log(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
 
 					// Länder Titel haben keine URL und man kann sie nicht
 					// klicken.
-					if (textViewUrl != null
-							&& !textViewUrl.getText().equals("")) {
-						Util.log(TAG, "Playing: " + textViewName.getText()
-								+ ", " + textViewUrl.getText());
-						Util.play(context, "" + textViewName.getText(), ""
-								+ textViewUrl.getText());
+					if (textViewUrl != null && !textViewUrl.getText().equals("")) {
+						Util.log(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
+						Util.play(context, "" + textViewName.getText(), "" + textViewUrl.getText());
 					}
 				}
 			});
 
-			SimpleAdapter adapter = new SimpleAdapter(this, stationList,
-					R.layout.list_item, new String[] { "icon", "name", "url" },
-					new int[] { R.id.list_icon, R.id.list_name, R.id.list_url });
+			lv.setOnItemLongClickListener(new OnItemLongClickListener() {
+				public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+					Log.e("MyApp", "get onItem Click position= " + position);
+
+					TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
+					TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
+
+					String stationName = "" + textViewName.getText();
+					Log.d(TAG, "name= " + stationName + ", url= " + textViewUrl.getText());
+
+					// Länder Titel haben keine URL und man kann sie nicht klicken.
+					if (textViewUrl != null && !textViewUrl.getText().equals("")) {
+						Toast.makeText(context, textViewName.getText() + "\n" + getString(R.string.removedFromFavourite), Toast.LENGTH_LONG).show();
+						DbUtils.removeFavourite(context, stationName);
+						updateFavList();
+					}
+					return true;
+				}
+			});
+
+			SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { "icon", "name", "url" }, new int[] {
+					R.id.list_icon, R.id.list_name, R.id.list_url });
 
 			setListAdapter(adapter);
-
 		}
 
 		AdMob ads = new AdMob();
@@ -114,10 +121,19 @@ public class Favourites extends ListActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Util.clearApplicationData(this);
+			// Util.clearApplicationData(this);
 			Util.deleteWebViewDatabase(this);
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	public static void updateFavList() {
+		ArrayList<HashMap<String, Object>> stationList = DbUtils.getFavList(context);
+		SimpleAdapter adapter = new SimpleAdapter(context, stationList, R.layout.list_item, new String[] { "icon", "name", "url" }, new int[] { R.id.list_icon,
+				R.id.list_name, R.id.list_url });
+
+		((ListActivity) context).setListAdapter(adapter);
+
 	}
 
 	// ------------------------------------------------------------
@@ -125,12 +141,9 @@ public class Favourites extends ListActivity {
 	// ------------------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(
-				android.R.drawable.ic_menu_info_details);
-		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(
-				android.R.drawable.ic_menu_help);
-		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(
-				android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(android.R.drawable.ic_menu_info_details);
+		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
+		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -144,7 +157,7 @@ public class Favourites extends ListActivity {
 			startActivity(new Intent(this, Help.class));
 			break;
 		case -3: // ende
-			Util.clearApplicationData(this);
+			// Util.clearApplicationData(this);
 			Util.deleteWebViewDatabase(this);
 			finish();
 			break;
@@ -152,25 +165,4 @@ public class Favourites extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.context_menu, menu);
-		// addfavorit is not used here
-		menu.removeItem(R.id.addfavorit);
-	}
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.removefavorit:
-			DbUtils.storeRemoveFav(context, stationName);
-			return true;
-		default:
-			return super.onContextItemSelected(item);
-		}
-
-	}
 }

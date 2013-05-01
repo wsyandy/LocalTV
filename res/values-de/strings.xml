@@ -42,9 +42,9 @@
 	<string name="austria">-- Land: Österreich --</string>
 	<string name="otherCountries">-- Diverse Länder --</string>	
 	<string name="incomingCall">Schliesse wegen Anruf.</string>	
-	<string name="helpText">Hast du Probleme mit LocalTV?\nSiehts du nur einen schwarzen Bildschirm?\nStoppt der Ton nicht?\n\nDann klicke unten auf \"App-Info\" und drücke dort \"Daten löschen\" und/oder \"Stoppen erzwingen\".\nStarte danach LocalTV neu.</string>	
+	<string name="helpText">Hast du Probleme mit LocalTV?\nSiehts du nur einen schwarzen Bildschirm?\nStoppt der Ton nicht?\n\nDann klicke unten auf \"App-Info\" und drücke dort \"Daten löschen\" und/oder \"Stoppen erzwingen\". Vorsicht, \"Daten löschen\" löscht auch die Favoriten!\nStarte danach LocalTV neu.</string>	
 	<string name="appInfo">App-Info</string>
 	<string name="openExternalPlayer">Öffne externen player...</string>
-	<string name="addFavourite">Favorit hinzufügen</string>
-	<string name="removeFavourite">Favourit entfernen</string>	
+	<string name="addedToFavourites">zu Favoriten hinzugefügt</string>
+	<string name="removedFromFavourite">von Favoriten entfernt</string>	
 </resources>
