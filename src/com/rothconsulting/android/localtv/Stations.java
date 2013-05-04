@@ -82,6 +82,7 @@ public class Stations {
 	public static final String BIBEL_TV = "Bibel TV";
 	public static final String K_TV = "K-TV (Kephas Kirche Kultur)";
 	public static final String ERF = "ERF";
+	public static final String HOPE_TV = "Hope TV";
 	public static final String TV_SUEDBADEN = "TV Südbaden";
 	public static final String NDR = "NDR";
 	public static final String WDR = "WDR";
@@ -262,10 +263,8 @@ public class Stations {
 	public static List<String> allowZoom() {
 		List<String> stations = new ArrayList<String>();
 		stations.add(TELE_M1_LIVE);
-		stations.add(TELE_ZUERI);
 		stations.add(DAS_VIERTE);
 		stations.add(TELE_TOP);
-		stations.add(HR);
 		stations.add(PULS_4);
 		stations.add(CASH_TV);
 		stations.add(DAF);
@@ -273,8 +272,6 @@ public class Stations {
 		stations.add(RED_BULL_TV);
 		stations.add(AUSTRIA_24_TV);
 		stations.add(RSI_LA2);
-		stations.add(RTS_UN);
-		stations.add(RTS_DEUX);
 		stations.add(BAYERN_TV);
 		stations.add(MUEHLVIERTEL_TV);
 		stations.add(STUDENTS_TV);
@@ -744,7 +741,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", HR);
-		m.put("url", "hrTV.html");
+		m.put("url", "hrTV.php");
 		m.put("icon", R.drawable.hr_fernsehen);
 		addToLiveStations(m);
 
@@ -800,6 +797,12 @@ public class Stations {
 		m.put("name", ERF);
 		m.put("url", "erf.php");
 		m.put("icon", R.drawable.erf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", HOPE_TV);
+		m.put("url", "hopeTV.php");
+		m.put("icon", R.drawable.hope_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
