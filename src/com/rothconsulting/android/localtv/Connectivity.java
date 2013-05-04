@@ -4,15 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 public class Connectivity {
 
 	private static final String TAG = "Connectivity";
 
 	/*
-	 * HACKISH: These constants aren't yet available in my API level (7), but I
-	 * need to handle these cases if they come up, on newer versions
+	 * HACKISH: These constants aren't yet available in my API level (7), but I need to handle these cases if they come up, on newer versions
 	 */
 	public static final int NETWORK_TYPE_EHRPD = 14; // Level 11
 	public static final int NETWORK_TYPE_EVDO_B = 12; // Level 9
@@ -27,8 +25,7 @@ public class Connectivity {
 	 * @return
 	 */
 	public static boolean isConnected(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo info = cm.getActiveNetworkInfo();
 		return (info != null && info.isConnected());
 	}
@@ -40,11 +37,9 @@ public class Connectivity {
 	 * @return
 	 */
 	public static boolean isConnectedFast(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo info = cm.getActiveNetworkInfo();
-		return (info != null && info.isConnected() && Connectivity
-				.isConnectionFast(info.getType(), info.getSubtype()));
+		return (info != null && info.isConnected() && Connectivity.isConnectionFast(info.getType(), info.getSubtype()));
 	}
 
 	/**
@@ -56,7 +51,7 @@ public class Connectivity {
 	 */
 	public static boolean isConnectionFast(int type, int subType) {
 		if (type == ConnectivityManager.TYPE_WIFI) {
-			Log.d(TAG, "CONNECTED VIA WIFI");
+			Util.log(TAG, "CONNECTED VIA WIFI");
 			return true;
 		} else if (type == ConnectivityManager.TYPE_MOBILE) {
 			switch (subType) {

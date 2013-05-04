@@ -26,6 +26,7 @@ public class DbAdapter {
 	public DbAdapter open() throws SQLException {
 		dbHelper = new DbHelper(context);
 		Util.log(TAG, "dbHelper=" + dbHelper);
+		Util.log(TAG, "context=" + context);
 		database = dbHelper.getWritableDatabase();
 		Util.log(TAG, "database=" + database);
 		return this;

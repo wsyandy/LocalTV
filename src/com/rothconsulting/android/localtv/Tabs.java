@@ -74,4 +74,5 @@ public class Tabs extends TabActivity {
 			}
 		});
 	}
+
 }

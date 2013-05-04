@@ -36,6 +36,7 @@
 	<string name="searchHint">...TV Station suchen...</string>
 	<string name="search">Suchen</string>
 	<string name="favourites">Favoriten</string>
+	<string name="favouritesHelp">Favoriten hinzufügen durch langen Klick auf den Sender-Namen.\nFavoriten entfernen durch langen Klick auf den Sender-Namen unter \'Favoriten\'.</string>
 	<string name="emptyString"></string>
 	<string name="switzerland">-- Land: Schweiz --</string>
 	<string name="germany">-- Land: Deutschland --</string>

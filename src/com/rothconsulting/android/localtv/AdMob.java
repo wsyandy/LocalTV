@@ -1,7 +1,6 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.google.ads.AdRequest;
@@ -18,17 +17,14 @@ public class AdMob {
 
 	private void showRemoveAdsImpl(Activity context) {
 		if (hasValidKey()) {
-			LinearLayout layout = (LinearLayout) context
-					.findViewById(R.id.adsLayout);
+			LinearLayout layout = (LinearLayout) context.findViewById(R.id.adsLayout);
 			layout.removeAllViews();
 		} else {
 			// Create the adView
-			AdView adView = new AdView(context, AdSize.BANNER,
-					Constants.ADMOB_PUBLISHER_ID);
-			Log.d(TAG, "adView=" + adView);
+			AdView adView = new AdView(context, AdSize.BANNER, Constants.ADMOB_PUBLISHER_ID);
+			Util.log(TAG, "adView=" + adView);
 
-			LinearLayout layout = (LinearLayout) context
-					.findViewById(R.id.adsLayout);
+			LinearLayout layout = (LinearLayout) context.findViewById(R.id.adsLayout);
 			// Add the adView to it
 			layout.addView(adView);
 			// Initiate a generic request to load it with an ad

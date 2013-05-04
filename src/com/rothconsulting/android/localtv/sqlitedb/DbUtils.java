@@ -20,15 +20,14 @@ public class DbUtils {
 
 		dbadapter.open();
 		Cursor cursor = dbadapter.fetchStation(stationName);
-		dbadapter.close();
 
 		if (cursor == null || cursor.getCount() == 0) {
 			// insert new
 			Util.log(TAG, "instertStation: " + stationName);
-			dbadapter.open();
 			dbadapter.insertStation(stationName);
-			dbadapter.close();
 		}
+		dbadapter.close();
+
 		Util.log(TAG, "addFavourite STOP");
 	}
 
@@ -39,19 +38,17 @@ public class DbUtils {
 
 		dbadapter.open();
 		Cursor cursor = dbadapter.fetchStation(stationName);
-		dbadapter.close();
 
 		if (cursor != null && cursor.getCount() > 0) {
 			// delete
 			Util.log(TAG, "deleteStation: " + stationName);
-			dbadapter.open();
 			dbadapter.deleteStation(stationName);
-			dbadapter.close();
 		}
+		dbadapter.close();
 		Util.log(TAG, "removeFavourite STOP");
 	}
 
-	public static ArrayList<HashMap<String, Object>> getFavList(Context context) {
+	public static ArrayList<HashMap<String, Object>> getFavListFromDb(Context context) {
 		Util.log(TAG, "fillFavSpinner START");
 
 		DbAdapter dbadapter = new DbAdapter(context);

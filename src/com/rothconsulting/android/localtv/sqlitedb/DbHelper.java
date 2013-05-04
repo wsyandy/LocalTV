@@ -3,7 +3,6 @@ package com.rothconsulting.android.localtv.sqlitedb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.rothconsulting.android.localtv.Util;
 
@@ -34,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	// the database version
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		Log.w(DbHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
+		Util.log(DbHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
 		database.execSQL("DROP TABLE IF EXISTS " + DbAdapter.T_STATION);
 		onCreate(database);
 	}

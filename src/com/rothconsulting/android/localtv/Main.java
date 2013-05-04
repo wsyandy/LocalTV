@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,7 +57,7 @@ public class Main extends ListActivity {
 			setTitle(appName + " - Live Sender");
 			stationList = stations.getLiveStations();
 		}
-		Log.d(TAG, "Action=" + action + " / Stations=" + stationList.size());
+		Util.log(TAG, "Action=" + action + " / Stations=" + stationList.size());
 
 		ListView lv = (ListView) findViewById(android.R.id.list); // getListView();
 		int[] colors = { 0, Color.RED, 0 }; // red for the example
@@ -78,12 +77,12 @@ public class Main extends ListActivity {
 				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
 				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				Log.d(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
+				Util.log(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
 
 				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
-					Log.d(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
+					Util.log(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
 					Util.play(context, "" + textViewName.getText(), "" + textViewUrl.getText());
 				}
 			}
@@ -91,19 +90,18 @@ public class Main extends ListActivity {
 
 		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.e("MyApp", "get onItem Click position= " + position);
+				Util.log(TAG, "get onItem Click position= " + position);
 
 				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
 				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
 				String stationName = "" + textViewName.getText();
-				Log.d(TAG, "name= " + stationName + ", url= " + textViewUrl.getText());
+				Util.log(TAG, "name= " + stationName + ", url= " + textViewUrl.getText());
 
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
 					Toast.makeText(context, textViewName.getText() + "\n" + getString(R.string.addedToFavourites), Toast.LENGTH_LONG).show();
 					DbUtils.addFavourite(context, stationName);
-					Favourites.updateFavList();
 				}
 
 				return true;

@@ -65,7 +65,7 @@ public class Stations {
 	public static final String CANAL_29 = "Canal 29";
 	public static final String MAX_TV = "max tv";
 	public static final String SCHAFFHAUSER_FERNSEHEN = "Schaffhauser Fernsehen";
-	public static final String SRF_PLAYER = "SRF Player (viele Sendungen)";
+	public static final String SRF_PLAYER = "SRF Player (Archiv)";
 	public static final String ART_TV = "art tv";
 	public static final String BNJ_TV = "bnj.tv";
 	public static final String RTS_VIDEO = "RTS video";
@@ -108,7 +108,12 @@ public class Stations {
 	public static final String BERG_TV = "Bergisch Gladbach TV";
 	public static final String ANDROID_NEW_TV = "Android News TV";
 	public static final String DW = "DW - Deutsche Welle";
+	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
+	public static final String SACHSEN_FERNSEHEN_EXT = "Sachsen Fernsehen (ext)";
+	public static final String DRESDEN_TV = "Dresden Fernsehen";
+	public static final String DRESDEN_TV_EXT = "Dresden Fernsehen (ext)";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
+	public static final String LEIPZIG_TV_EXT = "Leipzig Fernsehen (ext)";
 	public static final String BAYERN_TV = "Bayerisches Fernsehen";
 	public static final String BAYERN_TV_MEDIATHEK = "Bayerisches Fernsehen - Mediathek";
 	public static final String OK_DESSAU = "OK Dessau";
@@ -132,7 +137,6 @@ public class Stations {
 	public static final String SWR_MEDIATHEK = "SWR Mediathek";
 	public static final String MDR_MEDIATHEK = "MDR Mediathek";
 	public static final String HAMBURG_1_MEDIATHEK = "Hamburg1 Mediathek";
-	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
 	public static final String DONAU_TV_LIVE = "Donau TV";
 	public static final String DONAU_TV_ARCHIV = "Donau TV (Archiv)";
 	public static final String OBERFRANKEN_TV = "Oberfranken TV";
@@ -143,12 +147,13 @@ public class Stations {
 	public static final String OS1_TV = "OS1 TV";
 	public static final String OSTFRIESEN_TV = "Ostfriesen TV";
 	public static final String FAN_TV = "Fan TV";
+	public static final String OEINS_OLDENBURG = "Oldenburg eins";
+	public static final String NRW_TV = "NRW TV";
 	public static final String RIC_TV_KINDER = "RiC TV - Kinder";
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
 	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live (ext)";
-	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
@@ -996,11 +1001,23 @@ public class Stations {
 		m.put("icon", R.drawable.dresden_tv);
 		addToLiveStations(m);
 
+		// m = new HashMap<String, Object>();
+		// m.put("name", DRESDEN_TV_EXT);
+		// m.put("url", "dresdenTVext.php");
+		// m.put("icon", R.drawable.dresden_tv);
+		// addToLiveStations(m);
+
 		m = new HashMap<String, Object>();
 		m.put("name", SACHSEN_FERNSEHEN);
 		m.put("url", "sachsenFernsehen.php");
 		m.put("icon", R.drawable.sachsen_fernsehen);
 		addToLiveStations(m);
+
+		// m = new HashMap<String, Object>();
+		// m.put("name", SACHSEN_FERNSEHEN_EXT);
+		// m.put("url", "sachsenFernsehenExt.php");
+		// m.put("icon", R.drawable.sachsen_fernsehen);
+		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", LEIPZIG_TV);
@@ -1008,11 +1025,29 @@ public class Stations {
 		m.put("icon", R.drawable.leipzig_tv);
 		addToLiveStations(m);
 
+		// m = new HashMap<String, Object>();
+		// m.put("name", LEIPZIG_TV_EXT);
+		// m.put("url", "leipzigTVext.php");
+		// m.put("icon", R.drawable.leipzig_tv);
+		// addToLiveStations(m);
+
 		m = new HashMap<String, Object>();
 		m.put("name", FAN_TV);
 		m.put("url", "fanTV.php");
 		m.put("icon", R.drawable.fan_tv);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OEINS_OLDENBURG);
+		m.put("url", "oeins.php");
+		m.put("icon", R.drawable.oeins);
+		addToLiveStations(m);
+
+		// m = new HashMap<String, Object>();
+		// m.put("name", NRW_TV);
+		// m.put("url", "nrwTV.php");
+		// m.put("icon", R.drawable.nrw_tv);
+		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RIC_TV_KINDER);

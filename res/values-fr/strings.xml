@@ -35,6 +35,7 @@
 	<string name="searchHint">...recherche station de télévision...</string>
 	<string name="search">chercher</string>
 	<string name="favourites">Favourites</string>
+	<string name="favouritesHelp">Add favourites by long click on the station name\nRemove favourites by long click on the station name in the \'Favourites\' tab</string>
 	<string name="emptyString"></string>
 	<string name="switzerland">-- Pays: Suisse --</string>
 	<string name="germany">-- Pays: Allemagne --</string>

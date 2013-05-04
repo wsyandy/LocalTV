@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -59,7 +58,7 @@ public class TVPlayer extends Activity {
 				String name = bundle.getString(Constants.NAME);
 				stationName = name;
 				String url = bundle.getString(Constants.URL);
-				Log.d(TAG, "URL=" + url);
+				Util.log(TAG, "URL=" + url);
 
 				playInWebView(name, url);
 			} else {
@@ -68,7 +67,7 @@ public class TVPlayer extends Activity {
 				Util.showStatusBarNotification(this, stationName);
 			}
 		} else {
-			Log.d(TAG, "bundle is null");
+			Util.log(TAG, "bundle is null");
 		}
 
 		// Detect incoming phone call and register PhoneStateListener
@@ -120,7 +119,7 @@ public class TVPlayer extends Activity {
 			int width = display.getWidth();
 			int height = display.getHeight();
 			theURLtoPlay += "?width=" + width + "&height=" + height;
-			Log.d(TAG, "theURLtoPlay=" + theURLtoPlay);
+			Util.log(TAG, "theURLtoPlay=" + theURLtoPlay);
 		}
 
 		final Activity activity = this;
@@ -138,14 +137,15 @@ public class TVPlayer extends Activity {
 		myWebView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-				Log.d(TAG, "WebViewClient ErrorCode=" + errorCode);
+				Util.log(TAG, "WebViewClient ErrorCode=" + errorCode);
 				Toast.makeText(context, "Oh no! " + description, Toast.LENGTH_LONG).show();
 			}
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				Log.d(TAG, "****** URL=" + url);
-				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("id=com.rothconsulting.android.localtv")) {
+				Util.log(TAG, "****** URL=" + url);
+				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("rtmp:")
+						|| url.contains("id=com.rothconsulting.android.localtv")) {
 
 					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 					if (url.contains("id=com.rothconsulting.android.localtv")) {

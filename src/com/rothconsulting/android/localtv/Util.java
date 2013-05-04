@@ -130,13 +130,13 @@ public class Util {
 			if (infos != null) {
 				for (NetworkInfo ni : infos) {
 					if (ni.getState() == NetworkInfo.State.CONNECTED) {
-						Log.d(TAG, "Wir sind connected!");
+						Util.log(TAG, "Wir sind connected!");
 						return true;
 					}
 				}
 			}
 		}
-		Log.d(TAG, "Keine Connectivity");
+		Util.log(TAG, "Keine Connectivity");
 		return false;
 	}
 
@@ -184,7 +184,7 @@ public class Util {
 				for (String s : children) {
 					if (!s.equals("lib")) {
 						deleteDir(new File(appDir, s));
-						Log.d("TAG", "*************** File /data/data/APP_PACKAGE/" + s + " DELETED ***");
+						Util.log("TAG", "*************** File /data/data/APP_PACKAGE/" + s + " DELETED ***");
 					}
 				}
 			}
