@@ -102,7 +102,6 @@ public class Stations {
 	public static final String MASSIVE_SPORT_SPEED = "Massive SportsTV - Speed";
 	public static final String L_TV = "L TV";
 	public static final String _3_SAT = "3 sat";
-	public static final String ARD_MEDIATHEK = "ARD Mediathek";
 	public static final String OBERPFALZ_TV = "Oberpfalz TV";
 	public static final String AUGSBURG_TV = "Augsburg TV";
 	public static final String BERG_TV = "Bergisch Gladbach TV";
@@ -134,6 +133,7 @@ public class Stations {
 	public static final String RTF_1 = "RTF 1";
 	public static final String BW_EINS = "BW Eins";
 	public static final String PROMETHEUS = "Prometheus";
+	public static final String ARD_MEDIATHEK = "ARD Mediathek";
 	public static final String SWR_MEDIATHEK = "SWR Mediathek";
 	public static final String MDR_MEDIATHEK = "MDR Mediathek";
 	public static final String HAMBURG_1_MEDIATHEK = "Hamburg1 Mediathek";
@@ -154,6 +154,7 @@ public class Stations {
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
 	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live (ext)";
+	public static final String ARD_DAS_ERSTE_TAGESSCHAU = "ARD Das Erste Tagesschau";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
@@ -276,6 +277,7 @@ public class Stations {
 		stations.add(RTS_DEUX);
 		stations.add(BAYERN_TV);
 		stations.add(MUEHLVIERTEL_TV);
+		stations.add(STUDENTS_TV);
 		return stations;
 	}
 
@@ -1107,6 +1109,12 @@ public class Stations {
 		m.put("name", ARD_DAS_ERSTE_NO_FLASH);
 		m.put("url", "ardDasErste2.php");
 		m.put("icon", R.drawable.ard_das_erste);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ARD_DAS_ERSTE_TAGESSCHAU);
+		m.put("url", "ardDasErsteTagesschau.php");
+		m.put("icon", R.drawable.ard_tagesschau);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
