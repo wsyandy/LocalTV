@@ -92,7 +92,7 @@ public class TVPlayer extends Activity {
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
-		if (Stations.noFlash().contains(name) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		if (Stations.noFlash().contains(name) && Build.VERSION.SDK_INT >= 11) {
 			myWebView.getSettings().setPluginState(PluginState.OFF);
 		}
 
@@ -173,7 +173,7 @@ public class TVPlayer extends Activity {
 
 		});
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+		if (Build.VERSION.SDK_INT >= 16) {
 			myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 		}
 		myWebView.loadUrl(theURLtoPlay);
@@ -183,13 +183,13 @@ public class TVPlayer extends Activity {
 		if (Stations.getNotLiveStations().contains(name)) {
 			Toast.makeText(this, getResources().getString(R.string.notLive), Toast.LENGTH_LONG).show();
 		}
-		if (Stations.noFlash().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		if (Stations.noFlash().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= 11) {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
-			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
+			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
 				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			}
 		}
