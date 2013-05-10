@@ -92,6 +92,10 @@ public class TVPlayer extends Activity {
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
+		if (Stations.noFlash().contains(name) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			myWebView.getSettings().setPluginState(PluginState.OFF);
+		}
+
 		myWebView.getSettings().setAllowFileAccess(true);
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
@@ -144,7 +148,7 @@ public class TVPlayer extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Util.log(TAG, "****** URL=" + url);
-				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("rtmp:")
+				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("rtmp:") || url.contains("rtmp:")
 						|| url.contains("id=com.rothconsulting.android.localtv")) {
 
 					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
@@ -152,7 +156,8 @@ public class TVPlayer extends Activity {
 						url = "market://details?id=com.rothconsulting.android.localtv";
 					}
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					if (url.contains(".mp4")) {
+					if (url.contains(".mp4") || url.contains("rtmp:")) {
+						Util.log(TAG, "******* setType( video/mp4 );");
 						intent.setType("video/mp4");
 					}
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -168,6 +173,9 @@ public class TVPlayer extends Activity {
 
 		});
 
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+		}
 		myWebView.loadUrl(theURLtoPlay);
 
 		Util.showStatusBarNotification(this, name);
@@ -175,9 +183,15 @@ public class TVPlayer extends Activity {
 		if (Stations.getNotLiveStations().contains(name)) {
 			Toast.makeText(this, getResources().getString(R.string.notLive), Toast.LENGTH_LONG).show();
 		}
-		Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
-		if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
+		if (Stations.noFlash().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
+		} else {
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
+			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
+				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 

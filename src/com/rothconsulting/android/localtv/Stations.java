@@ -249,6 +249,8 @@ public class Stations {
 		stations.add(KIKA_PLUS);
 		stations.add(PULS_4);
 		stations.add(SRF_1);
+		stations.add(SRF_2);
+		stations.add(SRF_INFO);
 
 		return stations;
 	}
@@ -257,6 +259,11 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(BUNDESTAG_1);
 		stations.add(BUNDESTAG_2);
+		stations.add(ARD_DAS_ERSTE_NO_FLASH);
+		stations.add(SRF_1);
+		stations.add(SRF_2);
+		stations.add(SRF_INFO);
+
 		return stations;
 	}
 

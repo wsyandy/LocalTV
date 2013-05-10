@@ -97,8 +97,8 @@ public class Info extends Activity {
 		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 		emailIntent.setType("plain/text");
 		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { getString(R.string.emailAndroider) });
-		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "LocalTV");
-		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hallo Koni\n\nMir fehlt folgender Sender: \n\n\n\n");
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.emailText));
 		emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 	}

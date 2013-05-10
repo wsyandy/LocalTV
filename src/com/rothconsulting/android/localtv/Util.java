@@ -111,7 +111,7 @@ public class Util {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
 		b.setTitle(R.string.info);
-		String text = "Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.";
+		String text = context.getString(R.string.noFavouritesYet);
 		b.setMessage(text);
 		b.setPositiveButton(android.R.string.ok, null);
 		b.show();

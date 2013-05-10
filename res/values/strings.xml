@@ -23,6 +23,7 @@
     <string name="infoNelloTv"><u>www.nello.tv</u></string>    
     <string name="infoSenderNichtLive">Some local stations do not have a live internet stream. However, they have a large archive of shows. To get quickly to the recent broadcasts I\'ve added a link to their broadcast archives.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
+    <string name="emailText">Hello Koni\n\nI am missing the following station: \n\n\n\n</string>
 <!--     <string name="vollbild">For full screen&#8230;\n&#8230;long press on the image, then the full-screen button.\n&#8230;\nor use the small square button on the bottom bar.</string> -->
 	<string name="notLive">This station does not have a live stream to the internet.\nBut have fun browsing the archive!</string>
 	<string name="seeArchive">Browse the archive!</string>
@@ -49,4 +50,6 @@
 	<string name="openExternalPlayer">Opening external player...</string>
 	<string name="addedToFavourites">added to favourites</string>
 	<string name="removedFromFavourite">removed from favourites</string>	
+	<string name="pressScreenToStartSRF">PRESS screen to start SRF stream !!!! Then wait 30 sec.</string>	
+	<string name="noFavouritesYet">No favorites yet.\nTo add a favourite just long press on a station name.</string>
 </resources>

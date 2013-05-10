@@ -22,6 +22,7 @@
     <string name="infoSchoenerFernsehen"><u>www.schoener-fernsehen.com</u></string>    
     <string name="infoSenderNichtLive">Einige Lokal-Stationen senden nicht live ins Internet. Diese haben aber ein grosses Archiv an Sendungen. Damit du schnell zu den letzten Sendungen kommst habe ich einen Link auf deren Sendungsarchiv eingebaut.</string>
     <string name="emailAndroider">androider@wolke7.net</string>
+    <string name="emailText">Hallo Koni\n\nMir fehlt folgender Sender: \n\n\n\n</string>
 <!--     <string name="vollbild">Für Vollbild&#8230;\n&#8230;drücke lange auf das Bild, danach den Vollbild-Knopf.\noder\n&#8230;verwende den kleinen viereckigen Knopf auf dem unteren Balken.</string> -->
 	<string name="notLive">Diese TV Station sendet nicht Live ins Internet.\nSchau dich hier im Archiv um!</string>
 	<string name="seeArchive">Schau dich hier im Archiv um!</string>
@@ -48,4 +49,7 @@
 	<string name="openExternalPlayer">Öffne externen player...</string>
 	<string name="addedToFavourites">zu Favoriten hinzugefügt</string>
 	<string name="removedFromFavourite">von Favoriten entfernt</string>	
+	<string name="pressScreenToStartSRF">Drück auf den Bildschirm um SRF zu starten !!!! Dann warte 30 sec.</string>	
+	<string name="noFavouritesYet">Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.</string>
+		
 </resources>
