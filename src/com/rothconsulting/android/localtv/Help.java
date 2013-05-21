@@ -28,6 +28,13 @@ public class Help extends Activity {
 			}
 		});
 
+		final Button playStoreButton = (Button) findViewById(R.id.buttonAdobeFlashPlayer);
+		playStoreButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Util.showFlashAlert(context, R.string.flash);
+			}
+		});
+
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
 

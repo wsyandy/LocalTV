@@ -63,11 +63,11 @@ public class Util {
 		return version;
 	}
 
-	public static void showFlashAlert(final Context context) {
+	public static void showFlashAlert(final Context context, final int titleResId) {
 
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
-		b.setTitle(R.string.flashNotInstalled);
+		b.setTitle(titleResId);
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
@@ -306,7 +306,7 @@ public class Util {
 				Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
 			}
 		} else {
-			Util.showFlashAlert(context);
+			Util.showFlashAlert(context, R.string.flashNotInstalled);
 			// Toast.makeText(this,
 			// getResources().getString(R.string.flashNotInstalled),
 			// Toast.LENGTH_LONG).show();

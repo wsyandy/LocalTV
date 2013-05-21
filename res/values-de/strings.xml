@@ -7,7 +7,7 @@
     <string name="back">Zurück zur Übersicht</string>
     <string name="cannotStartTV">Kann TV nicht starten.</string>
     <string name="flashNotInstalled">Adobe Flash Player ist nicht installiert!</string>
-    <string name="flashDownloadText">Damit LocalTV funktioniert musst du den gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest kannst du ihn mittels \'Direkt Download\' herunterladen und installieren.</string>
+    <string name="flashDownloadText">Damit LocalTV funktioniert musst du den neusten gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest kannst du ihn mittels \'Direkt Download\' herunterladen und installieren.</string>
     <string name="flashDownloadTextAmazon">Damit LocalTV funktioniert musst du den gratis Adobe Flash Player installiert haben!\n\nFinde ihn bei Adobe (suche nach: Archived Flash Player versions) oder lade ihn von meiner Website via \"Direkt Download\".</string>
     <string name="internetNotConnected">Du bist nicht mit dem Internet verbunden!</string>
     <string name="info">Info</string>
@@ -51,5 +51,7 @@
 	<string name="removedFromFavourite">von Favoriten entfernt</string>	
 	<string name="pressScreenToStartSRF">Drück auf den Bildschirm um SRF zu starten !!!! Dann warte 30 sec.</string>	
 	<string name="noFavouritesYet">Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.</string>
-		
+	<string name="flash">Adobe Flash Player</string>
+	<string name="getLatestFlash">neuster Flash Player</string>
+			
 </resources>

@@ -95,12 +95,12 @@ public class Stations {
 	public static final String RBB_MEDIATHEK = "RBB Mediathek";
 	public static final String RBB_DOKU_REPORTAGEN = "RBB Doku Reportagen";
 	public static final String FOUR_SESAONS_TV = "4 seasons TV";
-	public static final String MASSIVE_SPORT_MAG = "Massive SportsTV - Mag";
-	public static final String MASSIVE_SPORT_BIKE = "Massive SportsTV - Bike";
-	public static final String MASSIVE_SPORT_RUNNING = "Massive SportsTV - Running";
-	public static final String MASSIVE_SPORT_FREEZE = "Massive SportsTV - Freeze";
-	public static final String MASSIVE_SPORT_EXTREME = "Massive SportsTV - Extreme";
-	public static final String MASSIVE_SPORT_SPEED = "Massive SportsTV - Speed";
+	// public static final String MASSIVE_SPORT_MAG = "Massive SportsTV - Mag";
+	// public static final String MASSIVE_SPORT_BIKE = "Massive SportsTV - Bike";
+	// public static final String MASSIVE_SPORT_RUNNING = "Massive SportsTV - Running";
+	// public static final String MASSIVE_SPORT_FREEZE = "Massive SportsTV - Freeze";
+	// public static final String MASSIVE_SPORT_EXTREME = "Massive SportsTV - Extreme";
+	// public static final String MASSIVE_SPORT_SPEED = "Massive SportsTV - Speed";
 	public static final String L_TV = "L TV";
 	public static final String _3_SAT = "3 sat";
 	public static final String OBERPFALZ_TV = "Oberpfalz TV";
@@ -162,6 +162,7 @@ public class Stations {
 	public static final String PHOENIX = "Phoenix";
 	public static final String BUNDESTAG_1 = "Bundestag TV 1";
 	public static final String BUNDESTAG_2 = "Bundestag TV 2";
+	public static final String BADEN_TV = "Baden TV";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -269,11 +270,11 @@ public class Stations {
 
 	public static List<String> allowZoom() {
 		List<String> stations = new ArrayList<String>();
+		stations.addAll(Stations.notLiveList);
 		stations.add(TELE_M1_LIVE);
 		stations.add(DAS_VIERTE);
 		stations.add(TELE_TOP);
 		stations.add(PULS_4);
-		stations.add(CASH_TV);
 		stations.add(DAF);
 		stations.add(PHOENIX);
 		stations.add(RED_BULL_TV);
@@ -281,7 +282,7 @@ public class Stations {
 		stations.add(RSI_LA2);
 		stations.add(BAYERN_TV);
 		stations.add(MUEHLVIERTEL_TV);
-		stations.add(STUDENTS_TV);
+
 		return stations;
 	}
 
@@ -830,41 +831,41 @@ public class Stations {
 		m.put("icon", R.drawable.fourseasons);
 		addToLiveStations(m);
 
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_MAG);
-		m.put("url", "massiveSportsTvMag.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_BIKE);
-		m.put("url", "massiveSportsTvBike.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_RUNNING);
-		m.put("url", "massiveSportsTvRunning.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_FREEZE);
-		m.put("url", "massiveSportsTvFreeze.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_EXTREME);
-		m.put("url", "massiveSportsTvExtreme.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", MASSIVE_SPORT_SPEED);
-		m.put("url", "massiveSportsTvSpeed.php");
-		m.put("icon", R.drawable.massive_sports_tv);
-		addToLiveStations(m);
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_MAG);
+		// m.put("url", "massiveSportsTvMag.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
+		//
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_BIKE);
+		// m.put("url", "massiveSportsTvBike.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
+		//
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_RUNNING);
+		// m.put("url", "massiveSportsTvRunning.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
+		//
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_FREEZE);
+		// m.put("url", "massiveSportsTvFreeze.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
+		//
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_EXTREME);
+		// m.put("url", "massiveSportsTvExtreme.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
+		//
+		// m = new HashMap<String, Object>();
+		// m.put("name", MASSIVE_SPORT_SPEED);
+		// m.put("url", "massiveSportsTvSpeed.php");
+		// m.put("icon", R.drawable.massive_sports_tv);
+		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", L_TV);
@@ -1271,6 +1272,12 @@ public class Stations {
 		m.put("name", BUNDESTAG_2);
 		m.put("url", "bundestag2.php");
 		m.put("icon", R.drawable.bundestag);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", BADEN_TV);
+		m.put("url", "badenTV.php");
+		m.put("icon", R.drawable.baden_tv);
 		addToLiveStations(m);
 
 		// *********************************************************************************

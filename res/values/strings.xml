@@ -7,7 +7,7 @@
     <string name="back">Back to the overview</string>
     <string name="cannotStartTV">Cannot start TV.</string>
     <string name="flashNotInstalled">Adobe Flash Player is not installed!</string>
-    <string name="flashDownloadText">Thus LocalTV work you need the free Adobe Flash Player!\n\nIf you have had already installed it once you can relate it back from the \'Google Play\' Store.\nIf you have never had it you can use \'Direct Download\' to download and install it.</string>
+    <string name="flashDownloadText">Thus LocalTV work you need the latest free Adobe Flash Player!\n\nIf you have had already installed it once you can relate it back from the \'Google Play\' Store.\nIf you have never had it you can use \'Direct Download\' to download and install it.</string>
     <string name="flashDownloadTextAmazon">To get LocalTV to work you need the free Adobe Flash Player!\n\nPlease get it from Adobe (search for: Archived Flash Player versions) or get it from my Website via \"Direct Download\".</string>
     <string name="internetNotConnected">You are not connected to the internet!</string>
     <string name="info">Info</string>
@@ -52,4 +52,6 @@
 	<string name="removedFromFavourite">removed from favourites</string>	
 	<string name="pressScreenToStartSRF">PRESS screen to start SRF stream !!!! Then wait 30 sec.</string>	
 	<string name="noFavouritesYet">No favorites yet.\nTo add a favourite just long press on a station name.</string>
+	<string name="flash">Adobe Flash Player</string>
+	<string name="getLatestFlash">get latest Flash Player</string>
 </resources>
