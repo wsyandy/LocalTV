@@ -37,6 +37,7 @@ public class Stations {
 	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
 	public static final String TVM3 = "TVM3";
 	public static final String JOIZ = "joiz";
+	public static final String CH_TV = "CH TV";
 
 	public static final String NEUDINGS_TV = "neu dings TV";
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
@@ -718,6 +719,12 @@ public class Stations {
 		m.put("name", TELEVISTA);
 		m.put("url", "televista.html");
 		m.put("icon", R.drawable.televista);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", CH_TV);
+		m.put("url", "chTV.php");
+		m.put("icon", R.drawable.ch_tv);
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
