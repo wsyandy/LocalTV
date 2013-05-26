@@ -9,7 +9,9 @@ import android.content.Context;
 public class Stations {
 
 	public static final String TELE_BAERN = "Tele Bärn";
+	public static final String TELE_BAERN_ARCHIV = "Tele Bärn (Archiv)";
 	public static final String TELE_ZUERI = "Tele Züri";
+	public static final String TELE_ZUERI_ARCHIV = "Tele Züri (Archiv)";
 	public static final String TELE_BASEL_LIVE = "Tele Basel";
 	public static final String TELE_BASEL_ARCHIV = "Tele Basel (Archiv)";
 	public static final String TELE_M1_LIVE = "Tele M1";
@@ -38,6 +40,8 @@ public class Stations {
 	public static final String TVM3 = "TVM3";
 	public static final String JOIZ = "joiz";
 	public static final String CH_TV = "CH TV";
+	public static final String FCZ_TV = "FCZ TV";
+	public static final String YB_TV_CHANNEL = "YB TV Channel";
 
 	public static final String NEUDINGS_TV = "neu dings TV";
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
@@ -237,7 +241,7 @@ public class Stations {
 		// stations.add(TELE_NAPF);
 		// stations.add(NETZKINO);
 		// stations.add(KINDERKINO);
-		stations.add(CANAL_29);
+		// stations.add(CANAL_29);
 		stations.add(BNJ_TV);
 		stations.add(NASA_TV_PUBLIC);
 		stations.add(NASA_TV_MEDIA);
@@ -350,10 +354,22 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TELE_BAERN_ARCHIV);
+		m.put("url", "telebaernArchiv.php");
+		m.put("icon", R.drawable.tele_baern);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TELE_ZUERI);
 		m.put("url", "telezueri.php");
 		m.put("icon", R.drawable.tele_zueri);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_ZUERI_ARCHIV);
+		m.put("url", "telezueriArchiv.php");
+		m.put("icon", R.drawable.tele_zueri);
+		addToArchiveAndNotLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BASEL_LIVE);
@@ -725,6 +741,18 @@ public class Stations {
 		m.put("name", CH_TV);
 		m.put("url", "chTV.php");
 		m.put("icon", R.drawable.ch_tv);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", FCZ_TV);
+		m.put("url", "fczTV.php");
+		m.put("icon", R.drawable.fcz_tv);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", YB_TV_CHANNEL);
+		m.put("url", "ybChannel.php");
+		m.put("icon", R.drawable.yb_tv_channel);
 		addToArchiveAndNotLiveStations(m);
 
 		// *********************************************************************************
