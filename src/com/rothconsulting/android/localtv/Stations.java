@@ -161,6 +161,10 @@ public class Stations {
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
 	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live (ext)";
 	public static final String ARD_DAS_ERSTE_TAGESSCHAU = "ARD Das Erste Tagesschau";
+	public static final String ZDF_LIVE = "ZDF Live";
+	public static final String ZDF_NEO = "ZDF Neo";
+	public static final String ZDF_INFO = "ZDF Info";
+	public static final String ZDF_KULTUR = "ZDF Kultur";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
@@ -257,6 +261,7 @@ public class Stations {
 		stations.add(SRF_1);
 		stations.add(SRF_2);
 		stations.add(SRF_INFO);
+		stations.add(ZDF_LIVE);
 
 		return stations;
 	}
@@ -269,6 +274,7 @@ public class Stations {
 		stations.add(SRF_1);
 		stations.add(SRF_2);
 		stations.add(SRF_INFO);
+		stations.add(ZDF_LIVE);
 
 		return stations;
 	}
@@ -1168,6 +1174,32 @@ public class Stations {
 		m.put("url", "ardMediathek.php");
 		m.put("icon", R.drawable.ard_mediathek);
 		addToArchiveAndNotLiveStations(m);
+
+		// if (Build.VERSION.SDK_INT >= 14) {
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_LIVE);
+		m.put("url", "zdfLive.php");
+		m.put("icon", R.drawable.zdf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_NEO);
+		m.put("url", "zdfNeo.php");
+		m.put("icon", R.drawable.zdf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_INFO);
+		m.put("url", "zdfInfo.php");
+		m.put("icon", R.drawable.zdf);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_KULTUR);
+		m.put("url", "zdfKultur.php");
+		m.put("icon", R.drawable.zdf);
+		addToLiveStations(m);
+		// }
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_MEDIATHEK);

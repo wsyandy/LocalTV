@@ -148,8 +148,7 @@ public class TVPlayer extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Util.log(TAG, "****** URL=" + url);
-				if (url.contains(".mp4") || url.endsWith(".3gp") || url.contains("rtsp:") || url.contains("rtmp:") || url.contains("rtmp:")
-						|| url.contains("id=com.rothconsulting.android.localtv")) {
+				if (Util.isMediaUrl(url)) {
 
 					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 					if (url.contains("id=com.rothconsulting.android.localtv")) {

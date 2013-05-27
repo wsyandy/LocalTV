@@ -2,6 +2,7 @@ package com.rothconsulting.android.localtv;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -323,6 +324,17 @@ public class Util {
 			}
 		}
 		return null;
+	}
+
+	public static final boolean isMediaUrl(String url) {
+		List<String> urlParts = new ArrayList<String>();
+		Collections.addAll(urlParts, ".mp4", ".3gp", "rtsp:", "rtmp:", ".m3u8", "id=com.rothconsulting.android.localtv");
+		for (String urlPart : urlParts) {
+			if (url.contains(urlPart)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
