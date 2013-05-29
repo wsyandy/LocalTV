@@ -139,14 +139,12 @@ public class Stations {
 	public static final String RTF_1 = "RTF 1";
 	public static final String BW_EINS = "BW Eins";
 	public static final String PROMETHEUS = "Prometheus";
-	public static final String ARD_MEDIATHEK = "ARD Mediathek";
 	public static final String SWR_MEDIATHEK = "SWR Mediathek";
 	public static final String MDR_MEDIATHEK = "MDR Mediathek";
 	public static final String HAMBURG_1_MEDIATHEK = "Hamburg1 Mediathek";
 	public static final String DONAU_TV_LIVE = "Donau TV";
 	public static final String DONAU_TV_ARCHIV = "Donau TV (Archiv)";
 	public static final String OBERFRANKEN_TV = "Oberfranken TV";
-	public static final String ZDF_MEDIATHEK = "ZDF Mediathek";
 	public static final String KIKA_PLUS = "KIKA Plus";
 	public static final String OK_KIEL_TV = "OK Kiel TV";
 	public static final String DIE_MAUS = "Die Maus";
@@ -159,12 +157,16 @@ public class Stations {
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste Live";
-	public static final String ARD_DAS_ERSTE_NO_FLASH = "ARD Das Erste Live (ext)";
+	public static final String ARD_DAS_ERSTE_MOBILE = "ARD Das Erste Live (ext)";
 	public static final String ARD_DAS_ERSTE_TAGESSCHAU = "ARD Das Erste Tagesschau";
+	public static final String ARD_MEDIATHEK = "ARD Mediathek";
+	public static final String ARD_MEDIATHEK_MOBILE = "ARD Mediathek Mobile";
 	public static final String ZDF_LIVE = "ZDF Live";
 	public static final String ZDF_NEO = "ZDF Neo";
 	public static final String ZDF_INFO = "ZDF Info";
 	public static final String ZDF_KULTUR = "ZDF Kultur";
+	public static final String ZDF_MEDIATHEK = "ZDF Mediathek";
+	public static final String ZDF_MEDIATHEK_MOBILE = "ZDF Mediathek Mobile";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
@@ -236,6 +238,10 @@ public class Stations {
 		stations.add(OS1_TV);
 		stations.add(ORF_TV_THEK);
 		stations.add(STUDENTS_TV);
+		stations.add(ZDF_LIVE);
+		stations.add(ZDF_INFO);
+		stations.add(ZDF_KULTUR);
+		stations.add(ZDF_NEO);
 
 		return stations;
 	}
@@ -262,6 +268,9 @@ public class Stations {
 		stations.add(SRF_2);
 		stations.add(SRF_INFO);
 		stations.add(ZDF_LIVE);
+		stations.add(ZDF_INFO);
+		stations.add(ZDF_KULTUR);
+		stations.add(ZDF_NEO);
 
 		return stations;
 	}
@@ -270,11 +279,16 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(BUNDESTAG_1);
 		stations.add(BUNDESTAG_2);
-		stations.add(ARD_DAS_ERSTE_NO_FLASH);
+		stations.add(ARD_DAS_ERSTE_MOBILE);
 		stations.add(SRF_1);
 		stations.add(SRF_2);
 		stations.add(SRF_INFO);
 		stations.add(ZDF_LIVE);
+		stations.add(ZDF_INFO);
+		stations.add(ZDF_KULTUR);
+		stations.add(ZDF_NEO);
+		stations.add(ZDF_MEDIATHEK_MOBILE);
+		stations.add(ARD_MEDIATHEK_MOBILE);
 
 		return stations;
 	}
@@ -1158,7 +1172,7 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", ARD_DAS_ERSTE_NO_FLASH);
+		m.put("name", ARD_DAS_ERSTE_MOBILE);
 		m.put("url", "ardDasErste2.php");
 		m.put("icon", R.drawable.ard_das_erste);
 		addToLiveStations(m);
@@ -1175,6 +1189,12 @@ public class Stations {
 		m.put("icon", R.drawable.ard_mediathek);
 		addToArchiveAndNotLiveStations(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", ARD_MEDIATHEK_MOBILE);
+		m.put("url", "ardMediathekMobile.php");
+		m.put("icon", R.drawable.ard_mediathek);
+		addToArchiveAndNotLiveStations(m);
+
 		// if (Build.VERSION.SDK_INT >= 14) {
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_LIVE);
@@ -1185,25 +1205,31 @@ public class Stations {
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_NEO);
 		m.put("url", "zdfNeo.php");
-		m.put("icon", R.drawable.zdf);
+		m.put("icon", R.drawable.zdf_neo);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_INFO);
 		m.put("url", "zdfInfo.php");
-		m.put("icon", R.drawable.zdf);
+		m.put("icon", R.drawable.zdf_info);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_KULTUR);
 		m.put("url", "zdfKultur.php");
-		m.put("icon", R.drawable.zdf);
+		m.put("icon", R.drawable.zdf_kultur);
 		addToLiveStations(m);
 		// }
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_MEDIATHEK);
 		m.put("url", "zdfMediathek.php");
+		m.put("icon", R.drawable.zdf_mediathek);
+		addToArchiveAndNotLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", ZDF_MEDIATHEK_MOBILE);
+		m.put("url", "zdfMediathekMobile.php");
 		m.put("icon", R.drawable.zdf_mediathek);
 		addToArchiveAndNotLiveStations(m);
 
