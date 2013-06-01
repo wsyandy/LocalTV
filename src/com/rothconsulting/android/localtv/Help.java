@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Help extends Activity {
 
@@ -28,13 +29,18 @@ public class Help extends Activity {
 			}
 		});
 
+		final TextView flashTitle = (TextView) findViewById(R.id.textViewFlashTitle);
 		final Button playStoreButton = (Button) findViewById(R.id.buttonAdobeFlashPlayer);
-		playStoreButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Util.showFlashAlert(context, R.string.flash);
-			}
-		});
-
+		if (Util.isBorderOver()) {
+			playStoreButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Util.showFlashAlert(context, R.string.flash);
+				}
+			});
+		} else {
+			flashTitle.setVisibility(View.INVISIBLE);
+			playStoreButton.setVisibility(View.INVISIBLE);
+		}
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
 

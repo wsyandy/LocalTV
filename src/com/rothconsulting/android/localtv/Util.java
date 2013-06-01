@@ -3,6 +3,8 @@ package com.rothconsulting.android.localtv;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -335,6 +337,19 @@ public class Util {
 			}
 		}
 		return false;
+	}
+
+	public static final Date today = new Date();
+	// border = 15.6.2013
+	public static final GregorianCalendar border = new GregorianCalendar(2013, 5, 15);
+
+	public static boolean isBorderOver() {
+		if (today.getTime() > border.getTimeInMillis()) {
+			return true;
+
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -37,14 +37,14 @@
 				android:id="@+id/textFavHelp" />
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:text="@string/favouritesHelp"
-				android:id="@+id/textViewHelpText" android:layout_marginTop="5dip"
+				android:id="@+id/textViewFavouritesHelp" android:layout_marginTop="5dip"
 				android:layout_marginBottom="5dip" />
 
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:text="@string/flash"
 				android:textColor="#BA002B" android:textSize="20sp"
 				android:layout_marginTop="10dip" android:layout_marginBottom="1dip"
-				android:id="@+id/text" />
+				android:id="@+id/textViewFlashTitle" />
 			<Button android:layout_margin="35dip" android:id="@+id/buttonAdobeFlashPlayer"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="@string/getLatestFlash" android:layout_gravity="left" />

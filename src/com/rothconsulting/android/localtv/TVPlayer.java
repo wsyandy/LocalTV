@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
@@ -39,11 +42,12 @@ public class TVPlayer extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Remove notification bar
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		getWindow().requestFeature(Window.FEATURE_PROGRESS);
+		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
+		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
 
 		setContentView(R.layout.player);
 		myWebView = (WebView) findViewById(R.id.webview);
@@ -130,11 +134,15 @@ public class TVPlayer extends Activity {
 		myWebView.setWebChromeClient(new WebChromeClient() {
 			@Override
 			public void onProgressChanged(WebView view, int progress) {
-				// Activities and WebViews measure progress with different
-				// scales.
-				// The progress meter will automatically disappear when we reach
-				// 100%
-				activity.setProgress(progress * 1000);
+				// Activities and WebViews measure progress with different scales.
+				// The progress meter will automatically disappear when we reach 100%
+
+				activity.setTitle("Loading...");
+				activity.setProgress(progress * 100);
+
+				if (progress == 100) {
+					getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_OFF);
+				}
 			}
 		});
 
@@ -143,6 +151,25 @@ public class TVPlayer extends Activity {
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				Util.log(TAG, "WebViewClient ErrorCode=" + errorCode);
 				Toast.makeText(context, "Oh no! " + description, Toast.LENGTH_LONG).show();
+			}
+
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				super.onPageStarted(view, url, favicon);
+				activity.setTitle("Loading...");
+				View title = getWindow().findViewById(android.R.id.title);
+				View titleBar = (View) title.getParent();
+				titleBar.setBackgroundColor(Color.BLACK);
+				titleBar.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+				activity.setTitle("");
+				View title = getWindow().findViewById(android.R.id.title);
+				View titleBar = (View) title.getParent();
+				titleBar.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -186,7 +213,7 @@ public class TVPlayer extends Activity {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
-		} else {
+		} else if (!Stations.getNotLiveStations().contains(name)) {
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
 				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
@@ -241,6 +268,17 @@ public class TVPlayer extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
 	private void closeTVPlayer(boolean removeStatusBar) {
 		if (myWebView != null) {
 
@@ -269,17 +307,6 @@ public class TVPlayer extends Activity {
 		}
 		// Util.clearApplicationData(this);
 		finish();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	// ------------------------------------------------------------
@@ -314,7 +341,7 @@ public class TVPlayer extends Activity {
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				// called when someone is ringing to this phone
-				Toast.makeText(context, getString(R.string.incomingCall) + " \n" + incomingNumber, Toast.LENGTH_LONG).show();
+				Toast.makeText(context, getString(R.string.incomingCall) + " \n" + incomingNumber, Toast.LENGTH_SHORT).show();
 				// stop playing
 				closeTVPlayer(true);
 				break;

@@ -231,6 +231,8 @@ public class Stations {
 
 	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
+		stations.addAll(noFlash());
+		stations.removeAll(getNotLiveStations());
 		stations.add(CASH_TV);
 		stations.add(ALF_TV);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
@@ -242,6 +244,10 @@ public class Stations {
 		stations.add(ZDF_INFO);
 		stations.add(ZDF_KULTUR);
 		stations.add(ZDF_NEO);
+		stations.add(ZDF_MEDIATHEK_MOBILE);
+		stations.add(ARD_MEDIATHEK_MOBILE);
+		stations.add(ARD_DAS_ERSTE_MOBILE);
+		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
 
 		return stations;
 	}
@@ -261,6 +267,8 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(OS1_TV);
 		stations.add(ARD_DAS_ERSTE);
+		stations.add(ARD_MEDIATHEK_MOBILE);
+		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
 		stations.add(RRO_TV);
 		stations.add(KIKA_PLUS);
 		stations.add(PULS_4);
@@ -271,15 +279,21 @@ public class Stations {
 		stations.add(ZDF_INFO);
 		stations.add(ZDF_KULTUR);
 		stations.add(ZDF_NEO);
+		stations.add(ZDF_MEDIATHEK_MOBILE);
 
 		return stations;
 	}
 
 	public static List<String> noFlash() {
 		List<String> stations = new ArrayList<String>();
+		if (!Util.isBorderOver()) {
+			stations.addAll(getNotLiveStations());
+		}
 		stations.add(BUNDESTAG_1);
 		stations.add(BUNDESTAG_2);
 		stations.add(ARD_DAS_ERSTE_MOBILE);
+		stations.add(ARD_MEDIATHEK_MOBILE);
+		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
 		stations.add(SRF_1);
 		stations.add(SRF_2);
 		stations.add(SRF_INFO);
@@ -288,7 +302,8 @@ public class Stations {
 		stations.add(ZDF_KULTUR);
 		stations.add(ZDF_NEO);
 		stations.add(ZDF_MEDIATHEK_MOBILE);
-		stations.add(ARD_MEDIATHEK_MOBILE);
+		stations.add(TELE_BLOCHER);
+		stations.add(ORF_TV_THEK);
 
 		return stations;
 	}
@@ -346,8 +361,23 @@ public class Stations {
 	}
 
 	private void addToLiveStations(HashMap<String, Object> map) {
-		allStationList.add(map);
-		liveStationList.add(map);
+		if (Util.isBorderOver()) {
+			allStationList.add(map);
+			liveStationList.add(map);
+		} else {
+			if (isNoFlashStation(map)) {
+				allStationList.add(map);
+				liveStationList.add(map);
+			}
+		}
+	}
+
+	private boolean isNoFlashStation(HashMap<String, Object> map) {
+		String name = (String) map.get("name");
+		if (noFlash().contains(name)) {
+			return true;
+		}
+		return false;
 	}
 
 	public void init(Context context) {
@@ -950,7 +980,7 @@ public class Stations {
 		m.put("name", BAYERN_TV);
 		m.put("url", "bayerischesFernsehen.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
-		liveStationList.add(m);
+		// liveStationList.add(m);
 		allStationList.add(m);
 		archivStationList.add(m);
 
