@@ -49,7 +49,7 @@
 	<string name="openExternalPlayer">Öffne externen player...</string>
 	<string name="addedToFavourites">zu Favoriten hinzugefügt</string>
 	<string name="removedFromFavourite">von Favoriten entfernt</string>	
-	<string name="pressScreenToStartSRF">Drück auf den Bildschirm um SRF zu starten !!!! Dann warte 30 sec.</string>	
+	<string name="pressScreenToStartSRF">Drück auf den Bildschirm um SRF zu starten !!!! Dann warte 30 sec. bis das Bild erscheint.</string>	
 	<string name="noFavouritesYet">Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.</string>
 	<string name="flash">Adobe Flash Player</string>
 	<string name="getLatestFlash">neuster Flash Player</string>

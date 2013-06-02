@@ -344,12 +344,13 @@ public class Util {
 	public static final GregorianCalendar border = new GregorianCalendar(2013, 5, 15);
 
 	public static boolean isBorderOver() {
-		if (today.getTime() > border.getTimeInMillis()) {
-			return true;
-
-		} else {
-			return false;
-		}
+		return true;
+		// if (today.getTime() > border.getTimeInMillis()) {
+		// return true;
+		//
+		// } else {
+		// return false;
+		// }
 	}
 
 }

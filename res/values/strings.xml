@@ -50,7 +50,7 @@
 	<string name="openExternalPlayer">Opening external player...</string>
 	<string name="addedToFavourites">added to favourites</string>
 	<string name="removedFromFavourite">removed from favourites</string>	
-	<string name="pressScreenToStartSRF">PRESS screen to start SRF stream !!!! Then wait 30 sec.</string>	
+	<string name="pressScreenToStartSRF">PRESS screen to start SRF stream !!!! Then wait 30 sec. for video signal.</string>	
 	<string name="noFavouritesYet">No favorites yet.\nTo add a favourite just long press on a station name.</string>
 	<string name="flash">Adobe Flash Player</string>
 	<string name="getLatestFlash">get latest Flash Player</string>

@@ -110,7 +110,7 @@ public class TVPlayer extends Activity {
 		if (Stations.userAgentAndroid().contains(name)) {
 			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME_MOBILE_SGS3);
 		} else {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_FIREFOX);
+			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_SAFARI_DESKTOP);
 		}
 
 		if (!Stations.noTransparentBackground().contains(name)) {
@@ -137,7 +137,7 @@ public class TVPlayer extends Activity {
 				// Activities and WebViews measure progress with different scales.
 				// The progress meter will automatically disappear when we reach 100%
 
-				activity.setTitle("Loading...");
+				activity.setTitle(" Loading...");
 				activity.setProgress(progress * 100);
 
 				if (progress == 100) {
@@ -151,12 +151,13 @@ public class TVPlayer extends Activity {
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				Util.log(TAG, "WebViewClient ErrorCode=" + errorCode);
 				Toast.makeText(context, "Oh no! " + description, Toast.LENGTH_LONG).show();
+				finish();
 			}
 
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				super.onPageStarted(view, url, favicon);
-				activity.setTitle("Loading...");
+				activity.setTitle(" Loading...");
 				View title = getWindow().findViewById(android.R.id.title);
 				View titleBar = (View) title.getParent();
 				titleBar.setBackgroundColor(Color.BLACK);
