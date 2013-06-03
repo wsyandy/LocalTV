@@ -177,6 +177,7 @@ public class Stations {
 	public static final String BUNDESTAG_2 = "Bundestag TV 2";
 	public static final String BADEN_TV = "Baden TV";
 	public static final String BADEN_TV_EXTERN = "Baden TV (ext)";
+	public static final String TV_AKTUELL = "TVAktuell ";
 
 	public static final String RED_BULL_TV = "Red Bull TV";
 	public static final String SERVUS_TV = "Servus TV";
@@ -912,6 +913,12 @@ public class Stations {
 		m.put("name", OBERFRANKEN_TV);
 		m.put("url", "oberfrankenTV.php");
 		m.put("icon", R.drawable.oberfranken_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_AKTUELL);
+		m.put("url", "tvAktuell.php");
+		m.put("icon", R.drawable.tvaktuell);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
