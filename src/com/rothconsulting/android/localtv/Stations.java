@@ -252,6 +252,7 @@ public class Stations {
 		stations.add(ZDF_MEDIATHEK_MOBILE);
 		stations.add(ARD_MEDIATHEK_MOBILE);
 		stations.add(ARD_DAS_ERSTE_MOBILE);
+		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
 
 		return stations;
 	}
