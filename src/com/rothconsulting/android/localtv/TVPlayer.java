@@ -3,6 +3,7 @@ package com.rothconsulting.android.localtv;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,13 +28,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class TVPlayer extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
-	private String stationName = "";
+	private final String stationName = "";
 	private WebView myWebView = null;
 	private Context context;
 	private TelephonyManager tm = null;
@@ -59,12 +60,11 @@ public class TVPlayer extends Activity {
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
 			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
-				String name = bundle.getString(Constants.NAME);
-				stationName = name;
-				String url = bundle.getString(Constants.URL);
+				final String stationName = bundle.getString(Constants.NAME);
+				final String url = bundle.getString(Constants.URL);
 				Util.log(TAG, "URL=" + url);
 
-				playInWebView(name, url);
+				playInWebView(stationName, url);
 			} else {
 				String stationName = bundle.getString(Constants.NAME);
 				finish();
@@ -80,6 +80,7 @@ public class TVPlayer extends Activity {
 		tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
+	@SuppressLint("NewApi")
 	private void playInWebView(final String name, final String url) {
 
 		if (!Stations.orientationPortrait().contains(name)) {
@@ -176,23 +177,33 @@ public class TVPlayer extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Util.log(TAG, "****** URL=" + url);
-				if (Util.isMediaUrl(url)) {
 
+				if (Util.isMediaUrl(url)) {
 					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
-					if (url.contains("id=com.rothconsulting.android.localtv")) {
-						url = "market://details?id=com.rothconsulting.android.localtv";
+					if (url.contains(".m3u8")) {
+						Intent intent = new Intent(context, TVPlayerVideoView.class);
+						intent.putExtra(Constants.NAME, name);
+						intent.putExtra(Constants.URL, url);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						context.startActivity(intent);
+						finish();
+						return true;
+					} else {
+						if (url.contains("id=com.rothconsulting.android.localtv")) {
+							url = "market://details?id=com.rothconsulting.android.localtv";
+						}
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						if (url.contains(".mp4") || url.contains("rtmp:")) {
+							Util.log(TAG, "******* setType( video/mp4 );");
+							intent.setType("video/mp4");
+						}
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						view.getContext().startActivity(intent);
+						Util.hideStatusBarNotification(context);
+						// back to the list
+						finish();
+						return true;
 					}
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					if (url.contains(".mp4") || url.contains("rtmp:")) {
-						Util.log(TAG, "******* setType( video/mp4 );");
-						intent.setType("video/mp4");
-					}
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					view.getContext().startActivity(intent);
-					Util.hideStatusBarNotification(context);
-					// back to the list
-					finish();
-					return true;
 				} else {
 					return super.shouldOverrideUrlLoading(view, url);
 				}
@@ -207,14 +218,12 @@ public class TVPlayer extends Activity {
 
 		Util.showStatusBarNotification(this, name);
 
-		if (Stations.getNotLiveStations().contains(name)) {
-			Toast.makeText(this, getResources().getString(R.string.notLive), Toast.LENGTH_LONG).show();
-		}
 		if (Stations.noFlash().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= 11) {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
-		} else if (!Stations.getNotLiveStations().contains(name)) {
+		} else {
+			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
 				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
@@ -222,25 +231,13 @@ public class TVPlayer extends Activity {
 		}
 	}
 
-	// public void playInVideoView(String url, boolean autoplay) {
-	// // get current window information, and set format, set it up
-	// // differently, if you need some special effects
-	// getWindow().setFormat(PixelFormat.TRANSLUCENT);
-	// // the VideoView will hold the video
-	// VideoView videoHolder = new VideoView(this);
-	// // MediaController is the ui control howering above the video (just like
-	// // in the default youtube player).
-	// videoHolder.setMediaController(new MediaController(this));
-	// // assing a video file to the video holder
-	// videoHolder
-	// .setVideoURI(Uri
-	// .parse("http://rtmp.infomaniak.ch/livecast/barntele/playlist.m3u8"));
-	// // get focus, before playing the video.
-	// videoHolder.requestFocus();
-	// if (autoplay) {
-	// videoHolder.start();
-	// }
-	// }
+	@Override
+	public void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		if (myWebView != null) {
+			myWebView.destroy();
+		}
+	}
 
 	@Override
 	protected void onDestroy() {
@@ -256,15 +253,17 @@ public class TVPlayer extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// Check if the key event was the BACK key and if there's history
-		if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
-			myWebView.goBack();
-			return false;
-		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
-			LinearLayout layout = (LinearLayout) findViewById(R.id.playerLayout);
-			layout.removeView(myWebView);
-			myWebView.removeAllViews();
-			closeTVPlayer(true);
+		if (myWebView != null) {
+			// Check if the key event was the BACK key and if there's history
+			if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
+				myWebView.goBack();
+				return false;
+			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
+				RelativeLayout layout = (RelativeLayout) findViewById(R.id.playerLayout);
+				layout.removeView(myWebView);
+				myWebView.removeAllViews();
+				closeTVPlayer(true);
+			}
 		}
 		return super.onKeyDown(keyCode, event);
 	}

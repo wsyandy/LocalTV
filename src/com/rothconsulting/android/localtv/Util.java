@@ -297,24 +297,20 @@ public class Util {
 
 	public static void play(Context context, String name, String url) {
 
-		if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name)) {
+		if (Util.isNetworkAvailable(context)) {
 
-			if (Util.isNetworkAvailable(context)) {
+			if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name)) {
 				Intent intent = new Intent(context, TVPlayer.class);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(intent);
 			} else {
-				Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
+				Util.showFlashAlert(context, R.string.flashNotInstalled);
 			}
 		} else {
-			Util.showFlashAlert(context, R.string.flashNotInstalled);
-			// Toast.makeText(this,
-			// getResources().getString(R.string.flashNotInstalled),
-			// Toast.LENGTH_LONG).show();
+			Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
 		}
-
 	}
 
 	public static HashMap<String, Object> getFullStation(ArrayList<HashMap<String, Object>> stationList, String searchName) {
@@ -330,7 +326,7 @@ public class Util {
 
 	public static final boolean isMediaUrl(String url) {
 		List<String> urlParts = new ArrayList<String>();
-		Collections.addAll(urlParts, ".mp4", ".3gp", "rtsp:", "rtmp:", ".m3u8", "id=com.rothconsulting.android.localtv");
+		Collections.addAll(urlParts, ".mp4", ".m4v", ".3gp", "rtsp:", "rtmp:", ".m3u8", "id=com.rothconsulting.android.localtv");
 		for (String urlPart : urlParts) {
 			if (url.contains(urlPart)) {
 				return true;
@@ -340,17 +336,17 @@ public class Util {
 	}
 
 	public static final Date today = new Date();
-	// border = 15.6.2013
-	public static final GregorianCalendar border = new GregorianCalendar(2013, 5, 15);
+	// border = 25.6.2013
+	public static final GregorianCalendar border = new GregorianCalendar(2013, 5, 25);
 
 	public static boolean isBorderOver() {
-		return true;
-		// if (today.getTime() > border.getTimeInMillis()) {
 		// return true;
-		//
-		// } else {
-		// return false;
-		// }
+		if (today.getTime() > border.getTimeInMillis()) {
+			return true;
+
+		} else {
+			return false;
+		}
 	}
 
 }
