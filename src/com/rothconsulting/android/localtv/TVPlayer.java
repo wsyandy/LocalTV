@@ -25,6 +25,7 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -50,8 +51,13 @@ public class TVPlayer extends Activity {
 		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
 
-		setContentView(R.layout.player);
+		setContentView(R.layout.player_webview);
 		myWebView = (WebView) findViewById(R.id.webview);
+
+		// Fit site to screen
+		// myWebView.getSettings().setLoadWithOverviewMode(true);
+		// myWebView.getSettings().setUseWideViewPort(true);
+		myWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 
 		context = this;
 
@@ -179,7 +185,6 @@ public class TVPlayer extends Activity {
 				Util.log(TAG, "****** URL=" + url);
 
 				if (Util.isMediaUrl(url)) {
-					Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 					if (url.contains(".m3u8")) {
 						Intent intent = new Intent(context, TVPlayerVideoView.class);
 						intent.putExtra(Constants.NAME, name);
@@ -189,6 +194,7 @@ public class TVPlayer extends Activity {
 						finish();
 						return true;
 					} else {
+						Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
 						if (url.contains("id=com.rothconsulting.android.localtv")) {
 							url = "market://details?id=com.rothconsulting.android.localtv";
 						}

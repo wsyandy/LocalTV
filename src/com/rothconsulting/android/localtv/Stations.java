@@ -58,6 +58,7 @@ public class Stations {
 	public static final String RRO_TV = "RRO TV";
 	public static final String LEMAN_BLEU = "Léman bleu";
 	public static final String TELE_OSTSCHWEIZ = "Tele Ostschweiz";
+	public static final String TELE_OSTSCHWEIZ_ARCHIV = "Tele Ostschweiz Archiv";
 	public static final String TELE_SUEDOSTSCHWEIZ = "Tele Südostschweiz";
 	public static final String TELE_SUEDOSTSCHWEIZ_ARCHIV = "Tele Südostschweiz Archiv";
 	public static final String TCH = "Trailer Cinema Highlights";
@@ -240,6 +241,7 @@ public class Stations {
 		List<String> stations = new ArrayList<String>();
 		stations.add(LEMAN_BLEU);
 		stations.add(TV_ADMIN_CH);
+		stations.add(TELE_OSTSCHWEIZ_ARCHIV);
 		return stations;
 	}
 
@@ -252,7 +254,6 @@ public class Stations {
 		stations.add(DONAU_TV_ARCHIV);
 		stations.add(OS1_TV);
 		stations.add(ORF_TV_THEK);
-		stations.add(STUDENTS_TV);
 		stations.add(ZDF_LIVE);
 		stations.add(ZDF_INFO);
 		stations.add(ZDF_KULTUR);
@@ -442,13 +443,18 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_ZUERI);
-		m.put("url", "telezueri.php");
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "telezueri.php");
+		} else {
+			m.put("url", streamFile + "Tele-Zueri");
+		}
 		m.put("icon", R.drawable.tele_zueri);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_ZUERI_ARCHIV);
-		m.put("url", "telezueriArchiv.php");
+		m.put("url", streamFile + "Tele-Zueri-Archiv");
 		m.put("icon", R.drawable.tele_zueri);
 		addToArchiveStations(m);
 
@@ -500,15 +506,34 @@ public class Stations {
 		m.put("icon", R.drawable.tele_top);
 		addToArchiveStations(m);
 
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT >= 12) {
+			m = new HashMap<String, Object>();
+			m.put("name", TELE_OSTSCHWEIZ);
+			m.put("url", streamFile + "Tele-Ostschweiz");
+			m.put("icon", R.drawable.tele_ostschweiz);
+			addToLiveStations(m);
+		}
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_OSTSCHWEIZ_ARCHIV);
+		m.put("url", archiveFile + "Tele-Ostschw-Archiv");
+		m.put("icon", R.drawable.tele_ostschweiz);
+		addToArchiveStations(m);
+
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_SUEDOSTSCHWEIZ);
-		m.put("url", "telesuedostschweiz.html");
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "telesuedostschweiz.html");
+		} else {
+			m.put("url", streamFile + "Tele-Suedostsch");
+		}
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_SUEDOSTSCHWEIZ_ARCHIV);
-		m.put("url", "telesuedostschweizArchiv.html");
+		m.put("url", archiveFile + "Tele-Suedostschw");
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		addToArchiveStations(m);
 
@@ -532,7 +557,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", SRF_PLAYER);
-		m.put("url", "srfPlayer.php");
+		m.put("url", archiveFile + "SRF-Player");
 		m.put("icon", R.drawable.srf_player);
 		addToArchiveStations(m);
 
@@ -555,6 +580,23 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", TELE_BIELINGUE);
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "telebielingue.php");
+		} else {
+			m.put("url", streamFile + "Tele-Bielingue");
+		}
+		m.put("icon", R.drawable.telebielingue);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_BIELINGUE_ARCHIV);
+		m.put("url", archiveFile + "Tele-Bielingue");
+		m.put("icon", R.drawable.telebielingue);
+		addToArchiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", LA_TELE);
 		// Level 12 = Android 3.1
 		if (Build.VERSION.SDK_INT < 12) {
@@ -567,19 +609,34 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_ALPHA_NEUCHATEL_YVERDON);
-		m.put("url", "canalalpha.php");
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "canalalpha.php");
+		} else {
+			m.put("url", streamFile + "Canal-Alpha-NE");
+		}
 		m.put("icon", R.drawable.canal_alpha);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_ALPHA_JURA_BERNOISE);
-		m.put("url", "canalalpha_ju_be.php");
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "canalalpha_ju_be.php");
+		} else {
+			m.put("url", streamFile + "Canal-Alpha-JU");
+		}
 		m.put("icon", R.drawable.canal_alpha);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TVM3);
-		m.put("url", "tvm3.php");
+		// Level 12 = Android 3.1
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", "tvm3.php");
+		} else {
+			m.put("url", streamFile + "TVM3");
+		}
 		m.put("icon", R.drawable.tvm3);
 		addToLiveStations(m);
 
@@ -651,25 +708,19 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", STUDENTS_TV);
-		m.put("url", "studentsTV.php");
+		m.put("url", archiveFile + "Students-TV");
 		m.put("icon", R.drawable.students_ch);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BLOCHER);
-		m.put("url", "teleBlocher.php");
+		m.put("url", archiveFile + "Tele-Blocher");
 		m.put("icon", R.drawable.tele_blocher);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", TELE_OSTSCHWEIZ);
-		m.put("url", "teleostschweiz.html");
-		m.put("icon", R.drawable.tele_ostschweiz);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", TV_ADMIN_CH);
-		m.put("url", "tv.admin.ch.html");
+		m.put("url", archiveFile + "tv.admin.ch");
 		m.put("icon", R.drawable.admin_ch);
 		addToArchiveStations(m);
 
@@ -681,7 +732,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", ALF_TV);
-		m.put("url", "alf.html");
+		m.put("url", archiveFile + "ALF-TV");
 		m.put("icon", R.drawable.alf);
 		addToArchiveStations(m);
 
@@ -695,18 +746,6 @@ public class Stations {
 		m.put("name", CASH_TV);
 		m.put("url", "cashTV.html");
 		m.put("icon", R.drawable.cash_tv);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TELE_BIELINGUE);
-		m.put("url", "telebielingue.php");
-		m.put("icon", R.drawable.telebielingue);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TELE_BIELINGUE_ARCHIV);
-		m.put("url", "telebielingue.html");
-		m.put("icon", R.drawable.telebielingue);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
