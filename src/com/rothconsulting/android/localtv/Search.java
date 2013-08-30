@@ -14,10 +14,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 public class Search extends Activity {
 
 	static final String TAG = "Search";
 	private Context context;
+	private Tracker mGaTracker;
+	private GoogleAnalytics mGaInstance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,9 +32,17 @@ public class Search extends Activity {
 		context = this;
 		TextView searchField = (TextView) findViewById(R.id.autocomplete);
 		searchField.setText("");
+
+		// Get the GoogleAnalytics singleton. Note that the SDK uses
+		// the application context to avoid leaking the current context.
+		mGaInstance = GoogleAnalytics.getInstance(this);
+		// Use the GoogleAnalytics singleton to get a Tracker.
+		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
+
 		prepareSearch();
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
+
 	}
 
 	private void prepareSearch() {
@@ -90,4 +104,19 @@ public class Search extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		// Google Analytics
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		// Google Analytics
+		EasyTracker.getInstance().activityStop(this);
+	}
+
 }

@@ -19,6 +19,10 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 public class TVPlayerVideoView extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
@@ -27,6 +31,8 @@ public class TVPlayerVideoView extends Activity {
 	private Context context;
 	private TelephonyManager tm = null;
 	private PhoneStateListener callStateListener;
+	private Tracker mGaTracker;
+	private GoogleAnalytics mGaInstance;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,12 @@ public class TVPlayerVideoView extends Activity {
 
 		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+
+		// Get the GoogleAnalytics singleton. Note that the SDK uses
+		// the application context to avoid leaking the current context.
+		mGaInstance = GoogleAnalytics.getInstance(this);
+		// Use the GoogleAnalytics singleton to get a Tracker.
+		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
 
 		setContentView(R.layout.player_videoview);
 		myVideoView = (VideoView) findViewById(R.id.videoview);
@@ -174,4 +186,19 @@ public class TVPlayerVideoView extends Activity {
 			}
 		}
 	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		// Google Analytics
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		// Google Analytics
+		EasyTracker.getInstance().activityStop(this);
+	}
+
 }

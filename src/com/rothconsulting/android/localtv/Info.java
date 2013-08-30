@@ -9,7 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 public class Info extends Activity {
+
+	private Tracker mGaTracker;
+	private GoogleAnalytics mGaInstance;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +25,12 @@ public class Info extends Activity {
 
 		final TextView textViewAppVersion = (TextView) findViewById(R.id.textViewAppVersion);
 		textViewAppVersion.setText("Version " + Util.getAppVersionName(this, Info.class));
+
+		// Get the GoogleAnalytics singleton. Note that the SDK uses
+		// the application context to avoid leaking the current context.
+		mGaInstance = GoogleAnalytics.getInstance(this);
+		// Use the GoogleAnalytics singleton to get a Tracker.
+		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
 
 		final TextView website = (TextView) findViewById(R.id.textViewWebsite);
 		website.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +104,7 @@ public class Info extends Activity {
 
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
+
 	}
 
 	private void startEmailActivity() {
@@ -121,4 +135,19 @@ public class Info extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		// Google Analytics
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		// Google Analytics
+		EasyTracker.getInstance().activityStop(this);
+	}
+
 }

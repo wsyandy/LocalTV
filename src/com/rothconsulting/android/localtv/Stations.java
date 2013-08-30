@@ -391,6 +391,15 @@ public class Stations {
 		}
 	}
 
+	// Level 12 = Android 3.1
+	private void setLiveUrl(HashMap<String, Object> m, String flashUrl, String noFlashUrl) {
+		if (Build.VERSION.SDK_INT < 12) {
+			m.put("url", flashUrl);
+		} else {
+			m.put("url", streamFile + noFlashUrl);
+		}
+	}
+
 	private boolean isNoFlashStation(HashMap<String, Object> map) {
 		String name = (String) map.get("name");
 		String url = (String) map.get("url");
@@ -426,12 +435,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BAERN);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "telebaern.php");
-		} else {
-			m.put("url", streamFile + "Tele-Baern");
-		}
+		setLiveUrl(m, "telebaern.php", "Tele-Baern");
 		m.put("icon", R.drawable.tele_baern);
 		addToLiveStations(m);
 
@@ -443,12 +447,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_ZUERI);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "telezueri.php");
-		} else {
-			m.put("url", streamFile + "Tele-Zueri");
-		}
+		setLiveUrl(m, "telezueri.php", "Tele-Zueri");
 		m.put("icon", R.drawable.tele_zueri);
 		addToLiveStations(m);
 
@@ -522,12 +521,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_SUEDOSTSCHWEIZ);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "telesuedostschweiz.html");
-		} else {
-			m.put("url", streamFile + "Tele-Suedostsch");
-		}
+		setLiveUrl(m, "telesuedostschweiz.html", "Tele-Suedostsch");
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		addToLiveStations(m);
 
@@ -581,12 +575,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BIELINGUE);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "telebielingue.php");
-		} else {
-			m.put("url", streamFile + "Tele-Bielingue");
-		}
+		setLiveUrl(m, "telebielingue.php", "Tele-Bielingue");
 		m.put("icon", R.drawable.telebielingue);
 		addToLiveStations(m);
 
@@ -598,45 +587,25 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", LA_TELE);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "latele.php");
-		} else {
-			m.put("url", streamFile + "La-Tele");
-		}
+		setLiveUrl(m, "latele.php", "La-Tele");
 		m.put("icon", R.drawable.la_tele);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_ALPHA_NEUCHATEL_YVERDON);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "canalalpha.php");
-		} else {
-			m.put("url", streamFile + "Canal-Alpha-NE");
-		}
+		setLiveUrl(m, "canalalpha.php", "Canal-Alpha-NE");
 		m.put("icon", R.drawable.canal_alpha);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", CANAL_ALPHA_JURA_BERNOISE);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "canalalpha_ju_be.php");
-		} else {
-			m.put("url", streamFile + "Canal-Alpha-JU");
-		}
+		setLiveUrl(m, "canalalpha_ju_be.php", "Canal-Alpha-JU");
 		m.put("icon", R.drawable.canal_alpha);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TVM3);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "tvm3.php");
-		} else {
-			m.put("url", streamFile + "TVM3");
-		}
+		setLiveUrl(m, "tvm3.php", "TVM3");
 		m.put("icon", R.drawable.tvm3);
 		addToLiveStations(m);
 

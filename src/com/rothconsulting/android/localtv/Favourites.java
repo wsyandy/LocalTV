@@ -24,12 +24,17 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
 import com.rothconsulting.android.localtv.sqlitedb.DbUtils;
 
 public class Favourites extends ListActivity {
 
 	private final static String TAG = "Favourites";
 	private Context context;
+	private Tracker mGaTracker;
+	private GoogleAnalytics mGaInstance;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,19 +71,33 @@ public class Favourites extends ListActivity {
 		// false);
 		// lv.addHeaderView(header, null, false);
 
+		// Get the GoogleAnalytics singleton. Note that the SDK uses
+		// the application context to avoid leaking the current context.
+		mGaInstance = GoogleAnalytics.getInstance(this);
+		// Use the GoogleAnalytics singleton to get a Tracker.
+		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// When clicked, show a toast with the TextView text
 				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
 				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				Util.log(TAG, "name= " + textViewName.getText() + ", url= " + textViewUrl.getText());
+				String stationName = "" + textViewName.getText();
+				String stationUrl = "" + textViewUrl.getText();
+
+				Util.log(TAG, "name= " + stationName + ", url= " + stationUrl);
+
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "station_clicked", "name: " + stationName, 0L);
+				}
 
 				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
-				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
-					Util.log(TAG, "Playing: " + textViewName.getText() + ", " + textViewUrl.getText());
-					Util.play(context, "" + textViewName.getText(), "" + textViewUrl.getText());
+				if (textViewUrl != null && !stationUrl.equals("")) {
+					Util.log(TAG, "Playing: " + stationName + ", " + stationUrl);
+					Util.play(context, stationName, stationUrl);
 				}
 			}
 		});
@@ -92,6 +111,11 @@ public class Favourites extends ListActivity {
 
 				String stationName = "" + textViewName.getText();
 				Util.log(TAG, "name= " + stationName + ", url= " + textViewUrl.getText());
+
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "station_remove_fav", "name: " + stationName, 0L);
+				}
 
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
 				if (textViewUrl != null && !textViewUrl.getText().equals("")) {
@@ -109,6 +133,7 @@ public class Favourites extends ListActivity {
 
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
+
 	}
 
 	@Override
@@ -124,12 +149,16 @@ public class Favourites extends ListActivity {
 	protected void onStop() {
 		super.onStop();
 		Util.log(TAG, "*********** onStop");
+		// Google Analytics
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		Util.log(TAG, "*********** onStart");
+		// Google Analytics
+		EasyTracker.getInstance().activityStart(this);
 	}
 
 	@Override

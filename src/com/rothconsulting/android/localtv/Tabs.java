@@ -10,9 +10,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 public class Tabs extends TabActivity {
 
 	Context context;
+	private Tracker mGaTracker;
+	private GoogleAnalytics mGaInstance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,12 @@ public class Tabs extends TabActivity {
 		// tabHost.getTabWidget().getChildAt(2).getLayoutParams().height =
 		// LayoutParams.MATCH_PARENT;
 
+		// Get the GoogleAnalytics singleton. Note that the SDK uses
+		// the application context to avoid leaking the current context.
+		mGaInstance = GoogleAnalytics.getInstance(this);
+		// Use the GoogleAnalytics singleton to get a Tracker.
+		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
+
 		tabHost.setCurrentTab(0);
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 
@@ -71,8 +83,27 @@ public class Tabs extends TabActivity {
 				} else {
 					imm.hideSoftInputFromWindow(tabHost.getApplicationWindowToken(), 0);
 				}
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "tab_change", "tab: " + tabId, 0L);
+				}
 			}
 		});
+
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		// Google Analytics
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		// Google Analytics
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 }
