@@ -103,7 +103,7 @@ public class Main extends ListActivity {
 				// klicken.
 				if (textViewUrl != null && !stationUrl.equals("")) {
 					Util.log(TAG, "Playing: " + stationName + ", " + stationUrl);
-					Util.play(context, stationName, stationName);
+					Util.play(context, stationName, stationUrl);
 				}
 			}
 		});
