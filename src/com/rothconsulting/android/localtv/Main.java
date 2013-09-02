@@ -57,7 +57,7 @@ public class Main extends ListActivity {
 			setTitle(appName + " - Alle verfügbaren Sender");
 		} else if (action.equals(Constants.TAB_ARCHIV)) {
 			setTitle(appName + " - Sender Archiv");
-			stationList = stations.getArchivStations();
+			stationList = Stations.getArchivStations();
 		} else {
 			setTitle(appName + " - Live Sender");
 			stationList = stations.getLiveStations();
@@ -95,7 +95,6 @@ public class Main extends ListActivity {
 
 				// Google analytics
 				if (mGaTracker != null) {
-					mGaTracker.sendEvent("ui_action", "station_clicked", "name: " + stationName, 0L);
 					mGaTracker.sendEvent("ui_action", "station_clicked", "url: " + stationUrl, 0L);
 				}
 

@@ -25,18 +25,17 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.Tracker;
 
-public class TVPlayer extends Activity {
+public class TVPlayerWebView extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
 	private final String stationName = "";
@@ -69,7 +68,7 @@ public class TVPlayer extends Activity {
 		// Fit site to screen
 		// myWebView.getSettings().setLoadWithOverviewMode(true);
 		// myWebView.getSettings().setUseWideViewPort(true);
-		myWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
+		// myWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 
 		context = this;
 
@@ -277,7 +276,7 @@ public class TVPlayer extends Activity {
 				myWebView.goBack();
 				return false;
 			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-				RelativeLayout layout = (RelativeLayout) findViewById(R.id.playerLayout);
+				LinearLayout layout = (LinearLayout) findViewById(R.id.playerLayout);
 				layout.removeView(myWebView);
 				myWebView.removeAllViews();
 				closeTVPlayer(true);

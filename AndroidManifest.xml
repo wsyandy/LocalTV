@@ -19,7 +19,7 @@
 		</activity>
 		<activity android:name="com.google.ads.AdActivity"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-		<activity android:name=".TVPlayer" android:hardwareAccelerated="true" android:configChanges="orientation"
+		<activity android:name=".TVPlayerWebView" android:hardwareAccelerated="true" android:configChanges="orientation"
 			android:launchMode="standard" />
 		<activity android:name=".TVPlayerVideoView" android:hardwareAccelerated="true" android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
 			android:launchMode="standard" />

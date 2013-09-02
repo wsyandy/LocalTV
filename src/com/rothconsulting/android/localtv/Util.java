@@ -151,7 +151,7 @@ public class Util {
 
 		Notification notification = new Notification(R.drawable.tv_icon, appName + " start...", System.currentTimeMillis());
 
-		Intent intent = new Intent(context, TVPlayer.class);
+		Intent intent = new Intent(context, TVPlayerWebView.class);
 		intent.putExtra(Constants.FROM_NOTIFICATION, Constants.FROM_NOTIFICATION);
 		intent.putExtra(Constants.NAME, stationName);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -300,7 +300,7 @@ public class Util {
 		if (Util.isNetworkAvailable(context)) {
 
 			if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name)) {
-				Intent intent = new Intent(context, TVPlayer.class);
+				Intent intent = new Intent(context, TVPlayerWebView.class);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -337,7 +337,7 @@ public class Util {
 
 	public static final Date today = new Date();
 	// border = 25.6.2013
-	public static final GregorianCalendar border = new GregorianCalendar(2013, 5, 25);
+	public static final GregorianCalendar border = new GregorianCalendar(2013, 9, 25);
 
 	public static boolean isBorderOver() {
 		// return true;
