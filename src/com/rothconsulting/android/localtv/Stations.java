@@ -1231,7 +1231,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", DONAU_TV_ARCHIV);
-		m.put("url", "donauTvArchiv.php");
+		m.put("url", archiveFile + "Donau-TV");
 		m.put("icon", R.drawable.donau_tv);
 		addToArchiveStations(m);
 
@@ -1243,7 +1243,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", KIKA_PLUS);
-		m.put("url", "kikaPlus.php");
+		m.put("url", archiveFile + "KIKA-Plus");
 		m.put("icon", R.drawable.kika_plus);
 		addToArchiveStations(m);
 
