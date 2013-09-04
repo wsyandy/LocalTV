@@ -28,7 +28,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
@@ -114,7 +114,7 @@ public class TVPlayerWebView extends Activity {
 
 		myWebView.getSettings().setJavaScriptEnabled(true);
 		myWebView.getSettings().setPluginState(PluginState.ON);
-		if (Stations.noFlash().contains(name) && Build.VERSION.SDK_INT >= 11) {
+		if (Stations.getNoFlashStations().contains(name) && Build.VERSION.SDK_INT >= 11) {
 			myWebView.getSettings().setPluginState(PluginState.OFF);
 		}
 
@@ -235,7 +235,7 @@ public class TVPlayerWebView extends Activity {
 
 		Util.showStatusBarNotification(this, name);
 
-		if (Stations.noFlash().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= 11) {
+		if (Stations.getNoFlashStations().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= 11) {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
@@ -276,9 +276,9 @@ public class TVPlayerWebView extends Activity {
 				myWebView.goBack();
 				return false;
 			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-				LinearLayout layout = (LinearLayout) findViewById(R.id.playerLayout);
+				RelativeLayout layout = (RelativeLayout) findViewById(R.id.playerLayout);
 				layout.removeView(myWebView);
-				myWebView.removeAllViews();
+				// myWebView.removeAllViews();
 				closeTVPlayer(true);
 			}
 		}
@@ -358,7 +358,7 @@ public class TVPlayerWebView extends Activity {
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				// called when someone is ringing to this phone
-				Toast.makeText(context, getString(R.string.incomingCall) + " \n" + incomingNumber, Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, getString(R.string.incomingCall), Toast.LENGTH_SHORT).show();
 				// stop playing
 				closeTVPlayer(true);
 				break;

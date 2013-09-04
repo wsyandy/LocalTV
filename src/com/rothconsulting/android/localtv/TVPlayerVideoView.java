@@ -54,7 +54,7 @@ public class TVPlayerVideoView extends Activity {
 		myVideoView = (VideoView) findViewById(R.id.videoview);
 
 		context = this;
-		Toast.makeText(context, "VideoView", Toast.LENGTH_LONG).show();
+		Toast.makeText(context, "Video Start...", Toast.LENGTH_SHORT).show();
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -179,7 +179,7 @@ public class TVPlayerVideoView extends Activity {
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				// called when someone is ringing to this phone
-				Toast.makeText(context, getString(R.string.incomingCall) + " \n" + incomingNumber, Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, getString(R.string.incomingCall), Toast.LENGTH_SHORT).show();
 				// stop playing
 				closeTVPlayer(true);
 				break;

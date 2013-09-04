@@ -299,7 +299,8 @@ public class Util {
 
 		if (Util.isNetworkAvailable(context)) {
 
-			if (Util.isFlashInstalled(context) || Stations.noFlash().contains(name)) {
+			Util.log(TAG, "name: " + name + " / NoFlash Stations: " + Stations.getNoFlashStations());
+			if (Util.isFlashInstalled(context) || Stations.getNoFlashStations().contains(name)) {
 				Intent intent = new Intent(context, TVPlayerWebView.class);
 				intent.putExtra(Constants.NAME, name);
 				intent.putExtra(Constants.URL, url);
@@ -337,7 +338,7 @@ public class Util {
 
 	public static final Date today = new Date();
 	// border = 25.6.2013
-	public static final GregorianCalendar border = new GregorianCalendar(2013, 9, 25);
+	public static final GregorianCalendar border = new GregorianCalendar(2013, 7, 25);
 
 	public static boolean isBorderOver() {
 		// return true;

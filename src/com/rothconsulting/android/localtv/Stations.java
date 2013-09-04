@@ -129,7 +129,6 @@ public class Stations {
 	public static final String BAYERN_TV = "Bayerisches Fernsehen";
 	public static final String BAYERN_TV_MEDIATHEK = "Bayerisches Fernsehen - Mediathek";
 	public static final String OK_DESSAU = "OK Dessau";
-	public static final String OK_MAGDEBURG_FLASH = "OK Magdeburg";
 	public static final String OK_MAGDEBURG = "OK Magdeburg";
 	public static final String OK_MERSEBURG = "OK Merseburg";
 	public static final String OK_SALZWEDEL = "OK Salzwedel";
@@ -196,7 +195,6 @@ public class Stations {
 	public static final String RTS_SALZBURG = "RTS Salzburg";
 	public static final String ORF_TV_THEK = "ORF TVthek";
 	public static final String PULS_4 = "Puls 4";
-	public static final String OKTO_TV_FLASH = "OKTO TV";
 	public static final String OKTO_TV = "OKTO TV";
 	public static final String W24_WIEN = "W24 Wien";
 	public static final String MUEHLVIERTEL_TV = "Mühlviertel TV";
@@ -219,9 +217,10 @@ public class Stations {
 	public static final String CCTV_CHINA = "CCTV China";
 	public static final String VISIT_X = "Visit-X TV";
 
-	private ArrayList<HashMap<String, Object>> liveStationList;
+	private static ArrayList<HashMap<String, Object>> liveStationList;
 	private static ArrayList<HashMap<String, Object>> archivStationList;
 	private static ArrayList<HashMap<String, Object>> allStationList;
+	private static List<String> noFlashStations = new ArrayList<String>();
 
 	public Stations() {
 		liveStationList = new ArrayList<HashMap<String, Object>>();
@@ -301,17 +300,23 @@ public class Stations {
 		return stations;
 	}
 
-	public static List<String> noFlash() {
-		List<String> stations = new ArrayList<String>();
-		stations.add(NETZKINO);
-		stations.add(KINDERKINO);
-		stations.add(MUEHLVIERTEL_TV);
-		stations.add(SRF_1);
-		stations.add(SRF_2);
-		stations.add(SRF_INFO);
-		stations.add(TELE_BLOCHER);
+	private static List<String> noFlash() {
+		if (noFlashStations == null) {
+			noFlashStations = new ArrayList<String>();
+		}
+		noFlashStations.add(NETZKINO);
+		noFlashStations.add(KINDERKINO);
+		noFlashStations.add(MUEHLVIERTEL_TV);
+		noFlashStations.add(SRF_1);
+		noFlashStations.add(SRF_2);
+		noFlashStations.add(SRF_INFO);
+		noFlashStations.add(TELE_BLOCHER);
 
-		return stations;
+		return noFlashStations;
+	}
+
+	public static List<String> getNoFlashStations() {
+		return noFlashStations;
 	}
 
 	// public static List<String> noFlashExternPlayer() {
@@ -377,6 +382,7 @@ public class Stations {
 	private void addToArchiveStations(HashMap<String, Object> map) {
 		allStationList.add(map);
 		archivStationList.add(map);
+		noFlash().add("" + map.get("name"));
 	}
 
 	private void addToLiveStations(HashMap<String, Object> map) {
@@ -385,10 +391,13 @@ public class Stations {
 				allStationList.add(map);
 				liveStationList.add(map);
 			} else {
-				if (isNoFlashStation(map)) {
+				if (!isFlashStation(map)) {
 					allStationList.add(map);
 					liveStationList.add(map);
 				}
+			}
+			if (!isFlashStation(map)) {
+				getNoFlashStations().add("" + map.get("name"));
 			}
 		}
 	}
@@ -399,17 +408,16 @@ public class Stations {
 			m.put("url", flashUrl);
 		} else {
 			m.put("url", streamFile + noFlashUrl);
-			noFlash().add("" + m.get("name"));
 		}
 	}
 
-	private boolean isNoFlashStation(HashMap<String, Object> map) {
+	private boolean isFlashStation(HashMap<String, Object> map) {
 		String name = (String) map.get("name");
 		String url = (String) map.get("url");
-		if (noFlash().contains(name) || url.contains(streamFile)) {
-			return true;
+		if (noFlash().contains(name) || url.contains(streamFile) || url.contains(archiveFile)) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	private boolean isHideFromAndroid2x(HashMap<String, Object> map) {
@@ -498,7 +506,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_TOP);
-		m.put("url", streamFile + "Tele-Top");
+		m.put("url", "teleTop.php");
 		m.put("icon", R.drawable.tele_top);
 		addToLiveStations(m);
 
@@ -524,7 +532,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_SUEDOSTSCHWEIZ);
-		setLiveUrl(m, "telesuedostschweiz.html", "Tele-Suedostsch");
+		m.put("url", "telesuedostschweiz.html");
 		m.put("icon", R.drawable.tele_suedostschweiz);
 		addToLiveStations(m);
 
@@ -899,12 +907,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", ALEX_BERLIN);
-		// Level 12 = Android 3.1
-		if (Build.VERSION.SDK_INT < 12) {
-			m.put("url", "alexberlin.php");
-		} else {
-			m.put("url", streamFile + "Alex-Berlin");
-		}
+		setLiveUrl(m, "alexberlin.php", "Alex-Berlin");
 		m.put("icon", R.drawable.alex_berlin);
 		addToLiveStations(m);
 
@@ -1056,7 +1059,7 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", OK_MAGDEBURG_FLASH);
+		m.put("name", OK_MAGDEBURG);
 		m.put("url", "okMagdeburg.php");
 		m.put("icon", R.drawable.ok_magdeburg);
 		addToLiveStations(m);
@@ -1354,13 +1357,13 @@ public class Stations {
 		m.put("name", RBB_BERLIN);
 		m.put("url", streamFile + "RBB-Berlin");
 		m.put("icon", R.drawable.rbb_tv);
-		addToArchiveStations(m);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RBB_BRANDENBURG);
 		m.put("url", streamFile + "RBB-Brandenburg");
 		m.put("icon", R.drawable.rbb_tv);
-		addToArchiveStations(m);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RBB_MEDIATHEK);
@@ -1554,14 +1557,8 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put("name", OKTO_TV_FLASH);
-		m.put("url", "oktoTV.php");
-		m.put("icon", R.drawable.okto_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
 		m.put("name", OKTO_TV);
-		m.put("url", streamFile + "OKTO-TV");
+		setLiveUrl(m, "oktoTV.php", "OKTO-TV");
 		m.put("icon", R.drawable.okto_tv);
 		addToLiveStations(m);
 
@@ -1612,15 +1609,16 @@ public class Stations {
 		// *********************************************************************************
 		allStationList.add(getLeerZeile(context));
 		archivStationList.add(getLeerZeile(context));
+		if (Util.isBorderOver()) {
+			liveStationList.add(getLeerZeile(context));
+		}
+
+		m = new HashMap<String, Object>();
+		m.put("name", context.getResources().getString(R.string.otherCountries));
+		m.put("url", "");
+		m.put("icon", R.drawable.flagge_globus);
 
 		if (Util.isBorderOver()) {
-
-			liveStationList.add(getLeerZeile(context));
-
-			m = new HashMap<String, Object>();
-			m.put("name", context.getResources().getString(R.string.otherCountries));
-			m.put("url", "");
-			m.put("icon", R.drawable.flagge_globus);
 			liveStationList.add(m);
 		}
 		allStationList.add(m);
@@ -1709,7 +1707,6 @@ public class Stations {
 		m.put("url", archiveFile + "Disney");
 		m.put("icon", R.drawable.disney_channel);
 		addToArchiveStations(m);
-
 	}
 
 	private static HashMap<String, Object> getLeerZeile(Context context) {
