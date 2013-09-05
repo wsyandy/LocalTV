@@ -132,8 +132,8 @@ public class Main extends ListActivity {
 			}
 		});
 
-		SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { "icon", "name", "url" }, new int[] { R.id.list_icon,
-				R.id.list_name, R.id.list_url });
+		SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { "icon", "name", "url", "typ" }, new int[] {
+				R.id.list_icon, R.id.list_name, R.id.list_url, R.id.stream_typ });
 
 		setListAdapter(adapter);
 

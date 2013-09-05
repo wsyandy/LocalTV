@@ -202,6 +202,10 @@ public class TVPlayerWebView extends Activity {
 						intent.putExtra(Constants.URL, url);
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(intent);
+						if (myWebView != null && Stations.allowZoom().contains(stationName)) {
+							myWebView.removeAllViews();
+							myWebView.destroy();
+						}
 						finish();
 						return true;
 					} else {
