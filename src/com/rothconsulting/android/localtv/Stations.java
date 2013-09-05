@@ -296,6 +296,8 @@ public class Stations {
 		stations.add(ZDF_NEO);
 		stations.add(ZDF_MEDIATHEK_MOBILE);
 		stations.add(HAMBURG_1_MEDIATHEK);
+		stations.add(W24_WIEN);
+
 		return stations;
 	}
 
@@ -365,6 +367,15 @@ public class Stations {
 
 	private void addToLiveStations(HashMap<String, Object> map) {
 		if (!isHideFromAndroid2x(map)) {
+			String url = "" + map.get("url");
+			if (url.contains("srf")) {
+				map.put("typ", R.drawable.tv_icon);
+			} else if (!url.contains(streamFile)) {
+				map.put("typ", R.drawable.flash);
+			} else if (url.contains(streamFile)) {
+				map.put("typ", R.drawable.tv_icon);
+			}
+
 			if (Util.isBorderOver()) {
 				allStationList.add(map);
 				liveStationList.add(map);
@@ -374,6 +385,7 @@ public class Stations {
 					liveStationList.add(map);
 				}
 			}
+
 			if (!isFlashStation(map)) {
 				getNoFlashStations().add("" + map.get("name"));
 			}
@@ -611,7 +623,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", ROUGE_TV);
-		m.put("url", "rougetv.php");
+		setLiveUrl(m, "rougetv.php", "Rouge-TV");
 		m.put("icon", R.drawable.rouge_tv);
 		addToLiveStations(m);
 
@@ -1297,7 +1309,8 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_NEO);
-		m.put("url", "zdfNeo.php");
+		setLiveUrl(m, "zdfNeo.php", "ZDF-neo");
+		// m.put("url", "zdfNeo.php");
 		m.put("icon", R.drawable.zdf_neo);
 		addToLiveStations(m);
 
@@ -1468,13 +1481,13 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", BUNDESTAG_1);
-		m.put("url", "bundestag1.php");
+		m.put("url", streamFile + "Bundestag-TV1");
 		m.put("icon", R.drawable.bundestag);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", BUNDESTAG_2);
-		m.put("url", "bundestag2.php");
+		m.put("url", streamFile + "Bundestag-TV2");
 		m.put("icon", R.drawable.bundestag);
 		addToLiveStations(m);
 
@@ -1531,7 +1544,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", RED_BULL_TV);
-		m.put("url", "redbullTV.php");
+		setLiveUrl(m, "redbullTV.php", "RedBull");
 		m.put("icon", R.drawable.red_bull_tv);
 		addToLiveStations(m);
 
@@ -1549,7 +1562,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", W24_WIEN);
-		m.put("url", "w24wien.php");
+		setLiveUrl(m, "w24wien.php", "W24");
 		m.put("icon", R.drawable.w24_wien);
 		addToLiveStations(m);
 
@@ -1573,7 +1586,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", AUSTRIA_24_TV);
-		m.put("url", "austria24TV.php");
+		setLiveUrl(m, "austria24TV.php", "Austria24");
 		m.put("icon", R.drawable.austria24tv);
 		addToLiveStations(m);
 
