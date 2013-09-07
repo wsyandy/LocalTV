@@ -40,6 +40,7 @@ public class TVPlayerWebView extends Activity {
 	private final String TAG = this.getClass().getSimpleName();
 	private final String stationName = "";
 	private WebView myWebView = null;
+	private RelativeLayout layout = null;
 	private Context context;
 	private TelephonyManager tm = null;
 	private PhoneStateListener callStateListener;
@@ -263,6 +264,7 @@ public class TVPlayerWebView extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		unregisterPhoneState();
 		closeTVPlayer(false);
 	}
 
@@ -280,7 +282,7 @@ public class TVPlayerWebView extends Activity {
 				myWebView.goBack();
 				return false;
 			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-				RelativeLayout layout = (RelativeLayout) findViewById(R.id.playerLayout);
+				layout = (RelativeLayout) findViewById(R.id.webPlayerLayout);
 				layout.removeView(myWebView);
 				// myWebView.removeAllViews();
 				closeTVPlayer(true);
@@ -304,7 +306,12 @@ public class TVPlayerWebView extends Activity {
 		if (myWebView != null) {
 
 			if (!Stations.allowZoom().contains(stationName)) {
+				if (layout != null) {
+					layout.removeView(myWebView);
+				}
 				myWebView.removeAllViews();
+				myWebView.setFocusable(true);
+				myWebView.clearHistory();
 				myWebView.destroy();
 			} else {
 				// to avoid a crash
@@ -313,7 +320,12 @@ public class TVPlayerWebView extends Activity {
 				new Timer().schedule(new TimerTask() {
 					@Override
 					public void run() {
+						if (layout != null) {
+							layout.removeView(myWebView);
+						}
 						myWebView.removeAllViews();
+						myWebView.setFocusable(true);
+						myWebView.clearHistory();
 						myWebView.destroy();
 					}
 				}, timeout);
@@ -323,9 +335,7 @@ public class TVPlayerWebView extends Activity {
 			Util.hideStatusBarNotification(this);
 		}
 		// Unregister PhoneStateListener
-		if (tm != null) {
-			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
-		}
+		unregisterPhoneState();
 		// Util.clearApplicationData(this);
 		finish();
 	}
@@ -382,6 +392,12 @@ public class TVPlayerWebView extends Activity {
 		super.onStop();
 		// Google Analytics
 		EasyTracker.getInstance().activityStop(this);
+		unregisterPhoneState();
 	}
 
+	private void unregisterPhoneState() {
+		if (tm != null) {
+			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
+		}
+	}
 }

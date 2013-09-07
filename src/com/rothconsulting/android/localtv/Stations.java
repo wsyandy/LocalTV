@@ -31,7 +31,6 @@ public class Stations {
 	public static final String CANAL_ALPHA_JURA_BERNOISE = "Canal Alpha (Jura – Jura bernois)";
 	public static final String CANAL_ALPHA_NEUCHATEL_YVERDON = "Canal Alpha (Neuchâtel – District d’Yverdon)";
 	public static final String ROUGE_TV = "Rouge TV";
-	public static final String TV_105 = "105 TV";
 	public static final String RTS_UN = "RTS Un";
 	public static final String RTS_DEUX = "RTS Deux";
 	public static final String RTS_INFO = "RTS Info";
@@ -185,6 +184,10 @@ public class Stations {
 	public static final String BUNDESTAG_2 = "Bundestag TV 2";
 	public static final String BADEN_TV = "Baden TV";
 	public static final String TV_AKTUELL = "TVAktuell";
+	// public static final String LIGHT_CHANNEL_TV = "Light Channel TV";
+	public static final String TV_TOURING_SCHWEINFURT = "TV Touring Schweinfurt";
+	public static final String TV_TOURING_WUERZBURG = "TV Touring Würzburg";
+	public static final String EURONEWS = "Euronews";
 
 	public static final String ORF_1_HQ = "ORF 1 HQ";
 	public static final String ORF_2_HQ = "ORF 2 HQ";
@@ -202,6 +205,8 @@ public class Stations {
 	// public static final String TIROL_TV = "Tirol TV";
 	public static final String REUTTE_EINS = "Reutte Eins";
 	public static final String AUSTRIA_24_TV = "Austria 24 TV";
+
+	public static final String SUEDTIROL_TV = "Südtirol TV";
 
 	public static final String NASA_TV_PUBLIC = "Nasa TV - Public";
 	public static final String NASA_TV_MEDIA = "Nasa TV - Media";
@@ -358,6 +363,7 @@ public class Stations {
 	}
 
 	private void addToArchiveStations(HashMap<String, Object> map) {
+		map.put("typ", R.drawable.globe);
 		allStationList.add(map);
 		archivStationList.add(map);
 		String stationName = "" + map.get("name");
@@ -625,12 +631,6 @@ public class Stations {
 		m.put("name", ROUGE_TV);
 		setLiveUrl(m, "rougetv.php", "Rouge-TV");
 		m.put("icon", R.drawable.rouge_tv);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TV_105);
-		m.put("url", "105tv.html");
-		m.put("icon", R.drawable.tv_105);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -933,7 +933,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", OBERFRANKEN_TV);
-		m.put("url", "oberfrankenTV.php");
+		setLiveUrl(m, "oberfrankenTV.php", "TV-OBERFRANKEN1");
 		m.put("icon", R.drawable.oberfranken_tv);
 		addToLiveStations(m);
 
@@ -969,7 +969,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TRP1_FERNSEHEN);
-		m.put("url", "trp1_fernsehen.php");
+		setLiveUrl(m, "trp1_fernsehen.php", "TRP1");
 		m.put("icon", R.drawable.trp1_fernsehen);
 		addToLiveStations(m);
 
@@ -1325,7 +1325,6 @@ public class Stations {
 		m.put("url", "zdfKultur.php");
 		m.put("icon", R.drawable.zdf_kultur);
 		addToLiveStations(m);
-		// }
 
 		m = new HashMap<String, Object>();
 		m.put("name", ZDF_MEDIATHEK);
@@ -1491,6 +1490,18 @@ public class Stations {
 		m.put("icon", R.drawable.bundestag);
 		addToLiveStations(m);
 
+		m = new HashMap<String, Object>();
+		m.put("name", TV_TOURING_SCHWEINFURT);
+		m.put("url", streamFile + "TV-Touring-Sch2");
+		m.put("icon", R.drawable.tv_touring);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TV_TOURING_WUERZBURG);
+		m.put("url", streamFile + "TV-Touring-Wue2");
+		m.put("icon", R.drawable.tv_touring);
+		addToLiveStations(m);
+
 		// *********************************************************************************
 		// * Österreich
 		// *********************************************************************************
@@ -1621,6 +1632,12 @@ public class Stations {
 		}
 		allStationList.add(m);
 		archivStationList.add(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", SUEDTIROL_TV);
+		m.put("url", streamFile + "Suedtirol-TV");
+		m.put("icon", R.drawable.suedtirol_tv);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", NASA_TV_PUBLIC);

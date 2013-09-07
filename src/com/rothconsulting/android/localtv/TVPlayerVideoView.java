@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -28,6 +29,7 @@ public class TVPlayerVideoView extends Activity {
 	private final String TAG = this.getClass().getSimpleName();
 	private String stationName = "";
 	private VideoView myVideoView = null;
+	private RelativeLayout layout = null;
 	private Context context;
 	private TelephonyManager tm = null;
 	private PhoneStateListener callStateListener;
@@ -51,6 +53,7 @@ public class TVPlayerVideoView extends Activity {
 		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
 
 		setContentView(R.layout.player_videoview);
+		layout = (RelativeLayout) findViewById(R.id.videoPlayerLayout);
 		myVideoView = (VideoView) findViewById(R.id.videoview);
 
 		context = this;
@@ -127,6 +130,7 @@ public class TVPlayerVideoView extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		unregisterPhoneState();
 	}
 
 	@Override
@@ -140,9 +144,13 @@ public class TVPlayerVideoView extends Activity {
 			Util.hideStatusBarNotification(this);
 		}
 		// Unregister PhoneStateListener
-		if (tm != null) {
-			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
+		unregisterPhoneState();
+
+		if (layout != null) {
+			layout.removeView(myVideoView);
 		}
+		myVideoView.setFocusable(true);
+
 		// Util.clearApplicationData(this);
 		finish();
 	}
@@ -199,6 +207,13 @@ public class TVPlayerVideoView extends Activity {
 		super.onStop();
 		// Google Analytics
 		EasyTracker.getInstance().activityStop(this);
+		unregisterPhoneState();
 	}
 
+	private void unregisterPhoneState() {
+		// Unregister PhoneStateListener
+		if (tm != null) {
+			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
+		}
+	}
 }
