@@ -286,9 +286,6 @@ public class TVPlayerWebView extends Activity {
 				myWebView.goBack();
 				return false;
 			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-				layout = (RelativeLayout) findViewById(R.id.webPlayerLayout);
-				layout.removeView(myWebView);
-				// myWebView.removeAllViews();
 				closeTVPlayer(true);
 			}
 		}
@@ -313,6 +310,9 @@ public class TVPlayerWebView extends Activity {
 	private void closeTVPlayer(boolean removeStatusBar) {
 		Util.log(TAG, "************ closeTVPlayer");
 
+		layout = (RelativeLayout) findViewById(R.id.webPlayerLayout);
+		layout.removeView(myWebView);
+
 		if (myWebView != null && myWebView.isShown()) {
 
 			if (!Stations.allowZoom().contains(stationName)) {
@@ -322,7 +322,7 @@ public class TVPlayerWebView extends Activity {
 				myWebView.removeAllViews();
 				myWebView.setFocusable(true);
 				myWebView.clearHistory();
-				myWebView.destroy();
+				// myWebView.destroy();
 			} else {
 				// to avoid a crash
 				// http://stackoverflow.com/questions/5267639/how-to-safely-turn-webview-zooming-on-and-off-as-needed
@@ -336,7 +336,7 @@ public class TVPlayerWebView extends Activity {
 						myWebView.removeAllViews();
 						myWebView.setFocusable(true);
 						myWebView.clearHistory();
-						myWebView.destroy();
+						// myWebView.destroy();
 					}
 				}, timeout);
 			}
@@ -366,7 +366,7 @@ public class TVPlayerWebView extends Activity {
 		case -1:
 			startActivity(new Intent(this, Help.class));
 			break;
-		case -2: //
+		case -2:
 			closeTVPlayer(true);
 			break;
 		}

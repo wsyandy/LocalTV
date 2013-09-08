@@ -26,7 +26,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -38,7 +37,7 @@ public class Util {
 	private static final int NOTIFICATION_ID = 0;
 
 	public static void log(String tag, String message) {
-		Log.d(tag, message);
+		// Log.d(tag, message);
 	}
 
 	public static boolean isFlashInstalled(Context context) {

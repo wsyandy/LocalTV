@@ -46,18 +46,24 @@ public class TVPlayerVideoView extends Activity {
 		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
 
+		context = this;
+
 		// Get the GoogleAnalytics singleton. Note that the SDK uses
 		// the application context to avoid leaking the current context.
 		mGaInstance = GoogleAnalytics.getInstance(this);
 		// Use the GoogleAnalytics singleton to get a Tracker.
 		mGaTracker = mGaInstance.getTracker(Constants.ANALYTICS_ID);
 
+		// Detect incoming phone call and register PhoneStateListener
+		callStateListener = new CallStateListener();
+		tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+		tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
 		setContentView(R.layout.player_videoview);
 		layout = (RelativeLayout) findViewById(R.id.videoPlayerLayout);
 		myVideoView = (VideoView) findViewById(R.id.videoview);
 
-		context = this;
-		Toast.makeText(context, "Video Start...", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(context, "Video", Toast.LENGTH_SHORT).show();
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -79,10 +85,6 @@ public class TVPlayerVideoView extends Activity {
 			Util.log(TAG, "bundle is null");
 		}
 
-		// Detect incoming phone call and register PhoneStateListener
-		callStateListener = new CallStateListener();
-		tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-		tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 	private void playInVideoView(final String name, final String url) {
