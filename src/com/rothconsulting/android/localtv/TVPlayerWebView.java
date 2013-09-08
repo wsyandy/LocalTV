@@ -255,6 +255,7 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	public void onDetachedFromWindow() {
+		Util.log(TAG, "************ onDetachedFromWindow");
 		super.onDetachedFromWindow();
 		if (myWebView != null) {
 			myWebView.destroy();
@@ -263,9 +264,10 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
-		unregisterPhoneState();
+		Util.log(TAG, "************ onDestroy");
+
 		closeTVPlayer(false);
+		super.onDestroy();
 	}
 
 	@Override
@@ -276,6 +278,8 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Util.log(TAG, "************ onKeyDown");
+
 		if (myWebView != null) {
 			// Check if the key event was the BACK key and if there's history
 			if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
@@ -293,17 +297,23 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	protected void onPause() {
+		Util.log(TAG, "************ onPause");
+
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
+		Util.log(TAG, "************ onResume");
+
 		super.onResume();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	private void closeTVPlayer(boolean removeStatusBar) {
-		if (myWebView != null) {
+		Util.log(TAG, "************ closeTVPlayer");
+
+		if (myWebView != null && myWebView.isShown()) {
 
 			if (!Stations.allowZoom().contains(stationName)) {
 				if (layout != null) {
@@ -382,6 +392,8 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	public void onStart() {
+		Util.log(TAG, "************ onStart");
+
 		super.onStart();
 		// Google Analytics
 		EasyTracker.getInstance().activityStart(this);
@@ -389,6 +401,8 @@ public class TVPlayerWebView extends Activity {
 
 	@Override
 	public void onStop() {
+		Util.log(TAG, "************ onStop");
+
 		super.onStop();
 		// Google Analytics
 		EasyTracker.getInstance().activityStop(this);
@@ -396,7 +410,9 @@ public class TVPlayerWebView extends Activity {
 	}
 
 	private void unregisterPhoneState() {
-		if (tm != null) {
+		Util.log(TAG, "************ unregisterPhoneState");
+
+		if (tm != null && callStateListener != null) {
 			tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
 		}
 	}

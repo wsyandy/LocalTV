@@ -20,7 +20,7 @@ public class Stations {
 	public static final String TELE_BASEL_ARCHIV = "Tele Basel Archiv";
 	public static final String TELE_M1_LIVE = "Tele M1";
 	public static final String TELE_M1_ARCHIV = "Tele M1 Archiv";
-	public static final String TELE_1_LIVE = "Tele 1";
+	public static final String TELE_1 = "Tele 1";
 	public static final String TELE_1_ARCHIV = "Tele 1 Archiv";
 	public static final String SRF_1 = "SRF 1";
 	public static final String SRF_2 = "SRF 2";
@@ -129,6 +129,8 @@ public class Stations {
 	public static final String LEIPZIG_TV_EXT = "Leipzig Fernsehen (ext)";
 	public static final String BAYERN_TV = "Bayerisches Fernsehen";
 	public static final String BAYERN_TV_MEDIATHEK = "Bayerisches Fernsehen - Mediathek";
+	public static final String PEARL_TV = "Pearl TV";
+	public static final String OK_54 = "OK 54 Trier";
 	public static final String OK_DESSAU = "OK Dessau";
 	public static final String OK_MAGDEBURG = "OK Magdeburg";
 	public static final String OK_MERSEBURG = "OK Merseburg";
@@ -466,7 +468,8 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TELE_BASEL_LIVE);
-		m.put("url", "telebasel.php");
+		setLiveUrl(m, "telebasel.php", "Tele-Basel");
+		// m.put("url", "telebasel.php");
 		m.put("icon", R.drawable.tele_basel);
 		m.put("typ", R.drawable.flash);
 		addToLiveStations(m);
@@ -475,6 +478,20 @@ public class Stations {
 		m.put("name", TELE_BASEL_ARCHIV);
 		m.put("url", archiveFile + "Tele-Basel-Archiv");
 		m.put("icon", R.drawable.tele_basel);
+		addToArchiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_1);
+		setLiveUrl(m, "tele1.php", "Tele-1");
+		// m.put("url", "tele1.php");
+		m.put("icon", R.drawable.tele1);
+		m.put("typ", R.drawable.flash);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_1_ARCHIV);
+		m.put("url", archiveFile + "Tele-1-Archiv");
+		m.put("icon", R.drawable.tele1);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -488,19 +505,6 @@ public class Stations {
 		m.put("name", TELE_M1_ARCHIV);
 		m.put("url", archiveFile + "Tele-M1-Archiv");
 		m.put("icon", R.drawable.tele_m1);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TELE_1_LIVE);
-		m.put("url", "tele1.php");
-		m.put("icon", R.drawable.tele1);
-		m.put("typ", R.drawable.flash);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", TELE_1_ARCHIV);
-		m.put("url", archiveFile + "Tele-1-Archiv");
-		m.put("icon", R.drawable.tele1);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -890,8 +894,8 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", WDR);
-		// setLiveUrl(m, "wdr.php", "WDR");
-		m.put("url", "wdr.php");
+		setLiveUrl(m, "wdr.php", "WDR");
+		// m.put("url", "wdr.php");
 		m.put("icon", R.drawable.wdr_fernsehen);
 		addToLiveStations(m);
 
@@ -939,7 +943,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TV_AKTUELL);
-		m.put("url", "tvAktuell.php");
+		setLiveUrl(m, "tvAktuell.php", "TV-AKTUELL");
 		m.put("icon", R.drawable.tvaktuell);
 		addToLiveStations(m);
 
@@ -1047,7 +1051,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", DW);
-		m.put("url", "dw.php");
+		setLiveUrl(m, "dw.php", "DW-EUROPA");
 		m.put("icon", R.drawable.dw_tv);
 		addToLiveStations(m);
 
@@ -1055,16 +1059,25 @@ public class Stations {
 		m.put("name", BAYERN_TV);
 		m.put("url", "bayerischesFernsehen.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
-		// liveStationList.add(m);
-		allStationList.add(m);
-		archivStationList.add(m);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", BAYERN_TV_MEDIATHEK);
 		m.put("url", "bayerischesFernsehen_Mediathek.php");
 		m.put("icon", R.drawable.bayrisches_fernsehen);
-		allStationList.add(m);
-		archivStationList.add(m);
+		addToArchiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", PEARL_TV);
+		m.put("url", streamFile + "Pearl-TV");
+		m.put("icon", R.drawable.ok54);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", OK_54);
+		m.put("url", streamFile + "OK-54");
+		m.put("icon", R.drawable.ok54);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", OK_DESSAU);
@@ -1551,7 +1564,7 @@ public class Stations {
 		m.put("name", ORF_TV_THEK);
 		m.put("url", archiveFile + "ORF-TV-Thek");
 		m.put("icon", R.drawable.orf_tvthek);
-		archivStationList.add(m);
+		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RED_BULL_TV);
