@@ -394,7 +394,9 @@ public class Stations {
 				allStationList.add(map);
 				liveStationList.add(map);
 			} else {
-				if (!isFlashStation(map)) {
+				String name = "" + map.get("name");
+				// add no flash stations except SRF, ARD, ZDF, MDR
+				if (!isFlashStation(map) && !name.contains("SRF") && !name.contains("ARD") && !name.contains("ZDF") && !name.contains("MDR")) {
 					allStationList.add(map);
 					liveStationList.add(map);
 				}
@@ -1666,7 +1668,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", MUEHLVIERTEL_TV);
-		m.put("url", "muehlviertelTV.php");
+		setLiveUrl(m, "muehlviertelTV.php", "Muehlviertel");
 		m.put("icon", R.drawable.muehlviertel_tv);
 		addToLiveStations(m);
 
@@ -1705,18 +1707,14 @@ public class Stations {
 		// *********************************************************************************
 		allStationList.add(getLeerZeile(context));
 		archivStationList.add(getLeerZeile(context));
-		if (Util.isBorderOver()) {
-			liveStationList.add(getLeerZeile(context));
-		}
+		liveStationList.add(getLeerZeile(context));
 
 		m = new HashMap<String, Object>();
 		m.put("name", context.getResources().getString(R.string.otherCountries));
 		m.put("url", "");
 		m.put("icon", R.drawable.flagge_globus);
 
-		if (Util.isBorderOver()) {
-			liveStationList.add(m);
-		}
+		liveStationList.add(m);
 		allStationList.add(m);
 		archivStationList.add(m);
 

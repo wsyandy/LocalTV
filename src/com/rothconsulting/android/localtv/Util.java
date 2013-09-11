@@ -336,8 +336,8 @@ public class Util {
 	}
 
 	public static final Date today = new Date();
-	// border = 25.6.2013
-	public static final GregorianCalendar border = new GregorianCalendar(2013, 7, 25);
+	// GregorianCalendar(2013, 8, 25) = 25.9.2013
+	public static final GregorianCalendar border = new GregorianCalendar(2013, 8, 25);
 
 	public static boolean isBorderOver() {
 		// return true;
