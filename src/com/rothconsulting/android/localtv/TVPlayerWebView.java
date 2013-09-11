@@ -126,11 +126,11 @@ public class TVPlayerWebView extends Activity {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
 
-		if (Stations.userAgentAndroid().contains(name)) {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME_MOBILE_SGS3);
-		} else {
-			myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_SAFARI_DESKTOP);
-		}
+		// if (Stations.userAgentAndroid().contains(name)) {
+		// myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_CHROME_MOBILE_SGS3);
+		// } else {
+		// myWebView.getSettings().setUserAgentString(Constants.USER_AGENT_SAFARI_DESKTOP);
+		// }
 
 		if (!Stations.noTransparentBackground().contains(name)) {
 			myWebView.setBackgroundColor(0);
