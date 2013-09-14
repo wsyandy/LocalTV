@@ -1,10 +1,14 @@
 package com.rothconsulting.android.localtv;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnErrorListener;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +39,7 @@ public class TVPlayerVideoView extends Activity {
 	private PhoneStateListener callStateListener;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
+	private ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +112,22 @@ public class TVPlayerVideoView extends Activity {
 		myVideoView.setMediaController(new MediaController(this));
 		myVideoView.requestFocus();
 		myVideoView.start();
+
+		progressDialog = ProgressDialog.show(this, "Please wait ...", this.getString(R.string.verbinde), true);
+
+		myVideoView.setOnPreparedListener(new OnPreparedListener() {
+			public void onPrepared(MediaPlayer mp) {
+				progressDialog.dismiss();
+			}
+		});
+
+		myVideoView.setOnErrorListener(new OnErrorListener() {
+			public boolean onError(MediaPlayer mp, int what, int extra) {
+				Toast.makeText(context, "Cannot load...", Toast.LENGTH_LONG).show();
+				progressDialog.dismiss();
+				return false;
+			}
+		});
 	}
 
 	@Override
