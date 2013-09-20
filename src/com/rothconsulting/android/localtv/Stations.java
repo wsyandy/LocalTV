@@ -42,6 +42,7 @@ public class Stations {
 	public static final String ZERMATT_TROCKENER_STEG = "Zermatt Trockener Steg";
 	public static final String TVM3 = "TVM3";
 	public static final String RADIO_PILATUS = "Radio Pilatus";
+	public static final String PILATUS_BEATZ = "Pilatus Beatz";
 	public static final String JOIZ = "joiz";
 	public static final String CH_TV = "CH TV";
 	public static final String FCZ_TV = "FCZ TV";
@@ -638,6 +639,12 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", PILATUS_BEATZ);
+		m.put("url", streamFile + "Pilatus-Beatz");
+		m.put("icon", R.drawable.radio_pilatus);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", ROUGE_TV);
 		setLiveUrl(m, "rougetv.php", "Rouge-TV");
 		m.put("icon", R.drawable.rouge_tv);
@@ -645,19 +652,22 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", RTS_UN);
-		m.put("url", "rtsUn.php");
+		setLiveUrl(m, "rtsUn.php", "RTS-un");
+		// m.put("url", "rtsUn.php");
 		m.put("icon", R.drawable.rts_un);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RTS_DEUX);
-		m.put("url", "rtsDeux.php");
+		setLiveUrl(m, "rtsDeux.php", "RTS-deux");
+		// m.put("url", "rtsDeux.php");
 		m.put("icon", R.drawable.rts_deux);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", RTS_INFO);
-		m.put("url", "rtsInfo.php");
+		setLiveUrl(m, "rtsInfo.php", "RTS-info");
+		// m.put("url", "rtsInfo.php");
 		m.put("icon", R.drawable.rts_info);
 		addToLiveStations(m);
 
@@ -1264,7 +1274,8 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", LEIPZIG_TV);
-		m.put("url", "leipzigTV.php");
+		setLiveUrl(m, "leipzigTV.php", "Leipzig-Fernsehen");
+		// m.put("url", "leipzigTV.php");
 		m.put("icon", R.drawable.leipzig_tv);
 		addToLiveStations(m);
 
