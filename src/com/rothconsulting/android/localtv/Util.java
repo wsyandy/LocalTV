@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -347,6 +348,15 @@ public class Util {
 		} else {
 			return false;
 		}
+	}
+
+	public static ArrayList<HashMap<String, Object>> sortStationsByName(ArrayList<HashMap<String, Object>> stationList) {
+
+		TreeMap<String, HashMap<String, Object>> sortedMap = new TreeMap<String, HashMap<String, Object>>(new StringComperator());
+		for (HashMap<String, Object> station : stationList) {
+			sortedMap.put((String) station.get("name"), station);
+		}
+		return new ArrayList<HashMap<String, Object>>(sortedMap.values());
 	}
 
 }

@@ -128,11 +128,8 @@ public class Stations {
 	public static final String DW = "DW - Deutsche Welle";
 	public static final String DW_EUROPA = "DW - Deutsche Welle Europa";
 	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
-	public static final String SACHSEN_FERNSEHEN_EXT = "Sachsen Fernsehen (ext)";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
-	public static final String DRESDEN_TV_EXT = "Dresden Fernsehen (ext)";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
-	public static final String LEIPZIG_TV_EXT = "Leipzig Fernsehen (ext)";
 	public static final String BAYERN_TV = "Bayerisches Fernsehen";
 	public static final String BAYERN_TV_MEDIATHEK = "Bayerisches Fernsehen - Mediathek";
 	public static final String PEARL_TV = "Pearl TV";
@@ -176,7 +173,6 @@ public class Stations {
 	public static final String SALVE_TV = "Salve TV";
 	public static final String ALTENBURG_TV = "Altenburg TV";
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
-	// public static final String ARD_DAS_ERSTE_MOBILE = "ARD Das Erste Live (ext)";
 	public static final String ARD_DAS_ERSTE_TAGESSCHAU = "ARD Das Erste Tagesschau";
 	public static final String ARD_MEDIATHEK = "ARD Mediathek";
 	public static final String ARD_MEDIATHEK_MOBILE = "ARD Mediathek Mobile";
@@ -284,39 +280,12 @@ public class Stations {
 		stations.add(ZDF_MEDIATHEK_MOBILE);
 		stations.add(ARD_MEDIATHEK_MOBILE);
 		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
+		stations.add(FCZ_TV);
+		stations.add(YB_TV_CHANNEL);
+		stations.add(SPIEGEL_ONLINE);
 
 		return stations;
 	}
-
-	// public static List<String> userAgentAndroid() {
-	// List<String> stations = new ArrayList<String>();
-	// // stations.add(TELE_NAPF);
-	// // stations.add(NETZKINO);
-	// // stations.add(KINDERKINO);
-	// // stations.add(CANAL_29);
-	// stations.add(BNJ_TV);
-	// stations.add(NASA_TV_PUBLIC);
-	// stations.add(NASA_TV_MEDIA);
-	// stations.add(NASA_TV_EDUCATION);
-	// stations.add(ORF_TV_THEK);
-	// stations.add(MUEHLVIERTEL_TV);
-	// stations.add(DONAU_TV_LIVE);
-	// stations.add(DONAU_TV_ARCHIV);
-	// stations.add(OS1_TV);
-	// stations.add(ARD_DAS_ERSTE);
-	// stations.add(ARD_MEDIATHEK_MOBILE);
-	// stations.add(RRO_TV);
-	// stations.add(KIKA_PLUS);
-	// stations.add(PULS_4);
-	// stations.add(SRF_1);
-	// stations.add(SRF_2);
-	// stations.add(SRF_INFO);
-	// stations.add(ZDF_MEDIATHEK_MOBILE);
-	// stations.add(HAMBURG_1_MEDIATHEK);
-	// stations.add(W24_WIEN);
-	//
-	// return stations;
-	// }
 
 	private static List<String> noFlash() {
 		if (noFlashStations == null) {
@@ -627,6 +596,12 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
+		m.put("name", KANAL_9);
+		setLiveUrl(m, "kanal9.php", "Canal-9");
+		m.put("icon", R.drawable.kanal9);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
 		m.put("name", TVM3);
 		setLiveUrl(m, "tvm3.php", "TVM3");
 		m.put("icon", R.drawable.tvm3);
@@ -747,12 +722,6 @@ public class Stations {
 		m.put("name", CASH_TV);
 		m.put("url", "cashTV.html");
 		m.put("icon", R.drawable.cash_tv);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", KANAL_9);
-		m.put("url", "kanal9.html");
-		m.put("icon", R.drawable.kanal9);
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -1032,7 +1001,8 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", TV_SUEDBADEN);
-		m.put("url", "tvSuedbaden.php");
+		setLiveUrl(m, "tvSuedbaden.php", "TV-Suedbaden");
+		// m.put("url", "tvSuedbaden.php");
 		m.put("icon", R.drawable.tv_suedbaden);
 		addToLiveStations(m);
 
@@ -1250,27 +1220,17 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", DRESDEN_TV);
-		m.put("url", "dresdenTV.php");
+		setLiveUrl(m, "dresdenTV.php", "Dresden-Fernsehen");
+		// m.put("url", "dresdenTV.php");
 		m.put("icon", R.drawable.dresden_tv);
 		addToLiveStations(m);
 
-		// m = new HashMap<String, Object>();
-		// m.put("name", DRESDEN_TV_EXT);
-		// m.put("url", "dresdenTVext.php");
-		// m.put("icon", R.drawable.dresden_tv);
-		// addToLiveStations(m);
-
 		m = new HashMap<String, Object>();
 		m.put("name", SACHSEN_FERNSEHEN);
-		m.put("url", "sachsenFernsehen.php");
+		setLiveUrl(m, "sachsenFernsehen.php", "Sachsen-Fernsehen");
+		// m.put("url", "sachsenFernsehen.php");
 		m.put("icon", R.drawable.sachsen_fernsehen);
 		addToLiveStations(m);
-
-		// m = new HashMap<String, Object>();
-		// m.put("name", SACHSEN_FERNSEHEN_EXT);
-		// m.put("url", "sachsenFernsehenExt.php");
-		// m.put("icon", R.drawable.sachsen_fernsehen);
-		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", LEIPZIG_TV);
@@ -1279,15 +1239,15 @@ public class Stations {
 		m.put("icon", R.drawable.leipzig_tv);
 		addToLiveStations(m);
 
-		// m = new HashMap<String, Object>();
-		// m.put("name", LEIPZIG_TV_EXT);
-		// m.put("url", "leipzigTVext.php");
-		// m.put("icon", R.drawable.leipzig_tv);
-		// addToLiveStations(m);
+		m = new HashMap<String, Object>();
+		m.put("name", NRW_TV);
+		m.put("url", streamFile + "NRW-TV");
+		m.put("icon", R.drawable.nrw_tv);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", FAN_TV);
-		m.put("url", "fanTV.php");
+		setLiveUrl(m, "fanTV.php", "Fan-TV");
 		m.put("icon", R.drawable.fan_tv);
 		addToLiveStations(m);
 
@@ -1295,12 +1255,6 @@ public class Stations {
 		m.put("name", OEINS_OLDENBURG);
 		m.put("url", "oeins.php");
 		m.put("icon", R.drawable.oeins);
-		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put("name", NRW_TV);
-		m.put("url", streamFile + "NRW-TV");
-		m.put("icon", R.drawable.nrw_tv);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
@@ -1493,7 +1447,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", MYSPASS);
-		m.put("url", "myspass.html");
+		m.put("url", archiveFile + "my-spass-de");
 		m.put("icon", R.drawable.myspass);
 		addToArchiveStations(m);
 
