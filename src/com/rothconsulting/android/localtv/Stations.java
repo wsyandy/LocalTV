@@ -84,6 +84,7 @@ public class Stations {
 	public static final String TELEVISTA = "Televista";
 	public static final String STUDENTS_TV = "Students TV";
 	public static final String TELE_BLOCHER = "Tele Blocher";
+	public static final String TELE_TICINO = "Tele Ticino";
 
 	public static final String BW_FAMILY = "BW Family";
 	public static final String FAMILY_TV = "Family TV";
@@ -522,6 +523,12 @@ public class Stations {
 		m.put("url", archiveFile + "Tele-Top-Archiv");
 		m.put("icon", R.drawable.tele_top);
 		addToArchiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put("name", TELE_TICINO);
+		m.put("url", streamFile + "Tele-Ticino");
+		m.put("icon", R.drawable.tele_ticino);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", SRF_1);
