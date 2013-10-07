@@ -262,7 +262,6 @@ public class Stations {
 
 	public static List<String> noTransparentBackground() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(LEMAN_BLEU);
 		stations.add(TV_ADMIN_CH);
 		stations.add(TELE_OSTSCHWEIZ_ARCHIV);
 		return stations;
@@ -745,9 +744,9 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put("name", LEMAN_BLEU);
-		m.put("url", "lemanbleu.html");
+		m.put("url", "lemanbleu.php");
 		m.put("icon", R.drawable.leman_bleu);
-		addToArchiveStations(m);
+		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put("name", TCH);
