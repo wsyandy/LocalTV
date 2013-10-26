@@ -185,7 +185,7 @@ public class Favourites extends ListActivity {
 		((ListActivity) context).setListAdapter(adapter);
 
 		if (stationList == null || stationList.size() == 0) {
-			Util.showEmptyFavAlertDialog(context);
+			Util.showAlertDialog(context, R.string.info, R.string.noFavouritesYet);
 		}
 
 	}

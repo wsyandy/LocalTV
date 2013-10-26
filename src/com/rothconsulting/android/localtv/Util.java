@@ -110,11 +110,11 @@ public class Util {
 		b.show();
 	}
 
-	public static void showEmptyFavAlertDialog(final Context context) {
+	public static void showAlertDialog(final Context context, int titleResId, int messageResId) {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
-		b.setTitle(R.string.info);
-		String text = context.getString(R.string.noFavouritesYet);
+		b.setTitle(titleResId);
+		String text = context.getString(messageResId);
 		b.setMessage(text);
 		b.setPositiveButton(android.R.string.ok, null);
 		b.show();

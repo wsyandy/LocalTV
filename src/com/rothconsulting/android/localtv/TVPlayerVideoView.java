@@ -39,7 +39,7 @@ public class TVPlayerVideoView extends Activity {
 	private PhoneStateListener callStateListener;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
-	private ProgressDialog progressDialog;
+	private ProgressDialog progressDialogWait;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,18 +113,19 @@ public class TVPlayerVideoView extends Activity {
 		myVideoView.requestFocus();
 		myVideoView.start();
 
-		progressDialog = ProgressDialog.show(this, "Please wait ...", this.getString(R.string.verbinde), true);
+		progressDialogWait = ProgressDialog.show(this, "Please wait ...", this.getString(R.string.verbinde), true);
 
 		myVideoView.setOnPreparedListener(new OnPreparedListener() {
 			public void onPrepared(MediaPlayer mp) {
-				progressDialog.dismiss();
+				progressDialogWait.dismiss();
 			}
 		});
 
 		myVideoView.setOnErrorListener(new OnErrorListener() {
 			public boolean onError(MediaPlayer mp, int what, int extra) {
 				Toast.makeText(context, "Cannot load...", Toast.LENGTH_LONG).show();
-				progressDialog.dismiss();
+				progressDialogWait.dismiss();
+				Util.showAlertDialog(context, R.string.info, R.string.cannotStartTV);
 				return false;
 			}
 		});
