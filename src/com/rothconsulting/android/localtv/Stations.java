@@ -56,7 +56,6 @@ public class Stations {
 	public static final String TV_ADMIN_CH = "Bundesverwaltung (admin.ch)";
 	public static final String ALF_TV = "Alf-TV";
 	public static final String JUMP_TV = "Jump-TV";
-	public static final String CASH_TV = "Cash TV";
 	public static final String TELE_BIELINGUE = "Tele Bielingue";
 	public static final String TELE_BIELINGUE_ARCHIV = "Tele Bielingue Archiv";
 	public static final String KANAL_9 = "Kanal 9";
@@ -107,6 +106,7 @@ public class Stations {
 	public static final String NDR_SH = "NDR Schleswig Holstein";
 	public static final String NDR_NS = "NDR Niedersachsen";
 	public static final String WDR = "WDR";
+	public static final String WDR_LOKALZEIT_KOELN = "WDR Lokalzeit Köln";
 	public static final String HR = "HR";
 	public static final String MDR_SACHSEN = "MDR Sachsen";
 	public static final String MDR_SACHSEN_ANH = "MDR Sachsen Anhalt";
@@ -178,13 +178,11 @@ public class Stations {
 	public static final String ARD_DAS_ERSTE = "ARD Das Erste";
 	public static final String ARD_DAS_ERSTE_TAGESSCHAU = "ARD Das Erste Tagesschau";
 	public static final String ARD_MEDIATHEK = "ARD Mediathek";
-	public static final String ARD_MEDIATHEK_MOBILE = "ARD Mediathek Mobile";
 	public static final String ZDF = "ZDF Live";
 	public static final String ZDF_NEO = "ZDF Neo";
 	public static final String ZDF_INFO = "ZDF Info";
 	public static final String ZDF_KULTUR = "ZDF Kultur";
 	public static final String ZDF_MEDIATHEK = "ZDF Mediathek";
-	public static final String ZDF_MEDIATHEK_MOBILE = "ZDF Mediathek Mobile";
 	public static final String IT_NEWS_TV = "IT News TV";
 	public static final String MDF1 = "MDF.1";
 	public static final String DAF = "DAF";
@@ -270,7 +268,6 @@ public class Stations {
 
 	public static List<String> orientationPortrait() {
 		List<String> stations = new ArrayList<String>();
-		stations.add(CASH_TV);
 		stations.add(ALF_TV);
 		stations.add(TELE_NAPF);
 		stations.add(SCHAFFHAUSER_FERNSEHEN);
@@ -278,12 +275,13 @@ public class Stations {
 		stations.add(OS1_TV);
 		stations.add(ORF_TV_THEK);
 		stations.add(MDR_MEDIATHEK);
-		stations.add(ZDF_MEDIATHEK_MOBILE);
-		stations.add(ARD_MEDIATHEK_MOBILE);
+		stations.add(ZDF_MEDIATHEK);
+		stations.add(ARD_MEDIATHEK);
 		stations.add(ARD_DAS_ERSTE_TAGESSCHAU);
 		stations.add(FCZ_TV);
 		stations.add(YB_TV_CHANNEL);
 		stations.add(SPIEGEL_ONLINE);
+		stations.add(BAYERN_TV_MEDIATHEK);
 
 		return stations;
 	}
@@ -732,12 +730,6 @@ public class Stations {
 		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put(name, CASH_TV);
-		m.put(url, "cashTV.html");
-		m.put(icon, R.drawable.cash_tv);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
 		m.put(name, RRO_TV);
 		m.put(url, "rroTV.php");
 		m.put(icon, R.drawable.rro_tv);
@@ -914,6 +906,12 @@ public class Stations {
 		setLiveUrl(m, "wdr.php", "WDR");
 		m.put(icon, R.drawable.wdr_fernsehen);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(name, WDR_LOKALZEIT_KOELN);
+		m.put(url, archiveFile + "Lokalzeit-Koeln");
+		m.put(icon, R.drawable.wdr_fernsehen);
+		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(name, MDR_SACHSEN);
@@ -1321,12 +1319,6 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put(name, ARD_MEDIATHEK);
-		m.put(url, "ardMediathek.php");
-		m.put(icon, R.drawable.ard_mediathek);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put(name, ARD_MEDIATHEK_MOBILE);
 		m.put(url, archiveFile + "ARD-Mediathek");
 		m.put(icon, R.drawable.ard_mediathek);
 		addToArchiveStations(m);
@@ -1357,12 +1349,6 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put(name, ZDF_MEDIATHEK);
-		m.put(url, "zdfMediathek.php");
-		m.put(icon, R.drawable.zdf_mediathek);
-		addToArchiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put(name, ZDF_MEDIATHEK_MOBILE);
 		m.put(url, archiveFile + "ZDF-Mediathek");
 		m.put(icon, R.drawable.zdf_mediathek);
 		addToArchiveStations(m);
