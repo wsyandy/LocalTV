@@ -17,9 +17,11 @@ public class Constants {
 	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:20.0) Gecko/20100101 Firefox/20.0";
 
 	public static final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
+	public static final String SOL_HLS_PLAYER = "https://play.google.com/store/apps/details?id=com.solbox.hlsplayer";
 	public static final String FLASH_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.adobe.flashplayer";
 	// public static final String FLASH_AMAZON_STORE_URL =
 	// "http://www.amazon.com/gp/mas/dl/android?p=com.adobe.flashplayer";
+	public static final String ANDROIDER_WOLKE_HOME = "https://sites.google.com/site/androiderwolke";
 	public static final String FLASH_DIRCET_DOWNLOAD_URL_2X_3X = "https://sites.google.com/site/androiderwolke/adobe-flash/AdobeFlashPlayer_latest_2.x_3.x.apk";
 	public static final String FLASH_DIRCET_DOWNLOAD_URL_4X = "https://sites.google.com/site/androiderwolke/adobe-flash/AdobeFlashPlayer_latest.apk";
 	public static final String TAB_ALLE = "Alle";

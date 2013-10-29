@@ -36,7 +36,7 @@ public class Info extends Activity {
 		website.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				v.setBackgroundColor(getResources().getColor(R.color.orange));
-				Util.startBrowserActivity(getApplicationContext(), "http://sites.google.com/site/androiderwolke");
+				Util.startBrowserActivity(getApplicationContext(), Constants.ANDROIDER_WOLKE_HOME);
 			}
 		});
 

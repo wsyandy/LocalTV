@@ -110,6 +110,31 @@ public class Util {
 		b.show();
 	}
 
+	public static void showSolPlayerAlert(final Context context) {
+
+		final Builder b = new AlertDialog.Builder(context);
+		b.setCancelable(true);
+		b.setTitle(context.getString(R.string.solHlsPlayer));
+		String text = context.getString(R.string.solPlayerDownloadText);
+		b.setMessage(text);
+		b.setNegativeButton(R.string.neinDanke, null);
+
+		b.setNeutralButton(R.string.directDownload, new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialog, int which) {
+
+				if (isNetworkAvailable(context)) {
+					Intent i = null;
+					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER));
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					context.startActivity(i);
+				} else {
+					Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+		b.show();
+	}
+
 	public static void showAlertDialog(final Context context, int titleResId, int messageResId) {
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);

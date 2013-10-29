@@ -39,16 +39,6 @@ public class Help extends Activity {
 				Util.showLocalTVappDetails(context);
 			}
 		});
-		final Button zurueckButton = (Button) findViewById(R.id.buttonZurueck);
-		zurueckButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				// Google analytics
-				if (mGaTracker != null) {
-					mGaTracker.sendEvent("ui_action", "buttonZurueck", "buttonZurueck clicked", 0L);
-				}
-				finish();
-			}
-		});
 
 		final TextView flashTitle = (TextView) findViewById(R.id.textViewFlashTitle);
 		final Button playStoreButton = (Button) findViewById(R.id.buttonAdobeFlashPlayer);
@@ -66,9 +56,31 @@ public class Help extends Activity {
 			flashTitle.setVisibility(View.INVISIBLE);
 			playStoreButton.setVisibility(View.INVISIBLE);
 		}
+
 		AdMob ads = new AdMob();
 		ads.showRemoveAds(this);
 
+		final Button solHlsPlayerButton = (Button) findViewById(R.id.buttonSolPlayer);
+		solHlsPlayerButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "buttonSolHlsPlayer", "buttonSolHlsPlayer clicked", 0L);
+				}
+				Util.showSolPlayerAlert(context);
+			}
+		});
+
+		final Button zurueckButton = (Button) findViewById(R.id.buttonZurueck);
+		zurueckButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "buttonZurueck", "buttonZurueck clicked", 0L);
+				}
+				finish();
+			}
+		});
 	}
 
 	@Override
