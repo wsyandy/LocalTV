@@ -28,7 +28,8 @@
 		<activity android:name=".Main" />
 		<activity android:name=".Favourites" />
 		<activity android:name=".Search" />
-		
+		<activity android:name=".Settings" />
+				
         <!-- multi window support -->
 		<uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
 		<meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />

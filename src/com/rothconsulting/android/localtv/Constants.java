@@ -17,7 +17,8 @@ public class Constants {
 	public static final String USER_AGENT_FIREFOX = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:20.0) Gecko/20100101 Firefox/20.0";
 
 	public static final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
-	public static final String SOL_HLS_PLAYER = "https://play.google.com/store/apps/details?id=com.solbox.hlsplayer";
+	public static final String SOL_HLS_PLAYER_URL = "https://play.google.com/store/apps/details?id=com.solbox.hlsplayer";
+	public static final String SOL_HLS_PLAYER_URL_SAMSUNG = "samsungapps://ProductDetail/com.solbox.hlsplayer";
 	public static final String FLASH_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.adobe.flashplayer";
 	// public static final String FLASH_AMAZON_STORE_URL =
 	// "http://www.amazon.com/gp/mas/dl/android?p=com.adobe.flashplayer";
@@ -30,5 +31,4 @@ public class Constants {
 	public static final String TAB_SEARCH = "Search";
 	public static final String TAB_FAVORIT = "Favorit";
 	public static final String ANALYTICS_ID = "UA-38114228-2";
-
 }

@@ -158,7 +158,8 @@ public class Main extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(android.R.drawable.ic_menu_info_details);
 		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
-		menu.add(0, -3, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+		menu.add(0, -3, 0, getResources().getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+		menu.add(0, -4, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -171,7 +172,10 @@ public class Main extends ListActivity {
 		case -2: //
 			startActivity(new Intent(this, Help.class));
 			break;
-		case -3: // ende
+		case -3: //
+			startActivity(new Intent(this, Settings.class));
+			break;
+		case -4: // ende
 			// Util.clearApplicationData(this);
 			Util.deleteWebViewDatabase(this);
 			finish();

@@ -124,7 +124,7 @@ public class Util {
 
 				if (isNetworkAvailable(context)) {
 					Intent i = null;
-					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER));
+					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER_URL_SAMSUNG));
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.startActivity(i);
 				} else {

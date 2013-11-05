@@ -56,4 +56,9 @@
 	<string name="flash">Adobe Flash Player</string>
 	<string name="getLatestFlash">get latest Flash Player</string>
 	<string name="solHlsPlayer">Sol HLS Player</string>
+	<string name="settings">Settings</string>
+	<string name="playerType">Player type</string>
+	<string name="playerInternalExternal">Internal or external player?</string>
+	<string name="playerUseInternalPlayer">Use internal player</string>
+	<string name="playerUseExternalPlayer">Use external player</string>
 </resources>
