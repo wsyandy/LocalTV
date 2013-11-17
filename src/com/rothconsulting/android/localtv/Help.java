@@ -41,20 +41,20 @@ public class Help extends Activity {
 		});
 
 		final TextView flashTitle = (TextView) findViewById(R.id.textViewFlashTitle);
-		final Button playStoreButton = (Button) findViewById(R.id.buttonAdobeFlashPlayer);
+		final Button buttonPlayStoreFlash = (Button) findViewById(R.id.buttonAdobeFlashPlayer);
 		if (Util.isBorderOver()) {
-			playStoreButton.setOnClickListener(new View.OnClickListener() {
+			buttonPlayStoreFlash.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					// Google analytics
 					if (mGaTracker != null) {
 						mGaTracker.sendEvent("ui_action", "buttonAdobeFlashPlayer", "buttonAdobeFlashPlayer clicked", 0L);
 					}
-					Util.showFlashAlert(context, R.string.flash);
+					Util.showFlashAlert(context);
 				}
 			});
 		} else {
 			flashTitle.setVisibility(View.INVISIBLE);
-			playStoreButton.setVisibility(View.INVISIBLE);
+			buttonPlayStoreFlash.setVisibility(View.INVISIBLE);
 		}
 
 		AdMob ads = new AdMob();

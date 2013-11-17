@@ -4,39 +4,20 @@
     <PreferenceCategory
         android:key="prefs_player_type"
         android:title="@string/playerType">
-        <CheckBoxPreference
-            android:key="player_type"
+        <ListPreference
+            android:key="internal_or_external_player"
             android:title="@string/playerInternalExternal"
-            android:summary="@string/playerUseInternalPlayer"
-            android:defaultValue="false" />
+            android:summary="@string/playerOptionsSummary"
+            android:defaultValue="@string/playerUseInternalPlayer"
+            android:entries="@array/playerOptionsEntries"
+            android:entryValues="@array/playerOptionsValaues" />
+        <ListPreference
+            android:key="flash_player_options"
+            android:title="@string/flashPlayerOptions"
+            android:summary="@string/flashOptionsSummary"
+            android:defaultValue="@string/flashWhenNoOther"
+            android:entries="@array/flashOptionsEntries"
+            android:entryValues="@array/flashOptionsValaues" />
     </PreferenceCategory>
-
-<!--     <PreferenceCategory -->
-<!--         android:key="prefs_category_podcasts" -->
-<!--         android:title="@string/overviewPods" > -->
-<!--         <CheckBoxPreference -->
-<!--             android:key="show_summary_of_pods" -->
-<!--             android:title="@string/showDescriptionPodsTitle" -->
-<!--             android:summary="@string/showDescriptionPodsTrueSummary" -->
-<!--             android:defaultValue="true" /> -->
-
-<!--         <ListPreference -->
-<!--             android:key="number_of_pods" -->
-<!--             android:title="@string/numberOfPodsPerShowTitle" -->
-<!--             android:summary="@string/numberOfPodsPerShowSummary" -->
-<!--             android:defaultValue="10" -->
-<!--             android:entries="@array/numberOfPodsEntries" -->
-<!--             android:entryValues="@array/numberOfPodsValues" /> -->
-<!--     </PreferenceCategory> -->
-
-<!--     <PreferenceCategory -->
-<!--         android:key="prefs_category_allgemein" -->
-<!--         android:title="@string/allgemein" > -->
-<!--         <CheckBoxPreference -->
-<!--             android:key="use_wide_wiew_port" -->
-<!--             android:title="@string/darstellungsProblem" -->
-<!--             android:summary="@string/darstellungsProblemSummary" -->
-<!--             android:defaultValue="false" /> -->
-<!--     </PreferenceCategory> -->
     
 </PreferenceScreen>

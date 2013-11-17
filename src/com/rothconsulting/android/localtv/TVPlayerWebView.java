@@ -78,13 +78,13 @@ public class TVPlayerWebView extends Activity {
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
 			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
-				final String stationName = bundle.getString(Constants.NAME);
-				final String url = bundle.getString(Constants.URL);
+				final String stationName = bundle.getString(Stations.NAME);
+				final String url = bundle.getString(Stations.URL);
 				Util.log(TAG, "URL=" + url);
 
 				playInWebView(stationName, url);
 			} else {
-				String stationName = bundle.getString(Constants.NAME);
+				String stationName = bundle.getString(Stations.NAME);
 				finish();
 				Util.showStatusBarNotification(this, stationName);
 			}
@@ -102,7 +102,7 @@ public class TVPlayerWebView extends Activity {
 	private void playInWebView(final String name, final String url) {
 
 		if (!Stations.orientationPortrait().contains(name)) {
-			if (Build.VERSION.SDK_INT < 9) {
+			if (Util.isPlatformBelow_2_3_0()) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 			} else {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -113,16 +113,13 @@ public class TVPlayerWebView extends Activity {
 		myWebView.clearCache(Boolean.FALSE);
 		myWebView.setInitialScale(99);
 
+		myWebView.getSettings().setPluginState(PluginState.ON_DEMAND);
 		myWebView.getSettings().setJavaScriptEnabled(true);
-		myWebView.getSettings().setPluginState(PluginState.ON);
-		if (Stations.getNoFlashStations().contains(name) && Build.VERSION.SDK_INT >= 11) {
-			myWebView.getSettings().setPluginState(PluginState.OFF);
-		}
 
 		myWebView.getSettings().setAllowFileAccess(true);
 		// avoid crash on Android 3.0, 3.1 & 3.2
 		// Receiver not registered: android.widget.ZoomButtonsController crash
-		if (Stations.allowZoom().contains(name) && !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
+		if (Stations.allowZoomList().contains(name) && !(Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT <= 13)) {
 			myWebView.getSettings().setBuiltInZoomControls(true);
 		}
 
@@ -199,11 +196,11 @@ public class TVPlayerWebView extends Activity {
 				if (Util.isMediaUrl(url)) {
 					if (url.contains(".m3u8")) {
 						Intent intent = new Intent(context, TVPlayerVideoView.class);
-						intent.putExtra(Constants.NAME, name);
-						intent.putExtra(Constants.URL, url);
+						intent.putExtra(Stations.NAME, name);
+						intent.putExtra(Stations.URL, url);
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(intent);
-						if (myWebView != null && Stations.allowZoom().contains(stationName)) {
+						if (myWebView != null && Stations.allowZoomList().contains(stationName)) {
 							myWebView.removeAllViews();
 							myWebView.destroy();
 						}
@@ -233,21 +230,21 @@ public class TVPlayerWebView extends Activity {
 
 		});
 
-		if (Build.VERSION.SDK_INT >= 16) {
+		if (!Util.isPlatformBelow_4_1()) {
 			myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 		}
 		myWebView.loadUrl(theURLtoPlay);
 
 		Util.showStatusBarNotification(this, name);
 
-		if (Stations.getNoFlashStations().contains(name) && name.contains("SRF ") && Build.VERSION.SDK_INT >= 11) {
+		if (name.contains("SRF ") && !Util.isPlatformBelow_3_0()) {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
-			if (!Connectivity.isConnectedFast(this) || Build.VERSION.SDK_INT < 10) {
+			if (!Connectivity.isConnectedFast(this) || Util.isPlatformBelow_2_3_3()) {
 				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			}
 		}
@@ -315,7 +312,7 @@ public class TVPlayerWebView extends Activity {
 
 		if (myWebView != null && myWebView.isShown()) {
 
-			if (!Stations.allowZoom().contains(stationName)) {
+			if (!Stations.allowZoomList().contains(stationName)) {
 				if (layout != null) {
 					layout.removeView(myWebView);
 				}

@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
@@ -75,19 +76,41 @@ public class TVPlayerVideoView extends Activity {
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
 			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
-				String name = bundle.getString(Constants.NAME);
-				stationName = name;
-				String url = bundle.getString(Constants.URL);
+				stationName = bundle.getString(Stations.NAME);
+				String url = bundle.getString(Stations.URL);
 				Util.log(TAG, "URL=" + url);
 
-				playInVideoView(name, url);
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+				String playerTyp = sharedPreferences.getString(Settings.KEY_INT_OR_EXT_PLAYER, context.getString(R.string.playerUseInternalPlayer));
+
+				if (url.contains(Stations.streamFile) && Util.isPlatformBelow_4_0() && !Util.isSolHlsPlayerInstalled(context)) {
+					Util.showSolPlayerAlert(context);
+					return;
+				} else if (playerTyp.equals(context.getString(R.string.playerUseSolHlsPlayer))) {
+					if (!Util.isSolHlsPlayerInstalled(context)) {
+						Util.showSolPlayerAlert(context);
+					} else {
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						// intent.setDataAndType(Uri.parse(url), "application/vnd.apple.mpegurl");
+						intent.setDataAndType(Uri.parse(url), "application/x-mpegURL");
+						startActivity(intent);
+						finish();
+					}
+				} else if (playerTyp.equals(context.getString(R.string.playerUseOtherPlayer))) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					intent.setDataAndType(Uri.parse(url), "video/mp4");
+					startActivity(intent);
+					finish();
+				} else {
+					playInVideoView(stationName, url);
+				}
 			} else {
-				String stationName = bundle.getString(Constants.NAME);
+				String stationName = bundle.getString(Stations.NAME);
 				finish();
 				Util.showStatusBarNotification(this, stationName);
 			}
 		} else {
-			Util.log(TAG, "bundle is null");
+			Util.log(TAG, "bundle is null - from intent");
 		}
 
 	}
@@ -100,7 +123,7 @@ public class TVPlayerVideoView extends Activity {
 		// String httpLiveUrl = "http://rtmp.infomaniak.ch/livecast/telezuri/playlist.m3u8";
 		// String httpLiveUrl = "http://www.srf.ch/player/tv/videoembed?id=c4927fcf-e1a0-0001-7edd-1ef01d441651&autoplay=true";
 
-		if (Build.VERSION.SDK_INT < 9) {
+		if (Util.isPlatformBelow_2_3_0()) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		} else {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);

@@ -24,7 +24,6 @@
     <string name="emailText">Bonjour Koni\n\nIl me manque les stations suivantes: \n\n\n\n</string>
 <!--     <string name="vollbild">Pour le mode plein écran&#8230;\n&#8230;appuyer longtemps sur l\'image, ensuite sur le bouton plein écran.\nou\n&#8230;utilise le petit bouton carré en bas du cadre.</string> -->
     <string name="notLive">Cette chaine ne transmet pas live sur internet.\nCherche dans les archives!</string>
-    <string name="seeArchive">Cherche dans les archives!</string>
     <string name="googlePlay">Google Play</string>
 	<string name="directDownload">Téléchargement direct</string>
     <string name="neinDanke">no merci</string>

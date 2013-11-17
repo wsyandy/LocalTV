@@ -34,31 +34,90 @@ import android.widget.Toast;
 public class Util {
 
 	private static final String TAG = "Util";
-
 	private static final int NOTIFICATION_ID = 0;
+	private static final String PACKAGE_NAME_FLASH = "com.adobe.flashplayer";
+	private static final String PACKAGE_NAME_SOL_HLS_PLAYER = "com.solbox.hlsplayer";
 
 	public static void log(String tag, String message) {
 		// Log.d(tag, message);
 	}
 
-	public static boolean isFlashInstalled(Context context) {
-		boolean flashInstalled = false;
-		try {
-			PackageManager pm = context.getPackageManager();
-			ApplicationInfo ai = pm.getApplicationInfo("com.adobe.flashplayer", 0);
-			if (ai != null)
-				flashInstalled = true;
-		} catch (NameNotFoundException e) {
-			flashInstalled = false;
+	/**
+	 * Android Platform 2.3.0 = Level 9
+	 */
+	public static boolean isPlatformBelow_2_3_0() {
+		if (Build.VERSION.SDK_INT < 9) {
+			return true;
 		}
-		return flashInstalled;
+		return false;
 	}
 
-	public static String getFlashVersion(Context context) {
-		String version = "";
+	/**
+	 * Android Platform 2.3.3 = Level 10
+	 */
+	public static boolean isPlatformBelow_2_3_3() {
+		if (Build.VERSION.SDK_INT < 10) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Android Platform 3.0 = Level 11
+	 */
+	public static boolean isPlatformBelow_3_0() {
+		if (Build.VERSION.SDK_INT < 11) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Android Platform 4.0 = Level 14
+	 */
+	public static boolean isPlatformBelow_4_0() {
+		if (Build.VERSION.SDK_INT < 14) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Android Platform 4.1.x = Level 16
+	 */
+	public static boolean isPlatformBelow_4_1() {
+		if (Build.VERSION.SDK_INT < 16) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isAppInstalled(Context context, String packageName) {
+		boolean isInstalled = false;
 		try {
 			PackageManager pm = context.getPackageManager();
-			PackageInfo pInfo = pm.getPackageInfo("com.adobe.flashplayer", 0);
+			ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
+			if (ai != null)
+				isInstalled = true;
+		} catch (NameNotFoundException e) {
+			isInstalled = false;
+		}
+		return isInstalled;
+	}
+
+	public static boolean isFlashInstalled(Context context) {
+		return isAppInstalled(context, PACKAGE_NAME_FLASH);
+	}
+
+	public static boolean isSolHlsPlayerInstalled(Context context) {
+		return isAppInstalled(context, PACKAGE_NAME_SOL_HLS_PLAYER);
+	}
+
+	public static String getVersionOfApp(Context context, String packageName) {
+		String version = "?";
+		try {
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pInfo = pm.getPackageInfo(packageName, 0);
 			version = pInfo.versionName;
 		} catch (NameNotFoundException e) {
 			// do nothing
@@ -66,22 +125,30 @@ public class Util {
 		return version;
 	}
 
-	public static void showFlashAlert(final Context context, final int titleResId) {
+	public static String getVersionOfFlash(Context context) {
+		return getVersionOfApp(context, PACKAGE_NAME_FLASH);
+	}
+
+	public static String getVersionOfSolHlsPlayer(Context context) {
+		return getVersionOfApp(context, PACKAGE_NAME_SOL_HLS_PLAYER);
+	}
+
+	public static void showFlashAlert(final Context context) {
 
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
-		b.setTitle(titleResId);
+		b.setTitle(context.getString(R.string.flashNotInstalled));
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
 
 		// // Ignore Play Store for: Jelly Bean or higher and CPU ARM-v6
-		if (Build.VERSION.SDK_INT < 16 && !Build.CPU_ABI.contains("-v6")) {
+		if (isPlatformBelow_4_1() && !Build.CPU_ABI.contains("-v6")) {
 			b.setPositiveButton(R.string.googlePlay, new DialogInterface.OnClickListener() {
 				public void onClick(final DialogInterface dialog, final int which) {
 
 					if (isNetworkAvailable(context)) {
-						final Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_PLAY_STORE_URL));
+						final Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_PLAYER_STORE_URL));
 						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(i);
 					} else {
@@ -95,7 +162,7 @@ public class Util {
 
 				if (isNetworkAvailable(context)) {
 					Intent i = null;
-					if (Build.VERSION.SDK_INT < 14) { // 2.x and 3.x
+					if (isPlatformBelow_4_0()) { // < 2.x and 3.x
 						i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_2X_3X));
 					} else { // 4.x and higher
 						i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FLASH_DIRCET_DOWNLOAD_URL_4X));
@@ -124,7 +191,7 @@ public class Util {
 
 				if (isNetworkAvailable(context)) {
 					Intent i = null;
-					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER_URL_SAMSUNG));
+					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER_URL_GOOGLE));
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.startActivity(i);
 				} else {
@@ -178,7 +245,7 @@ public class Util {
 
 		Intent intent = new Intent(context, TVPlayerWebView.class);
 		intent.putExtra(Constants.FROM_NOTIFICATION, Constants.FROM_NOTIFICATION);
-		intent.putExtra(Constants.NAME, stationName);
+		intent.putExtra(Stations.NAME, stationName);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
 		notification.setLatestEventInfo(context, appName, stationName, contentIntent);
@@ -323,17 +390,17 @@ public class Util {
 	public static void play(Context context, String name, String url) {
 
 		if (Util.isNetworkAvailable(context)) {
-
-			Util.log(TAG, "name: " + name + " / NoFlash Stations: " + Stations.getNoFlashStations());
-			if (Util.isFlashInstalled(context) || Stations.getNoFlashStations().contains(name)) {
-				Intent intent = new Intent(context, TVPlayerWebView.class);
-				intent.putExtra(Constants.NAME, name);
-				intent.putExtra(Constants.URL, url);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				context.startActivity(intent);
+			Intent intent;
+			if (url.contains(".m3u8")) {
+				intent = new Intent(context, TVPlayerVideoView.class);
 			} else {
-				Util.showFlashAlert(context, R.string.flashNotInstalled);
+				intent = new Intent(context, TVPlayerWebView.class);
 			}
+			intent.putExtra(Stations.NAME, name);
+			intent.putExtra(Stations.URL, url);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intent);
+
 		} else {
 			Toast.makeText(context, context.getResources().getString(R.string.internetNotConnected), Toast.LENGTH_LONG).show();
 		}

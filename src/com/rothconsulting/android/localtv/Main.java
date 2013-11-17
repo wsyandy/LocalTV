@@ -6,10 +6,12 @@ import java.util.HashMap;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,8 +44,8 @@ public class Main extends ListActivity {
 		setContentView(R.layout.main);
 
 		context = this;
-		Stations stations = new Stations();
-		stations.init(context);
+		// Stations stations = new Stations();
+		Stations.init(context);
 
 		String action = getIntent().getAction();
 		String appName = getString(R.string.app_name);
@@ -60,7 +62,7 @@ public class Main extends ListActivity {
 			stationList = Stations.getArchivStations();
 		} else {
 			setTitle(appName + " - Live Sender");
-			stationList = stations.getLiveStations();
+			stationList = Stations.getLiveStations();
 		}
 		Util.log(TAG, "Action=" + action + " / Stations=" + stationList.size());
 
@@ -84,23 +86,42 @@ public class Main extends ListActivity {
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// When clicked, show a toast with the TextView text
-				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
-				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				String stationName = "" + textViewName.getText();
-				String stationUrl = "" + textViewUrl.getText();
+				HashMap<String, Object> station = (HashMap<String, Object>) ((SimpleAdapter) parent.getAdapter()).getItem(position);
+
+				String stationName = "" + station.get(Stations.NAME);
+				String stationUrl = "" + station.get(Stations.URL);
+				int stationTypRedId = (Integer) station.get(Stations.TYP);
 
 				Util.log(TAG, "name= " + stationName + ", url= " + stationUrl);
+				Util.log(TAG, "stationTypRedId=" + stationTypRedId + " / R.drawable.flash=" + R.drawable.flash);
+
+				if (stationTypRedId == R.drawable.flash && !Util.isFlashInstalled(context)) {
+					Util.log(TAG, "isFlash");
+					Util.showFlashAlert(context);
+					return;
+				}
+
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+				String playerTyp = sharedPreferences.getString(Settings.KEY_INT_OR_EXT_PLAYER, context.getString(R.string.playerUseInternalPlayer));
+
+				if (stationUrl.contains(Stations.streamFile) && Util.isPlatformBelow_4_0() && !Util.isSolHlsPlayerInstalled(context)) {
+					Util.showSolPlayerAlert(context);
+					return;
+				} else if (playerTyp.equals(context.getString(R.string.playerUseSolHlsPlayer))) {
+					if (!Util.isSolHlsPlayerInstalled(context)) {
+						Util.showSolPlayerAlert(context);
+						return;
+					}
+				}
 
 				// Google analytics
 				if (mGaTracker != null) {
 					mGaTracker.sendEvent("ui_action", "station_clicked", "url: " + stationUrl, 0L);
 				}
 
-				// Länder Titel haben keine URL und man kann sie nicht
-				// klicken.
-				if (textViewUrl != null && !stationUrl.equals("")) {
+				// Länder Titel haben keine URL und man kann sie nicht klicken.
+				if (stationUrl != null && !stationUrl.equals("")) {
 					Util.log(TAG, "Playing: " + stationName + ", " + stationUrl);
 					Util.play(context, stationName, stationUrl);
 				}
@@ -132,8 +153,8 @@ public class Main extends ListActivity {
 			}
 		});
 
-		SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { "icon", "name", "url", "typ" }, new int[] {
-				R.id.list_icon, R.id.list_name, R.id.list_url, R.id.stream_typ });
+		SimpleAdapter adapter = new SimpleAdapter(this, stationList, R.layout.list_item, new String[] { Stations.ICON, Stations.NAME, Stations.URL,
+				Stations.TYP }, new int[] { R.id.list_icon, R.id.list_name, R.id.list_url, R.id.stream_typ });
 
 		setListAdapter(adapter);
 
@@ -158,7 +179,9 @@ public class Main extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, -1, 0, getResources().getString(R.string.info)).setIcon(android.R.drawable.ic_menu_info_details);
 		menu.add(0, -2, 0, getResources().getString(R.string.help)).setIcon(android.R.drawable.ic_menu_help);
-		menu.add(0, -3, 0, getResources().getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+		if (Util.isBorderOver()) {
+			menu.add(0, -3, 0, getResources().getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+		}
 		menu.add(0, -4, 0, getResources().getString(R.string.ende)).setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -173,7 +196,7 @@ public class Main extends ListActivity {
 			startActivity(new Intent(this, Help.class));
 			break;
 		case -3: //
-			startActivity(new Intent(this, Settings.class));
+			startActivityForResult(new Intent(this, Settings.class), Constants.FROM_SETTINGS);
 			break;
 		case -4: // ende
 			// Util.clearApplicationData(this);
@@ -182,6 +205,16 @@ public class Main extends ListActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Util.log(TAG, "requestCode=" + requestCode + " / resultCode=" + resultCode + " / data=" + data);
+		if (requestCode == Constants.FROM_SETTINGS && data != null && data.getBooleanExtra(Settings.FLASH_OPTION_CHANGED, false)) {
+			// redraw the view
+			onCreate(null);
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override

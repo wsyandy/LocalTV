@@ -8,8 +8,7 @@
     <string name="cannotStartTV">Kann TV nicht starten.</string>
     <string name="flashNotInstalled">Adobe Flash Player ist nicht installiert!</string>
     <string name="flashDownloadText">Damit alle Sender von LocalTV funktionieren musst du den neusten gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest kannst du ihn mittels \'Direkt Download\' herunterladen und installieren.</string>
-    <string name="flashDownloadTextAmazon">Damit LocalTV funktioniert musst du den gratis Adobe Flash Player installiert haben!\n\nFinde ihn bei Adobe (suche nach: Archived Flash Player versions) oder lade ihn von meiner Website via \"Direkt Download\".</string>
-    <string name="solPlayerDownloadText">Damit du die Live Streams problemlos schauen kannst, solltest du den Sol HLS Player installiert haben. Diesen kannst du gratis im Google Play Store herunter laden.</string>
+    <string name="solPlayerDownloadText">In den LocalTV Einstellungen ist der Sol HLS Player ausgewählt. Damit du die Live Streams problemlos schauen kannst solltest du den Sol HLS Player installieren. Diesen kannst du gratis im Google Play Store herunter laden.</string>
     <string name="internetNotConnected">Du bist nicht mit dem Internet verbunden!</string>
     <string name="info">Info</string>
     <string name="infoDatenmenge">Fernseh schauen via Internet verbraucht relativ grosse Datenmengen. Ich empfehle dir die Verwendung eines WLAN.</string>
@@ -26,7 +25,6 @@
     <string name="emailText">Hallo Koni\n\nMir fehlt folgender Sender: \n\n\n\n</string>
 <!--     <string name="vollbild">Für Vollbild&#8230;\n&#8230;drücke lange auf das Bild, danach den Vollbild-Knopf.\noder\n&#8230;verwende den kleinen viereckigen Knopf auf dem unteren Balken.</string> -->
 	<string name="notLive">Diese TV Station sendet nicht Live ins Internet.\nSchau dich hier im Archiv um!</string>
-	<string name="seeArchive">Schau dich hier im Archiv um!</string>
     <string name="googlePlay">Google Play</string>
 	<string name="directDownload">Direkt Download</string>
 	<string name="neinDanke">Nein Danke</string>
@@ -53,6 +51,19 @@
 	<string name="pressScreenToStartSRF">Drück auf den Bildschirm um SRF zu starten !!!! Dann warte 30 sec. bis das Bild erscheint.</string>	
 	<string name="noFavouritesYet">Noch keine Favoriten.\nDrücke lange auf einen Sender um ihn zu den Favoriten hinzu zu fügen.</string>
 	<string name="flash">Adobe Flash Player</string>
+	<string name="flashPlayerOptions">Flash Player Optionen</string>
 	<string name="getLatestFlash">neuster Flash Player</string>
-			
+	<string name="solHlsPlayer">Sol HLS Player</string>
+	<string name="settings">Einstellungen</string>
+	<string name="playerType">Player Typ</string>
+	<string name="playerInternalExternal">Interner oder externer Player?</string>
+	<string name="playerUseInternalPlayer">Interner Android Player</string>
+	<string name="playerUseSolHlsPlayer">Sol HLS Player</string>
+	<string name="playerUseOtherPlayer">Anderer externer Player</string>
+	<string name="playerOptionsSummary">%1$s</string>
+	<string name="flashOptionsSummary">%1$s</string>
+	<string name="flashDoNotUse">Flash Player nicht verwenden</string>
+	<string name="flashWhenNoOther">Flash nur wenn kein anderer Stream vorhanden</string>
+	<string name="flashAlways">Wenn möglich immer Flash</string>
+				
 </resources>

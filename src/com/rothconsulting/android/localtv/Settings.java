@@ -1,18 +1,25 @@
 package com.rothconsulting.android.localtv;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
-	private static final String KEY_PLAYER_USE_INTERNAL = "player_type";
+	// Keys see res/xml/preferences.xml
+	public static final String KEY_INT_OR_EXT_PLAYER = "internal_or_external_player";
+	public static final String KEY_FLASH_PLAYER_OPTIONS = "flash_player_options";
 
-	private CheckBoxPreference mCheckBoxPreferenceOverview;
+	public static final String FLASH_OPTION_CHANGED = "flash_option_changed";
+
 	private SharedPreferences sharedPreferences;
+	private ListPreference mListPreferenceIntOrExtPlayer;
+	private ListPreference mListPreferenceAdobeFlashPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +29,9 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		addPreferencesFromResource(R.xml.preferences);
 
 		// Get a reference to the preferences
-		mCheckBoxPreferenceOverview = (CheckBoxPreference) getPreferenceScreen().findPreference(KEY_PLAYER_USE_INTERNAL);
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		mListPreferenceIntOrExtPlayer = (ListPreference) getPreferenceScreen().findPreference(KEY_INT_OR_EXT_PLAYER);
+		mListPreferenceAdobeFlashPlayer = (ListPreference) getPreferenceScreen().findPreference(KEY_FLASH_PLAYER_OPTIONS);
 
 		AdMob admob = new AdMob();
 		admob.showRemoveAds(this);
@@ -34,8 +42,11 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		super.onResume();
 
 		// Setup the initial values
-		mCheckBoxPreferenceOverview.setSummary(sharedPreferences.getBoolean(KEY_PLAYER_USE_INTERNAL, false) ? getString(R.string.playerUseInternalPlayer)
-				: getString(R.string.playerUseExternalPlayer));
+		mListPreferenceIntOrExtPlayer.setSummary(getString(R.string.playerOptionsSummary,
+				sharedPreferences.getString(KEY_INT_OR_EXT_PLAYER, getString(R.string.playerUseInternalPlayer))));
+
+		mListPreferenceAdobeFlashPlayer.setSummary(getString(R.string.flashOptionsSummary,
+				sharedPreferences.getString(KEY_FLASH_PLAYER_OPTIONS, getString(R.string.flashWhenNoOther))));
 
 		// Set up a listener whenever a key changes
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
@@ -50,11 +61,25 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		// Let's do something a preference value changes
-		if (key.equals(KEY_PLAYER_USE_INTERNAL)) {
-			mCheckBoxPreferenceOverview.setSummary(sharedPreferences.getBoolean(key, false) ? getString(R.string.playerUseInternalPlayer)
-					: getString(R.string.playerUseExternalPlayer));
+		if (key.equals(KEY_INT_OR_EXT_PLAYER)) {
+			mListPreferenceIntOrExtPlayer.setSummary(getString(R.string.playerOptionsSummary,
+					sharedPreferences.getString(key, getString(R.string.playerUseInternalPlayer))));
+		} else if (key.equals(KEY_FLASH_PLAYER_OPTIONS)) {
+			mListPreferenceAdobeFlashPlayer.setSummary(getString(R.string.flashOptionsSummary,
+					sharedPreferences.getString(key, getString(R.string.flashWhenNoOther))));
+			Intent i = getIntent();
+			i.putExtra(FLASH_OPTION_CHANGED, true);
+			setResult(RESULT_OK, i);
 		}
 
 	}
 
+	public static String geFlashOption(Context context) {
+		if (Util.isBorderOver()) {
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+			return sharedPreferences.getString(KEY_FLASH_PLAYER_OPTIONS, context.getString(R.string.flashWhenNoOther));
+		} else {
+			return context.getString(R.string.flashDoNotUse);
+		}
+	}
 }
