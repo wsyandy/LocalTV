@@ -7,7 +7,6 @@ public class Constants {
 	public static final String ADMOB_PUBLISHER_ID = "a14efd27b63f82b";
 	public static final String ANALYTICS_ID = "UA-38114228-2";
 	public static final String THE_ANTI_ADS_KEY = "";
-	public static final String FROM_NOTIFICATION = "fromNotification";
 	public static final int FROM_SETTINGS = 999;
 	public static final String USER_AGENT_CHROME = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.56 Safari/537.17";
 	public static final String USER_AGENT_CHROME_MOBILE_SGS3 = "Mozilla/5.0 (Linux; Android 4.1.2; GT-I9300 Build/JZO54K) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";

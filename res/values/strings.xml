@@ -57,7 +57,7 @@
 	<string name="solHlsPlayer">Sol HLS Player</string>
 	<string name="settings">Settings</string>
 	<string name="playerType">Player type</string>
-	<string name="playerInternalExternal">Internal or external player?</string>
+	<string name="playerInternalExternal">What player?</string>
 	<string name="playerUseInternalPlayer">Internal Android player</string>
 	<string name="playerUseSolHlsPlayer">Sol HLS Player</string>
 	<string name="playerUseOtherPlayer">Other external player</string>

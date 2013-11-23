@@ -49,7 +49,6 @@ public class Favourites extends ListActivity {
 		String appName = getString(R.string.app_name);
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		Util.hideStatusBarNotification(this);
 
 		Util.log(TAG, "context=" + context);
 		Util.log(TAG, "this=" + this);

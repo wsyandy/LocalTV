@@ -51,7 +51,6 @@ public class Main extends ListActivity {
 		String appName = getString(R.string.app_name);
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		Util.hideStatusBarNotification(this);
 
 		ArrayList<HashMap<String, Object>> stationList = null;
 		if (action.equals(Constants.TAB_ALLE)) {
@@ -98,7 +97,7 @@ public class Main extends ListActivity {
 
 				if (stationTypRedId == R.drawable.flash && !Util.isFlashInstalled(context)) {
 					Util.log(TAG, "isFlash");
-					Util.showFlashAlert(context);
+					Util.showFlashAlert(context, R.string.flashNotInstalled);
 					return;
 				}
 

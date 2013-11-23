@@ -75,40 +75,35 @@ public class TVPlayerVideoView extends Activity {
 
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
-			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
-				stationName = bundle.getString(Stations.NAME);
-				String url = bundle.getString(Stations.URL);
-				Util.log(TAG, "URL=" + url);
+			stationName = bundle.getString(Stations.NAME);
+			String url = bundle.getString(Stations.URL);
+			Util.log(TAG, "URL=" + url);
 
-				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-				String playerTyp = sharedPreferences.getString(Settings.KEY_INT_OR_EXT_PLAYER, context.getString(R.string.playerUseInternalPlayer));
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+			String playerTyp = sharedPreferences.getString(Settings.KEY_INT_OR_EXT_PLAYER, context.getString(R.string.playerUseInternalPlayer));
 
-				if (url.contains(Stations.streamFile) && Util.isPlatformBelow_4_0() && !Util.isSolHlsPlayerInstalled(context)) {
+			if (url.contains(Stations.streamFile) && Util.isPlatformBelow_4_0() && !Util.isSolHlsPlayerInstalled(context)) {
+				Util.showSolPlayerAlert(context);
+				return;
+			} else if (playerTyp.equals(context.getString(R.string.playerUseSolHlsPlayer))) {
+				if (!Util.isSolHlsPlayerInstalled(context)) {
 					Util.showSolPlayerAlert(context);
-					return;
-				} else if (playerTyp.equals(context.getString(R.string.playerUseSolHlsPlayer))) {
-					if (!Util.isSolHlsPlayerInstalled(context)) {
-						Util.showSolPlayerAlert(context);
-					} else {
-						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-						// intent.setDataAndType(Uri.parse(url), "application/vnd.apple.mpegurl");
-						intent.setDataAndType(Uri.parse(url), "application/x-mpegURL");
-						startActivity(intent);
-						finish();
-					}
-				} else if (playerTyp.equals(context.getString(R.string.playerUseOtherPlayer))) {
+				} else {
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					intent.setDataAndType(Uri.parse(url), "video/mp4");
+					// intent.setDataAndType(Uri.parse(url), "application/vnd.apple.mpegurl");
+					intent.setDataAndType(Uri.parse(url), "application/x-mpegURL");
 					startActivity(intent);
 					finish();
-				} else {
-					playInVideoView(stationName, url);
 				}
-			} else {
-				String stationName = bundle.getString(Stations.NAME);
+			} else if (playerTyp.equals(context.getString(R.string.playerUseOtherPlayer))) {
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+				intent.setDataAndType(Uri.parse(url), "video/mp4");
+				startActivity(intent);
 				finish();
-				Util.showStatusBarNotification(this, stationName);
+			} else {
+				playInVideoView(stationName, url);
 			}
+
 		} else {
 			Util.log(TAG, "bundle is null - from intent");
 		}
@@ -157,7 +152,7 @@ public class TVPlayerVideoView extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		closeTVPlayer(false);
+		closeTVPlayer();
 	}
 
 	@Override
@@ -169,7 +164,7 @@ public class TVPlayerVideoView extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-			closeTVPlayer(true);
+			closeTVPlayer();
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -186,10 +181,7 @@ public class TVPlayerVideoView extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
-	private void closeTVPlayer(boolean removeStatusBar) {
-		if (removeStatusBar) {
-			Util.hideStatusBarNotification(this);
-		}
+	private void closeTVPlayer() {
 		// Unregister PhoneStateListener
 		unregisterPhoneState();
 
@@ -219,7 +211,7 @@ public class TVPlayerVideoView extends Activity {
 			startActivity(new Intent(this, Help.class));
 			break;
 		case -2: //
-			closeTVPlayer(true);
+			closeTVPlayer();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -236,7 +228,7 @@ public class TVPlayerVideoView extends Activity {
 				// called when someone is ringing to this phone
 				Toast.makeText(context, getString(R.string.incomingCall), Toast.LENGTH_SHORT).show();
 				// stop playing
-				closeTVPlayer(true);
+				closeTVPlayer();
 				break;
 			}
 		}

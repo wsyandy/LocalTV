@@ -49,7 +49,7 @@ public class Help extends Activity {
 					if (mGaTracker != null) {
 						mGaTracker.sendEvent("ui_action", "buttonAdobeFlashPlayer", "buttonAdobeFlashPlayer clicked", 0L);
 					}
-					Util.showFlashAlert(context);
+					Util.showFlashAlert(context, R.string.flash);
 				}
 			});
 		} else {

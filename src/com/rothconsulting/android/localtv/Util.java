@@ -11,9 +11,6 @@ import java.util.TreeMap;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -133,11 +130,11 @@ public class Util {
 		return getVersionOfApp(context, PACKAGE_NAME_SOL_HLS_PLAYER);
 	}
 
-	public static void showFlashAlert(final Context context) {
+	public static void showFlashAlert(final Context context, int titleResId) {
 
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
-		b.setTitle(context.getString(R.string.flashNotInstalled));
+		b.setTitle(context.getString(titleResId));
 		String text = context.getString(R.string.flashDownloadText);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
@@ -233,30 +230,6 @@ public class Util {
 		}
 		Util.log(TAG, "Keine Connectivity");
 		return false;
-	}
-
-	public static void showStatusBarNotification(Context context, String stationName) {
-
-		String appName = context.getResources().getString(R.string.app_name);
-
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-		Notification notification = new Notification(R.drawable.tv_icon, appName + " start...", System.currentTimeMillis());
-
-		Intent intent = new Intent(context, TVPlayerWebView.class);
-		intent.putExtra(Constants.FROM_NOTIFICATION, Constants.FROM_NOTIFICATION);
-		intent.putExtra(Stations.NAME, stationName);
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-		notification.setLatestEventInfo(context, appName, stationName, contentIntent);
-
-		mNotificationManager.notify(NOTIFICATION_ID, notification);
-	}
-
-	public static void hideStatusBarNotification(Context context) {
-		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
-		mNotificationManager.cancel(NOTIFICATION_ID);
 	}
 
 	public static String getAppVersionName(Context context, Class<?> cls) {
@@ -390,12 +363,7 @@ public class Util {
 	public static void play(Context context, String name, String url) {
 
 		if (Util.isNetworkAvailable(context)) {
-			Intent intent;
-			if (url.contains(".m3u8")) {
-				intent = new Intent(context, TVPlayerVideoView.class);
-			} else {
-				intent = new Intent(context, TVPlayerWebView.class);
-			}
+			Intent intent = new Intent(context, TVPlayerWebView.class);
 			intent.putExtra(Stations.NAME, name);
 			intent.putExtra(Stations.URL, url);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

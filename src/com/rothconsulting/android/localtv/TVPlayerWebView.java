@@ -77,17 +77,11 @@ public class TVPlayerWebView extends Activity {
 
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
-			if (bundle.getString(Constants.FROM_NOTIFICATION) == null) {
-				final String stationName = bundle.getString(Stations.NAME);
-				final String url = bundle.getString(Stations.URL);
-				Util.log(TAG, "URL=" + url);
+			final String stationName = bundle.getString(Stations.NAME);
+			final String url = bundle.getString(Stations.URL);
+			Util.log(TAG, "URL=" + url);
 
-				playInWebView(stationName, url);
-			} else {
-				String stationName = bundle.getString(Stations.NAME);
-				finish();
-				Util.showStatusBarNotification(this, stationName);
-			}
+			playInWebView(stationName, url);
 		} else {
 			Util.log(TAG, "bundle is null");
 		}
@@ -218,7 +212,6 @@ public class TVPlayerWebView extends Activity {
 						}
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						view.getContext().startActivity(intent);
-						Util.hideStatusBarNotification(context);
 						// back to the list
 						finish();
 						return true;
@@ -234,8 +227,6 @@ public class TVPlayerWebView extends Activity {
 			myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 		}
 		myWebView.loadUrl(theURLtoPlay);
-
-		Util.showStatusBarNotification(this, name);
 
 		if (name.contains("SRF ") && !Util.isPlatformBelow_3_0()) {
 			Toast.makeText(this, getResources().getString(R.string.pressScreenToStartSRF), Toast.LENGTH_LONG).show();
@@ -262,8 +253,7 @@ public class TVPlayerWebView extends Activity {
 	@Override
 	protected void onDestroy() {
 		Util.log(TAG, "************ onDestroy");
-
-		closeTVPlayer(false);
+		closeTVPlayer();
 		super.onDestroy();
 	}
 
@@ -283,7 +273,7 @@ public class TVPlayerWebView extends Activity {
 				myWebView.goBack();
 				return false;
 			} else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-				closeTVPlayer(true);
+				closeTVPlayer();
 			}
 		}
 		return super.onKeyDown(keyCode, event);
@@ -304,7 +294,7 @@ public class TVPlayerWebView extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
-	private void closeTVPlayer(boolean removeStatusBar) {
+	private void closeTVPlayer() {
 		Util.log(TAG, "************ closeTVPlayer");
 
 		layout = (RelativeLayout) findViewById(R.id.webPlayerLayout);
@@ -338,9 +328,6 @@ public class TVPlayerWebView extends Activity {
 				}, timeout);
 			}
 		}
-		if (removeStatusBar) {
-			Util.hideStatusBarNotification(this);
-		}
 		// Unregister PhoneStateListener
 		unregisterPhoneState();
 		// Util.clearApplicationData(this);
@@ -364,7 +351,7 @@ public class TVPlayerWebView extends Activity {
 			startActivity(new Intent(this, Help.class));
 			break;
 		case -2:
-			closeTVPlayer(true);
+			closeTVPlayer();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -381,7 +368,7 @@ public class TVPlayerWebView extends Activity {
 				// called when someone is ringing to this phone
 				Toast.makeText(context, getString(R.string.incomingCall), Toast.LENGTH_SHORT).show();
 				// stop playing
-				closeTVPlayer(true);
+				closeTVPlayer();
 				break;
 			}
 		}
