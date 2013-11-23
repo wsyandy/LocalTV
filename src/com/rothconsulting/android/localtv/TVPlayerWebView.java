@@ -108,6 +108,9 @@ public class TVPlayerWebView extends Activity {
 		myWebView.setInitialScale(99);
 
 		myWebView.getSettings().setPluginState(PluginState.ON_DEMAND);
+		if (Util.isPlatformBelow_4_0()) {
+			myWebView.getSettings().setPluginState(PluginState.ON);
+		}
 		myWebView.getSettings().setJavaScriptEnabled(true);
 
 		myWebView.getSettings().setAllowFileAccess(true);
@@ -172,6 +175,9 @@ public class TVPlayerWebView extends Activity {
 				View titleBar = (View) title.getParent();
 				titleBar.setBackgroundColor(Color.BLACK);
 				titleBar.setVisibility(View.VISIBLE);
+				if (Util.isMediaUrl(url) && Util.isPlatformBelow_4_0()) {
+					startPlayer(view, name, url);
+				}
 			}
 
 			@Override
@@ -187,35 +193,8 @@ public class TVPlayerWebView extends Activity {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Util.log(TAG, "****** URL=" + url);
 
-				if (Util.isMediaUrl(url)) {
-					if (url.contains(".m3u8")) {
-						Intent intent = new Intent(context, TVPlayerVideoView.class);
-						intent.putExtra(Stations.NAME, name);
-						intent.putExtra(Stations.URL, url);
-						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						context.startActivity(intent);
-						if (myWebView != null && Stations.allowZoomList().contains(stationName)) {
-							myWebView.removeAllViews();
-							myWebView.destroy();
-						}
-						finish();
-						return true;
-					} else {
-						Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
-						if (url.contains("id=com.rothconsulting.android.localtv")) {
-							url = "market://details?id=com.rothconsulting.android.localtv";
-						}
-						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-						if (url.contains(".mp4") || url.contains("rtmp:")) {
-							Util.log(TAG, "******* setType( video/mp4 );");
-							intent.setType("video/mp4");
-						}
-						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						view.getContext().startActivity(intent);
-						// back to the list
-						finish();
-						return true;
-					}
+				if (Util.isMediaUrl(url) && !Util.isPlatformBelow_4_0()) {
+					return startPlayer(view, name, url);
 				} else {
 					return super.shouldOverrideUrlLoading(view, url);
 				}
@@ -239,6 +218,38 @@ public class TVPlayerWebView extends Activity {
 				Toast.makeText(this, getResources().getString(R.string.verbinde), Toast.LENGTH_LONG).show();
 			}
 		}
+	}
+
+	private boolean startPlayer(WebView view, String name, String url) {
+		if (url.contains(".m3u8")) {
+			Intent intent = new Intent(context, TVPlayerVideoView.class);
+			intent.putExtra(Stations.NAME, name);
+			intent.putExtra(Stations.URL, url);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intent);
+			if (myWebView != null && Stations.allowZoomList().contains(stationName)) {
+				myWebView.removeAllViews();
+				myWebView.destroy();
+			}
+			finish();
+			return true;
+		} else {
+			Toast.makeText(context, getResources().getString(R.string.openExternalPlayer), Toast.LENGTH_LONG).show();
+			if (url.contains("id=com.rothconsulting.android.localtv")) {
+				url = "market://details?id=com.rothconsulting.android.localtv";
+			}
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+			if (url.contains(".mp4") || url.contains("rtmp:")) {
+				Util.log(TAG, "******* setType( video/mp4 );");
+				intent.setType("video/mp4");
+			}
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			view.getContext().startActivity(intent);
+			// back to the list
+			finish();
+			return true;
+		}
+
 	}
 
 	@Override

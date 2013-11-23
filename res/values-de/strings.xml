@@ -7,7 +7,7 @@
     <string name="back">Zurück zur Übersicht</string>
     <string name="cannotStartTV">Kann TV nicht starten.</string>
     <string name="flashNotInstalled">Adobe Flash Player ist nicht installiert!</string>
-    <string name="flashDownloadText">Damit Sender die nur ein \'Flash\' Signal senden funktionieren musst du den neusten gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest oder du Android Version 4.0 oder grösser verwendest kannst du ihn mittels \'Direkt Download\' herunterladen und installieren.</string>
+    <string name="flashDownloadText">Damit Sender die nur ein \'Flash\' Signal senden funktionieren musst du den neusten gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest oder du Android Version 4.0 oder grösser verwendest kannst du ihn mittels \'Direkt Download\' herunterladen und manuell installieren.</string>
     <string name="solPlayerDownloadText">Damit du die HTTP Live Streams problemlos schauen kannst solltest du den Sol HLS Player installieren. Diesen kannst du gratis im Google Play Store herunter laden. In den LocalTV Einstellungen können auch andere Player-Formate ausgewählt werden.</string>
     <string name="internetNotConnected">Du bist nicht mit dem Internet verbunden!</string>
     <string name="info">Info</string>

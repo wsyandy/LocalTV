@@ -103,12 +103,15 @@ public class Main extends ListActivity {
 
 				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 				String playerTyp = sharedPreferences.getString(Settings.KEY_INT_OR_EXT_PLAYER, context.getString(R.string.playerUseInternalPlayer));
+				if (Util.isPlatformBelow_4_0()) {
+					playerTyp = context.getString(R.string.playerUseSolHlsPlayer);
+				}
 
 				if (stationUrl.contains(Stations.streamFile) && Util.isPlatformBelow_4_0() && !Util.isSolHlsPlayerInstalled(context)) {
 					Util.showSolPlayerAlert(context);
 					return;
 				} else if (playerTyp.equals(context.getString(R.string.playerUseSolHlsPlayer))) {
-					if (!Util.isSolHlsPlayerInstalled(context)) {
+					if (!Util.isSolHlsPlayerInstalled(context) && stationUrl.contains(Stations.streamFile)) {
 						Util.showSolPlayerAlert(context);
 						return;
 					}

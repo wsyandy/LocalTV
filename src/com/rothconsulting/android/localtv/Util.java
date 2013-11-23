@@ -188,7 +188,11 @@ public class Util {
 
 				if (isNetworkAvailable(context)) {
 					Intent i = null;
-					i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SOL_HLS_PLAYER_URL_GOOGLE));
+					String storeUrl = Constants.SOL_HLS_PLAYER_URL_GOOGLE;
+					if (Util.isPlatformBelow_4_0()) {
+						storeUrl = Constants.SOL_HLS_PLAYER_URL_GOOGLE_OLD;
+					}
+					i = new Intent(Intent.ACTION_VIEW, Uri.parse(storeUrl));
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.startActivity(i);
 				} else {

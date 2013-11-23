@@ -42,8 +42,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		super.onResume();
 
 		// Setup the initial values
-		mListPreferenceIntOrExtPlayer.setSummary(getString(R.string.playerOptionsSummary,
-				sharedPreferences.getString(KEY_INT_OR_EXT_PLAYER, getString(R.string.playerUseInternalPlayer))));
+		if (Util.isPlatformBelow_4_0()) {
+			mListPreferenceIntOrExtPlayer.setEnabled(false);
+			mListPreferenceIntOrExtPlayer.setSummary(getString(R.string.playerUseSolHlsPlayer));
+			mListPreferenceIntOrExtPlayer.setValue(getString(R.string.playerUseSolHlsPlayer));
+		} else {
+			mListPreferenceIntOrExtPlayer.setSummary(getString(R.string.playerOptionsSummary,
+					sharedPreferences.getString(KEY_INT_OR_EXT_PLAYER, getString(R.string.playerUseInternalPlayer))));
+		}
 
 		mListPreferenceAdobeFlashPlayer.setSummary(getString(R.string.flashOptionsSummary,
 				sharedPreferences.getString(KEY_FLASH_PLAYER_OPTIONS, getString(R.string.flashWhenNoOther))));

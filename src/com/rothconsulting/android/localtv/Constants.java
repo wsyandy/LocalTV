@@ -19,6 +19,7 @@ public class Constants {
 
 	public static final String BASE_URL = "http://www.rothconsulting.com/android/localtv/";
 	public static final String SOL_HLS_PLAYER_URL_GOOGLE = "https://play.google.com/store/apps/details?id=com.solbox.hlsplayer";
+	public static final String SOL_HLS_PLAYER_URL_GOOGLE_OLD = "market://details?id=com.solbox.hlsplayer";
 	public static final String SOL_HLS_PLAYER_URL_SAMSUNG = "samsungapps://ProductDetail/com.solbox.hlsplayer";
 	public static final String FLASH_PLAYER_STORE_URL = "https://play.google.com/store/apps/details?id=com.adobe.flashplayer";
 	// public static final String FLASH_AMAZON_STORE_URL =
