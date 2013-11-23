@@ -31,7 +31,6 @@ import android.widget.Toast;
 public class Util {
 
 	private static final String TAG = "Util";
-	private static final int NOTIFICATION_ID = 0;
 	private static final String PACKAGE_NAME_FLASH = "com.adobe.flashplayer";
 	private static final String PACKAGE_NAME_SOL_HLS_PLAYER = "com.solbox.hlsplayer";
 
@@ -175,11 +174,24 @@ public class Util {
 	}
 
 	public static void showSolPlayerAlert(final Context context) {
+		showPlayerDownloadDialog(context, R.string.solHlsPlayer, R.string.solPlayerDownloadText, Constants.SOL_HLS_PLAYER_URL_GOOGLE,
+				Constants.SOL_HLS_PLAYER_URL_GOOGLE_OLD);
+	}
+
+	public static void showVPlayerAlert(final Context context) {
+		showPlayerDownloadDialog(context, R.string.vPlayer, R.string.vPlayerDownloadText, Constants.VPLAYER_URL_GOOGLE, null);
+	}
+
+	public static void showMxPlayerAlert(final Context context) {
+		showPlayerDownloadDialog(context, R.string.mxPlayer, R.string.mxPlayerDownloadText, Constants.MX_PLAYER_URL_GOOGLE, null);
+	}
+
+	private static void showPlayerDownloadDialog(final Context context, int titleResId, int textResId, final String downloadLink, final String downloadLinkOld) {
 
 		final Builder b = new AlertDialog.Builder(context);
 		b.setCancelable(true);
-		b.setTitle(context.getString(R.string.solHlsPlayer));
-		String text = context.getString(R.string.solPlayerDownloadText);
+		b.setTitle(context.getString(titleResId));
+		String text = context.getString(textResId);
 		b.setMessage(text);
 		b.setNegativeButton(R.string.neinDanke, null);
 
@@ -188,9 +200,9 @@ public class Util {
 
 				if (isNetworkAvailable(context)) {
 					Intent i = null;
-					String storeUrl = Constants.SOL_HLS_PLAYER_URL_GOOGLE;
-					if (Util.isPlatformBelow_4_0()) {
-						storeUrl = Constants.SOL_HLS_PLAYER_URL_GOOGLE_OLD;
+					String storeUrl = downloadLink;
+					if (Util.isPlatformBelow_4_0() && downloadLinkOld != null) {
+						storeUrl = downloadLinkOld;
 					}
 					i = new Intent(Intent.ACTION_VIEW, Uri.parse(storeUrl));
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -328,6 +340,19 @@ public class Util {
 		return "";
 	}
 
+	public static boolean isFlashStation(String stationName) {
+		ArrayList<HashMap<String, Object>> stationList = Stations.getAllStations();
+
+		for (HashMap<String, Object> station : stationList) {
+			if (("" + station.get("name")).equalsIgnoreCase(stationName)) {
+				if ((Integer) station.get(Stations.TYP) == R.drawable.flash) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public static void hideKeyboard(Context context, View view) {
 		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (view != null) {
@@ -364,12 +389,13 @@ public class Util {
 		context.startActivity(intent);
 	}
 
-	public static void play(Context context, String name, String url) {
+	public static void play(Context context, String name, String url, boolean isFlashStation) {
 
 		if (Util.isNetworkAvailable(context)) {
 			Intent intent = new Intent(context, TVPlayerWebView.class);
 			intent.putExtra(Stations.NAME, name);
 			intent.putExtra(Stations.URL, url);
+			intent.putExtra(Stations.TYP, isFlashStation);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(intent);
 

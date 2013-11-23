@@ -996,7 +996,7 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, AUGSBURG_TV);
-		setLiveUrl(m, "augsburgTV.php", null);
+		setLiveUrl(m, "augsburgTV.php", "AugsburgTV");
 		m.put(ICON, R.drawable.augsburg_tv);
 		addToLiveStations(m);
 
@@ -1080,45 +1080,57 @@ public class Stations {
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, TV_HALLE);
-		setLiveUrl(m, "tvHalle.php", null);
+		setLiveUrl(m, "tvHalle.php", "TV-Halle");
 		m.put(ICON, R.drawable.tv_halle);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, RAN_1);
-		setLiveUrl(m, "ran1.php", null);
+		setLiveUrl(m, "ran1.php", "Ran1");
 		m.put(ICON, R.drawable.ran1);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, ELBEKANAL);
-		setLiveUrl(m, "elbekanal.php", null);
+		setLiveUrl(m, "elbekanal.php", "Elbekanal");
 		m.put(ICON, R.drawable.elbekanal);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, PUNKT_UM);
-		setLiveUrl(m, "punktUm.php", null);
+		setLiveUrl(m, "punktUm.php", "Punktum");
 		m.put(ICON, R.drawable.punkt_um);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, RBW);
-		setLiveUrl(m, "rbw.php", null);
+		setLiveUrl(m, "rbw.php", "RBW");
 		m.put(ICON, R.drawable.rbw);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, RFH);
-		setLiveUrl(m, "rfh.php", null);
+		setLiveUrl(m, "rfh.php", "RFH");
 		m.put(ICON, R.drawable.rfh);
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, BLK_ONLINE_TV);
-		setLiveUrl(m, "blkOnlineTv.php", null);
+		setLiveUrl(m, "blkOnlineTv.php", "blkOnlineTv");
 		m.put(ICON, R.drawable.blk_online_tv);
 		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, MDF1);
+		setLiveUrl(m, "mdf1.php", "MDF1");
+		m.put(ICON, R.drawable.mdf1);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, MDF1);
+		m.put(URL, "mdf1.php");
+		m.put(ICON, R.drawable.mdf1);
+		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, DAS_VIERTE);
@@ -1385,12 +1397,6 @@ public class Stations {
 		setLiveUrl(m, "phoenix.php", null);
 		m.put(ICON, R.drawable.phoenix);
 		addToLiveStations(m);
-
-		m = new HashMap<String, Object>();
-		m.put(NAME, MDF1);
-		m.put(URL, "mdf1.php");
-		m.put(ICON, R.drawable.mdf1);
-		addToArchiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, BUNDESTAG_1);

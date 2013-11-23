@@ -57,7 +57,26 @@
 			<Button android:layout_margin="35dip" android:id="@+id/buttonSolPlayer"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="@string/solHlsPlayer" android:layout_gravity="left" />
-						
+
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/vPlayer"
+				android:textColor="#BA002B" android:textSize="20sp"
+				android:layout_marginTop="10dip" android:layout_marginBottom="1dip"
+				android:id="@+id/textViewVPlayer" />
+			<Button android:layout_margin="35dip" android:id="@+id/buttonVPlayer"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:text="@string/vPlayer" android:layout_gravity="left" />
+
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/mxPlayer"
+				android:textColor="#BA002B" android:textSize="20sp"
+				android:layout_marginTop="10dip" android:layout_marginBottom="1dip"
+				android:id="@+id/textViewMxPlayer" />
+			<Button android:layout_margin="35dip" android:id="@+id/buttonMxPlayer"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:text="@string/mxPlayer" android:layout_gravity="left" />
+									
+												
 			<Button android:layout_margin="35dip" android:id="@+id/buttonZurueck"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="@string/back" android:layout_gravity="left" />

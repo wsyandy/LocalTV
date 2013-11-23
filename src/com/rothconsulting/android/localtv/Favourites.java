@@ -35,6 +35,7 @@ public class Favourites extends ListActivity {
 	private Context context;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
+	private boolean isFlashStation = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class Favourites extends ListActivity {
 		setContentView(R.layout.favourites);
 
 		context = this;
+		isFlashStation = false;
+
 		// Stations stations = new Stations();
 		// stations.init(context);
 
@@ -78,12 +81,16 @@ public class Favourites extends ListActivity {
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// When clicked, show a toast with the TextView text
-				TextView textViewName = (TextView) ((LinearLayout) view).getChildAt(1); // 1 = Die zweite View (name)
-				TextView textViewUrl = (TextView) ((LinearLayout) view).getChildAt(2); // 2 = Die dritte View (url)
 
-				String stationName = "" + textViewName.getText();
-				String stationUrl = "" + textViewUrl.getText();
+				HashMap<String, Object> station = (HashMap<String, Object>) ((SimpleAdapter) parent.getAdapter()).getItem(position);
+
+				String stationName = "" + station.get(Stations.NAME);
+				String stationUrl = "" + station.get(Stations.URL);
+				int stationTypRedId = (Integer) station.get(Stations.TYP);
+
+				if (stationTypRedId == R.drawable.flash) {
+					isFlashStation = true;
+				}
 
 				Util.log(TAG, "name= " + stationName + ", url= " + stationUrl);
 
@@ -94,9 +101,9 @@ public class Favourites extends ListActivity {
 
 				// Länder Titel haben keine URL und man kann sie nicht
 				// klicken.
-				if (textViewUrl != null && !stationUrl.equals("")) {
+				if (stationUrl != null && !stationUrl.equals("")) {
 					Util.log(TAG, "Playing: " + stationName + ", " + stationUrl);
-					Util.play(context, stationName, stationUrl);
+					Util.play(context, stationName, stationUrl, isFlashStation);
 				}
 			}
 		});

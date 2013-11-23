@@ -71,6 +71,28 @@ public class Help extends Activity {
 			}
 		});
 
+		final Button vPlayerButton = (Button) findViewById(R.id.buttonVPlayer);
+		vPlayerButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "buttonVPlayer", "buttonVPlayer clicked", 0L);
+				}
+				Util.showVPlayerAlert(context);
+			}
+		});
+
+		final Button mxPlayerButton = (Button) findViewById(R.id.buttonMxPlayer);
+		mxPlayerButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "buttonVPlayer", "buttonVPlayer clicked", 0L);
+				}
+				Util.showMxPlayerAlert(context);
+			}
+		});
+
 		final Button zurueckButton = (Button) findViewById(R.id.buttonZurueck);
 		zurueckButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

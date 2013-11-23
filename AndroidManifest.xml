@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.rothconsulting.android.localtv" android:versionCode="145"
-	android:versionName="1.4.5" android:installLocation="auto">
+	package="com.rothconsulting.android.localtv" android:versionCode="150"
+	android:versionName="1.5.0" android:installLocation="auto">
 
 	<uses-sdk android:minSdkVersion="8" />
 	<uses-permission android:name="android.permission.INTERNET" />

@@ -46,6 +46,7 @@ public class TVPlayerWebView extends Activity {
 	private PhoneStateListener callStateListener;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
+	private boolean isFlashUrl = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class TVPlayerWebView extends Activity {
 
 		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+
+		isFlashUrl = false;
 
 		// Get the GoogleAnalytics singleton. Note that the SDK uses
 		// the application context to avoid leaking the current context.
@@ -79,6 +82,7 @@ public class TVPlayerWebView extends Activity {
 		if (bundle != null) {
 			final String stationName = bundle.getString(Stations.NAME);
 			final String url = bundle.getString(Stations.URL);
+			isFlashUrl = bundle.getBoolean(Stations.TYP);
 			Util.log(TAG, "URL=" + url);
 
 			playInWebView(stationName, url);
@@ -107,9 +111,10 @@ public class TVPlayerWebView extends Activity {
 		myWebView.clearCache(Boolean.FALSE);
 		myWebView.setInitialScale(99);
 
-		myWebView.getSettings().setPluginState(PluginState.ON_DEMAND);
-		if (Util.isPlatformBelow_4_0()) {
+		if (Util.isPlatformBelow_4_0() || isFlashUrl) {
 			myWebView.getSettings().setPluginState(PluginState.ON);
+		} else {
+			myWebView.getSettings().setPluginState(PluginState.ON_DEMAND);
 		}
 		myWebView.getSettings().setJavaScriptEnabled(true);
 

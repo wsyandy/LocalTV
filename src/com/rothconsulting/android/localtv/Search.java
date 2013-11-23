@@ -61,7 +61,7 @@ public class Search extends Activity {
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
 				if (!Stations.titles(context).contains(station)) {
 					Util.hideKeyboard(context, textView);
-					Util.play(context, station, Util.getUrl(station));
+					Util.play(context, station, Util.getUrl(station), Util.isFlashStation(station));
 				} // else do nothing
 			}
 		});

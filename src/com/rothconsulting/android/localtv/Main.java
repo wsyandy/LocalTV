@@ -37,6 +37,7 @@ public class Main extends ListActivity {
 	private Context context;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
+	private boolean isFlashStation = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class Main extends ListActivity {
 		setContentView(R.layout.main);
 
 		context = this;
+		isFlashStation = false;
+
 		// Stations stations = new Stations();
 		Stations.init(context);
 
@@ -92,10 +95,14 @@ public class Main extends ListActivity {
 				String stationUrl = "" + station.get(Stations.URL);
 				int stationTypRedId = (Integer) station.get(Stations.TYP);
 
+				if (stationTypRedId == R.drawable.flash) {
+					isFlashStation = true;
+				}
+
 				Util.log(TAG, "name= " + stationName + ", url= " + stationUrl);
 				Util.log(TAG, "stationTypRedId=" + stationTypRedId + " / R.drawable.flash=" + R.drawable.flash);
 
-				if (stationTypRedId == R.drawable.flash && !Util.isFlashInstalled(context)) {
+				if (isFlashStation && !Util.isFlashInstalled(context)) {
 					Util.log(TAG, "isFlash");
 					Util.showFlashAlert(context, R.string.flashNotInstalled);
 					return;
@@ -125,7 +132,7 @@ public class Main extends ListActivity {
 				// Länder Titel haben keine URL und man kann sie nicht klicken.
 				if (stationUrl != null && !stationUrl.equals("")) {
 					Util.log(TAG, "Playing: " + stationName + ", " + stationUrl);
-					Util.play(context, stationName, stationUrl);
+					Util.play(context, stationName, stationUrl, isFlashStation);
 				}
 			}
 		});

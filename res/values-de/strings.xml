@@ -9,6 +9,8 @@
     <string name="flashNotInstalled">Adobe Flash Player ist nicht installiert!</string>
     <string name="flashDownloadText">Damit Sender die nur ein \'Flash\' Signal senden funktionieren musst du den neusten gratis Adobe Flash Player installiert haben!\n\nWenn du ihn bereits einmal installiert hattest kannst du ihn wieder im \'Google Play\' Store beziehen.\nFalls du ihn noch nie installiert hattest oder du Android Version 4.0 oder grösser verwendest kannst du ihn mittels \'Direkt Download\' herunterladen und manuell installieren.</string>
     <string name="solPlayerDownloadText">Damit du die HTTP Live Streams problemlos schauen kannst solltest du den Sol HLS Player installieren. Diesen kannst du gratis im Google Play Store herunter laden. In den LocalTV Einstellungen können auch andere Player-Formate ausgewählt werden.</string>
+    <string name="vPlayerDownloadText">Ein guter Player zum Videos schauen ist der \'VPlayer\'. Du kannst ihn hier vom Google Play Store herunter laden. In den LocalTV Einstellungen können auch andere Player-Formate ausgewählt werden.</string>
+    <string name="mxPlayerDownloadText">Ein guter Player zum Videos schauen ist der \'MX Player\'. Du kannst ihn hier vom Google Play Store herunter laden. In den LocalTV Einstellungen können auch andere Player-Formate ausgewählt werden.</string>
     <string name="internetNotConnected">Du bist nicht mit dem Internet verbunden!</string>
     <string name="info">Info</string>
     <string name="infoDatenmenge">Fernseh schauen via Internet verbraucht relativ grosse Datenmengen. Ich empfehle dir die Verwendung eines WLAN.</string>
@@ -54,6 +56,8 @@
 	<string name="flashPlayerOptions">Flash Player Optionen</string>
 	<string name="getLatestFlash">neuster Flash Player</string>
 	<string name="solHlsPlayer">Sol HLS Player</string>
+	<string name="vPlayer">VPlayer</string>
+	<string name="mxPlayer">MX Player</string>
 	<string name="settings">Einstellungen</string>
 	<string name="playerType">Player Typ</string>
 	<string name="playerInternalExternal">Welchen Player?</string>
