@@ -80,7 +80,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
 	}
 
-	public static String geFlashOption(Context context) {
+	public static String getFlashOption(Context context) {
 		if (Util.isBorderOver()) {
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 			return sharedPreferences.getString(KEY_FLASH_PLAYER_OPTIONS, context.getString(R.string.flashWhenNoOther));

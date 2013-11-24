@@ -339,7 +339,7 @@ public class Stations {
 
 	private static void setLiveUrl(HashMap<String, Object> m, String flashUrl, String noFlashUrl) {
 		Context context = CustomApplication.getCustomAppContext();
-		String flashOption = Settings.geFlashOption(context);
+		String flashOption = Settings.getFlashOption(context);
 		Util.log(TAG, "flashOption = " + flashOption);
 
 		if ((flashOption.equals(context.getString(R.string.flashDoNotUse)) || !Util.isBorderOver()) && noFlashUrl == null) {

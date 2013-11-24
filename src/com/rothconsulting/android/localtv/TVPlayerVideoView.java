@@ -95,15 +95,27 @@ public class TVPlayerVideoView extends Activity {
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					// intent.setDataAndType(Uri.parse(url), "application/vnd.apple.mpegurl");
 					intent.setDataAndType(Uri.parse(url), "application/x-mpegURL");
+					// Google analytics
+					if (mGaTracker != null) {
+						mGaTracker.sendEvent("ui_action", "player_type", "application/x-mpegURL", 0L);
+					}
 					startActivity(intent);
 					finish();
 				}
 			} else if (playerTyp.equals(context.getString(R.string.playerUseOtherPlayer))) {
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				intent.setDataAndType(Uri.parse(url), "video/mp4");
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "player_type", "video/mp4", 0L);
+				}
 				startActivity(intent);
 				finish();
 			} else {
+				// Google analytics
+				if (mGaTracker != null) {
+					mGaTracker.sendEvent("ui_action", "player_type", "video_view_internal", 0L);
+				}
 				playInVideoView(stationName, url);
 			}
 

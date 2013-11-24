@@ -46,7 +46,6 @@ public class TVPlayerWebView extends Activity {
 	private PhoneStateListener callStateListener;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
-	private boolean isFlashUrl = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +56,6 @@ public class TVPlayerWebView extends Activity {
 
 		this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
-
-		isFlashUrl = false;
 
 		// Get the GoogleAnalytics singleton. Note that the SDK uses
 		// the application context to avoid leaking the current context.
@@ -82,10 +79,10 @@ public class TVPlayerWebView extends Activity {
 		if (bundle != null) {
 			final String stationName = bundle.getString(Stations.NAME);
 			final String url = bundle.getString(Stations.URL);
-			isFlashUrl = bundle.getBoolean(Stations.TYP);
+			final boolean isFlashUrl = bundle.getBoolean(Stations.TYP);
 			Util.log(TAG, "URL=" + url);
 
-			playInWebView(stationName, url);
+			playInWebView(stationName, url, isFlashUrl);
 		} else {
 			Util.log(TAG, "bundle is null");
 		}
@@ -97,7 +94,7 @@ public class TVPlayerWebView extends Activity {
 	}
 
 	@SuppressLint("NewApi")
-	private void playInWebView(final String name, final String url) {
+	private void playInWebView(final String name, final String url, boolean isFlashUrl) {
 
 		if (!Stations.orientationPortrait().contains(name)) {
 			if (Util.isPlatformBelow_2_3_0()) {
@@ -113,6 +110,8 @@ public class TVPlayerWebView extends Activity {
 
 		if (Util.isPlatformBelow_4_0() || isFlashUrl) {
 			myWebView.getSettings().setPluginState(PluginState.ON);
+		} else if (name.contains("SRF ") || Settings.getFlashOption(context).equals(context.getString(R.string.flashDoNotUse))) {
+			myWebView.getSettings().setPluginState(PluginState.OFF);
 		} else {
 			myWebView.getSettings().setPluginState(PluginState.ON_DEMAND);
 		}
@@ -249,6 +248,10 @@ public class TVPlayerWebView extends Activity {
 				intent.setType("video/mp4");
 			}
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			// Google analytics
+			if (mGaTracker != null) {
+				mGaTracker.sendEvent("ui_action", "player_type", "web_view_internal", 0L);
+			}
 			view.getContext().startActivity(intent);
 			// back to the list
 			finish();

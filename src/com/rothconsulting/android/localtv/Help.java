@@ -87,7 +87,7 @@ public class Help extends Activity {
 			public void onClick(View v) {
 				// Google analytics
 				if (mGaTracker != null) {
-					mGaTracker.sendEvent("ui_action", "buttonVPlayer", "buttonVPlayer clicked", 0L);
+					mGaTracker.sendEvent("ui_action", "buttonMxPlayer", "buttonMxPlayer clicked", 0L);
 				}
 				Util.showMxPlayerAlert(context);
 			}

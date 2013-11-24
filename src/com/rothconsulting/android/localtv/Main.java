@@ -37,7 +37,6 @@ public class Main extends ListActivity {
 	private Context context;
 	private Tracker mGaTracker;
 	private GoogleAnalytics mGaInstance;
-	private boolean isFlashStation = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class Main extends ListActivity {
 		setContentView(R.layout.main);
 
 		context = this;
-		isFlashStation = false;
 
 		// Stations stations = new Stations();
 		Stations.init(context);
@@ -95,6 +93,7 @@ public class Main extends ListActivity {
 				String stationUrl = "" + station.get(Stations.URL);
 				int stationTypRedId = (Integer) station.get(Stations.TYP);
 
+				boolean isFlashStation = false;
 				if (stationTypRedId == R.drawable.flash) {
 					isFlashStation = true;
 				}
