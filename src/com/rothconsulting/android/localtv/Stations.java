@@ -128,7 +128,8 @@ public class Stations {
 	public static final String AUGSBURG_TV = "Augsburg TV";
 	public static final String BERG_TV = "Bergisch Gladbach TV";
 	public static final String ANDROID_NEW_TV = "Android News TV";
-	public static final String DW = "DW - Deutsche Welle";
+	public static final String DW_DEUTSCH = "DW - Deutsche Welle Deutsch";
+	public static final String DW_EUROPA = "DW - Deutsche Welle Europa";
 	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
@@ -1001,8 +1002,14 @@ public class Stations {
 		addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
-		m.put(NAME, DW);
-		setLiveUrl(m, "dw.php", "DW-EUROPA");
+		m.put(NAME, DW_DEUTSCH);
+		setLiveUrl(m, "dw.php", null);
+		m.put(ICON, R.drawable.dw_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, DW_EUROPA);
+		setLiveUrl(m, null, "DW-EUROPA");
 		m.put(ICON, R.drawable.dw_tv);
 		addToLiveStations(m);
 
