@@ -28,8 +28,11 @@ public class Stations {
 	public static final String TELE_1 = "Tele 1";
 	public static final String TELE_1_ARCHIV = "Tele 1 Archiv";
 	public static final String SRF_1 = "SRF 1";
+	// public static final String SRF_1_2 = "SRF-1 (2)";
 	public static final String SRF_2 = "SRF 2";
+	// public static final String SRF_2_2 = "SRF-2 (2)";
 	public static final String SRF_INFO = "SRF Info";
+	// public static final String SRF_INFO_2 = "SRF-Info (2)";
 	public static final String SCHWEIZ_5 = "Schweiz 5";
 	public static final String LA_TELE = "La Télé";
 	public static final String CANAL_ALPHA_JURA_BERNOISE = "Canal Alpha (Jura – Jura bernois)";
@@ -129,7 +132,11 @@ public class Stations {
 	public static final String BERG_TV = "Bergisch Gladbach TV";
 	public static final String ANDROID_NEW_TV = "Android News TV";
 	public static final String DW_DEUTSCH = "DW - Deutsche Welle Deutsch";
-	public static final String DW_EUROPA = "DW - Deutsche Welle Europa";
+	public static final String DW_EUROPA = "DW - Europa";
+	public static final String DW_AMERICA = "DW - America";
+	public static final String DW_ASIA = "DW - Asia";
+	public static final String DW_ARABIA = "DW - Arabia";
+	public static final String DW_LATINOAMERICA = "DW - Latinoamérica";
 	public static final String SACHSEN_FERNSEHEN = "Sachsen Fernsehen";
 	public static final String DRESDEN_TV = "Dresden Fernsehen";
 	public static final String LEIPZIG_TV = "Leipzig Fernsehen";
@@ -482,17 +489,35 @@ public class Stations {
 		m.put(ICON, R.drawable.srf_1);
 		addToLiveStations(m);
 
+		// m = new HashMap<String, Object>();
+		// m.put(NAME, SRF_1_2);
+		// setLiveUrl(m, null, "SRF-1-M3U8");
+		// m.put(ICON, R.drawable.srf_1);
+		// addToLiveStations(m);
+
 		m = new HashMap<String, Object>();
 		m.put(NAME, SRF_2);
 		setLiveUrl(m, "srf2.php", "SRF-2");
 		m.put(ICON, R.drawable.srf_2);
 		addToLiveStations(m);
 
+		// m = new HashMap<String, Object>();
+		// m.put(NAME, SRF_2_2);
+		// setLiveUrl(m, null, "SRF-2-M3U8");
+		// m.put(ICON, R.drawable.srf_2);
+		// addToLiveStations(m);
+
 		m = new HashMap<String, Object>();
 		m.put(NAME, SRF_INFO);
 		setLiveUrl(m, "srfInfo.php", "SRF-info");
 		m.put(ICON, R.drawable.srf_info);
 		addToLiveStations(m);
+
+		// m = new HashMap<String, Object>();
+		// m.put(NAME, SRF_INFO_2);
+		// setLiveUrl(m, null, "SRF-info-M3U8");
+		// m.put(ICON, R.drawable.srf_info);
+		// addToLiveStations(m);
 
 		m = new HashMap<String, Object>();
 		m.put(NAME, SRF_PLAYER);
@@ -1010,6 +1035,30 @@ public class Stations {
 		m = new HashMap<String, Object>();
 		m.put(NAME, DW_EUROPA);
 		setLiveUrl(m, null, "DW-EUROPA");
+		m.put(ICON, R.drawable.dw_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, DW_AMERICA);
+		setLiveUrl(m, null, "DW-AMERICA");
+		m.put(ICON, R.drawable.dw_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, DW_ASIA);
+		setLiveUrl(m, null, "DW-ASIA");
+		m.put(ICON, R.drawable.dw_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, DW_ARABIA);
+		setLiveUrl(m, null, "DW-ARABIA");
+		m.put(ICON, R.drawable.dw_tv);
+		addToLiveStations(m);
+
+		m = new HashMap<String, Object>();
+		m.put(NAME, DW_LATINOAMERICA);
+		setLiveUrl(m, null, "DW-LATIONOAMERICA");
 		m.put(ICON, R.drawable.dw_tv);
 		addToLiveStations(m);
 
